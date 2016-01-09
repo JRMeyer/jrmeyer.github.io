@@ -16,3 +16,6 @@ github_username:  JRMeyer
 
 # Build settings
 markdown: kramdown
+
+# use pygments over rouge
+highlighter: pygments
