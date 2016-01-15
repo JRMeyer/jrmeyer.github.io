@@ -4,8 +4,10 @@ title: About
 permalink: /about/
 ---
 
-My name's Josh Meyer and I'm a PhD student in linguistics at the University of Arizona, working on automatic speech recognition. This blog is some of what I'm learning along the way.
+My name is Josh Meyer and I'm a PhD student in linguistics at the University of Arizona. My research is mainly on automatic speech recognition, but I do some natural language processing and general machine learning as well. This blog is some of what I'm learning along the way.
 
-If you have comments or spot some issues in a post, I would very much appreciate your feedback!
+In case you're interested, you can find my [academic CV here]({{ site.url }}/misc/josh-meyer-cv.pdf).
+
+If you have comments or spot some issues in a post, I would very much appreciate your thoughts!
 
 joshuameyer # email $ arizona $ edu {# -> @, $ -> .}
