@@ -288,6 +288,196 @@ Arguments list definition:
 {% endhighlight %}
 
 
+<br />
+
+<br />
+
+### Installing pocketsphinx
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ sudo git clone https://github.com/cmusphinx/pocketsphinx.git
+Cloning into 'pocketsphinx'...
+remote: Counting objects: 11810, done.
+remote: Total 11810 (delta 0), reused 0 (delta 0), pack-reused 11810
+Receiving objects: 100% (11810/11810), 178.73 MiB | 11.30 MiB/s, done.
+Resolving deltas: 100% (8831/8831), done.
+Checking connectivity... done.
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ la
+AUTHORS       doc      indent.sh  Makefile.am  pocketsphinx.pc.in  README.md   swig
+autogen.sh    .git     LICENSE    model        pocketsphinx.sln    regression  test
+configure.ac  include  m4         NEWS         README              src         win32
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo ./autogen.sh 
+**Warning**: I am going to run `configure' with no arguments.
+If you wish to pass any to it, please specify them on the
+`./autogen.sh' command line.
+
+processing .
+Running libtoolize...
+libtoolize: putting auxiliary files in `.'.
+libtoolize: copying file `./ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'.
+libtoolize: copying file `m4/libtool.m4'
+libtoolize: copying file `m4/ltoptions.m4'
+libtoolize: copying file `m4/ltsugar.m4'
+libtoolize: copying file `m4/ltversion.m4'
+libtoolize: copying file `m4/lt~obsolete.m4'
+Running aclocal  ...
+Running automake --foreign --copy  ...
+configure.ac:11: installing './compile'
+configure.ac:10: installing './config.guess'
+configure.ac:10: installing './config.sub'
+configure.ac:5: installing './install-sh'
+                    .
+                    .
+                    .
+config.status: creating model/Makefile
+config.status: creating test/Makefile
+config.status: creating test/testfuncs.sh
+config.status: creating test/unit/Makefile
+config.status: creating test/regression/Makefile
+config.status: executing depfiles commands
+config.status: executing libtool commands
+Now type `make' to compile the package.
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo make
+                             .
+                             .
+                             .
+libtool: link: (cd ".libs" && rm -f "_pocketsphinx.so.0" && ln -s "_pocketsphinx.so.0.0.0" "_pocketsphinx.so.0")
+libtool: link: (cd ".libs" && rm -f "_pocketsphinx.so" && ln -s "_pocketsphinx.so.0.0.0" "_pocketsphinx.so")
+libtool: link: ar cru .libs/_pocketsphinx.a  pocketsphinx_wrap.o
+libtool: link: ranlib .libs/_pocketsphinx.a
+libtool: link: ( cd ".libs" && rm -f "_pocketsphinx.la" && ln -s "../_pocketsphinx.la" "_pocketsphinx.la" )
+make[3]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig/python'
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig/python'
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig'
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
+make[1]: Nothing to be done for `all-am'.
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
+{% endhighlight %}
+
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo make install
+Making install in src
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx/src'
+Making install in libpocketsphinx
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx/src/libpocketsphinx'
+make[3]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx/src/libpocketsphinx'
+                             .
+                             .
+                             .
+libtool: install: /usr/bin/install -c .libs/libpocketsphinx.lai /usr/local/lib/libpocketsphinx.la
+libtool: install: /usr/bin/install -c .libs/libpocketsphinx.a /usr/local/lib/libpocketsphinx.a
+libtool: install: chmod 644 /usr/local/lib/libpocketsphinx.a
+libtool: install: ranlib /usr/local/lib/libpocketsphinx.a
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin" ldconfig -n /usr/local/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+                             .
+                             .
+                             .
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib/python2.7/dist-packages/pocketsphinx
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+                             .
+                             .
+                             .
+make[3]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig'
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx/swig'
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
+make[2]: Nothing to be done for `install-exec-am'.
+ /bin/mkdir -p '/usr/local/lib/pkgconfig'
+ /usr/bin/install -c -m 644 pocketsphinx.pc '/usr/local/lib/pkgconfig'
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_
+pocketsphinx_batch         pocketsphinx_continuous    pocketsphinx_mdef_convert
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_continuous 
+pocketsphinx_continuous: error while loading shared libraries: libpocketsphinx.so.3: cannot open shared object file: No such file or directory
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ export LD_LIBRARY_PATH=/usr/local/lib
+{% endhighlight %}
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_continuous 
+ERROR: "cmd_ln.c", line 679: No arguments given, available options are:
+Arguments list definition:
+[NAME]			[DEFLT]		[DESCR]
+-adcdev					Name of audio device to use for input.
+-agc			none		Automatic gain control for c0 ('max', 'emax', 'noise', or 'none')
+-agcthresh		2.0		Initial threshold for automatic gain control
+-allphone				Perform phoneme decoding with phonetic lm
+-allphone_ci		no		Perform phoneme decoding with phonetic lm and context-independent units only
+-alpha			0.97		Preemphasis parameter
+                              .
+                              .
+                              .
+-varfloor		0.0001		Mixture gaussian variance floor (applied to data from -var file)
+-varnorm		no		Variance normalize each utterance (only if CMN == current)
+-verbose		no		Show input filenames
+-warp_params				Parameters defining the warping function
+-warp_type		inverse_linear	Warping function type (or shape)
+-wbeam			7e-29		Beam width applied to word exits
+-wip			0.65		Word insertion penalty
+-wlen			0.025625	Hamming window length
+
+INFO: continuous.c(295): Specify '-infile <file.wav>' to recognize from file or '-inmic yes' to recognize from microphone.
+{% endhighlight %}
+
+
 
 
 
@@ -302,7 +492,7 @@ Arguments list definition:
 [libtool]: http://www.gnu.org/software/libtool/
 [bison]: http://www.gnu.org/software/bison/
 [swig]: http://www.swig.org/
-[python-dev]: https://packages.debian.org/sid/python-dev
-[libpulse-dev]: https://packages.debian.org/sid/libpulse-dev
+[python-dev]: https://packages.debian.org/sid/python-dev/
+[libpulse-dev]: https://packages.debian.org/sid/libpulse-dev/
 [make]: https://en.wikipedia.org/wiki/Make_(software)
 [stackoverflow]: http://stackoverflow.com/questions/10630747/converting-the-lm-to-dmp-file-for-building-the-language-model-for-speech-rec
