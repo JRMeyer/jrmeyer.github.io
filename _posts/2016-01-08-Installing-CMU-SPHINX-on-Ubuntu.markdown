@@ -7,7 +7,7 @@ categories: installation
 
 ## Some Background
 
-I recently installed Ubunutu 14.04 on my Lenovo Yoga, and it's time to reinstall SPHINX. 
+I recently installed Ubuntu 14.04 on my Lenovo Yoga, and it's time to reinstall SPHINX. 
 
 When I installed SPHINX for the first time in September 2015, it was not a fun experience. I originally followed the instructions on [CMU's website][cmu-sphinx], but I couldn't seem to get it right. I tried a number of different approaches, using different blogs as guides, but I got nowhere. I first tried downloading Pocketsphinx, Sphinxtrain, Sphinxbase and Sphinx4 from CMU's [downloads page][cmu-downloads], but that didn't work. I also tried installing the version hosted on [SourceForge][cmu-sourceforge], but no luck there either. I finally decided to try cloning and installing the version on [GitHub][cmu-github], and that seemed to do the trick.
 
@@ -288,11 +288,23 @@ Arguments list definition:
 {% endhighlight %}
 
 
+
+
+
+
+
+
 <br />
 
 <br />
 
 ### Installing pocketsphinx
+
+Now that we've got sphinxbase installed successfully, we can move onto installing pocketsphinx. According to the description on the [pocketsphinx GitHub repository][pocketsphinx]:
+
+>PocketSphinx is a lightweight speech recognition engine, specifically tuned for handheld and mobile devices, though it works equally well on the desktop.
+
+Still using **sphinx-source** as our current working directory, we can clone pocketsphinx from GitHub with the following command:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ sudo git clone https://github.com/cmusphinx/pocketsphinx.git
@@ -304,14 +316,21 @@ Resolving deltas: 100% (8831/8831), done.
 Checking connectivity... done.
 {% endhighlight %}
 
+Now lets take a look at what we've just cloned:
+
 {% highlight bash %}
-josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ la
+josh@yoga:~/Desktop/sphinx-source$ la pocketsphinx
 AUTHORS       doc      indent.sh  Makefile.am  pocketsphinx.pc.in  README.md   swig
 autogen.sh    .git     LICENSE    model        pocketsphinx.sln    regression  test
 configure.ac  include  m4         NEWS         README              src         win32
 {% endhighlight %}
 
+Looks pretty similar to what we found in our sphinxbase source directory, right? 
+
+It basically is, and we can run the same installation procedure as we did above. So now we cd into the dir itself and run **autogen.sh**. We get some output that looks like the following (again, I've truncated the output here).
+ 
 {% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ cd pocketsphinx
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo ./autogen.sh 
 **Warning**: I am going to run `configure' with no arguments.
 If you wish to pass any to it, please specify them on the
@@ -346,6 +365,8 @@ config.status: executing libtool commands
 Now type `make' to compile the package.
 {% endhighlight %}
 
+Same as for sphinxbase, we run **make** now. 
+
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo make
                              .
@@ -367,6 +388,7 @@ make[1]: Nothing to be done for `all-am'.
 make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
 {% endhighlight %}
 
+And now we can actually do the installation. 
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo make install
@@ -437,19 +459,27 @@ make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
 make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
 {% endhighlight %}
 
+Let's see if we got something. If you type in **pocketsphinx_** and do a tab completion to list all options, you should see something like this:
+
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_
 pocketsphinx_batch         pocketsphinx_continuous    pocketsphinx_mdef_convert
 {% endhighlight %}
+
+Now if you try to run one of them, you will see a familiar error that we got with sphinxbase:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_continuous 
 pocketsphinx_continuous: error while loading shared libraries: libpocketsphinx.so.3: cannot open shared object file: No such file or directory
 {% endhighlight %}
 
+We're having a hard time finding those shared libraries, but we can set **LD_LIBRARY_PATH** just like before. 
+
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ export LD_LIBRARY_PATH=/usr/local/lib
 {% endhighlight %}
+
+Now if we try to run pocketsphinx_continuous, we get a more sensible error because we didn't supply any of the needed arguments.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_continuous 
@@ -496,3 +526,4 @@ INFO: continuous.c(295): Specify '-infile <file.wav>' to recognize from file or 
 [libpulse-dev]: https://packages.debian.org/sid/libpulse-dev/
 [make]: https://en.wikipedia.org/wiki/Make_(software)
 [stackoverflow]: http://stackoverflow.com/questions/10630747/converting-the-lm-to-dmp-file-for-building-the-language-model-for-speech-rec
+[pocketsphinx]: https://github.com/cmusphinx/pocketsphinx
