@@ -70,7 +70,7 @@ To get the most update version of Praat, let's clone it from GitHub and just sav
 josh@yoga:~/Desktop$ git clone https://github.com/praat/praat.git
 {% endhighlight %}
 
-If you do an **ls** on your Desktop, you should see a new, praat directory. Here are located all the files (Makefiles) to install it correctly. Let's take a look at what we've just got:
+If you do an **ls** or **la** on your Desktop, you should see a new, praat directory. Here are located all the files (Makefiles) to install it correctly. Let's take a look at what we've just got:
 
 {% highlight bash %}
 josh@yoga:~/Desktop$ la praat
