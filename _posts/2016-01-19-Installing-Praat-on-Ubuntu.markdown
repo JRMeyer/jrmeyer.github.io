@@ -64,8 +64,104 @@ sudo apt-get install libasound2-dev libgtk2.0-dev
 
 ## Installing Praat
 
+To get the most update version of Praat, let's clone it from GitHub and just save it on our desktop. Once it's on our desktop. 
 
+{% highlight bash %}
+josh@yoga:~/Desktop$ git clone https://github.com/praat/praat.git
+{% endhighlight %}
 
+If you do an **ls** on your Desktop, you should see a new, praat directory. Here are located all the files (Makefiles) to install it correctly. Let's take a look at what we've just got:
+
+{% highlight bash %}
+josh@yoga:~/Desktop$ la praat
+artsynth  dwsys   dwtools  external  fon   .gitattributes  gram  LPC   makefile   num        stat  test
+contrib   dwtest  EEG      FFNet     .git  .gitignore      kar   main  makefiles  README.md  sys
+{% endhighlight %}
+
+Now we need to get the definitions that are specific to Linux for our makefiles. We need to be in our new praat directory and save the ones that are relevant to us to a new file, **makefiles.defs**.
+
+{% highlight bash %}
+josh@yoga:~/Desktop$ cd praat
+josh@yoga:~/Desktop/praat$ cp makefiles/makefile.defs.linux.alsa ./makefile.defs
+{% endhighlight %}
+
+Now that we've made this new **makefiles.defs** file, we can see it in our praat dir.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ la
+artsynth  dwtest   external  .git            gram  main           makefiles  stat
+contrib   dwtools  FFNet     .gitattributes  kar   makefile       num        sys
+dwsys     EEG      fon       .gitignore      LPC   makefile.defs  README.md  test
+{% endhighlight %}
+
+Now we can install Praat with the standard **make** command. 
+
+You're going to get a lot of output at the command line, and it may take a couple mintues to finish. Here's the tail end of the output you should be getting.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ sudo make
+                      .
+                      .
+                      .
+make[1]: Leaving directory `/home/josh/Desktop/praat/contrib/ola'
+make -C main main_Praat.o 
+make[1]: Entering directory `/home/josh/Desktop/praat/main'
+g++ -std=c++11 -DUNIX -Dlinux -DALSA -D_FILE_OFFSET_BITS=64 `pkg-config --cflags gtk+-2.0` -Werror=missing-prototypes -Werror=implicit -Wreturn-type -Wunused -Wunused-parameter -Wuninitialized -O1 -g1 -pthread -Wshadow -I ../num -I ../sys -I ../fon  -c -o main_Praat.o main_Praat.cpp
+make[1]: Leaving directory `/home/josh/Desktop/praat/main'
+g++ -o praat main/main_Praat.o  fon/libfon.a \
+		contrib/ola/libOla.a artsynth/libartsynth.a \
+		FFNet/libFFNet.a gram/libgram.a EEG/libEEG.a \
+		LPC/libLPC.a dwtools/libdwtools.a \
+		fon/libfon.a stat/libstat.a dwsys/libdwsys.a \
+		sys/libsys.a num/libnum.a kar/libkar.a \
+		external/espeak/libespeak.a external/portaudio/libportaudio.a \
+		external/flac/libflac.a external/mp3/libmp3.a \
+		external/glpk/libglpk.a external/gsl/libgsl.a \
+		`pkg-config --libs gtk+-2.0` -lm -lasound -lpthread
+{% endhighlight %}
+
+At this point you might think that you're done, but if you try to run Praat from the command line, you get an error:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ praat
+The program 'praat' is currently not installed. You can install it by typing:
+sudo apt-get install praat
+{% endhighlight %}
+
+DO NOT RUN THAT COMMAND! 
+
+This error is telling you that the computer can't find Praat, not that it's not installed.
+
+You do have Praat and it does work. To prove it, you can just run:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ ./praat
+{% endhighlight %}
+
+You should see that familiar, beautiful GUI. 
+
+So, to put Praat in the right place, you just copy that executable file **./praat** to where it belongs. For Ubuntu users, this executable shoudl be in **/usr/bin**. 
+
+So, we simply copy the file to where it goes:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ sudo cp ./praat /usr/bin/.
+{% endhighlight %}
+
+Now you can run Praat from anywhere, and you should have sound!
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ praat
+{% endhighlight %}
+
+You probably want to remove those source files on the Desktop, since you don't need them anymore:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/praat$ cd ..
+josh@yoga:~/Desktop$ sudo rm -r praat
+{% endhighlight %}
+
+Enjoy your Praat!
 
 [libgtk]: http://packages.ubuntu.com/precise/libgtk2.0-dev
 [libasound2]: https://packages.debian.org/sid/libasound2-dev
