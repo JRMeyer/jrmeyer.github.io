@@ -96,18 +96,23 @@ Resolving deltas: 100% (8092/8092), done.
 Checking connectivity... done.
 {% endhighlight %}
 
-Now we can take a look at what we got:
+Now can see that our once empty dir **sphinx-source** now has a new directory, **sphinxbase**:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ la
 sphinxbase
+{% endhighlight %}
+
+Let's look at what's inside this new dir, **sphinxbase**:
+
+{% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ la sphinxbase/
 AUTHORS       doc      indent.sh  Makefile.am  README.md         src   win32
 autogen.sh    .git     LICENSE    NEWS         sphinxbase.pc.in  swig
 configure.ac  include  m4         README       sphinxbase.sln    test
 {% endhighlight %}
 
-Now we need to run the **autogen.sh** shell script you can see in the sphinxbase directory. This will generate our **Makefiles** and other important scripts for compiling and installing. We're going to get a long output here, so I only show some of it here:
+Now we need to run the **autogen.sh** shell script you can see in the **sphinxbase** directory. This will generate our **Makefiles** and other important scripts for compiling and installing. We're going to get a long output here, so I only show some of it here:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ cd sphinxbase/
@@ -180,7 +185,7 @@ make[1]: Nothing to be done for `all-am'.
 make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxbase'
 {% endhighlight %}
 
-Now for the last step. Run the command **sudo make install**. Root permission is important, because otherwise you will get some error without any *Permision Denied* warning. 
+The next step is the last step. Run the command **sudo make install**. Root permission is important, because otherwise you will get some error without any *Permision Denied* warning. 
 
 You will see a good amount of output with some sections that look like this:
 
@@ -307,7 +312,7 @@ Now that we've got sphinxbase installed successfully, we can move onto installin
 Still using **sphinx-source** as our current working directory, we can clone pocketsphinx from GitHub with the following command:
 
 {% highlight bash %}
-josh@yoga:~/Desktop/sphinx-source$ sudo git clone https://github.com/cmusphinx/pocketsphinx.git
+josh@yoga:~/Desktop/sphinx-source$ git clone https://github.com/cmusphinx/pocketsphinx.git
 Cloning into 'pocketsphinx'...
 remote: Counting objects: 11810, done.
 remote: Total 11810 (delta 0), reused 0 (delta 0), pack-reused 11810
@@ -316,7 +321,14 @@ Resolving deltas: 100% (8831/8831), done.
 Checking connectivity... done.
 {% endhighlight %}
 
-Now lets take a look at what we've just cloned:
+If we peek inside the current working directory, we will see we have a new directory:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ la
+pocketsphinx  sphinxbase
+{% endhighlight %}
+
+Now lets take a look at all the stuff we've just cloned:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ la pocketsphinx
@@ -331,7 +343,7 @@ It basically is, and we can run the same installation procedure as we did above.
  
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ cd pocketsphinx
-josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo ./autogen.sh 
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ ./autogen.sh 
 **Warning**: I am going to run `configure' with no arguments.
 If you wish to pass any to it, please specify them on the
 `./autogen.sh' command line.
@@ -365,10 +377,23 @@ config.status: executing libtool commands
 Now type `make' to compile the package.
 {% endhighlight %}
 
-Same as for sphinxbase, we run **make** now. 
+Now we've made all our necessary **Makefiles**, and we can see them in the **pocketsphinx** directory.
 
 {% highlight bash %}
-josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo make
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ la
+aclocal.m4      configure     libtool      model               README.md
+AUTHORS         configure.ac  LICENSE      NEWS                regression
+autogen.sh      doc           m4           pocketsphinx.pc     src
+autom4te.cache  .git          Makefile     pocketsphinx.pc.in  swig
+config.log      include       Makefile.am  pocketsphinx.sln    test
+config.status   indent.sh     Makefile.in  README              win32
+{% endhighlight %}
+
+
+Same as we did above for **sphinxbase**, we run **make** now. 
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ make
                              .
                              .
                              .
@@ -388,7 +413,7 @@ make[1]: Nothing to be done for `all-am'.
 make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/pocketsphinx'
 {% endhighlight %}
 
-And now we can actually do the installation. 
+And now we can actually do the installation with **make install** and root privledges.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ sudo make install
@@ -466,20 +491,7 @@ josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_
 pocketsphinx_batch         pocketsphinx_continuous    pocketsphinx_mdef_convert
 {% endhighlight %}
 
-Now if you try to run one of them, you will see a familiar error that we got with sphinxbase:
-
-{% highlight bash %}
-josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_continuous 
-pocketsphinx_continuous: error while loading shared libraries: libpocketsphinx.so.3: cannot open shared object file: No such file or directory
-{% endhighlight %}
-
-We're having a hard time finding those shared libraries, but we can set **LD_LIBRARY_PATH** just like before. 
-
-{% highlight bash %}
-josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ export LD_LIBRARY_PATH=/usr/local/lib
-{% endhighlight %}
-
-Now if we try to run pocketsphinx_continuous, we get a more sensible error because we didn't supply any of the needed arguments.
+Now if you try to run one of them, we get a sensible error that says we didn't supply any of the needed arguments.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source/pocketsphinx$ pocketsphinx_continuous 
@@ -507,8 +519,232 @@ Arguments list definition:
 INFO: continuous.c(295): Specify '-infile <file.wav>' to recognize from file or '-inmic yes' to recognize from microphone.
 {% endhighlight %}
 
+Huzzah! We now have a functional version of **pocketsphinx** installed with all it's **sphinxbase** dependencies (if you followed the first section). If you already have a language model, an acoustic model, and a phonetic dictionary, you're good to go!
+
+However, if you'd like to train or adapt an acoustic model, you need to install **sphinxtrain** as shown below.
 
 
+<br />
+
+<br />
+
+### Installing sphinxtrain
+
+Let's clone **sphinxtrain** into the temporary directory we've been using to store our source code (**sphinx-source**):
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ git clone https://github.com/cmusphinx/sphinxtrain.git
+Cloning into 'sphinxtrain'...
+remote: Counting objects: 15997, done.
+remote: Total 15997 (delta 0), reused 0 (delta 0), pack-reused 15997
+Receiving objects: 100% (15997/15997), 13.15 MiB | 1.80 MiB/s, done.
+Resolving deltas: 100% (11174/11174), done.
+Checking connectivity... done.
+{% endhighlight %}
+
+If we look inside the temorary directory, we see **sphinxtrain** right where it should be, alongside our other directories of source code.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ la
+pocketsphinx  sphinxbase  sphinxtrain
+{% endhighlight %}
+
+Now, if we look inside this new sourcecode, we will see something pretty familiar.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ la sphinxtrain
+AUTHORS       etc      LICENSE      NEWS    scripts          templates
+autogen.sh    .git     m4           python  SphinxTrain.sln  test
+configure.ac  include  Makefile.am  README  src              win32
+{% endhighlight %}
+
+Let's **cd** into **sphinxtrain** and run the script which generates the **Makefiles**.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source$ cd sphinxtrain
+josh@yoga:~/Desktop/sphinx-source/sphinxtrain$ ./autogen.sh 
+[sudo] password for josh: 
+**Warning**: I am going to run `configure' with no arguments.
+If you wish to pass any to it, please specify them on the
+`./autogen.sh' command line.
+
+processing .
+Running libtoolize...
+libtoolize: putting auxiliary files in `.'.
+libtoolize: copying file `./ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'.
+libtoolize: copying file `m4/libtool.m4'
+libtoolize: copying file `m4/ltoptions.m4'
+libtoolize: copying file `m4/ltsugar.m4'
+libtoolize: copying file `m4/ltversion.m4'
+                      .
+                      .
+                      .
+config.status: creating src/programs/param_cnt/Makefile
+config.status: creating src/programs/printp/Makefile
+config.status: creating src/programs/prunetree/Makefile
+config.status: creating src/programs/tiestate/Makefile
+config.status: creating test/Makefile
+config.status: executing depfiles commands
+config.status: executing libtool commands
+Now type `make' to compile the package.
+{% endhighlight %}
+
+Let's take a look at what we just did.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/sphinxtrain$ la
+aclocal.m4      config.status  include     Makefile.am  SphinxTrain.sln
+AUTHORS         config.sub     install-sh  Makefile.in  src
+autogen.sh      configure      libtool     missing      templates
+autom4te.cache  configure.ac   LICENSE     NEWS         test
+compile         depcomp        ltmain.sh   python       win32
+config.guess    etc            m4          README
+config.log      .git           Makefile    scripts
+{% endhighlight %}
+
+As with all the other installations, we now compile with **make**.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/sphinxtrain$ make
+                            .
+                            .
+                            .
+make[3]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src/programs/tiestate'
+make[3]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src/programs'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src/programs'
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src/programs'
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+Making all in test
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/test'
+make[1]: Nothing to be done for `all'.
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/test'
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain'
+make[1]: Nothing to be done for `all-am'.
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain'
+{% endhighlight %}
+
+
+Moving right along, we can run **make install** to seal the deal.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/sphinxtrain$ sudo make install
+                            .
+                            .
+                            .
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+make[3]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+make[3]: Nothing to be done for `install-exec-am'.
+make[3]: Nothing to be done for `install-data-am'.
+make[3]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/src'
+Making install in test
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/test'
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain/test'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/test'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain/test'
+make[1]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain'
+make[2]: Entering directory `/home/josh/Desktop/sphinx-source/sphinxtrain'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain'
+make[1]: Leaving directory `/home/josh/Desktop/sphinx-source/sphinxtrain'
+{% endhighlight %}
+
+Hopefully now you can try out sphinxtrain and get some sensible output:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/sphinx-source/sphinxtrain$ sphinxtrain 
+
+Sphinxtrain processes the audio files and creates and acoustic model 
+for CMUSphinx toolkit. The data needs to have a certain layout 
+See the tutorial http://cmusphinx.sourceforge.net/wiki/tutorialam 
+for details
+
+Usage: sphinxtrain [options] <command>
+
+Commands:
+     -t <task> setup - copy configuration into database
+     [-s <stage1,stage2,stage3>] [-f <stage>] run - run the training or just selected stages
+{% endhighlight %}
+
+You should be ready to go now!
+
+Hopefully this worked for you, or at least was helpful.
+
+[//]: # <br />
+
+[//]: # <br />
+
+[//]: # ### Installing sphinx4
+
+[//]: # We need to get **gradle** to install. 
+
+[//]: # josh@yoga:~/Desktop/sphinx-source$ sudo apt-get install gradle
+[//]: #                         .
+[//]: #                         .
+[//]: #                         .
+[//]: # Setting up libgradle-core-java (1.4-2ubuntu1) ...
+[//]: # Setting up libgradle-plugins-java (1.4-2ubuntu1) ...
+[//]: # Setting up gradle (1.4-2ubuntu1) ...
+[//]: # Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+[//]: # Processing triggers for ca-certificates (20141019ubuntu0.14.04.1) ...
+[//]: # Updating certificates in /etc/ssl/certs... 0 added, 0 removed; done.
+[//]: # Running hooks in /etc/ca-certificates/update.d....
+[//]: # done.
+[//]: # done.
+
+
+[//]: # Now we need to get the Java Development Kit (JDK) because Sphinx4 is written purely in Java. 
+
+[//]: # josh@yoga:~/Desktop/sphinx-source$ sudo apt-get install openjdk-7-jdk
+[//]: # josh@yoga:~/Desktop/sphinx-source$ la /usr/lib/jvm
+[//]: # josh@yoga:~/Desktop/sphinx-source$ export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+[//]: # josh@yoga:~/Desktop/sphinx-source$ export PATH=$PATH:$JAVA_HOME/bin
+[//]: # josh@yoga:~/Desktop/sphinx-source$ javac -version
+
+[//]: # josh@yoga:~/Desktop/sphinx-source$ git clone https://github.com/cmusphinx/sphinx4.git
+
+[//]: # josh@yoga:~/Desktop/sphinx-source$ la
+[//]: # pocketsphinx  sphinx4  sphinxbase  sphinxtrain
+
+[//]: # josh@yoga:~/Desktop/sphinx-source$ la sphinx4
+[//]: # build.gradle  license.terms  settings.gradle  sphinx4-samples
+[//]: # doc           README         sphinx4-core     tests
+[//]: # .git          RELEASE_NOTES  sphinx4-data
+
+
+[//]: # josh@yoga:~/Desktop/sphinx-source/sphinx4$ sudo gradle build
+[//]: #                     .
+[//]: #                     .
+[//]: #                     .
+[//]: # :sphinx4-data:check UP-TO-DATE
+[//]: # :sphinx4-data:build UP-TO-DATE
+[//]: # :sphinx4-samples:compileJava UP-TO-DATE
+[//]: # :sphinx4-samples:processResources UP-TO-DATE
+[//]: # :sphinx4-samples:classes UP-TO-DATE
+[//]: # :sphinx4-samples:jar UP-TO-DATE
+[//]: # :sphinx4-samples:javadoc UP-TO-DATE
+[//]: # :sphinx4-samples:javadocJar UP-TO-DATE
+[//]: # :sphinx4-samples:packageSources UP-TO-DATE
+[//]: # :sphinx4-samples:assemble UP-TO-DATE
+[//]: # :sphinx4-samples:compileTestJava UP-TO-DATE
+[//]: # :sphinx4-samples:processTestResources UP-TO-DATE
+[//]: # :sphinx4-samples:testClasses UP-TO-DATE
+[//]: # :sphinx4-samples:test UP-TO-DATE
+[//]: # :sphinx4-samples:check UP-TO-DATE
+[//]: # :sphinx4-samples:build UP-TO-DATE
+
+[//]: # BUILD SUCCESSFUL
+
+[//]: # Total time: 7.001 secs
 
 
 
