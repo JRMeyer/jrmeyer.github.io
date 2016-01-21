@@ -679,73 +679,75 @@ You should be ready to go now!
 
 Hopefully this worked for you, or at least was helpful.
 
-[//]: # <br />
+<!--
 
-[//]: # <br />
+<br />
 
-[//]: # ### Installing sphinx4
+<br />
 
-[//]: # We need to get **gradle** to install. 
+### Installing sphinx4
 
-[//]: # josh@yoga:~/Desktop/sphinx-source$ sudo apt-get install gradle
-[//]: #                         .
-[//]: #                         .
-[//]: #                         .
-[//]: # Setting up libgradle-core-java (1.4-2ubuntu1) ...
-[//]: # Setting up libgradle-plugins-java (1.4-2ubuntu1) ...
-[//]: # Setting up gradle (1.4-2ubuntu1) ...
-[//]: # Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
-[//]: # Processing triggers for ca-certificates (20141019ubuntu0.14.04.1) ...
-[//]: # Updating certificates in /etc/ssl/certs... 0 added, 0 removed; done.
-[//]: # Running hooks in /etc/ca-certificates/update.d....
-[//]: # done.
-[//]: # done.
+We need to get **gradle** to install. 
 
-
-[//]: # Now we need to get the Java Development Kit (JDK) because Sphinx4 is written purely in Java. 
-
-[//]: # josh@yoga:~/Desktop/sphinx-source$ sudo apt-get install openjdk-7-jdk
-[//]: # josh@yoga:~/Desktop/sphinx-source$ la /usr/lib/jvm
-[//]: # josh@yoga:~/Desktop/sphinx-source$ export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
-[//]: # josh@yoga:~/Desktop/sphinx-source$ export PATH=$PATH:$JAVA_HOME/bin
-[//]: # josh@yoga:~/Desktop/sphinx-source$ javac -version
-
-[//]: # josh@yoga:~/Desktop/sphinx-source$ git clone https://github.com/cmusphinx/sphinx4.git
-
-[//]: # josh@yoga:~/Desktop/sphinx-source$ la
-[//]: # pocketsphinx  sphinx4  sphinxbase  sphinxtrain
-
-[//]: # josh@yoga:~/Desktop/sphinx-source$ la sphinx4
-[//]: # build.gradle  license.terms  settings.gradle  sphinx4-samples
-[//]: # doc           README         sphinx4-core     tests
-[//]: # .git          RELEASE_NOTES  sphinx4-data
+josh@yoga:~/Desktop/sphinx-source$ sudo apt-get install gradle
+                        .
+                        .
+                        .
+Setting up libgradle-core-java (1.4-2ubuntu1) ...
+Setting up libgradle-plugins-java (1.4-2ubuntu1) ...
+Setting up gradle (1.4-2ubuntu1) ...
+Processing triggers for libc-bin (2.19-0ubuntu6.6) ...
+Processing triggers for ca-certificates (20141019ubuntu0.14.04.1) ...
+Updating certificates in /etc/ssl/certs... 0 added, 0 removed; done.
+Running hooks in /etc/ca-certificates/update.d....
+done.
+done.
 
 
-[//]: # josh@yoga:~/Desktop/sphinx-source/sphinx4$ sudo gradle build
-[//]: #                     .
-[//]: #                     .
-[//]: #                     .
-[//]: # :sphinx4-data:check UP-TO-DATE
-[//]: # :sphinx4-data:build UP-TO-DATE
-[//]: # :sphinx4-samples:compileJava UP-TO-DATE
-[//]: # :sphinx4-samples:processResources UP-TO-DATE
-[//]: # :sphinx4-samples:classes UP-TO-DATE
-[//]: # :sphinx4-samples:jar UP-TO-DATE
-[//]: # :sphinx4-samples:javadoc UP-TO-DATE
-[//]: # :sphinx4-samples:javadocJar UP-TO-DATE
-[//]: # :sphinx4-samples:packageSources UP-TO-DATE
-[//]: # :sphinx4-samples:assemble UP-TO-DATE
-[//]: # :sphinx4-samples:compileTestJava UP-TO-DATE
-[//]: # :sphinx4-samples:processTestResources UP-TO-DATE
-[//]: # :sphinx4-samples:testClasses UP-TO-DATE
-[//]: # :sphinx4-samples:test UP-TO-DATE
-[//]: # :sphinx4-samples:check UP-TO-DATE
-[//]: # :sphinx4-samples:build UP-TO-DATE
+Now we need to get the Java Development Kit (JDK) because Sphinx4 is written purely in Java. 
 
-[//]: # BUILD SUCCESSFUL
+josh@yoga:~/Desktop/sphinx-source$ sudo apt-get install openjdk-7-jdk
+josh@yoga:~/Desktop/sphinx-source$ la /usr/lib/jvm
+josh@yoga:~/Desktop/sphinx-source$ export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+josh@yoga:~/Desktop/sphinx-source$ export PATH=$PATH:$JAVA_HOME/bin
+josh@yoga:~/Desktop/sphinx-source$ javac -version
 
-[//]: # Total time: 7.001 secs
+josh@yoga:~/Desktop/sphinx-source$ git clone https://github.com/cmusphinx/sphinx4.git
 
+josh@yoga:~/Desktop/sphinx-source$ la
+pocketsphinx  sphinx4  sphinxbase  sphinxtrain
+
+josh@yoga:~/Desktop/sphinx-source$ la sphinx4
+build.gradle  license.terms  settings.gradle  sphinx4-samples
+doc           README         sphinx4-core     tests
+.git          RELEASE_NOTES  sphinx4-data
+
+
+josh@yoga:~/Desktop/sphinx-source/sphinx4$ sudo gradle build
+                    .
+                    .
+                    .
+:sphinx4-data:check UP-TO-DATE
+:sphinx4-data:build UP-TO-DATE
+:sphinx4-samples:compileJava UP-TO-DATE
+:sphinx4-samples:processResources UP-TO-DATE
+:sphinx4-samples:classes UP-TO-DATE
+:sphinx4-samples:jar UP-TO-DATE
+:sphinx4-samples:javadoc UP-TO-DATE
+:sphinx4-samples:javadocJar UP-TO-DATE
+:sphinx4-samples:packageSources UP-TO-DATE
+:sphinx4-samples:assemble UP-TO-DATE
+:sphinx4-samples:compileTestJava UP-TO-DATE
+:sphinx4-samples:processTestResources UP-TO-DATE
+:sphinx4-samples:testClasses UP-TO-DATE
+:sphinx4-samples:test UP-TO-DATE
+:sphinx4-samples:check UP-TO-DATE
+:sphinx4-samples:build UP-TO-DATE
+
+BUILD SUCCESSFUL
+
+Total time: 7.001 secs
+-->
 
 
 [cmu-sphinx]: http://cmusphinx.sourceforge.net/wiki/tutorialpocketsphinx?s[]=installation/
