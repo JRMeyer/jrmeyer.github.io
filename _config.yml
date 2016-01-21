@@ -7,15 +7,13 @@
 
 # Site settings
 title: Learning about Speech Recognition and Machine Learning
-description: > # this means to ignore newlines until "baseurl:"
-  I'm a PhD student in linguistics at the University of Arizona, working on automatic speech recognition. This blog is some of what I'm learning along the way.
+description: I'm a PhD student in linguistics at the University of Arizona, working on automatic speech recognition. This blog is some of what I'm learning along the way.
 
-baseurl: "" # the subpath of your site, e.g. /blog
 twitter_username: sladkoezhnik
 github_username:  JRMeyer
 
 # Build settings
 markdown: redcarpet
-
+ extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "tables", "with_toc_data"]
 # use pygments over rouge
 highlighter: pygments
