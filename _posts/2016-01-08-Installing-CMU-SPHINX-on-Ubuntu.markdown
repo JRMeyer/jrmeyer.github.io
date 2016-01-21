@@ -3,6 +3,7 @@ layout: post
 title:  "Installing CMU-SPHINX on Ubuntu via GitHub"
 date:   2016-01-08 22:03:04 -0700
 categories: installation
+comments: True
 ---
 
 ## Some Background
@@ -563,7 +564,6 @@ Let's **cd** into **sphinxtrain** and run the script which generates the **Makef
 {% highlight bash %}
 josh@yoga:~/Desktop/sphinx-source$ cd sphinxtrain
 josh@yoga:~/Desktop/sphinx-source/sphinxtrain$ ./autogen.sh 
-[sudo] password for josh: 
 **Warning**: I am going to run `configure' with no arguments.
 If you wish to pass any to it, please specify them on the
 `./autogen.sh' command line.

@@ -3,6 +3,7 @@ layout: post
 title:  "Installing Praat on Ubuntu - getting sound to work"
 date:   2016-01-19 22:03:04 -0700
 categories: installation
+comments: True
 ---
 
 ## Some Background
