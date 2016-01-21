@@ -7,10 +7,10 @@
 
 # Site settings
 title: Learning about Speech Recognition and Machine Learning
-description: I'm a PhD student in linguistics at the University of Arizona, working on automatic speech recognition. This blog is some of what I'm learning along the way.
+description: My name is Josh Meyer, and I'm a PhD student in linguistics at the University of Arizona working on automatic speech recognition. This blog is some of what I'm learning along the way.
 
 twitter_username: sladkoezhnik
-github_username:  JRMeyer
+github_username: JRMeyer
 
 # Build settings
 markdown: redcarpet
