@@ -7,9 +7,9 @@ comments: True
 ---
 
 
-# Outline
+#### Outline
 
-## Introduction
+### Introduction
 
 Representing words in vector space can tell us a lot about their semantics and syntax. This paper shows that we can uncover morphological transformations from these high-dimensional vectors. 
 
@@ -23,7 +23,7 @@ Main contributions of this study: (1) the method is language agnostic, (2) it wo
 
 They present results from English, German, French, Spanish, Romanian, Arabic, and Uzbek.
 
-## Previous Work
+### Previous Work
 
 Representing words as vectors has gained a lot of ground recently in different tasks.
 
@@ -39,8 +39,8 @@ All past work incorporate morphemes (if they model them at all) in a pre-process
 
 This current study uses the same vector-space embeddings to do the morphological analysis and represent the words.
 
-## Morphology Induction using Embedding Spaces
-### Morphological Transformations
+### Morphology Induction using Embedding Spaces
+## Morphological Transformations
 
 This work only considers prefixes and suffixes.
 
@@ -53,20 +53,21 @@ Given a finite vocabulary $$V$$
 3. Evaluate quality of candidate rules in $$E^n$$
 4. Generate lexicalized morphological transformations
 
-#### Extract candidate rules from V
-#### Train embedding space
-#### Evaluate quality candidate rules
-#### Generate lexicalized morphological transformations
+# Extract candidate rules from V
+# Train embedding space
+# Evaluate quality candidate rules
+# Generate lexicalized morphological transformations
 
-### Inducing 1-to-1 Morphological Mappings
-### Morphological Transformations for Rare and Unknown Words
+## Inducing 1-to-1 Morphological Mappings
+## Morphological Transformations for Rare and Unknown Words
 
-## Empirical Results
-### Quality of Morphological Analysis
-#### Data
-#### Results
-### Quality of Morphological Analysis for Unknown/Rare Words
-### Morphology and Training Data Size
+### Empirical Results
+## Quality of Morphological Analysis
+# Data
+# Results
+
+## Quality of Morphological Analysis for Unknown/Rare Words
+## Morphology and Training Data Size
 
 ## Conclusions and Future Work
 
