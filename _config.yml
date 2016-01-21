@@ -15,7 +15,7 @@ twitter_username: sladkoezhnik
 github_username:  JRMeyer
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
 
 # use pygments over rouge
 highlighter: pygments
