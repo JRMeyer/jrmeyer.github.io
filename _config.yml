@@ -13,8 +13,9 @@ twitter_username: sladkoezhnik
 github_username: JRMeyer
 
 # Build settings
-markdown: redcarpet
-redcarpet:
- extensions: [tables]
+markdown: kramdown
+# markdown: redcarpet
+# redcarpet:
+#  extensions: [tables]
 # use pygments over rouge
 highlighter: pygments
