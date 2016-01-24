@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Summary and Thoughts on Radu & Och (2015): Unsupervised Morphology Induction Using Word Embeddings"
+title:  "Radu & Och (2015): Unsupervised Morphology Induction Using Word Embeddings"
 date:   2016-01-20 22:03:04 -0700
 categories: review
 comments: True
@@ -68,12 +68,12 @@ Given two words $$(w_1,w_2) \in V^2$$, find all possible prefixes and suffixes i
 
 Examples of extracted candidate rules:
 
-
 | $$\texttt{type:from:to}$$ | $$(w_1,w_2)$$ |
 |:---------------------------|:---------------|
 | $$\texttt{suffix:ed:ing}$$ | $$(crossed,crossing)$$ |
 | $$\texttt{prefix:un:$\epsilon$}$$ | $$(unfriend,friend)$$ |
 | $$\texttt{prefix:S:$\epsilon$}$$ | $$(Scope,cope)$$ |
+{: align="center"}
 
 <br>
 As in these examples, sometimes there were errors.
