@@ -268,13 +268,55 @@ This error has been answered by Nikolay Shmyrev on [stackoverflow][stackoverflow
 
 > This error means that system fails to find the shared library in the location where it is installed. Most likely you installed it with default prefix /usr/local/lib which is not included into the library search path.
 
-When I looked up what my environment variables were using the command **env**, I found that the relevant path, LD_LIBRARY_PATH, had never been set in the first place. So, I set the variable to /usr/local/lib as Nikolay recommends in his post, with the following command:
+There's a few ways to solve this problem. You may have come across this one which *doesn't work well*:
 
 {% highlight bash %}
 josh@yoga:~$ export LD_LIBRARY_PATH=/usr/local/lib
 {% endhighlight %}
 
-Now I can run the sphinxbase executables, and I get more reasonable output:
+The problem is, this solution will work for as long as you're in the same session in your terminal. When you logout and log back in, you will have to reset the variable again.
+
+Rather, we can edit the file **/etc/ld.so.conf** so we always look into the right directory when we need to. If you take a look at the [Linux Programmer's Manual][linux-manual] you find the following description:
+
+>/etc/ld.so.conf: File containing a list of directories, one per line, in which to search for libraries.
+
+So, this is the right place to make a change.
+
+If you take a look into the config file right now, you will probably just see one line:
+
+{% highlight bash %}
+josh@yoga:~$ cat /etc/ld.so.conf
+include /etc/ld.so.conf.d/*.conf
+{% endhighlight %}
+
+We want to add **/usr/local/lib** to the file. So, you can use **nano** to open it up, and add a new line that just says /usr/local/lib. That's it. Don't delete anything else or add anything else or you might get some headaches.
+
+{% highlight bash %}
+josh@yoga:~$ sudo nano /etc/ld.so.conf
+{% endhighlight %}
+
+If you've added that new line in via **nano**, you should see something like this:
+
+![screenshot]({{ site.url }}/misc/sphinx-fig-1.png)
+
+Now save the modified file (CTRL+o) and exit (CTRL+x).
+ 
+Re-configure with the following command:
+
+{% highlight bash %}
+josh@yoga:~$ sudo ldconfig
+{% endhighlight %}
+
+Now you can check that your computer is finding the shared libraries with the following:
+
+{% highlight bash %}
+josh@yoga:~$ ldconfig -p | grep local
+	libsvn_ra_local-1.so.1 (libc6,x86-64) => /usr/lib/x86_64-linux-gnu/libsvn_ra_local-1.so.1
+	libsphinxbase.so.3 (libc6,x86-64) => /usr/local/lib/libsphinxbase.so.3
+	libsphinxbase.so (libc6,x86-64) => /usr/local/lib/libsphinxbase.so
+{% endhighlight %}
+
+Now you should be able to run the sphinxbase executables, and get a more reasonable error:
 
 {% highlight bash %}
 josh@yoga:~$ sphinx_lm_convert
@@ -292,6 +334,9 @@ Arguments list definition:
 -o			Output language model file (required)
 -ofmt			Output language model file (will guess if not specified)
 {% endhighlight %}
+
+
+
 
 
 
@@ -677,9 +722,180 @@ Commands:
 
 You should be ready to go now!
 
-Hopefully this worked for you, or at least was helpful.
+Hopefully this was helpful for you. If you ran into issues or have suggestions on how to make this better, be sure to leave a comment!
+
+
+
+
+
+
+
+
 
 <!--
+
+
+
+
+
+<br />
+
+<br />
+
+### Installing cmuclmtk
+
+I can't seem to find the code on CMU-Sphinx's GitHub account, so I'm just went through sourceforge instead. 
+
+
+josh@yoga:~/Desktop$ svn checkout svn://svn.code.sf.net/p/cmusphinx/code/trunk cmusphinx-code
+                           .
+                           .
+                           .
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/wfreq2vocab.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/idngram2stats.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/text2wngram.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/lm_combine.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/interpolate.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/binlm2arpa.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/phoenix2corpus.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/text2idngram.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/ngram2mgram.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/text2wfreq.exe
+A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/idngram2lm.exe
+Checked out external at revision 10678.
+
+Checked out revision 13167.
+
+josh@yoga:~/Desktop$ cd cmusphinx-code/
+josh@yoga:~/Desktop/cmusphinx-code$ la
+cmuclmtk  htk2s3conv  multisphinx   pocketsphinx-android       sphinx2  sphinx4     sphinxtrain
+cmudict   logios      pocketsphinx  pocketsphinx-android-demo  sphinx3  sphinxbase  .svn
+
+josh@yoga:~/Desktop/cmusphinx-code$ cd cmuclmtk/
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ la
+AUTHORS     ChangeLog     configure.ac  doc      Makefile.am  perl    src   TODO
+autogen.sh  cmuclmtk.sln  debian        LICENSE  NEWS         README  test  win32
+
+
+osh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ ./autogen.sh 
+**Warning**: I am going to run `configure' with no arguments.
+If you wish to pass any to it, please specify them on the
+`./autogen.sh' command line.
+
+processing .
+Running libtoolize...
+libtoolize: putting auxiliary files in `.'.
+libtoolize: copying file `./ltmain.sh'
+libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'.
+libtoolize: copying file `m4/libtool.m4'
+libtoolize: copying file `m4/ltoptions.m4'
+libtoolize: copying file `m4/ltsugar.m4'
+libtoolize: copying file `m4/ltversion.m4'
+              .
+              .
+              .
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating test/Makefile
+config.status: creating src/liblmest/Makefile
+config.status: creating src/libs/Makefile
+config.status: creating src/programs/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+config.status: executing libtool commands
+Now type `make' to compile the package.
+
+
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ make
+                       .
+                       .
+                       .
+libtool: link: gcc -I../../src/libs -I../../src/liblmest -I../../src/win32 -g -O2 -o .libs/lm_combine lm_combine.o  ../../src/.libs/libcmuclmtk.so -lm
+make[3]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk/src/programs'
+make[2]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk/src'
+Making all in test
+make[2]: Entering directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk/test'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk/test'
+make[2]: Entering directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+make[1]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ sudo make install
+[sudo] password for josh: 
+Making install in src
+make[1]: Entering directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk/src'
+                              .
+                              .
+                              .
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+                              .
+                              .
+                              .
+make[1]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk/test'
+make[1]: Entering directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+make[2]: Entering directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+make[1]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ la
+aclocal.m4      cmuclmtk.sln  config.log     debian      LICENSE      Makefile.in  src
+AUTHORS         compile       config.status  depcomp     ltmain.sh    missing      stamp-h1
+autogen.sh      config.guess  config.sub     doc         m4           NEWS         test
+autom4te.cache  config.h      configure      install-sh  Makefile     perl         TODO
+ChangeLog       config.h.in   configure.ac   libtool     Makefile.am  README       win32
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ text2
+text2idngram  text2wfreq    text2wngram   
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ text2wfreq 
+text2wfreq: error while loading shared libraries: libcmuclmtk.so.0: cannot open shared object file: No such file or directory
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ export LD_LIBRARY_PATH=/usr/local/lib
+
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ text2wfreq 
+text2wfreq : Reading text from standard input...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <br />
 
@@ -765,3 +981,4 @@ Total time: 7.001 secs
 [make]: https://en.wikipedia.org/wiki/Make_(software)
 [stackoverflow]: http://stackoverflow.com/questions/10630747/converting-the-lm-to-dmp-file-for-building-the-language-model-for-speech-rec
 [pocketsphinx]: https://github.com/cmusphinx/pocketsphinx
+[linux-manual]: http://man7.org/linux/man-pages/man8/ldconfig.8.html
