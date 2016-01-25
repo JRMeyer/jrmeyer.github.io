@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Installing CMU-SPHINX on Ubuntu via GitHub"
+title:  "Installing CMU-SPHINX on Ubuntu"
 date:   2016-01-08 22:03:04 -0700
 categories: installation
 comments: True
@@ -10,9 +10,9 @@ comments: True
 
 I recently installed Ubuntu 14.04 on my Lenovo Yoga, and it's time to reinstall SPHINX. 
 
-When I installed SPHINX for the first time in September 2015, it was not a fun experience. I originally followed the instructions on [CMU's website][cmu-sphinx], but I couldn't seem to get it right. I tried a number of different approaches, using different blogs as guides, but I got nowhere. I first tried downloading Pocketsphinx, Sphinxtrain, Sphinxbase and Sphinx4 from CMU's [downloads page][cmu-downloads], but that didn't work. I also tried installing the version hosted on [SourceForge][cmu-sourceforge], but no luck there either. I finally decided to try cloning and installing the version on [GitHub][cmu-github], and that seemed to do the trick.
+When I installed SPHINX for the first time in September 2015, it was not a fun experience. I originally followed the instructions on [CMU's website][cmu-sphinx], but I couldn't seem to get it right. I tried a number of different approaches, using different blogs as guides, but I got nowhere. I first tried downloading Pocketsphinx, Sphinxtrain, Sphinxbase and Sphinx4 from CMU's [downloads page][cmu-downloads], but that didn't work. I also tried installing the version hosted on [SourceForge][cmu-sourceforge], but no luck there either. I finally decided to try cloning and installing the version on [GitHub][cmu-github], and that seemed to do the trick. However, at the end of this post I show how to install CMUCLMTK from SourceForge, because they don't have it on GitHub.
 
-So, I'm going to go through installation process again here, cloning from GitHub.
+So, I'm going to go through installation process again here.
 
 First, in case it's relevant for others I'm going to show a little info about my current setup.
 
@@ -732,7 +732,6 @@ Hopefully this was helpful for you. If you ran into issues or have suggestions o
 
 
 
-<!--
 
 
 
@@ -746,7 +745,7 @@ Hopefully this was helpful for you. If you ran into issues or have suggestions o
 
 I can't seem to find the code on CMU-Sphinx's GitHub account, so I'm just went through sourceforge instead. 
 
-
+{% highlight bash %}
 josh@yoga:~/Desktop$ svn checkout svn://svn.code.sf.net/p/cmusphinx/code/trunk cmusphinx-code
                            .
                            .
@@ -765,19 +764,30 @@ A    cmusphinx-code/logios/Tools/MakeLM/bin/x86-nt/idngram2lm.exe
 Checked out external at revision 10678.
 
 Checked out revision 13167.
+{% endhighlight %}
 
+As you can see below, we just downloaded pretty much everything they've got. Importantly, **cmuclmtk** is there, too.
+
+{% highlight bash %}
 josh@yoga:~/Desktop$ cd cmusphinx-code/
 josh@yoga:~/Desktop/cmusphinx-code$ la
 cmuclmtk  htk2s3conv  multisphinx   pocketsphinx-android       sphinx2  sphinx4     sphinxtrain
 cmudict   logios      pocketsphinx  pocketsphinx-android-demo  sphinx3  sphinxbase  .svn
+{% endhighlight %}
 
+Let's **cd** into **cmuclmtk** and take a look:
+
+{% highlight bash %}
 josh@yoga:~/Desktop/cmusphinx-code$ cd cmuclmtk/
 josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ la
 AUTHORS     ChangeLog     configure.ac  doc      Makefile.am  perl    src   TODO
 autogen.sh  cmuclmtk.sln  debian        LICENSE  NEWS         README  test  win32
+{% endhighlight %}
 
+Familiar set up, right? We do the same steps as before, starting with **./autogen.sh**.
 
-osh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ ./autogen.sh 
+{% highlight bash %}
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ ./autogen.sh 
 **Warning**: I am going to run `configure' with no arguments.
 If you wish to pass any to it, please specify them on the
 `./autogen.sh' command line.
@@ -804,9 +814,22 @@ config.status: creating config.h
 config.status: executing depfiles commands
 config.status: executing libtool commands
 Now type `make' to compile the package.
+{% endhighlight %}
 
+Here's all the things we've just generated:
 
+{% highlight bash %}
+josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ la
+aclocal.m4      cmuclmtk.sln  config.log     debian      LICENSE      Makefile.in  src
+AUTHORS         compile       config.status  depcomp     ltmain.sh    missing      stamp-h1
+autogen.sh      config.guess  config.sub     doc         m4           NEWS         test
+autom4te.cache  config.h      configure      install-sh  Makefile     perl         TODO
+ChangeLog       config.h.in   configure.ac   libtool     Makefile.am  README       win32
+{% endhighlight %}
 
+Now we run **make**.
+
+{% highlight bash %}
 josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ make
                        .
                        .
@@ -822,8 +845,11 @@ make[2]: Entering directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
 make[2]: Nothing to be done for `all-am'.
 make[2]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
 make[1]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+{% endhighlight %}
 
+And finally, **sudo make install**.
 
+{% highlight bash %}
 josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ sudo make install
 [sudo] password for josh: 
 Making install in src
@@ -859,25 +885,21 @@ make[2]: Nothing to be done for `install-exec-am'.
 make[2]: Nothing to be done for `install-data-am'.
 make[2]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
 make[1]: Leaving directory `/home/josh/Desktop/cmusphinx-code/cmuclmtk'
+{% endhighlight %}
 
+Now we can see a couple of the executables if we do a tab completion as such:
 
-josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ la
-aclocal.m4      cmuclmtk.sln  config.log     debian      LICENSE      Makefile.in  src
-AUTHORS         compile       config.status  depcomp     ltmain.sh    missing      stamp-h1
-autogen.sh      config.guess  config.sub     doc         m4           NEWS         test
-autom4te.cache  config.h      configure      install-sh  Makefile     perl         TODO
-ChangeLog       config.h.in   configure.ac   libtool     Makefile.am  README       win32
-
+{% highlight bash %}
 josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ text2
 text2idngram  text2wfreq    text2wngram   
+{% endhighlight %}
 
-josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ text2wfreq 
-text2wfreq: error while loading shared libraries: libcmuclmtk.so.0: cannot open shared object file: No such file or directory
+And if we run one without input, it hangs up and runs for a while, but works.
 
-josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ export LD_LIBRARY_PATH=/usr/local/lib
-
+{% highlight bash %}
 josh@yoga:~/Desktop/cmusphinx-code/cmuclmtk$ text2wfreq 
 text2wfreq : Reading text from standard input...
+{% endhighlight %}
 
 
 
@@ -895,7 +917,7 @@ text2wfreq : Reading text from standard input...
 
 
 
-
+<!--
 
 <br />
 
