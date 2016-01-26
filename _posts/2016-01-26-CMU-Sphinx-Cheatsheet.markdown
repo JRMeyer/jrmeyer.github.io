@@ -53,7 +53,7 @@ File contents
                           ...
 
 .wav (Recording files):
-
+     
      WAV, (16 kHz, 16 bit, mono - desktop), (8kHz, 16bit, mono - telephone)
      **Audio format mismatch is the most common training problem**
 
