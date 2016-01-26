@@ -59,9 +59,9 @@ File contents
 
 .dict (use alphanumeric-only, case-insensitive):
 
-      HELLO HH AH L OW
-      WORLD W AO R L D
-            ...
+  HELLO HH AH L OW
+  WORLD W AO R L D
+  ...
 
 .phone (one phone per line + SIL for silence):
 
