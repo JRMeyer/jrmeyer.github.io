@@ -17,6 +17,7 @@ I hope they're helpful to others, and if you have comments or suggestions for ot
 The following is the file structure you're going to need to train an acoustic model from a set of transcribed sound files. This procedure relies on **sphinxtrain** which I show how to download in another post. *Filenames matter!* and in the file structure below, *your_db* should always be the same
 
 File Structure:
+
      > your_model/
      >    etc/
      >            your_model.dic - Phonetic dictionary
