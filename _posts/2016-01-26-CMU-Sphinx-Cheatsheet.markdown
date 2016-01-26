@@ -44,28 +44,28 @@ File contents:
          speaker_2/file_2
               ...
 	      
-.transcription (transcription + file id w/o path or extension) : |
+.transcription (transcription + file id w/o path or extension):
                <s> hello world </s> (file_1)
                <s> foo bar </s> (file_2)
                           ...
 
-.wav (Recording files) : |
+.wav (Recording files):
      WAV, (16 kHz, 16 bit, mono - desktop), (8kHz, 16bit, mono - telephone)
      **Audio format mismatch is the most common training problem**
 
-.dict (use alphanumeric-only, case-insensitive) : |
+.dict (use alphanumeric-only, case-insensitive):
       HELLO HH AH L OW
       WORLD W AO R L D
             ...
 
-.phone (one phone per line + SIL for silence) : |
+.phone (one phone per line + SIL for silence):
        SIL
        A
        O
        I
        ...
 
-.lm (or .lm.bin, commonly in ARPA format) : |
+.lm (or .lm.bin, commonly in ARPA format):
     \data\
     ngram 1=7
     ngram 2=7
