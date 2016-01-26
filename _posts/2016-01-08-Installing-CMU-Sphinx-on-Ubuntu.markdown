@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Installing CMU-SPHINX on Ubuntu"
+title:  "Installing CMU-Sphinx on Ubuntu"
 date:   2016-01-08 22:03:04 -0700
 categories: installation
 comments: True
