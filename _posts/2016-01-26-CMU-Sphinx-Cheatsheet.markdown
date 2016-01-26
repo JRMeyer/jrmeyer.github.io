@@ -18,48 +18,53 @@ The following is the file structure you're going to need to train an acoustic mo
 
 File Structure:
 
-     > your_model/
-     >    etc/
-     >            your_model.dic - Phonetic dictionary
-	 >            your_model.phone - Phoneset file
-	 >            your_model.lm - Language model
-	 >            your_model.filler - List of fillers
-	 >            your_model_train.fileids - List of files for training
-	 >            your_model_train.transcription - Transcription for training
-	 >            your_model_test.fileids - List of files for testing
-	 >            your_model_test.transcription - Transcription for testing
-	 >    wav/
-     >            speaker_1/
-     >                    file_1.wav - Recording of speech utterance
-     >                    file_2.wav - Recording of speech utterance
-	 >            speaker_2/
-     >                    file_1.wav
-     >                    file_2.wav
+     your_model/
+        etc/
+                your_model.dic - Phonetic dictionary
+		        your_model.phone - Phoneset file
+		        your_model.lm - Language model
+		        your_model.filler - List of fillers
+		        your_model_train.fileids - List of files for training
+		        your_model_train.transcription - Transcription for training
+		        your_model_test.fileids - List of files for testing
+		        your_model_test.transcription - Transcription for testing
+	    wav/
+                speaker_1/
+                        file_1.wav - Recording of speech utterance
+                        file_2.wav - Recording of speech utterance
+		        speaker_2/
+                        file_1.wav
+                        file_2.wav
 
 So, that's the overall file structure you need, and here's what the contents of the files should include:
 
-File contents:
+File contents
 
-.fileids (paths to WAV files w/o extensions) : |
+.fileids (paths to WAV files w/o extensions):
+
          speaker_1/file_1
          speaker_2/file_2
               ...
 	      
 .transcription (transcription + file id w/o path or extension):
+
                <s> hello world </s> (file_1)
                <s> foo bar </s> (file_2)
                           ...
 
 .wav (Recording files):
+
      WAV, (16 kHz, 16 bit, mono - desktop), (8kHz, 16bit, mono - telephone)
      **Audio format mismatch is the most common training problem**
 
 .dict (use alphanumeric-only, case-insensitive):
+
       HELLO HH AH L OW
       WORLD W AO R L D
             ...
 
 .phone (one phone per line + SIL for silence):
+
        SIL
        A
        O
@@ -67,6 +72,7 @@ File contents:
        ...
 
 .lm (or .lm.bin, commonly in ARPA format):
+
     \data\
     ngram 1=7
     ngram 2=7
@@ -76,7 +82,8 @@ File contents:
     0 <s>	 0.4939
        ...
 
-.filler (filler noise dict) : |
+.filler (filler noise dict):
+
         <s> SIL
 	    </s> SIL
 	    <sil> SIL
