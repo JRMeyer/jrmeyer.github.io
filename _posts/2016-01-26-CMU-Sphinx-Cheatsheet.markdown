@@ -94,7 +94,6 @@ File contents
 Once you've got the structure correct and the appropriate contents for the files, the training command is actually very simple:
 
 
-
 {% highlight bash %}
 josh@yoga:~$ sphinxtrain -t your_model setup
 {% endhighlight %}
@@ -102,6 +101,27 @@ josh@yoga:~$ sphinxtrain -t your_model setup
 <br />
 
 <br />
+
+## Testing pocketsphinx
+
+Test your system with a microphone:
+
+{% highlight bash %}
+pocketsphinx_continuous -hmm your_hmm_dir -lm your_language_model.lm -dict your_phonetic_dictionary.dic -inmic yes
+{% endhighlight %}
+
+Test your system (i.e. make predictions) on a bunch of WAV files:
+
+{% highlight bash %}
+pocketsphinx_batch  -adcin yes  -cepdir dir_of_test_WAVs  -cepext .wav  -ctl your_test.fileids -hmm your_hmm_dir -lm your_language_model.lm -dict your_phonetic_dictionary.dic  -hyp predictions.hyp
+{% endhighlight %}
+
+Once you have run batch decoding on some files and generated a predictions.hyp file, do this command to see how good your hypotheses were:
+
+{% highlight bash %}
+perl word_align.pl your_test.transcription predictions.hyp
+{% endhighlight %}
+
 
 
 [libgtk]: http://packages.ubuntu.com/precise/libgtk2.0-dev
