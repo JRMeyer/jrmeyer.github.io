@@ -123,7 +123,7 @@ Conceptually, if $$r$$ is a real rule then the support set will have lots of goo
 
 Then we sum up all the attained cosines for that word pair. That sum of cosines is the $$t_{rank}$$ of that word pair. The $$t_{rank}$$ equation is shown below:
 
-$$ t_{rank_{(w_1,w_2)}} = \Sum\limits_{(w_i,w_j) \in S_r} F_E (w_2, w_1 + (w_i-w_j)) $$
+$$ t_{rank_{(w_1,w_2)}} = \sum\limits_{(w_i,w_j)\ \in\ S_r} F_E (w_2, w_1 + (w_i-w_j)) $$
 
 To get the *hit rate* for a candidate rule, we then count up how many pairs in the support set for that rule have a $$t_{rank}$$ over $$100$$, and divide that number by the total number of pairs of words in the support set. In the case that the support set had a total of 1000 word pairs, the denominator in this equation would be 100.
 
