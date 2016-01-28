@@ -127,7 +127,7 @@ $$ t_{rank_{(w_1,w_2)}} = \sum\limits_{(w_i,w_j)\ \in\ S_r} F_E (w_2, w_1 + (w_i
 
 To get the *hit rate* for a candidate rule, we then count up how many pairs in the support set for that rule have a $$t_{rank}$$ over $$100$$, and divide that number by the total number of pairs of words in the support set. In the case that the support set had a total of 1000 word pairs, the denominator in this equation would be 100.
 
-$$ hitRate_r = \frac{ number\ of\ rank_{(w_1,w_2)} < 100}{\left\vert{S}\right\vert}\ for\ (w_1,w_2)\ \in\ S_r $$
+$$ hitRate_r = \frac{ number\ of\ rank_{(w_1,w_2)} < 100}{\left\vert{S_r}\right\vert}\ for\ (w_1,w_2)\ \in\ S_r $$
 
 
 ### Inducing 1-to-1 Morphological Mappings
