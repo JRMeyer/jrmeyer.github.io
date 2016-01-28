@@ -113,12 +113,28 @@ This process repeats until the best direction vector explains too small a set of
 
 This method allows us to capture ambiguous rules, like $$\texttt{suffix:s:$\epsilon$}$$ which applies to verbs like (walks,walk) as well as nouns like (cats,cat).
 
-These morphological rules can be interpreted as a graph, where the nodes are words and edges are transformations.
+Here's how I understand the algorithm:
+
+For a candidate rule, $$r$$, (e.g. $$r$$ = suffix:ed:ing), do the following to determine how likely it is that $$r$$ is a real rule in the language:
+
+For one pair of words, $$(w_1,w_2)$$, in the support set, $$S$$ of $$r$$ (e.g. $$(loved, loving)$$), take every other pair of words in $$r$$'s support set, $$(w,w')$$, one pair at a time and add the difference between $$w$$ and $$w'$$ (i.e. $$\uparrow d$$) to $$loved$$. 
+
+Conceptually, if $$r$$ is a real rule then the support set will have lots of good examples of the rule, and the vector we get from adding $$\uparrow d$$ to $$loved$$ should be close in vector space to the vector for $$loving$$. We measure the distance between $$\uparrow d + loved$$ and $$loving$$ with cosine similarity. Using this algoritm, we iterate over all word pairs $$(w,w')$$ in the support set, $$S$$ of $$r$$. For example, if the authors capped the support set at 1,000 pairs of words per rule, then this iterations involves all 999 other word pairs besides the one pair in question, $$(w_1,w_2)$$. In this example of 1,000 rules, we would end up with a total of up to 999 cosines for a single word pair, $$(w_1,w_2)$$. 
+
+Then we sum up all the attained cosines for that word pair. That sum of cosines is the $$t_{rank}$$ of that word pair. The $$t_{rank}$$ equation is shown below:
+
+$$ t_{rank_{(w_1,w_2)}} = \Sigma_{(w_i,w_j) \in S_r} F_E (w_2, w_1 + (w_i-w_j)) $$
+
+To get the *hit rate* for a candidate rule, we then count up how many pairs in the support set for that rule have a $$t_{rank}$$ over $$100$$, and divide that number by the total number of pairs of words in the support set. In the case that the support set had a total of 1000 word pairs, the denominator in this equation would be 100.
+
+$$ hitRate_r = \frac{ number\ of\ rank_{(w_1,w_2)} < 100}{\left\vert{S}\right\vert}\ for\ (w_1,w_2)\ \in\ S_r $$
 
 
 ### Inducing 1-to-1 Morphological Mappings
 
-Taking a graph built from all transformations and words in $$V$$, there are a lot of redundancies in rules. We want to keep all the nodes (words), but throw out extra edges. For example the word pair *(create,creates)* could have rules $$\texttt{suffix:s:$\epsilon$}$$ or $$\texttt{suffix:ates:ate}$$. One obviously is better.
+The morphological rules generated above can be interpreted as a graph, where the nodes are words and edges are transformations. 
+
+Taking this graph built from all transformations and words in $$V$$, there are a lot of redundancies in rules. We want to keep all the nodes (words), but throw out extra edges. For example the word pair *(create,creates)* could have rules $$\texttt{suffix:s:$\epsilon$}$$ or $$\texttt{suffix:ates:ate}$$. One obviously is better.
 
 
 ### Morphological Transformations for Rare and Unknown Words
