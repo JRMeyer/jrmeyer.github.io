@@ -80,7 +80,7 @@ $$ S_r = \{ (w_1,w_2) \in V^2 \mid w_1 \xrightarrow[]{r} w_2 \}$$
 
 Where the rule applies to $$w_1$$ and results in $$w_2$$.
 
-The evaluation function used to find the 'meaning-preservation property' of rule $$r$$ is defined as:
+The evaluation function used to find the 'meaning-preservation property' (i.e. preservation of semantics) of rule $$r$$ is defined as:
 
 $$ Ev^F ((w_1, w_2), (w, w')) = F_E (w_2 , w_1 +  \uparrow d_w) $$
 
