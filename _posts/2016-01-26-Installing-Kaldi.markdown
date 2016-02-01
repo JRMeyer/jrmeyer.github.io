@@ -6,8 +6,12 @@ categories: kaldi
 comments: True
 ---
 
-## Overview
+====== IN PROGRESS ======
 
+
+## Installation
+
+Kaldi used to be primarily host on SourceForge, but then they move to GitHub, so I'm going to just clone their repository to my Desktop:
 
 {% highlight bash %}
 josh@yoga:~/Desktop$ git clone https://github.com/kaldi-asr/kaldi.git
@@ -20,12 +24,16 @@ Resolving deltas: 100% (49427/49427), done.
 Checking connectivity... done.
 {% endhighlight %}
 
+Taking a look inside to see what I just cloned:
+
 {% highlight bash %}
 josh@yoga:~/Desktop$ cd kaldi/
 josh@yoga:~/Desktop/kaldi$ la
 COPYING  .git            .gitignore  misc       src    .travis.yml
 egs      .gitattributes  INSTALL     README.md  tools  windows
 {% endhighlight %}
+
+Now there's a lot of good documentation on Kaldi, but I think the best best will always be to see what the INSTALL file on the latest version is. So, let's take a look:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi$ cat INSTALL 
@@ -39,6 +47,8 @@ go to tools/  and follow INSTALL instructions there.
 go to src/ and follow INSTALL instructions there.
 {% endhighlight %}
 
+First things first, it says to go to tools/ and follow those instructions. So, lets get into tools/ and see what's there:
+
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi$ cd tools/
 josh@yoga:~/Desktop/kaldi/tools$ la
@@ -46,6 +56,7 @@ CLAPACK  INSTALL           install_pfile_utils.sh  install_speex.sh  Makefile
 extras   install_atlas.sh  install_portaudio.sh    install_srilm.sh
 {% endhighlight %}
 
+Looking into the INSTALL file, we see:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cat INSTALL 
@@ -78,13 +89,25 @@ are used by individual example scripts.  If an example script needs you to run
 one of those scripts, it will tell you what to do.
 {% endhighlight %}
 
+So, first we need to check out dependencies:
+
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ extras/check_dependencies.sh
 extras/check_dependencies.sh: all OK.
 {% endhighlight %}
 
+I'm OK on this one, but I have a feeling others will need to do some installing of dependencies before they move on. I'd recommend running that check_dependencies.sh script after you do your installs to make sure you actually did install what you needed and that it's in the right spot. 
+Moving one, we need to run **make**. There's an option here for parallelizing this step, so I'm going to check how many processors I have:
+
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/tools$ make
+josh@yoga:~/Desktop$ nproc
+4
+{% endhighlight %}
+
+So I can run **make** on all 4 of my processors like this:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/tools$ make -j 4
                 .
                 .
                 .
@@ -105,9 +128,7 @@ All done OK.
 josh@yoga:~/Desktop/kaldi/tools$ 
 {% endhighlight %}
 
-
 Those last lines recommend we install a language modeling toolkit [IRSTLM][irstlm], and I want to make my own language models, so I'm going to install it.
-
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ extras/install_irstlm.sh
@@ -126,7 +147,7 @@ Try 'readlink --help' for more information.
 ***() Please source the tools/env.sh in your path.sh to enable it
 {% endhighlight %}
 
-Now that we've done part (1) of the **kaldi/INSTALL** file, let's go on to step (2), in the **src** folder.
+At this point we've done part (1) of the **kaldi/INSTALL** file (i.e. following the steps in the **kaldi/tools/INSTALL** file). Now let's go on to step (2), and follow the instructions in **kaldi/src/INSTALL**.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cd ../src/
@@ -138,6 +159,8 @@ cudamatrix  fgmmbin   hmm         kwsbin      makefiles  nnet3bin  onlinebin   t
 decoder     fstbin    INSTALL     lat         matrix     nnetbin   probe       TODO
 doc         fstext    itf         latbin      nnet       NOTES     sgmm        transform
 {% endhighlight %}
+
+Looking into the INSTALL file itself:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/src$ cat INSTALL 
@@ -162,6 +185,7 @@ For more information, see documentation at http://kaldi-asr.org/doc/
 and click on "The build process (how Kaldi is compiled)".
 {% endhighlight %}
 
+Like it says, the first step is ./configure:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/src$ ./configure
@@ -179,9 +203,10 @@ Static=[false] Speex library not found: You can still build Kaldi without Speex.
 SUCCESS
 {% endhighlight %}
 
+Now we run **make depend**:
 
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/src$ make depend
+josh@yoga:~/Desktop/kaldi/src$ make depend -j 4
                     .
                     .
                     .
@@ -196,9 +221,10 @@ g++ -M -msse -msse2 -Wall -I.. -pthread -DKALDI_DOUBLEPRECISION=0 -DHAVE_POSIX_M
 make[1]: Leaving directory `/home/josh/Desktop/kaldi/src/lmbin'
 {% endhighlight %}
 
+And finally, **make**:
 
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/src$ make
+josh@yoga:~/Desktop/kaldi/src$ make -j 4
                .
                .
                .
@@ -211,6 +237,9 @@ echo Done
 Done
 {% endhighlight %}
 
+## Testing it out
+
+To make sure our install worked well, we can take advantage of the examples provided in the **kaldi/egs/** directory:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/src$ cd ../egs/
@@ -221,8 +250,9 @@ aurora4            chime3                   gale_arabic     lre07        sre10  
 babel              csj                      gale_mandarin   README.txt   swahili      vystadial_cz
 bn_music_speech    farsdat                  gp              reverb       swbd         vystadial_en
 callhome_egyptian  fisher_callhome_spanish  hkust           rm           tedlium      wsj
-josh@yoga:~/Desktop/kaldi/egs$ 
 {% endhighlight %}
+
+Let's take a look at the README:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/egs$ cat README.txt 
@@ -240,44 +270,36 @@ If you have an LDC membership, probably rm/s5 or wsj/s5 should be your first
 choice to try out the scripts.
 {% endhighlight %}
 
+Since they recommend **wsj/s5**, lets use that:
+
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/egs$ cd yesno/
-josh@yoga:~/Desktop/kaldi/egs/yesno$ la
+josh@yoga:~/Desktop/kaldi/egs$ cd wsj/
+josh@yoga:~/Desktop/kaldi/egs/wsj$ la
 README.txt  s5
-josh@yoga:~/Desktop/kaldi/egs/yesno$ cat README.txt 
+josh@yoga:~/Desktop/kaldi/egs/wsj$ cat README.txt 
 
+About the Wall Street Journal corpus:
+    This is a corpus of read
+    sentences from the Wall Street Journal, recorded under clean conditions.
+    The vocabulary is quite large.   About 80 hours of training data.
+    Available from the LDC as either: [ catalog numbers LDC93S6A (WSJ0) and LDC94S13A (WSJ1) ]
+    or: [ catalog numbers LDC93S6B (WSJ0) and LDC94S13B (WSJ1) ]
+    The latter option is cheaper and includes only the Sennheiser
+    microphone data (which is all we use in the example scripts).
 
-The "yesno" corpus is a very small dataset of recordings of one individual
-saying yes or no multiple times per recording, in Hebrew.  It is available from
-http://www.openslr.org/1.
-It is mainly included here as an easy way to test out the Kaldi scripts.
+Each subdirectory of this directory contains the
+scripts for a sequence of experiments.  [note: most of the older
+example scripts have been deleted, but are still available at
+^/branches/complete].
 
-The test set is perfectly recognized at the monophone stage, so the dataset is
-not exactly challenging.
-
-The scripts are in s5/.
+  s5: This is the current recommended recipe. 
 {% endhighlight %}
 
 
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/egs/yesno$ cd s5/
-josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ la
-conf  data  exp  input  local  mfcc  path.sh  run.sh  steps  utils  waves_yesno  waves_yesno.tar.gz
-josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ ./run.sh 
-Preparing train and test data
-Dictionary preparation succeeded
-Checking data/local/dict/silence_phones.txt ...
---> reading data/local/dict/silence_phones.txt
---> data/local/dict/silence_phones.txt is OK
-                    .
-                    .
-                    .
-add-self-loops --self-loop-scale=0.1 --reorder=true exp/mono0a/final.mdl 
-steps/decode.sh --nj 1 --cmd utils/run.pl exp/mono0a/graph_tgpr data/test_yesno exp/mono0a/decode_test_yesno
-** split_data.sh: warning, #lines is (utt2spk,feats.scp) is (31,29); you can 
-**  use utils/fix_data_dir.sh data/test_yesno to fix this.
-decode.sh: feature type is delta
-%WER 0.00 [ 0 / 232, 0 ins, 0 del, 0 sub ] [PARTIAL] exp/mono0a/decode_test_yesno/wer_10
+josh@yoga:~/Desktop/kaldi/egs/wsj$ cd s5/
+josh@yoga:~/Desktop/kaldi/egs/wsj/s5$ la
+cmd.sh  conf  local  path.sh  RESULTS  run.sh  steps  utils
 {% endhighlight %}
 
 
