@@ -164,6 +164,12 @@ josh@yoga:~/Desktop$ sudo rm -r praat
 
 Enjoy your Praat!
 
+## Still having issues?
+
+A friend of mine was still having problems with the sound after installing Praat on Linux, and he found a strange and simple solution. Here's [the thread on GitHub][issue]. 
+
+Apparently, if you have the **NumLock** function activated, you won't be able to hit tab in Praat to play a section of audio. If this is the problem, you should still be able to play the sound by clicking on the gray rectangles of a highlighted section of audio under the spectrogram. If this is your issue, deactivate **NumLock** and try using tab. It might be that easy.
+
 [libgtk]: http://packages.ubuntu.com/precise/libgtk2.0-dev
 [libasound2]: https://packages.debian.org/sid/libasound2-dev
-
+[issue]: https://github.com/praat/praat/issues/161
