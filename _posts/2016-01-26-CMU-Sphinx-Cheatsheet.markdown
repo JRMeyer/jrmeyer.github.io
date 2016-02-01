@@ -201,7 +201,7 @@ $CFG_DONE = 1;
 return 1;
 {% endhighlight %}
 
-As you can see, it's very important that you are consistent in your file and directory names, because they are dynamically generated at configutaion based on the name you provide for **your_model**. In my case, you can see that the language model location is found by referencing the base/main directory as such: **$DEC_CFG_LANGUAGEMODEL  = "$CFG_BASE_DIR/etc/${CFG_DB_NAME}.lm.DMP"**. So, if you are inconsistent, your configuration won't be able to find your language model or other files.
+As you can see, it's very important that you are consistent in your file and directory names, because they are dynamically generated at configuration based on the name you provide for **your_model**. In my case, you can see that the language model location is found by referencing the base/main directory as such: **$DEC_CFG_LANGUAGEMODEL  = "$CFG_BASE_DIR/etc/${CFG_DB_NAME}.lm.DMP"**. So, if you are inconsistent, your configuration won't be able to find your language model or other files.
 
 You should take a look over **sphinx_train.cfg** to make sure everything is in its right place.
 
