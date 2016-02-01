@@ -154,6 +154,7 @@ bwaccumdir  feat         logdir              model_parameters  result  wav
 etc         kyrgyz.html  model_architecture  qmanager          trees
 {% endhighlight %}
 
+In my original **kyrgyz/etc/** dir, some new files appear as well (**feat.params** and **sphinx_train.cfg**).
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kyrgyz$ la etc/
@@ -162,8 +163,6 @@ kyrgyz.dic     kyrgyz_test.fileids        sphinx_train.cfg
 kyrgyz.filler  kyrgyz_test.transcription
 kyrgyz.lm      kyrgyz_train.fileids
 {% endhighlight %}
-
-In my original **kyrgyz/etc/** dir, some new files appear as well (**feat.params** and **sphinx_train.cfg**).
 
 If we look into **sphinx_train.cfg**, we see the following:
 
