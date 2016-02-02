@@ -17,5 +17,4 @@ markdown: kramdown
 # markdown: redcarpet
 # redcarpet:
 #  extensions: [tables]
-# use pygments over rouge
-highlighter: pygments
+highlighter: rouge
