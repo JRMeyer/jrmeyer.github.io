@@ -117,7 +117,7 @@ learningRate = tf.train.exponential_decay(learning_rate=0.0008,
                                           staircase=True)
 {% endhighlight %}
 
-Next we have a block of code for defining our TensorFlow placeholders. These placeholders will hold our email data (both the features and labels), and help pass them along to different parts of the algorithm. You can think of placeholders as empty shells (i.e. empty tensors) into which we insert our data. As such, when we define the placeholders we need to give them shapes which correspond to the shape of our data. 
+Next we have a block of code for defining our [TensorFlow placeholders][tfPlaceholders]. These placeholders will hold our email data (both the features and labels), and help pass them along to different parts of the algorithm. You can think of placeholders as empty shells (i.e. empty tensors) into which we insert our data. As such, when we define the placeholders we need to give them shapes which correspond to the shape of our data. 
 
 The way TensorFlow allows us to insert data into these placeholders is by "feeding" them. You if you do a CTRL+F search for "feed" you will see that this happening in the actual training step.
 
@@ -140,6 +140,196 @@ yGold = tf.placeholder(tf.float32, [None, numLabels])
 {% endhighlight %}
 
 
+Next, we define some TensorFlow variables as our parameters. These variables will hold the weights and biases of our neural net. These are the objects that define our neural net, and we can save them after they've been trained so we can reuse our neural net later. Variables, like all data in TensorFlow, are represented as tensors. 
+
+Unlike our placeholders above which are essentially empty shells waiting to be fed data, [TensorFlow variables][tfVariables] need to be initialized with values. That's why we use **tf.random_normal** to make a normal distribution with a "mean" and "stddev" (i.e. standard deviation) to fill a tensor of shape "shape" with random values. Both our weights and bias term are initialized randomly and updated during training. We have a "1" in the shape of the bias term tensor because our neural net in this tutorial has a single output layer and no hidden layers.
+
+{% highlight python %}
+#################
+### VARIABLES ###
+#################
+
+#all values are randomly assigned:
+    #sqrt(6 / (numInputNodes + numOutputNodes + 1))
+
+weights = tf.Variable(tf.random_normal(shape=[numFeatures,numLabels],
+                                       mean=0,
+                                       stddev=(np.sqrt(6/numFeatures+
+                                                         numLabels+1)),
+                                       name="weights"))
+
+bias = tf.Variable(tf.random_normal(shape=[1,numLabels],
+                                    mean=0,
+                                    stddev=(np.sqrt(6/numFeatures+numLabels+1)),
+                                    name="bias"))
+{% endhighlight %}
+
+Up until this point in the script, we've been dealing with what our data and model look like (i.e. defining the tensors that hold the email data and our neural net weights and biases). 
+
+Now, we will switch gears to work on the computations which will train our neural net. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
+
+{% highlight python %}
+########################
+### OPS / OPERATIONS ###
+########################
+
+##
+## TRAINING OPS
+##
+
+# PREDICTION ALGORITHM i.e. FEEDFORWARD ALGORITHM
+apply_weights_OP = tf.matmul(X, weights, name="apply_weights")
+add_bias_OP = tf.add(apply_weights_OP, bias, name="add_bias") 
+activation_OP = tf.nn.sigmoid(add_bias_OP, name="activation")
+
+# COST FUNCTION i.e. MEAN SQUARED ERROR
+cost_OP = tf.nn.l2_loss(activation_OP-yGold, name="squared_error_cost")
+
+# OPTIMIZATION ALGORITHM i.e. GRADIENT DESCENT
+training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
+
+##
+## EVALUATION OPS
+##
+
+# argmax(activation_OP, 1) gives the label our model thought was most likely
+# argmax(yGold, 1) is the correct label
+correct_predictions_OP = tf.equal(tf.argmax(activation_OP,1),tf.argmax(yGold,1))
+
+# False is 0 and True is 1, what was our average?
+accuracy_OP = tf.reduce_mean(tf.cast(correct_predictions_OP, "float"))
+
+##
+## SUMMARY OPS
+##
+
+# Summary op for feedforward output
+activation_summary_OP = tf.histogram_summary("output", activation_OP)
+
+# Summary op for cost
+cost_summary_OP = tf.scalar_summary("cost", cost_OP)
+
+# Summary op for accuracy
+accuracy_summary_OP = tf.scalar_summary("accuracy", accuracy_OP)
+
+# Merge all summary ops
+all_summary_OPS = tf.merge_all_summaries()
+
+##
+## INITIALIZATION OP
+##
+
+# Initialize the computational graph with all ops, but don't run until sess.run()
+init_OP = tf.initialize_all_variables()
+{% endhighlight %}
+
+At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training. Before we do that though, let's make a nice little visualization for ourselves to see how traing actually progresses in real time.
+
+{%%}
+##########################
+### VIZUALIZE TRAINING ###
+##########################
+
+# Lists to hold values for live graphing
+epoch_values = []
+accuracy_values = []
+
+# Set up matplotlib for live updating
+plt.ion()
+plt.show()
+plt.xlabel("number of epochs")
+plt.ylabel("accuracy %")
+plt.title("accuracy on training data")
+{%%}
+
+Now, lets create a TensorFlow session and do some training!
+
+{%highlight python%}
+#####################
+### RUN THE GRAPH ###
+#####################
+
+#create a tensorflow session
+sess = tf.Session()
+# Initialize all tensorflow objects
+sess.run(init_OP)
+
+#summary writer
+writer = tf.train.SummaryWriter("summary_logs", sess.graph_def)
+
+#initialize reporting variables
+cost = 0
+diff = 1
+
+#training epochs
+for i in range(numEpochs):
+    if i > 1 and diff < .0001:
+        print("change in cost %g; convergence."%diff)
+        break
+    else:
+        #run training step
+        step = sess.run(training_OP, feed_dict={X: trainX, yGold: trainY})
+        #report occasional stats
+        if i % 10 == 0:
+            #add epoch to epoch_values
+            epoch_values.append(i)
+            #generate accuracy stats on test data
+            summary_results, train_accuracy, newCost = sess.run(
+                [all_summary_OPS, accuracy_OP, cost_OP], 
+                feed_dict={X: trainX, yGold: trainY}
+            )
+            #add accuracy to live graphing variable
+            accuracy_values.append(train_accuracy)
+            # accuracy_values = accuracy_values + ([train_accuracy] * 9)
+            #write summary stats to writer
+            writer.add_summary(summary_results, i)
+            #re-assign values for variables
+            diff = abs(newCost - cost)
+            cost = newCost
+            #generate print statements
+            print("step %d, training accuracy %g"%(i, train_accuracy))
+            print("step %d, cost %g"%(i, newCost))
+            print("step %d, change in cost %g"%(i, diff))
+            plt.plot(epoch_values, accuracy_values)
+            plt.draw()
+            time.sleep(1)
+
+# How well did we do overall?
+print("final accuracy on test set: %s" %str(sess.run(accuracy_OP, 
+                                                     feed_dict={X: testX, 
+                                                                yGold: testY})))
+
+
+{% endhighlight %}
+
+Now that we have a trained neural net for email classification, let's save it (i.e. save the weights and biases) so that we can use it again.
+
+
+{% highlight python %}
+##############################
+### SAVE TRAINED VARIABLES ###
+##############################
+
+# Create Saver
+saver = tf.train.Saver()
+# Save variables to .ckpt file
+# saver.save(sess, "trained_variables.ckpt")
+
+
+############################
+### MAKE NEW PREDICTIONS ###
+############################
+
+# Close tensorflow session
+sess.close()
+
+# to view tensorboard:
+    #1. run: tensorboard --logdir=/path/to/log-directory
+    #2. open your browser to http://localhost:6006/
+# See tutorial here for graph visualization https://www.tensorflow.org/versions/0.6.0/how_tos/graph_viz/index.html
+{% endhighlight %}
 
 
 [ufldl]: http://ufldl.stanford.edu/wiki/index.php/Neural_Networks
+[tfPlaceholders]: https://www.tensorflow.org/versions/v0.6.0/api_docs/python/io_ops.html#placeholders
+[tfVariables]: https://www.tensorflow.org/versions/v0.6.0/how_tos/variables/index.html
