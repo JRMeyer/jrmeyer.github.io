@@ -15,18 +15,123 @@ Don't worry though, if you don't have that background you should still be able t
 
 ## Email Classification
 
-To ground this tutorial in some real-world application, we decided to use a common beginner problem from Natural Langauge Processing: email classification. The idea is simple - given an email you've never seen before, determine whether or not that email is **Spam** or not (**Ham**). This is a pretty easy thing for us humans to do. If you see the words *Nigerian prince* or *weight-loss magic* in the first few lines, you don't need to read the rest of the email because you know it's Spam. However, it's much harder to write a program that can detect **Spam** emails for you. 
+To ground this tutorial in some real-world application, we decided to use a common beginner problem from Natural Language Processing (NLP): email classification. The idea is simple - given an email you've never seen before, determine whether or not that email is **Spam** or not (aka **Ham**). 
 
-You could collect a list of words you think are highly correlated with Spam emails, and then check every email for those words, but this won't work well. There's lots of words you will miss, and some of those words will occur in regular, **Ham** emails. Not only will it work poorly, it will take you a long time to compose a good list of **Spam** words by hand. Why don't we do something a little smarter by using machine learning? Instead of *telling* the program which words we think are important, let's let the program *learn* which words are important.
+For us humans, this is a pretty easy thing to do. If you open an email and see the words *Nigerian prince* or *weight-loss magic* in the first few lines, you don't need to read the rest of the email because you already know it's **Spam**. 
 
-To tackle this problem, we start with a collection of sample emails (i.e. a text corpus). In this corpus, each email has already been labeled as "'Spam'" or **Ham**. Since we are making use of these labels in the training phase, this is a *supervised learning* task. This is called *supervised learning* because we are (in a sense) supervising the program as it learns what **Spam** emails *look like* and what **Ham** email *look like*. 
+While this task is easy for humans, it's much harder to write a program that can correctly classify an email as **Spam** or **Ham**. You could collect a list of words you think are highly correlated with **Spam** emails, give that list to the computer, and tell the computer to check every email for those words. If the computer finds a word from the list in an email, then that email gets classified as **Spam**. If the computer did not find any of those words in an email, then the email gets classified as **Ham**.
 
-During the training phase, we present these labeled emails to the program. For each email, the program says whether it thought the email was **Spam** or **Ham**. After the program makes a prediction, we tell the program what the label of the email *actually* was. Whenever the program was wrong, it changes its configuration so as to make a better prediction the next time around. This process is done iteratively until either the program can't do any better or we get impatient and just tell the program to stop.
+Sadly, this simple approach doesn't work well. There's lots of "Spam" words you will miss, and some of the "Spam" words in your list will also occur in regular, **Ham** emails. Not only will it work poorly, it will take you a long time to compose a good list of **Spam** words by hand. Why don't we do something a little smarter by using machine learning? Instead of *telling* the program which words we think are important, let's let the program *learn* which words are important.
 
-Things we will cover in this tutorial:
+To tackle this problem, we start with a collection of sample emails (i.e. a text corpus). In this corpus, each email has already been labeled as **Spam** or **Ham**. Since we are making use of these labels in the training phase, this is a *supervised learning* task. This is called *supervised learning* because we are (in a sense) supervising the program as it learns what **Spam** emails *look like* and what **Ham** email *look like*. 
 
-1. The idea 
-2. thing 2 
-3. thing 3
+During the training phase, we present these emails and their labels to the program. For each email, the program says whether it thought the email was **Spam** or **Ham**. After the program makes a prediction, we tell the program what the label of the email *actually* was. Whenever the program was wrong, it changes its configuration so as to make a better prediction the next time around. This process is done iteratively until either the program can't do any better or we get impatient and just tell the program to stop.
+
+
+## Off to the Races
+
+The beginning of our script starts with downloading a few needed packages and modules. If you want to see where these packages get used in the script, just do something like a CTRL+F search for them (e.g. search for "np" if you want to see where numpy gets used).
+
+
+{% highlight python %}
+################
+### PREAMBLE ###
+################
+
+from __future__ import division
+import tensorflow as tf
+import numpy as np
+import tarfile
+import os
+import matplotlib.pyplot as plt
+import time
+{% endhighlight %}
+
+
+Next, we have the code for importing the data for our **Spam** and **Ham** emails. For the sake of this tutorial, we have pre-processed the emails to be in an easy to work with format. As such, you'll see in this following block of code we are expecting specific files like "data/trainX.csv". 
+
+The **import_data()** function first checks if the data directory "./data/" exists or not. If it doesn't exist, the code tries to unzip the tarred data in the file "./data.tar.gz". You need to have either the data directory or the tarred file in the current directory for the script to work. It does need data to train on after all.
+
+
+{% highlight python %}
+###################
+### IMPORT DATA ###
+###################
+
+def csv_to_numpy_array(filePath, delimiter):
+    return np.genfromtxt(filePath, delimiter=delimiter, dtype=None)
+
+def import_data():
+    if "data" not in os.listdir(os.getcwd()):
+        # Untar directory of data if we haven't already
+        tarObject = tarfile.open("data.tar.gz")
+        tarObject.extractall()
+        tarObject.close()
+        print("Extracted tar to current directory")
+    else:
+        # we've already extracted the files
+        pass
+
+    print("loading training data")
+    trainX = csv_to_numpy_array("data/trainX.csv", delimiter="\t")
+    trainY = csv_to_numpy_array("data/trainY.csv", delimiter="\t")
+    print("loading test data")
+    testX = csv_to_numpy_array("data/testX.csv", delimiter="\t")
+    testY = csv_to_numpy_array("data/testY.csv", delimiter="\t")
+    return trainX,trainY,testX,testY
+
+trainX,trainY,testX,testY = import_data()
+{% endhighlight %}
+
+
+Now that we can load in the data, let's move on to the code that sets our global parameters. These are values that are either specific to the data set or specific to the training procedure. Practically speaking, if you're just using the provided email data set, you will only be interested in playing with the training session parameters.
+
+
+{% highlight python %}
+#########################
+### GLOBAL PARAMETERS ###
+#########################
+
+# DATA SET PARAMETERS
+# Get our dimensions for our different variables and placeholders:
+# numFeatures = the number of words extracted from each email
+numFeatures = trainX.shape[1]
+# numLabels = number of classes we are predicting (here just 2: Ham or Spam)
+numLabels = trainY.shape[1]
+
+# TRAINING SESSION PARAMETERS
+# number of times we iterate through training data
+# tensorboard shows that accuracy plateaus at ~25k epochs
+numEpochs = 27000
+# here we set the batch size to be the total number of emails in our training
+# set... if you have a ton of data you can adjust this so you don't load
+# everything in at once
+batchSize = trainX.shape[0]
+# a smarter learning rate for gradientOptimizer
+# learningRate = tf.train.exponential_decay(learning_rate=0.001,
+learningRate = tf.train.exponential_decay(learning_rate=0.0008,
+                                          global_step= 1,
+                                          decay_steps=trainX.shape[0],
+                                          decay_rate= 0.95,
+                                          staircase=True)
+{% endhighlight %}
+
+
+{% highlight python %}
+####################
+### PLACEHOLDERS ###
+####################
+
+# X = X-matrix / feature-matrix / data-matrix... It's a tensor to hold our email
+# data. 'None' here means that we can hold any number of emails
+X = tf.placeholder(tf.float32, [None, numFeatures])
+# yGold = Y-matrix / label-matrix / labels... This will be our correct answers
+# matrix. Every row has either [1,0] for SPAM or [0,1] for HAM. 'None' here 
+# means that we can hold any number of emails
+yGold = tf.placeholder(tf.float32, [None, numLabels])
+{% endhighlight %}
+
+
+
 
 [ufldl]: http://ufldl.stanford.edu/wiki/index.php/Neural_Networks

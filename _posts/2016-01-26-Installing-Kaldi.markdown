@@ -11,7 +11,7 @@ comments: True
 
 ## Installation
 
-Kaldi used to be primarily host on SourceForge, but then they move to GitHub, so I'm going to just clone their repository to my Desktop:
+Kaldi used to be primarily host on SourceForge, but then they moved to GitHub, so I'm going to just clone their GitHub repository to my Desktop:
 
 {% highlight bash %}
 josh@yoga:~/Desktop$ git clone https://github.com/kaldi-asr/kaldi.git
@@ -147,7 +147,42 @@ Try 'readlink --help' for more information.
 ***() Please source the tools/env.sh in your path.sh to enable it
 {% endhighlight %}
 
-At this point we've done part (1) of the **kaldi/INSTALL** file (i.e. following the steps in the **kaldi/tools/INSTALL** file). Now let's go on to step (2), and follow the instructions in **kaldi/src/INSTALL**.
+It seems we've installed IRSTLM but we still need to enable it. If you search for **path.sh** from the kaldi/ dir, we see that in each of the examples there is a separate **path.sh** file:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/tools$ cd ../
+josh@yoga:~/Desktop/kaldi$ locate path.sh
+/home/josh/Desktop/kaldi/egs/ami/s5/path.sh
+/home/josh/Desktop/kaldi/egs/aspire/s5/path.sh
+/home/josh/Desktop/kaldi/egs/aurora4/s5/path.sh
+                      .
+                      .
+                      .
+/home/josh/Desktop/kaldi/egs/vystadial_en/s5/path.sh
+/home/josh/Desktop/kaldi/egs/wsj/s5/path.sh
+/home/josh/Desktop/kaldi/egs/yesno/s5/path.sh
+/usr/local/MATLAB/R2015b/sys/tomcat/bin/setclasspath.sh
+{% endhighlight %}
+
+
+If we look into one of those shell scripts, we see something like this:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi$ cat egs/yesno/s5/path.sh 
+
+export PATH=$PWD/utils/:$PWD/../../../src/bin:$PWD/../../../tools/openfst/bin:$PWD/../../../src/fstbin/:$PWD/../../../src/gmmbin/:$PWD/../../../src/featbin/:$PWD/../../../src/lm/:$PWD/../../../src/sgmmbin/:$PWD/../../../src/fgmmbin/:$PWD/../../../src/latbin/:$PWD:$PATH
+export LC_ALL=C
+{% endhighlight %}
+
+In this **yesno** example, there are just two commands happening which set environment variables **PATH** and **LC_ALL**. I think when it comes to making my own path.sh script and enabling IRSTLM, I will just include a line with:
+
+{% highlight bash %}
+source tools/env.sh
+{% endhighlight %}
+
+But as of right now we don't have to do this since we're just installing.
+
+So, at this point we've done part (1) of the **kaldi/INSTALL** file (i.e. following the steps in the **kaldi/tools/INSTALL** file). Now let's go on to step (2), and follow the instructions in **kaldi/src/INSTALL**.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cd ../src/
@@ -270,36 +305,207 @@ If you have an LDC membership, probably rm/s5 or wsj/s5 should be your first
 choice to try out the scripts.
 {% endhighlight %}
 
-Since they recommend **wsj/s5**, lets use that:
+Since we can try out **yesno** off the shelf (the WAV files are downloaded when you run the **run.sh** script), we're going to go with that one.
 
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/egs$ cd wsj/
-josh@yoga:~/Desktop/kaldi/egs/wsj$ la
+josh@yoga:~/Desktop/kaldi/egs$ cd yesno/
+josh@yoga:~/Desktop/kaldi/egs/yesno la
 README.txt  s5
-josh@yoga:~/Desktop/kaldi/egs/wsj$ cat README.txt 
+josh@yoga:~/Desktop/kaldi/egs/yesno$ cat README.txt 
 
-About the Wall Street Journal corpus:
-    This is a corpus of read
-    sentences from the Wall Street Journal, recorded under clean conditions.
-    The vocabulary is quite large.   About 80 hours of training data.
-    Available from the LDC as either: [ catalog numbers LDC93S6A (WSJ0) and LDC94S13A (WSJ1) ]
-    or: [ catalog numbers LDC93S6B (WSJ0) and LDC94S13B (WSJ1) ]
-    The latter option is cheaper and includes only the Sennheiser
-    microphone data (which is all we use in the example scripts).
 
-Each subdirectory of this directory contains the
-scripts for a sequence of experiments.  [note: most of the older
-example scripts have been deleted, but are still available at
-^/branches/complete].
+The "yesno" corpus is a very small dataset of recordings of one individual
+saying yes or no multiple times per recording, in Hebrew.  It is available from
+http://www.openslr.org/1.
+It is mainly included here as an easy way to test out the Kaldi scripts.
 
-  s5: This is the current recommended recipe. 
+The test set is perfectly recognized at the monophone stage, so the dataset is
+not exactly challenging.
+
+The scripts are in s5/.
+
+{% endhighlight %}
+
+To get a clearer picture of the file structure, I like to use the **tree** command to display the file structure as a tree with indented braches. You might have to install **tree**, but I'd say it's worth it.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno$ tree .
+.
+├── README.txt
+└── s5
+    ├── conf
+    │   ├── mfcc.conf
+    │   └── topo_orig.proto
+    ├── input
+    │   ├── lexicon_nosil.txt
+    │   ├── lexicon.txt
+    │   ├── phones.txt
+    │   └── task.arpabo
+    ├── local
+    │   ├── create_yesno_txt.pl
+    │   ├── create_yesno_waves_test_train.pl
+    │   ├── create_yesno_wav_scp.pl
+    │   ├── prepare_data.sh
+    │   ├── prepare_dict.sh
+    │   ├── prepare_lm.sh
+    │   └── score.sh
+    ├── path.sh
+    ├── run.sh
+    ├── steps -> ../../wsj/s5/steps
+    └── utils -> ../../wsj/s5/utils
+
+6 directories, 16 files
 {% endhighlight %}
 
 
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/egs/wsj$ cd s5/
-josh@yoga:~/Desktop/kaldi/egs/wsj/s5$ la
-cmd.sh  conf  local  path.sh  RESULTS  run.sh  steps  utils
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ la
+conf  input  local  path.sh  run.sh  steps  utils
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ cat path.sh 
+
+export PATH=$PWD/utils/:$PWD/../../../src/bin:$PWD/../../../tools/openfst/bin:$PWD/../../../src/fstbin/:$PWD/../../../src/gmmbin/:$PWD/../../../src/featbin/:$PWD/../../../src/lm/:$PWD/../../../src/sgmmbin/:$PWD/../../../src/fgmmbin/:$PWD/../../../src/latbin/:$PWD:$PATH
+export LC_ALL=C
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ . ./path.sh
+{% endhighlight %}
+
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ ./run.sh 
+--2016-02-08 18:42:03--  http://www.openslr.org/resources/1/waves_yesno.tar.gz
+Resolving www.openslr.org (www.openslr.org)... 107.178.217.247
+Connecting to www.openslr.org (www.openslr.org)|107.178.217.247|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4703754 (4.5M) [application/x-gzip]
+Saving to: 'waves_yesno.tar.gz'
+
+100%[================================================================>] 4,703,754    630KB/s   in 6.9s   
+
+2016-02-08 18:42:10 (661 KB/s) - 'waves_yesno.tar.gz' saved [4703754/4703754]
+
+waves_yesno/
+waves_yesno/1_0_0_0_0_0_1_1.wav
+waves_yesno/1_1_0_0_1_0_1_0.wav
+waves_yesno/1_0_1_1_1_1_0_1.wav
+waves_yesno/1_1_1_1_0_1_0_0.wav
+waves_yesno/0_0_1_1_1_0_0_0.wav
+                .
+                .
+                .
+waves_yesno/0_0_0_1_0_1_1_0.wav
+waves_yesno/1_1_1_1_1_1_0_0.wav
+waves_yesno/0_0_0_0_1_1_1_1.wav
+Preparing train and test data
+Dictionary preparation succeeded
+Checking data/local/dict/silence_phones.txt ...
+--> reading data/local/dict/silence_phones.txt
+--> data/local/dict/silence_phones.txt is OK
+
+Checking data/local/dict/optional_silence.txt ...
+--> reading data/local/dict/optional_silence.txt
+--> data/local/dict/optional_silence.txt is OK
+
+Checking data/local/dict/nonsilence_phones.txt ...
+--> reading data/local/dict/nonsilence_phones.txt
+--> data/local/dict/nonsilence_phones.txt is OK
+                 .
+                 .
+                 .
+steps/train_mono.sh: Initializing monophone system.
+steps/train_mono.sh: Compiling training graphs
+steps/train_mono.sh: Aligning data equally (pass 0)
+steps/train_mono.sh: Pass 1
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 2
+steps/train_mono.sh: Aligning data
+steps/train_mono.sh: Pass 3
+                 .
+                 .
+                 .
+0.755859 -0.000430956
+HCLGa is not stochastic
+add-self-loops --self-loop-scale=0.1 --reorder=true exp/mono0a/final.mdl 
+steps/decode.sh --nj 1 --cmd utils/run.pl exp/mono0a/graph_tgpr data/test_yesno exp/mono0a/decode_test_yesno
+** split_data.sh: warning, #lines is (utt2spk,feats.scp) is (31,29); you can 
+**  use utils/fix_data_dir.sh data/test_yesno to fix this.
+decode.sh: feature type is delta
+%WER 0.00 [ 0 / 232, 0 ins, 0 del, 0 sub ] [PARTIAL] exp/mono0a/decode_test_yesno/wer_10
+{% endhighlight %}
+
+You can see from the last line of output, that as we were warned in the README, this data set is not interesting because we get perfect performance, and our **%WER** was indeed 0.00.
+
+If we take another look at the **yesno** dir, we will see that our **run.sh** file generated some more directories and files for us. I'm using the **tree** function below with the -d flag so we only see directories. Otherwise, all the downloaded WAV files are listed and it's a little much.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ la
+conf  data  exp  input  local  mfcc  path.sh  run.sh  steps  utils  waves_yesno  waves_yesno.tar.gz
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree -d .
+.
+|-- conf
+|-- data
+|   |-- lang
+|   |   `-- phones
+|   |-- lang_test_tg
+|   |   |-- phones
+|   |   `-- tmp
+|   |-- local
+|   |   |-- dict
+|   |   `-- lang
+|   |-- test_yesno
+|   |   `-- split1
+|   |       `-- 1
+|   `-- train_yesno
+|       `-- split1
+|           `-- 1
+|-- exp
+|   |-- make_mfcc
+|   |   |-- test_yesno
+|   |   `-- train_yesno
+|   `-- mono0a
+|       |-- decode_test_yesno
+|       |   |-- log
+|       |   `-- scoring
+|       |       `-- log
+|       |-- graph_tgpr
+|       |   `-- phones
+|       `-- log
+|-- input
+|-- local
+|-- mfcc
+|-- steps -> ../../wsj/s5/steps
+|-- utils -> ../../wsj/s5/utils
+`-- waves_yesno
+
+34 directories
+{% endhighlight %}
+
+Walking down the subdirs, we can see that the three original dirs were left unchanged:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./conf/
+./conf/
+|-- mfcc.conf
+`-- topo_orig.proto
+
+0 directories, 2 files
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./input/
+./input/
+|-- lexicon.txt
+|-- lexicon_nosil.txt
+|-- phones.txt
+`-- task.arpabo
+
+0 directories, 4 files
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./local/
+./local/
+|-- create_yesno_txt.pl
+|-- create_yesno_wav_scp.pl
+|-- create_yesno_waves_test_train.pl
+|-- prepare_data.sh
+|-- prepare_dict.sh
+|-- prepare_lm.sh
+`-- score.sh
+
+0 directories, 7 files
 {% endhighlight %}
 
 
