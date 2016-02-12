@@ -225,7 +225,7 @@ init_OP = tf.initialize_all_variables()
 
 At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training. Before we do that though, let's make a nice little visualization for ourselves to see how traing actually progresses in real time.
 
-{%%}
+{% highlight python %}
 ##########################
 ### VIZUALIZE TRAINING ###
 ##########################
@@ -240,11 +240,11 @@ plt.show()
 plt.xlabel("number of epochs")
 plt.ylabel("accuracy %")
 plt.title("accuracy on training data")
-{%%}
+{% endhighlight %}
 
 Now, lets create a TensorFlow session and do some training!
 
-{%highlight python%}
+{% highlight python %}
 #####################
 ### RUN THE GRAPH ###
 #####################
