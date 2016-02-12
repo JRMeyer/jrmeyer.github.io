@@ -117,6 +117,8 @@ learningRate = tf.train.exponential_decay(learning_rate=0.0008,
                                           staircase=True)
 {% endhighlight %}
 
+### TensorFlow Placeholders
+
 Next we have a block of code for defining our [TensorFlow placeholders][tfPlaceholders]. These placeholders will hold our email data (both the features and labels), and help pass them along to different parts of the algorithm. You can think of placeholders as empty shells (i.e. empty tensors) into which we insert our data. As such, when we define the placeholders we need to give them shapes which correspond to the shape of our data. 
 
 The way TensorFlow allows us to insert data into these placeholders is by "feeding" them. You if you do a CTRL+F search for "feed" you will see that this happening in the actual training step.
@@ -139,6 +141,7 @@ X = tf.placeholder(tf.float32, [None, numFeatures])
 yGold = tf.placeholder(tf.float32, [None, numLabels])
 {% endhighlight %}
 
+### TensorFlow Variables
 
 Next, we define some TensorFlow variables as our parameters. These variables will hold the weights and biases of our neural net. These are the objects that define our neural net, and we can save them after they've been trained so we can reuse our neural net later. Variables, like all data in TensorFlow, are represented as tensors. 
 
@@ -164,6 +167,9 @@ bias = tf.Variable(tf.random_normal(shape=[1,numLabels],
                                     name="bias"))
 {% endhighlight %}
 
+
+### TensorFlow Ops
+
 Up until this point in the script, we've been dealing with what our data and model look like (i.e. defining the tensors that hold the email data and our neural net weights and biases). 
 
 Now, we will switch gears to work on the computations which will train our neural net. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
@@ -181,10 +187,8 @@ Now, we will switch gears to work on the computations which will train our neura
 apply_weights_OP = tf.matmul(X, weights, name="apply_weights")
 add_bias_OP = tf.add(apply_weights_OP, bias, name="add_bias") 
 activation_OP = tf.nn.sigmoid(add_bias_OP, name="activation")
-
 # COST FUNCTION i.e. MEAN SQUARED ERROR
 cost_OP = tf.nn.l2_loss(activation_OP-yGold, name="squared_error_cost")
-
 # OPTIMIZATION ALGORITHM i.e. GRADIENT DESCENT
 training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
 
@@ -195,7 +199,6 @@ training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
 # argmax(activation_OP, 1) gives the label our model thought was most likely
 # argmax(yGold, 1) is the correct label
 correct_predictions_OP = tf.equal(tf.argmax(activation_OP,1),tf.argmax(yGold,1))
-
 # False is 0 and True is 1, what was our average?
 accuracy_OP = tf.reduce_mean(tf.cast(correct_predictions_OP, "float"))
 
@@ -205,13 +208,10 @@ accuracy_OP = tf.reduce_mean(tf.cast(correct_predictions_OP, "float"))
 
 # Summary op for feedforward output
 activation_summary_OP = tf.histogram_summary("output", activation_OP)
-
 # Summary op for cost
 cost_summary_OP = tf.scalar_summary("cost", cost_OP)
-
 # Summary op for accuracy
 accuracy_summary_OP = tf.scalar_summary("accuracy", accuracy_OP)
-
 # Merge all summary ops
 all_summary_OPS = tf.merge_all_summaries()
 
