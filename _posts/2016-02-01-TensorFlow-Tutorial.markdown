@@ -1,4 +1,4 @@
----
+        ---
 layout: post
 title:  "A TensorFlow Tutorial: Email Classification"
 date:   2016-02-01 22:03:04 -0700
@@ -28,10 +28,9 @@ To tackle this problem, we start with a collection of sample emails (i.e. a text
 During the training phase, we present these emails and their labels to the program. For each email, the program says whether it thought the email was **Spam** or **Ham**. After the program makes a prediction, we tell the program what the label of the email *actually* was. Whenever the program was wrong, it changes its configuration so as to make a better prediction the next time around. This process is done iteratively until either the program can't do any better or we get impatient and just tell the program to stop.
 
 
-## Off to the Races
+## On to the Script
 
-The beginning of our script starts with downloading a few needed packages and modules. If you want to see where these packages get used in the script, just do something like a CTRL+F search for them (e.g. search for "np" if you want to see where numpy gets used).
-
+The beginning of our script starts with importing a few needed dependencies (Python packages and modules). If you want to see where these packages get used, just do a CTRL+F search for them in the script.
 
 {% highlight python %}
 ################
@@ -48,9 +47,11 @@ import time
 {% endhighlight %}
 
 
-Next, we have the code for importing the data for our **Spam** and **Ham** emails. For the sake of this tutorial, we have pre-processed the emails to be in an easy to work with format. As such, you'll see in this following block of code we are expecting specific files like "data/trainX.csv". 
+Next, we have some code for importing the data for our **Spam** and **Ham** emails. For the sake of this tutorial, we have pre-processed the emails to be in an easy to work with format. As such, you'll see in this following block of code we are expecting specific files like "data/trainX.csv". 
 
-The **import_data()** function first checks if the data directory "./data/" exists or not. If it doesn't exist, the code tries to unzip the tarred data in the file "./data.tar.gz". You need to have either the data directory or the tarred file in the current directory for the script to work. It does need data to train on after all.
+The **import_data()** function first checks if the data directory "data/" exists in your current working directory or not. If it doesn't exist, the code tries to unzip the tarred data from the file "data.tar.gz", which is expected to be in your current working directory. 
+
+>You need to have either the "data/" directory or the tarred file "data.tar.gz" in your working directory for the script to work. The neural net does need data to train on after all.
 
 
 {% highlight python %}
@@ -84,7 +85,7 @@ trainX,trainY,testX,testY = import_data()
 {% endhighlight %}
 
 
-Now that we can load in the data, let's move on to the code that sets our global parameters. These are values that are either specific to the data set or specific to the training procedure. Practically speaking, if you're just using the provided email data set, you will only be interested in playing with the training session parameters.
+Now that we can load in the data, let's move on to the code that sets our global parameters. These are values that are either (a) specific to the data set or (b) specific to the training procedure. Practically speaking, if you're using the provided email data set, you will only be interested in adjusting the training session parameters.
 
 
 {% highlight python %}
@@ -116,6 +117,13 @@ learningRate = tf.train.exponential_decay(learning_rate=0.0008,
                                           staircase=True)
 {% endhighlight %}
 
+Next we have a block of code for defining our TensorFlow placeholders. These placeholders will hold our email data (both the features and labels), and help pass them along to different parts of the algorithm. You can think of placeholders as empty shells (i.e. empty tensors) into which we insert our data. As such, when we define the placeholders we need to give them shapes which correspond to the shape of our data. 
+
+The way TensorFlow allows us to insert data into these placeholders is by "feeding" them. You if you do a CTRL+F search for "feed" you will see that this happening in the actual training step.
+
+This is a nice feature of TensorFlow because we can create an algorithm which accepts data and knows something about the shape of the data while still being agnostic about the amount of data going in. This means that when we insert "batches" of data in training, we can easily adjust how many examples we train on in a single step without changing the entire algorithm. 
+
+In TensorFlow terms, we build the computation graph and then insert data as we wish. This keeps a clean division between the computations of our algoritm and the data we're doing the computations on.
 
 {% highlight python %}
 ####################
