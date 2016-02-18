@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "A TensorFlow Tutorial: Email Classification"
-date:   2016-02-01 22:03:04 -0700
+date:   2016-02-01
 categories: tutorial
 comments: True
 mermaid: True
@@ -204,8 +204,7 @@ Now, we will switch gears to work on the computations which will define our mode
 
 In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **orange** nodes represent our TensorFlow variables, and the **blue** nodes represent our TensorFlow Ops.
 
-
-{% mermaid %}
+<div class="mermaid">
 graph LR
     subgraph 
         data[Feature<br>Matrix] -.-> multiplyOP(x)
@@ -215,16 +214,14 @@ graph LR
         summationOP(Σ) -.-> sigmoidOP(σ)
         sigmoidOP(σ) -.-> yHat[ŷ<br>Matrix]     
     end
-
     classDef placeholders fill:#9fc,stroke:#333,stroke-width:4px;
     classDef variables fill:#f96,stroke:#333,stroke-width:4px;
     classDef ops fill:#ccf,stroke:#333,stroke-width:4px;
-
     class weights,bias variables
     class multiplyOP,summationOP,sigmoidOP ops
     class data,yHat placeholders
-{% endmermaid %}
-{: align="center"}
+</div>
+
 
 We have defined all of our variables, but we still need to initialize them with a TensorFlow Op. TensorFlow has a special built in Op for just this, since this is a step you will most likely have to perform everytime you use TensorFlow.
 

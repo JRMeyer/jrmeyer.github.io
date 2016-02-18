@@ -17,9 +17,3 @@ markdown: kramdown
 
 # syntax highlighter
 highlighter: rouge
-
-# include gems as plugins
-gems: [jekyll-mermaid]
-
-mermaid:
-        src: '/js/mermaid.js'
