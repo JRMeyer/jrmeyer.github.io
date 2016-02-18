@@ -9,28 +9,28 @@ comments: True
 
 ## Introduction
 
-This tutorial is meant for those who want to get to know the *Flow* of TensorFlow. Ideally, you already know some of the *Tensor* of TensorFlow. That is, it's better if you have some handle of linear algebra and machine learning. 
+This tutorial is meant for those who want to get to know the *Flow* of TensorFlow. Ideally, you already know some of the *Tensor* of TensorFlow. That is, in this tutorial we aren't going to go deep into any of the linear algebra, calculus, and statistics which are used in machine learning. 
 
-Don't worry though, if you don't have that background you should still be able to follow this tutorial. If you're interested in learning more about the math, there's a ton of good places to get an introduction to the algorithms used in machine learning. For artificial neural nets [this one from Stanford][ufldl] is especially good.
+Don't worry though, if you don't have that background you should still be able to follow this tutorial. If you're interested in learning more about the math, there's a ton of good places to get an introduction to the algorithms used in machine learning. [This tutorial][ufldl] from Stanford University about artificial neural nets is especially good. We're going to be using a simple logistic regression classifier here, but many of the concepts are shared with neural nets.
 
 ## Email Classification
 
 To ground this tutorial in some real-world application, we decided to use a common beginner problem from Natural Language Processing (NLP): email classification. The idea is simple - given an email you've never seen before, determine whether or not that email is **Spam** or not (aka **Ham**). 
 
-For us humans, this is a pretty easy thing to do. If you open an email and see the words *Nigerian prince* or *weight-loss magic* in the first few lines, you don't need to read the rest of the email because you already know it's **Spam**. 
+For us humans, this is a pretty easy thing to do. If you open an email and see the words *"Nigerian prince"* or *"weight-loss magic"*, you don't need to read the rest of the email because you already know it's **Spam**. 
 
 While this task is easy for humans, it's much harder to write a program that can correctly classify an email as **Spam** or **Ham**. You could collect a list of words you think are highly correlated with **Spam** emails, give that list to the computer, and tell the computer to check every email for those words. If the computer finds a word from the list in an email, then that email gets classified as **Spam**. If the computer did not find any of those words in an email, then the email gets classified as **Ham**.
 
-Sadly, this simple approach doesn't work well. There's lots of "Spam" words you will miss, and some of the "Spam" words in your list will also occur in regular, **Ham** emails. Not only will it work poorly, it will take you a long time to compose a good list of **Spam** words by hand. Why don't we do something a little smarter by using machine learning? Instead of *telling* the program which words we think are important, let's let the program *learn* which words are important.
+Sadly, this simple approach doesn't work well in practice. There's lots of **Spam** words you will miss, and some of the **Spam** words in your list will also occur in regular, **Ham** emails. Not only will this approach work poorly, it will take you a long time to compose a good list of **Spam** words by hand. So, why don't we do something a little smarter by using machine learning? Instead of *telling* the program which words we think are important, let's let the program *learn* which words are actually important.
 
 To tackle this problem, we start with a collection of sample emails (i.e. a text corpus). In this corpus, each email has already been labeled as **Spam** or **Ham**. Since we are making use of these labels in the training phase, this is a *supervised learning* task. This is called *supervised learning* because we are (in a sense) supervising the program as it learns what **Spam** emails *look like* and what **Ham** email *look like*. 
 
-During the training phase, we present these emails and their labels to the program. For each email, the program says whether it thought the email was **Spam** or **Ham**. After the program makes a prediction, we tell the program what the label of the email *actually* was. Whenever the program was wrong, it changes its configuration so as to make a better prediction the next time around. This process is done iteratively until either the program can't do any better or we get impatient and just tell the program to stop.
+During the training phase, we present these emails and their labels to the program. For each email, the program says whether it thought the email was **Spam** or **Ham**. After the program makes a prediction, we tell the program what the label of the email *actually* was. The program then changes its configuration so as to make a better prediction the next time around. This process is done iteratively until either the program can't do any better or we get impatient and just tell the program to stop.
 
 
 ## On to the Script
 
-The beginning of our script starts with importing a few needed dependencies (Python packages and modules). If you want to see where these packages get used, just do a CTRL+F search for them in the script.
+The beginning of our script starts with importing a few needed dependencies (Python packages and modules). If you want to see where these packages get used, just do a CTRL+F search for them in the script. If you want to learn what the packages are, just do a Google search for them.
 
 {% highlight python %}
 ################
@@ -47,11 +47,35 @@ import time
 {% endhighlight %}
 
 
-Next, we have some code for importing the data for our **Spam** and **Ham** emails. For the sake of this tutorial, we have pre-processed the emails to be in an easy to work with format. As such, you'll see in this following block of code we are expecting specific files like "data/trainX.csv". 
+Next, we have some code for importing the data for our **Spam** and **Ham** emails. For the sake of this tutorial, we have pre-processed the emails to be in an easy to work with format.
+
+The X-matrices (i.e. feature matrices) have the shape (number of rows, number of columns). Each row represents an email, and each column represents a word. Each cell in the matrix contains an interger between 0 and infinity (i.e. $$\mathbb{N}$$) which is the count of how many times a given word occured in a given email. 
+
+|   | **great** | **dog**  | **pill**  | $$\cdots$$  |
+| **email_001**  | 0  | 1 | 0  |  $$\cdots$$ |
+| **email_002**  | 3  | 0  | 5  |  $$\cdots$$ |
+| **email_003**  | 0  | 0  | 0  |  $$\cdots$$ |
+| $$\vdots$$        | $$\vdots$$  | $$\vdots$$  | $$\vdots$$  |  $$\ddots$$ |
+{: align="center"}
+
+<br>
+
+Similarly, we have a matrix which holds the labels for the our data. In this case, the matrix has two columns, one for **Spam** and one for **Ham**. There can only be a 1 or a 0 in each cell, where 1 means that column is the correct label for the email. Like in the feature matrix, each row in the matrix represents an email.
+
+|   | **Spam** | **Ham**  |
+| **email_001**  | 0  | 1 |
+| **email_002**  | 1  | 0  |
+| **email_003**  | 1  | 0  |
+| $$\vdots$$        | $$\vdots$$  | $$\vdots$$  |
+{: align="center"}
+
+<br>
+
+In these illustrations the matrices have row and column headers, but the actual matrices we feed into TensorFlow have none.
 
 The **import_data()** function first checks if the data directory "data/" exists in your current working directory or not. If it doesn't exist, the code tries to unzip the tarred data from the file "data.tar.gz", which is expected to be in your current working directory. 
 
->You need to have either the "data/" directory or the tarred file "data.tar.gz" in your working directory for the script to work. The neural net does need data to train on after all.
+>You need to have either the "data/" directory or the tarred file "data.tar.gz" in your working directory for the script to work.
 
 
 {% highlight python %}
@@ -119,9 +143,9 @@ learningRate = tf.train.exponential_decay(learning_rate=0.0008,
 
 ### TensorFlow Placeholders
 
-Next we have a block of code for defining our [TensorFlow placeholders][tfPlaceholders]. These placeholders will hold our email data (both the features and labels), and help pass them along to different parts of the algorithm. You can think of placeholders as empty shells (i.e. empty tensors) into which we insert our data. As such, when we define the placeholders we need to give them shapes which correspond to the shape of our data. 
+Next we have a block of code for defining our [TensorFlow placeholders][tfPlaceholders]. These placeholders will hold our email data (both the features and label matrices), and help pass them along to different parts of the algorithm. You can think of placeholders as empty shells (i.e. empty tensors) into which we insert our data. As such, when we define the placeholders we need to give them shapes which correspond to the shape of our data. 
 
-The way TensorFlow allows us to insert data into these placeholders is by "feeding" them. You if you do a CTRL+F search for "feed" you will see that this happening in the actual training step.
+The way TensorFlow allows us to insert data into these placeholders is by "feeding" the placeholders the data via a "feed_dict". You if you do a CTRL+F search for "feed" you will see that this happening in the actual training step.
 
 This is a nice feature of TensorFlow because we can create an algorithm which accepts data and knows something about the shape of the data while still being agnostic about the amount of data going in. This means that when we insert "batches" of data in training, we can easily adjust how many examples we train on in a single step without changing the entire algorithm. 
 
@@ -143,9 +167,13 @@ yGold = tf.placeholder(tf.float32, [None, numLabels])
 
 ### TensorFlow Variables
 
-Next, we define some TensorFlow variables as our parameters. These variables will hold the weights and biases of our neural net. These are the objects that define our neural net, and we can save them after they've been trained so we can reuse our neural net later. Variables, like all data in TensorFlow, are represented as tensors. 
+Next, we define some [TensorFlow variables][tfVariables] as our parameters. These variables will hold the weights and biases of our logistic regression and they will be continually updated during training. Unlike the immutable TensorFlow constants, TensorFlow variables can change their values within a session. 
 
-Unlike our placeholders above which are essentially empty shells waiting to be fed data, [TensorFlow variables][tfVariables] need to be initialized with values. That's why we use **tf.random_normal** to make a normal distribution with a "mean" and "stddev" (i.e. standard deviation) to fill a tensor of shape "shape" with random values. Both our weights and bias term are initialized randomly and updated during training. We have a "1" in the shape of the bias term tensor because our neural net in this tutorial has a single output layer and no hidden layers.
+This is essential for any optimization algorithm to work (we will use gradient descent). These variables are the objects which define the structure of our regression model, and we can save them after they've been trained so we can reuse them later. 
+
+Variables, like all data in TensorFlow, are represented as tensors. However, unlike our placeholders above which are essentially empty shells waiting to be fed data, TensorFlow variables need to be initialized with values. 
+
+That's why in the code below which initializes the variables, we use **tf.random_normal** to sample from a normal distribution to fill a tensor of shape "shape" with random values. Both our weights and bias term are initialized randomly and updated during training.
 
 {% highlight python %}
 #################
@@ -167,12 +195,49 @@ bias = tf.Variable(tf.random_normal(shape=[1,numLabels],
                                     name="bias"))
 {% endhighlight %}
 
-
 ### TensorFlow Ops
 
-Up until this point in the script, we've been dealing with what our data and model look like (i.e. defining the tensors that hold the email data and our neural net weights and biases). 
+Up until this point in the script, we've been dealing with what our data and model look like. That is, we have defined the tensors that hold the email data (feature and label matrices) as well as defined our regression weights and biases. None of these structures exist yet, only the instructions for building them.
 
-Now, we will switch gears to work on the computations which will train our neural net. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
+Now, we will switch gears to work on the computations which will define our model and the evaluation of that model. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
+
+In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **orange** nodes represent our TensorFlow variables, and the **blue** nodes represent our TensorFlow Ops.
+
+
+{% mermaid %}
+graph LR
+    subgraph 
+        data[Feature<br>Matrix] -.-> multiplyOP(x)
+        weights[Weights<br>Matrix] -.-> multiplyOP(x)
+        multiplyOP(x) -.-> summationOP(Σ)
+        bias[Bias Term] -.-> summationOP(Σ)
+        summationOP(Σ) -.-> sigmoidOP(σ)
+        sigmoidOP(σ) -.-> yHat[ŷ<br>Matrix]     
+    end
+
+    classDef placeholders fill:#9fc,stroke:#333,stroke-width:4px;
+    classDef variables fill:#f96,stroke:#333,stroke-width:4px;
+    classDef ops fill:#ccf,stroke:#333,stroke-width:4px;
+
+    class weights,bias variables
+    class multiplyOP,summationOP,sigmoidOP ops
+    class data,yHat placeholders
+{% endmermaid %}
+{: align="center"}
+
+We have defined all of our variables, but we still need to initialize them with a TensorFlow Op. TensorFlow has a special built in Op for just this, since this is a step you will most likely have to perform everytime you use TensorFlow.
+
+Like all our other Ops, the Initialization Op will become a node in our computational graph, and when we put the graph into a session, then the Op will run and create the variables.
+
+{% highlight python %}
+###############################
+### INITIALIZE VARIABLES OP ###
+###############################
+
+# Initialize the computational graph with all ops, but don't run until sess.run()
+init_OP = tf.initialize_all_variables()
+{% endhighlight %}
+
 
 {% highlight python %}
 ########################
@@ -192,6 +257,7 @@ cost_OP = tf.nn.l2_loss(activation_OP-yGold, name="squared_error_cost")
 # OPTIMIZATION ALGORITHM i.e. GRADIENT DESCENT
 training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
 
+
 ##
 ## EVALUATION OPS
 ##
@@ -201,9 +267,17 @@ training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
 correct_predictions_OP = tf.equal(tf.argmax(activation_OP,1),tf.argmax(yGold,1))
 # False is 0 and True is 1, what was our average?
 accuracy_OP = tf.reduce_mean(tf.cast(correct_predictions_OP, "float"))
+{% endhighlight %}
+
+At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training. Before we do that though, let's make a nice little visualization for ourselves to see how traing actually progresses in real time.
+
+{% highlight python %}
+#####################
+### VIZUALIZATION ###
+#####################
 
 ##
-## SUMMARY OPS
+## TENSFORBOARD SUMMARY OPS
 ##
 
 # Summary op for feedforward output
@@ -216,19 +290,8 @@ accuracy_summary_OP = tf.scalar_summary("accuracy", accuracy_OP)
 all_summary_OPS = tf.merge_all_summaries()
 
 ##
-## INITIALIZATION OP
+## PLOTTING WITH MATPLOTLIB
 ##
-
-# Initialize the computational graph with all ops, but don't run until sess.run()
-init_OP = tf.initialize_all_variables()
-{% endhighlight %}
-
-At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training. Before we do that though, let's make a nice little visualization for ourselves to see how traing actually progresses in real time.
-
-{% highlight python %}
-##########################
-### VIZUALIZE TRAINING ###
-##########################
 
 # Lists to hold values for live graphing
 epoch_values = []
@@ -244,20 +307,24 @@ plt.title("accuracy on training data")
 
 Now, lets create a TensorFlow session and do some training!
 
+
+
+
+
 {% highlight python %}
 #####################
 ### RUN THE GRAPH ###
 #####################
 
-#create a tensorflow session
+# Create a tensorflow session
 sess = tf.Session()
 # Initialize all tensorflow objects
 sess.run(init_OP)
 
-#summary writer
+# Summary writer
 writer = tf.train.SummaryWriter("summary_logs", sess.graph_def)
 
-#initialize reporting variables
+# Initialize reporting variables
 cost = 0
 diff = 1
 
@@ -267,9 +334,9 @@ for i in range(numEpochs):
         print("change in cost %g; convergence."%diff)
         break
     else:
-        #run training step
+        # Run training step
         step = sess.run(training_OP, feed_dict={X: trainX, yGold: trainY})
-        #report occasional stats
+        #r Report occasional stats
         if i % 10 == 0:
             #add epoch to epoch_values
             epoch_values.append(i)
@@ -302,7 +369,7 @@ print("final accuracy on test set: %s" %str(sess.run(accuracy_OP,
 
 {% endhighlight %}
 
-Now that we have a trained neural net for email classification, let's save it (i.e. save the weights and biases) so that we can use it again.
+Now that we have a trained logistic regression model for email classification, let's save it (i.e. save the weights and biases) so that we can use it again.
 
 
 {% highlight python %}

@@ -14,7 +14,12 @@ github_username: JRMeyer
 
 # Build settings
 markdown: kramdown
-# markdown: redcarpet
-# redcarpet:
-#  extensions: [tables]
+
+# syntax highlighter
 highlighter: rouge
+
+# include gems as plugins
+gems: [jekyll-mermaid]
+
+mermaid:
+        src: '/js/mermaid.js'
