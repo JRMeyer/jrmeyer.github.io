@@ -7,6 +7,7 @@ comments: True
 mermaid: True
 ---
 
+<img src="/misc/tf-logo.png" align="right" alt="logo" style="width: 225px;"/>
 
 ## Introduction
 
@@ -202,26 +203,15 @@ Up until this point in the script, we've been dealing with what our data and mod
 
 Now, we will switch gears to work on the computations which will define our model and the evaluation of that model. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
 
-In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **orange** nodes represent our TensorFlow variables, and the **blue** nodes represent our TensorFlow Ops.
+In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **red** nodes represent our TensorFlow variables, and the **blue** nodes represent our TensorFlow Ops.
 
-<div class="mermaid">
-graph LR
-    subgraph 
-        data[Feature<br>Matrix] -.-> multiplyOP(x)
-        weights[Weights<br>Matrix] -.-> multiplyOP(x)
-        multiplyOP(x) -.-> summationOP(Σ)
-        bias[Bias Term] -.-> summationOP(Σ)
-        summationOP(Σ) -.-> sigmoidOP(σ)
-        sigmoidOP(σ) -.-> yHat[ŷ<br>Matrix]     
-    end
-    classDef placeholders fill:#9fc,stroke:#333,stroke-width:4px;
-    classDef variables fill:#f96,stroke:#333,stroke-width:4px;
-    classDef ops fill:#ccf,stroke:#333,stroke-width:4px;
-    class weights,bias variables
-    class multiplyOP,summationOP,sigmoidOP ops
-    class data,yHat placeholders
-</div>
+<br>
+<br>
 
+<img src="/misc/tf-graph.png" alt="logistic-regression"/>
+
+<br>
+<br>
 
 We have defined all of our variables, but we still need to initialize them with a TensorFlow Op. TensorFlow has a special built in Op for just this, since this is a step you will most likely have to perform everytime you use TensorFlow.
 

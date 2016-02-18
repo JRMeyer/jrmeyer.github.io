@@ -17,3 +17,8 @@ markdown: kramdown
 
 # syntax highlighter
 highlighter: rouge
+
+gems: [jekyll-mermaid]
+
+mermaid:
+  src: '/js/mermaid.full.min.js'
