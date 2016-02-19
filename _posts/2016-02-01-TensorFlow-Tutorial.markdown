@@ -13,7 +13,7 @@ mermaid: True
 
 This tutorial is meant for those who want to get to know the *Flow* of TensorFlow. Ideally, you already know some of the *Tensor* of TensorFlow. That is, in this tutorial we aren't going to go deep into any of the linear algebra, calculus, and statistics which are used in machine learning. 
 
-Don't worry though, if you don't have that background you should still be able to follow this tutorial. If you're interested in learning more about the math, there's a ton of good places to get an introduction to the algorithms used in machine learning. [This tutorial][ufldl] from Stanford University about artificial neural nets is especially good. We're going to be using a simple logistic regression classifier here, but many of the concepts are shared with neural nets.
+Don't worry though, if you don't have that background you should still be able to follow this tutorial. If you're interested in learning more about the math, there's a ton of good places to get an introduction to the algorithms used in machine learning. [This tutorial][ufldl] from Stanford University about artificial neural nets is especially good. We're going to be using a simple logistic regression classifier here, but many of the concepts are the same.
 
 ## Email Classification
 
@@ -203,7 +203,7 @@ Up until this point in the script, we've been dealing with what our data and mod
 
 Now, we will switch gears to work on the computations which will define our model and the evaluation of that model. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
 
-In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **red** nodes represent our TensorFlow variables, and the **blue** nodes represent our TensorFlow Ops.
+In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **blue** nodes represent our TensorFlow variables, and the **pink** nodes represent our TensorFlow Ops.
 
 <br>
 <br>
