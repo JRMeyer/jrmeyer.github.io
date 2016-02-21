@@ -9,6 +9,8 @@ mermaid: True
 
 <img src="/misc/tf-logo.png" align="right" alt="logo" style="width: 225px;"/>
 
+*This code/post was written in conjunction with [Michael Capizzi][capizzi]. Sections of the original code on which this is based were written with [Joe Meyer][joe].*
+
 ## Introduction
 
 This tutorial is meant for those who want to get to know the *Flow* of TensorFlow. Ideally, you already know some of the *Tensor* of TensorFlow. That is, in this tutorial we aren't going to go deep into any of the linear algebra, calculus, and statistics which are used in machine learning. 
@@ -130,12 +132,7 @@ numLabels = trainY.shape[1]
 # number of times we iterate through training data
 # tensorboard shows that accuracy plateaus at ~25k epochs
 numEpochs = 27000
-# here we set the batch size to be the total number of emails in our training
-# set... if you have a ton of data you can adjust this so you don't load
-# everything in at once
-batchSize = trainX.shape[0]
 # a smarter learning rate for gradientOptimizer
-# learningRate = tf.train.exponential_decay(learning_rate=0.001,
 learningRate = tf.train.exponential_decay(learning_rate=0.0008,
                                           global_step= 1,
                                           decay_steps=trainX.shape[0],
@@ -185,13 +182,13 @@ That's why in the code below which initializes the variables, we use **tf.random
 #all values are randomly assigned:
     #sqrt(6 / (numInputNodes + numOutputNodes + 1))
 
-weights = tf.Variable(tf.random_normal(shape=[numFeatures,numLabels],
+weights = tf.Variable(tf.random_normal([numFeatures,numLabels],
                                        mean=0,
                                        stddev=(np.sqrt(6/numFeatures+
                                                          numLabels+1)),
                                        name="weights"))
 
-bias = tf.Variable(tf.random_normal(shape=[1,numLabels],
+bias = tf.Variable(tf.random_normal([1,numLabels],
                                     mean=0,
                                     stddev=(np.sqrt(6/numFeatures+numLabels+1)),
                                     name="bias"))
@@ -199,11 +196,11 @@ bias = tf.Variable(tf.random_normal(shape=[1,numLabels],
 
 ### TensorFlow Ops
 
-Up until this point in the script, we've been dealing with what our data and model look like. That is, we have defined the tensors that hold the email data (feature and label matrices) as well as defined our regression weights and biases. None of these structures exist yet, only the instructions for building them.
+Up until this point, we have defined the different tensors which will hold important information. Specifically, we have defined (1) the tensors which hold the email data (feature and label matrices) as well as (2) the tensors which hold our regression weights and biases.
 
-Now, we will switch gears to work on the computations which will define our model and the evaluation of that model. In TensorFlow terms, these are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
+Now we will switch gears to define the computations which will act upon those tensors. In TensorFlow terms, these computations are called operations (or "ops" for short). These ops will be the nodes in our computational graph. Ops take tensors as input and give back tensors as output.
 
-In the illustration below, the **green** nodes represent our TensorFlow placeholders, the **blue** nodes represent our TensorFlow variables, and the **pink** nodes represent our TensorFlow Ops.
+In the illustration below, the **green** nodes represent our TensorFlow placeholders (holding features and labels), the **blue** nodes represent our TensorFlow variables (holding weights and biases), and the **pink** nodes represent our TensorFlow Ops (operations on our tensors).
 
 <br>
 <br>
@@ -213,91 +210,57 @@ In the illustration below, the **green** nodes represent our TensorFlow placehol
 <br>
 <br>
 
-We have defined all of our variables, but we still need to initialize them with a TensorFlow Op. TensorFlow has a special built in Op for just this, since this is a step you will most likely have to perform everytime you use TensorFlow.
+We will start with the operations involved in the prediction phase (i.e. the logistic regression itself). First, we need to initialize our weights and biases with random values via a TensorFlow Op. TensorFlow has a special built in Op for just this, since this is a step you will most likely have to perform everytime you use TensorFlow. Like all our other Ops, this Initialization Op will become a node in our computational graph, and when we put the graph into a session, then the Op will run and create the variables.
 
-Like all our other Ops, the Initialization Op will become a node in our computational graph, and when we put the graph into a session, then the Op will run and create the variables.
+Next, we have our ops which define the logistic regression function. Logisitic regression is typically thought of as a single equation, (i.e. $$\mathbf{\hat{y}} = sig(\mathbf{WX} + \mathbf{b})$$), but for the sake of clarity we have broken it into its three main components (1) a weight times features operation, (2) a summation of the weighted features and a bias term, and (3) the application of a sigmoid function. As such, you will find these components defined as three separate ops below.
+
 
 {% highlight python %}
-###############################
-### INITIALIZE VARIABLES OP ###
-###############################
+######################
+### PREDICTION OPS ###
+######################
 
-# Initialize the computational graph with all ops, but don't run until sess.run()
+# INITIALIZE our weights and biases
 init_OP = tf.initialize_all_variables()
-{% endhighlight %}
-
-
-{% highlight python %}
-########################
-### OPS / OPERATIONS ###
-########################
-
-##
-## TRAINING OPS
-##
 
 # PREDICTION ALGORITHM i.e. FEEDFORWARD ALGORITHM
 apply_weights_OP = tf.matmul(X, weights, name="apply_weights")
 add_bias_OP = tf.add(apply_weights_OP, bias, name="add_bias") 
 activation_OP = tf.nn.sigmoid(add_bias_OP, name="activation")
-# COST FUNCTION i.e. MEAN SQUARED ERROR
-cost_OP = tf.nn.l2_loss(activation_OP-yGold, name="squared_error_cost")
-# OPTIMIZATION ALGORITHM i.e. GRADIENT DESCENT
-training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
-
-
-##
-## EVALUATION OPS
-##
-
-# argmax(activation_OP, 1) gives the label our model thought was most likely
-# argmax(yGold, 1) is the correct label
-correct_predictions_OP = tf.equal(tf.argmax(activation_OP,1),tf.argmax(yGold,1))
-# False is 0 and True is 1, what was our average?
-accuracy_OP = tf.reduce_mean(tf.cast(correct_predictions_OP, "float"))
 {% endhighlight %}
 
-At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training. Before we do that though, let's make a nice little visualization for ourselves to see how traing actually progresses in real time.
+Next we define our cost operation (i.e. Mean Squared Error). For this, we use TensorFlow's built in L2 Loss function, $$\frac{1}{2} \sum_{i=1}^{N} (\mathbf{\hat{y}_i}-\mathbf{y_i})^2$$.
 
 {% highlight python %}
 #####################
-### VIZUALIZATION ###
+### EVALUATION OP ###
 #####################
 
-##
-## TENSFORBOARD SUMMARY OPS
-##
-
-# Summary op for feedforward output
-activation_summary_OP = tf.histogram_summary("output", activation_OP)
-# Summary op for cost
-cost_summary_OP = tf.scalar_summary("cost", cost_OP)
-# Summary op for accuracy
-accuracy_summary_OP = tf.scalar_summary("accuracy", accuracy_OP)
-# Merge all summary ops
-all_summary_OPS = tf.merge_all_summaries()
-
-##
-## PLOTTING WITH MATPLOTLIB
-##
-
-# Lists to hold values for live graphing
-epoch_values = []
-accuracy_values = []
-
-# Set up matplotlib for live updating
-plt.ion()
-plt.show()
-plt.xlabel("number of epochs")
-plt.ylabel("accuracy %")
-plt.title("accuracy on training data")
+# COST FUNCTION i.e. MEAN SQUARED ERROR
+cost_OP = tf.nn.l2_loss(activation_OP-yGold, name="squared_error_cost")
 {% endhighlight %}
 
+Next, we define the function to optimize our cost function. We are using gradient descent, which TensorFlow has a built in op for.
+
+{% highlight python %}
+#######################
+### OPTIMIZATION OP ###
+#######################
+
+# OPTIMIZATION ALGORITHM i.e. GRADIENT DESCENT
+training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
+{% endhighlight %}
+
+At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training.
+
+
+### TensorFlow Sessions
+
+Now that we've done all of the important definitions of our tensors and ops, we need to send them to some hardware to run them. This is where the TensorFlow Session comes in handy. In the words of the [official documentation][tf-docs]:
+
+>To compute anything, a graph must be launched in a Session. A Session places the graph ops onto Devices, such as CPUs or GPUs, and provides methods to execute them.
+
 Now, lets create a TensorFlow session and do some training!
-
-
-
-
 
 {% highlight python %}
 #####################
@@ -306,9 +269,27 @@ Now, lets create a TensorFlow session and do some training!
 
 # Create a tensorflow session
 sess = tf.Session()
-# Initialize all tensorflow objects
+
+# Initialize all tensorflow variables
 sess.run(init_OP)
 
+## Ops for vizualization
+# argmax(activation_OP, 1) gives the label our model thought was most likely
+# argmax(yGold, 1) is the correct label
+correct_predictions_OP = tf.equal(tf.argmax(activation_OP,1),tf.argmax(yGold,1))
+# False is 0 and True is 1, what was our average?
+accuracy_OP = tf.reduce_mean(tf.cast(correct_predictions_OP, "float"))
+# Summary op for regression output
+activation_summary_OP = tf.histogram_summary("output", activation_OP)
+# Summary op for accuracy
+accuracy_summary_OP = tf.scalar_summary("accuracy", accuracy_OP)
+# Summary op for cost
+cost_summary_OP = tf.scalar_summary("cost", cost_OP)
+# Summary ops to check how variables (W, b) are updating after each iteration
+weightSummary = tf.histogram_summary("weights", weights.eval(session=sess))
+biasSummary = tf.histogram_summary("biases", bias.eval(session=sess))
+# Merge all summaries
+all_summary_OPS = tf.merge_all_summaries()
 # Summary writer
 writer = tf.train.SummaryWriter("summary_logs", sess.graph_def)
 
@@ -316,7 +297,7 @@ writer = tf.train.SummaryWriter("summary_logs", sess.graph_def)
 cost = 0
 diff = 1
 
-#training epochs
+# Training epochs
 for i in range(numEpochs):
     if i > 1 and diff < .0001:
         print("change in cost %g; convergence."%diff)
@@ -324,36 +305,41 @@ for i in range(numEpochs):
     else:
         # Run training step
         step = sess.run(training_OP, feed_dict={X: trainX, yGold: trainY})
-        #r Report occasional stats
+        # Report occasional stats
         if i % 10 == 0:
-            #add epoch to epoch_values
+            # Add epoch to epoch_values
             epoch_values.append(i)
-            #generate accuracy stats on test data
+            # Generate accuracy stats on test data
             summary_results, train_accuracy, newCost = sess.run(
                 [all_summary_OPS, accuracy_OP, cost_OP], 
                 feed_dict={X: trainX, yGold: trainY}
             )
-            #add accuracy to live graphing variable
+            # Add accuracy to live graphing variable
             accuracy_values.append(train_accuracy)
-            # accuracy_values = accuracy_values + ([train_accuracy] * 9)
-            #write summary stats to writer
+            # Add cost to live graphing variable
+            cost_values.append(newCost)
+            # Write summary stats to writer
             writer.add_summary(summary_results, i)
-            #re-assign values for variables
+            # Re-assign values for variables
             diff = abs(newCost - cost)
             cost = newCost
+
             #generate print statements
             print("step %d, training accuracy %g"%(i, train_accuracy))
             print("step %d, cost %g"%(i, newCost))
             print("step %d, change in cost %g"%(i, diff))
-            plt.plot(epoch_values, accuracy_values)
-            plt.draw()
+
+            # Plot progress to our two subplots
+            accuracyLine, = ax1.plot(epoch_values, accuracy_values)
+            costLine, = ax2.plot(epoch_values, cost_values)
+            fig.canvas.draw()
             time.sleep(1)
 
-# How well did we do overall?
+
+# How well do we perform on held-out test data?
 print("final accuracy on test set: %s" %str(sess.run(accuracy_OP, 
                                                      feed_dict={X: testX, 
                                                                 yGold: testY})))
-
 
 {% endhighlight %}
 
@@ -370,21 +356,38 @@ saver = tf.train.Saver()
 # Save variables to .ckpt file
 # saver.save(sess, "trained_variables.ckpt")
 
-
-############################
-### MAKE NEW PREDICTIONS ###
-############################
-
 # Close tensorflow session
 sess.close()
 
-# to view tensorboard:
-    #1. run: tensorboard --logdir=/path/to/log-directory
-    #2. open your browser to http://localhost:6006/
-# See tutorial here for graph visualization https://www.tensorflow.org/versions/0.6.0/how_tos/graph_viz/index.html
 {% endhighlight %}
 
+### Resources
 
+#### TensorBoard Instructions
+
+Using Tensorboard with this data:
+
+1. run: tensorboard --logdir=/path/to/log-directory
+2. open your browser to http://localhost:6006/
+
+#### External Resources
+
+1. A very good step-by-step [learning guide][learning-tf].
+2. A [graph visualization tutorial][graph-viz].
+3. Scikit-Learn style [wrapper][skflow] for TensorFlow.
+4. Another TensorFlow [tutorial][tutorial].
+5. Some more TensorFlow [examples][examples].
+6. [Official resources][official-resources] recommended by TensorFlow.
+ 
 [ufldl]: http://ufldl.stanford.edu/wiki/index.php/Neural_Networks
 [tfPlaceholders]: https://www.tensorflow.org/versions/v0.6.0/api_docs/python/io_ops.html#placeholders
 [tfVariables]: https://www.tensorflow.org/versions/v0.6.0/how_tos/variables/index.html
+[capizzi]: https://github.com/michaelcapizzi
+[joe]: https://github.com/jemeyer
+[tf-docs]: https://www.tensorflow.org/versions/r0.7/get_started/basic_usage.html
+[graph-viz]: https://www.tensorflow.org/versions/0.6.0/how_tos/graph_viz/index.html
+[skflow]: https://warehouse.python.org/project/skflow/
+[tutorial]: https://github.com/nlintz/TensorFlow-Tutorials
+[examples]: https://github.com/aymericdamien/TensorFlow-Examples
+[learning-tf]: http://learningtensorflow.com/
+[official-resources]: https://www.tensorflow.org/versions/r0.7/resources/index.html
