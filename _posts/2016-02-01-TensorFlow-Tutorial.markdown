@@ -11,6 +11,31 @@ mermaid: True
 
 *This code/post was written in conjunction with [Michael Capizzi][capizzi]. Sections of the original code on which this is based were written with [Joe Meyer][joe].*
 
+### Quick Start
+
+You can get the code and data discussed in this post (as well as presentation slides from the [Tucson Data Science Meetup][meetup]) by cloning the following repo:
+
+{% highlight python %}
+git clone https://github.com/JRMeyer/tensorflow-tutorial.git
+{% endhighlight %}
+
+Once you have the code and data, you can run a training session and get some output with the following:
+
+{% highlight python %}
+tensorflow-tutorial$ python3 logistic_regression_train.py 
+loading training data
+loading test data
+I tensorflow/core/common_runtime/local_device.cc:40] Local device intra op parallelism threads: 4
+I tensorflow/core/common_runtime/direct_session.cc:58] Direct session inter op parallelism threads: 4
+step 0, training accuracy 0.465897
+step 0, cost 256.736
+step 0, change in cost 256.736
+         .
+         .
+         .
+{% endhighlight %}
+
+
 ## Introduction
 
 This tutorial is meant for those who want to get to know the *Flow* of TensorFlow. Ideally, you already know some of the *Tensor* of TensorFlow. That is, in this tutorial we aren't going to go deep into any of the linear algebra, calculus, and statistics which are used in machine learning. 
@@ -179,8 +204,8 @@ That's why in the code below which initializes the variables, we use **tf.random
 ### VARIABLES ###
 #################
 
-#all values are randomly assigned:
-    #sqrt(6 / (numInputNodes + numOutputNodes + 1))
+# Values are randomly sampled from a Gaussian with a standard deviation of:
+#     sqrt(6 / (numInputNodes + numOutputNodes + 1))
 
 weights = tf.Variable(tf.random_normal([numFeatures,numLabels],
                                        mean=0,
@@ -252,6 +277,31 @@ training_OP = tf.train.GradientDescentOptimizer(learningRate).minimize(cost_OP)
 {% endhighlight %}
 
 At this point, we have defined everything we need to put our data into a computational graph and put the computational graph into a TensorFlow session to start training.
+
+
+### Vizualizations with Matplotlib
+
+The following code block is not central to TensorFlow, but we wanted to include a graph of our training progress which updates in real time. 
+
+{% highlight python %}
+###########################
+### GRAPH LIVE UPDATING ###
+###########################
+
+epoch_values=[]
+accuracy_values=[]
+cost_values=[]
+# Turn on interactive plotting
+plt.ion()
+# Create the main, super plot
+fig = plt.figure()
+# Create two subplots on their own axes and give titles
+ax1 = plt.subplot("211")
+ax1.set_title("TRAINING ACCURACY", fontsize=18)
+ax2 = plt.subplot("212")
+ax2.set_title("TRAINING COST", fontsize=18)
+plt.tight_layout()
+{% endhighlight %}
 
 
 ### TensorFlow Sessions
@@ -391,3 +441,4 @@ Using Tensorboard with this data:
 [examples]: https://github.com/aymericdamien/TensorFlow-Examples
 [learning-tf]: http://learningtensorflow.com/
 [official-resources]: https://www.tensorflow.org/versions/r0.7/resources/index.html
+[meetup]: http://www.meetup.com/Tucson-Data-Science-Meetup/events/228349803/
