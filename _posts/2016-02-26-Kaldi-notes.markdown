@@ -7,6 +7,10 @@ comments: True
 ---
 Here's a good [blog][good-blog].
 
+Here's a good [tutorial][tutorial1].
+
+Another [tutorial][tutorial2].
+
 ## Bayes Rule and ASR
 
 This is from a slide in the [first set of slides][slides] from Dan Povey's lectures on using Kaldi.
@@ -61,6 +65,8 @@ The following section comes from [the documentation][graph-test-recipe].
 ## L_disambig.fst: The Phonetic Dictionary with Disambiguation Symbols FST
 
 A lexicon with disambiguation symbols, see Mohri etal's work for more info.
+
+In general, you need to have disambiguation symbols when you have one word that is a prefix of another (cat and cats in the same lexicon would need to have cat being pronounced “k ae t #1”) or a homophone of another word (red: “r eh d #1”, read: “r eh d #2”). If you don’t have these then the models become nondeterministic.
 
 Symbols like #1 and #2 that go on the ends of words to ensure determinizability.
 
@@ -190,3 +196,5 @@ In my case I'm using "\<unk\>" because that's what I get from IRSTLM in my langu
 [graph-test-recipe]: http://kaldi.sourceforge.net/graph_recipe_test.html
 [good-blog]: http://white.ucc.asn.au/Kaldi-Notes/tidigits/train
 [slides]: http://www.danielpovey.com/files/Lecture1.pdf
+[tutorial1]: http://m.mr-pc.org/work/jsalt2015lab.pdf
+[tutorial2]: http://pages.jh.edu/~echodro1/tutorial/kaldi/kaldi-intro.html
