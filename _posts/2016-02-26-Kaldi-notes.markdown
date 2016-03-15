@@ -7,7 +7,42 @@ comments: True
 ---
 Here's a good [blog][good-blog].
 
+## Bayes Rule and ASR
+
+This is from a slide in the [first set of slides][slides] from Dan Povey's lectures on using Kaldi.
+
+$$ P(\text{ utterance } \vert \text{ audio })=\frac{p(\text{ audio } \vert \text{ utterance }) \cdot P(\text{ utterance })}{p(\text{ audio })} $$
+
+1. $$ P(\text{ utterance })$$ comes from our language model (i.e. n-gram)
+2. $$ p(\text{ audio } \vert \text{ utterance }) $$ is a sentence-dependent statistical model of audio production, trained from data
+3. Given a test utterance, we pick 'utterance' to maximize $$ P(\text{ utterance } \vert \text{ audio }) $$.
+4. Note: $$ p(\text{ audio }) $$ is a normalizer that doesn’t matter
+
+## WFST Key Concepts
+
+1. determinization
+2. minimization
+3. composition
+4. equivalent
+5. epsilon-free
+6. functional
+7. on-demand algorithm
+8. weight-pushing
+9. epsilon removal
+
+
+## HMM Key Concepts
+
+1. Markov Chain
+2. Hidden Markov Model
+3. Forward-backward algorithm
+4. Viterbi algorithm
+5. E-M for mixture of Gaussians
+
+
 ## L.fst: The Phonetic Dictionary FST
+
+L maps monophone sequences to words.
 
 The file L.fst is the Finite State Transducer form of the lexicon with phone symbols on the input and word symbols on the output.
 
@@ -22,6 +57,28 @@ Here's an example with two words:
 The following section comes from [the documentation][graph-test-recipe].
 
 >The structure of the lexicon is roughly as one might expect. There is one state (the "loop state") which is final. There is a start state that has two transitions to the loop state: one with silence and one without. From the loop state there is a transition corresponding to each word, and that word is the output symbol on the transition; the input symbol is the first phone of that word. It is important both for the efficiency of composition and the effectiveness of minimization that the output symbol should be as early as possible (i.e. at the beginning not the end of the word). At the end of each word, to handle optional silence, the transition corresponding to the last phone is in two forms: one to the loop state and one to the "silence state" which has a transition to the loop state. We don't bother putting optional silence after silence words, which we define as words that have just one phone that is the silence phone.
+
+## L_disambig.fst: The Phonetic Dictionary with Disambiguation Symbols FST
+
+A lexicon with disambiguation symbols, see Mohri etal's work for more info.
+
+Symbols like #1 and #2 that go on the ends of words to ensure determinizability.
+
+## G.fst: The Language Model FST
+
+FSA grammar (can be built from an n-gram grammar).
+
+## C.fst: The Context FST
+
+C maps triphone sequences to monophones.
+
+Expands the phones into context-dependent phones.
+
+## H.fst: The HMM FST
+
+H maps multiple HMM states (a.k.a. transition-ids in Kaldi-speak) to context-dependent triphones.
+
+Expands out the HMMs. On the right are the context-dependent phones and on the left are the pdf-ids.
 
 ## HCLG.fst: final graph
 
@@ -66,10 +123,7 @@ From [openfst.org][symboltables]:
 >
 >SymbolTables are reference counted and can therefore be shared across multiple machines. For example a language model grammar G, with a SymbolTable for the words in the language model can share this symbol table with the lexical representation L o G.
 
-
-
-## Contents of /lang subdir
-
+For *every* FST the symbol '0' is reserved for $$\epsilon$$.
 
 ### words.txt
 
@@ -125,7 +179,7 @@ zh_S 133
 {% endhighlight %}
 
 
-### oov.txt
+## oov.txt
 
 This file has a single line with the word (not the phone!) for out of vocabulary items.
 
@@ -135,3 +189,4 @@ In my case I'm using "\<unk\>" because that's what I get from IRSTLM in my langu
 [symboltables]: http://www.openfst.org/doxygen/fst/html/classfst_1_1_symbol_table.html
 [graph-test-recipe]: http://kaldi.sourceforge.net/graph_recipe_test.html
 [good-blog]: http://white.ucc.asn.au/Kaldi-Notes/tidigits/train
+[slides]: http://www.danielpovey.com/files/Lecture1.pdf
