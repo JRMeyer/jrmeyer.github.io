@@ -6,8 +6,6 @@ categories: kaldi
 comments: True
 ---
 
-====== IN PROGRESS ======
-
 
 ## Installation
 
@@ -96,8 +94,9 @@ josh@yoga:~/Desktop/kaldi/tools$ extras/check_dependencies.sh
 extras/check_dependencies.sh: all OK.
 {% endhighlight %}
 
-I'm OK on this one, but I have a feeling others will need to do some installing of dependencies before they move on. I'd recommend running that check_dependencies.sh script after you do your installs to make sure you actually did install what you needed and that it's in the right spot. 
-Moving one, we need to run **make**. There's an option here for parallelizing this step, so I'm going to check how many processors I have:
+I'm OK on this one, but I have a feeling others will need to do some installing of dependencies before they move on. I'd recommend running that check_dependencies.sh script after you do your installs to make sure you actually did install what you needed and that it's in the right spot.
+
+Moving along, we need to run **make**. There's an option here for parallelizing this step, so I'm going to check how many processors I have:
 
 {% highlight bash %}
 josh@yoga:~/Desktop$ nproc
@@ -147,7 +146,7 @@ Try 'readlink --help' for more information.
 ***() Please source the tools/env.sh in your path.sh to enable it
 {% endhighlight %}
 
-It seems we've installed IRSTLM but we still need to enable it. If you search for **path.sh** from the kaldi/ dir, we see that in each of the examples there is a separate **path.sh** file:
+It seems we've installed IRSTLM, but we still need to adjust something in our **path.sh** file to enable IRSTLM. If you search for **path.sh** from the kaldi/ dir, we see that in each of the example directories, there is a separate **path.sh** file:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cd ../
@@ -174,7 +173,7 @@ export PATH=$PWD/utils/:$PWD/../../../src/bin:$PWD/../../../tools/openfst/bin:$P
 export LC_ALL=C
 {% endhighlight %}
 
-In this **yesno** example, there are just two commands happening which set environment variables **PATH** and **LC_ALL**. I think when it comes to making my own path.sh script and enabling IRSTLM, I will just include a line with:
+In this **yesno** example, there are just two commands which set the two environment variables **PATH** and **LC_ALL**. I think when it comes to making my own path.sh script and enabling IRSTLM, I will just include a line with:
 
 {% highlight bash %}
 source tools/env.sh
