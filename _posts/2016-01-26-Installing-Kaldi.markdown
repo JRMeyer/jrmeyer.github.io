@@ -1,15 +1,15 @@
 ---
 layout: post
 title:  "Installing Kaldi"
-date:   2016-01-26 22:03:04 -0700
+date:   2016-01-26
 categories: kaldi
 comments: True
 ---
 
 
-## Installation
+## Installation via GitHub
 
-Kaldi used to be primarily host on SourceForge, but then they moved to GitHub, so I'm going to just clone their GitHub repository to my Desktop:
+Kaldi is now primarily host on GitHub (not SourceForge anymore), so I'm going to just clone their GitHub repository to my Desktop and go from there.
 
 {% highlight bash %}
 josh@yoga:~/Desktop$ git clone https://github.com/kaldi-asr/kaldi.git
@@ -31,7 +31,7 @@ COPYING  .git            .gitignore  misc       src    .travis.yml
 egs      .gitattributes  INSTALL     README.md  tools  windows
 {% endhighlight %}
 
-Now there's a lot of good documentation on Kaldi, but I think the best best will always be to see what the INSTALL file on the latest version is. So, let's take a look:
+Now there's a lot of good documentation on Kaldi, but I think the best best will always be to see what the **INSTALL** file on the latest version is. So, let's take a look:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi$ cat INSTALL 
@@ -45,7 +45,7 @@ go to tools/  and follow INSTALL instructions there.
 go to src/ and follow INSTALL instructions there.
 {% endhighlight %}
 
-First things first, it says to go to tools/ and follow those instructions. So, lets get into tools/ and see what's there:
+First things first, it says to go to **tools/** and follow those instructions. So, lets cd into **tools/** and see what's there:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi$ cd tools/
@@ -54,7 +54,7 @@ CLAPACK  INSTALL           install_pfile_utils.sh  install_speex.sh  Makefile
 extras   install_atlas.sh  install_portaudio.sh    install_srilm.sh
 {% endhighlight %}
 
-Looking into the INSTALL file, we see:
+Looking into the **INSTALL** file, we see:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cat INSTALL 
@@ -94,7 +94,7 @@ josh@yoga:~/Desktop/kaldi/tools$ extras/check_dependencies.sh
 extras/check_dependencies.sh: all OK.
 {% endhighlight %}
 
-I'm OK on this one, but I have a feeling others will need to do some installing of dependencies before they move on. I'd recommend running that check_dependencies.sh script after you do your installs to make sure you actually did install what you needed and that it's in the right spot.
+I'm OK on this one, but I have a feeling others will need to do some installing of dependencies before they move on. I'd recommend running that **check_dependencies.sh** script after you do your installs to make sure you actually did install what you needed and that it's in the right spot.
 
 Moving along, we need to run **make**. There's an option here for parallelizing this step, so I'm going to check how many processors I have:
 
@@ -146,7 +146,7 @@ Try 'readlink --help' for more information.
 ***() Please source the tools/env.sh in your path.sh to enable it
 {% endhighlight %}
 
-It seems we've installed IRSTLM, but we still need to adjust something in our **path.sh** file to enable IRSTLM. If you search for **path.sh** from the kaldi/ dir, we see that in each of the example directories, there is a separate **path.sh** file:
+It seems we've installed IRSTLM, but we still need to adjust something in our **path.sh** file to enable IRSTLM. If you search for **path.sh** from the **kaldi/** dir, we see that in each of the example directories, there is a separate **path.sh** file:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cd ../
@@ -173,7 +173,7 @@ export PATH=$PWD/utils/:$PWD/../../../src/bin:$PWD/../../../tools/openfst/bin:$P
 export LC_ALL=C
 {% endhighlight %}
 
-In this **yesno** example, there are just two commands which set the two environment variables **PATH** and **LC_ALL**. I think when it comes to making my own path.sh script and enabling IRSTLM, I will just include a line with:
+In this **yesno** example, there are just two commands which set the two environment variables **PATH** and **LC_ALL**. I think when it comes to making my own **path.sh** script and enabling IRSTLM, I will just include a line with:
 
 {% highlight bash %}
 source tools/env.sh
@@ -181,7 +181,9 @@ source tools/env.sh
 
 But as of right now we don't have to do this since we're just installing.
 
-So, at this point we've done part (1) of the **kaldi/INSTALL** file (i.e. following the steps in the **kaldi/tools/INSTALL** file). Now let's go on to step (2), and follow the instructions in **kaldi/src/INSTALL**.
+So, at this point we've done part (1) of the **kaldi/INSTALL** file (i.e. following the steps in the **kaldi/tools/INSTALL** file). 
+
+Now let's go on to step (2), and follow the instructions in **kaldi/src/INSTALL**.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cd ../src/
@@ -194,7 +196,7 @@ decoder     fstbin    INSTALL     lat         matrix     nnetbin   probe       T
 doc         fstext    itf         latbin      nnet       NOTES     sgmm        transform
 {% endhighlight %}
 
-Looking into the INSTALL file itself:
+Looking into the **INSTALL** file itself:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/src$ cat INSTALL 
@@ -219,7 +221,7 @@ For more information, see documentation at http://kaldi-asr.org/doc/
 and click on "The build process (how Kaldi is compiled)".
 {% endhighlight %}
 
-Like it says, the first step is ./configure:
+Like it says, the first step is to run the **./configure** script:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/src$ ./configure
@@ -271,7 +273,13 @@ echo Done
 Done
 {% endhighlight %}
 
-## Testing it out
+If you've gotten to this point without any hiccups, you should now have a working installation of Kaldi!
+
+<br>
+
+## Testing Kaldi Out
+
+#### The YESNO Example Recipe
 
 To make sure our install worked well, we can take advantage of the examples provided in the **kaldi/egs/** directory:
 
@@ -286,7 +294,7 @@ bn_music_speech    farsdat                  gp              reverb       swbd   
 callhome_egyptian  fisher_callhome_spanish  hkust           rm           tedlium      wsj
 {% endhighlight %}
 
-Let's take a look at the README:
+Let's take a look at the **README.txt** file:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/egs$ cat README.txt 
@@ -321,9 +329,13 @@ It is mainly included here as an easy way to test out the Kaldi scripts.
 The test set is perfectly recognized at the monophone stage, so the dataset is
 not exactly challenging.
 
-The scripts are in s5/.
+The scripts are in **s5/**.
 
 {% endhighlight %}
+
+<br>
+
+#### Pre-Training File Structure
 
 To get a clearer picture of the file structure, I like to use the **tree** command to display the file structure as a tree with indented braches. You might have to install **tree**, but I'd say it's worth it.
 
@@ -356,19 +368,18 @@ josh@yoga:~/Desktop/kaldi/egs/yesno$ tree .
 6 directories, 16 files
 {% endhighlight %}
 
+These original directories contain general information about the language (in the **input/** dir) as well as instructions for preparing the data and scoring it (in the **local/** dir) as well as information about the kind of model we want to train and test (in the **conf/** dir).
 
+More big-picture scripts (e.g. training monophones, extracting MFCCs from WAV files, etc) are in the **steps/** and **utils/** dirs. In this case, since these scripts are easily generalizable, Kaldi stores them for all examples in the same directory (in the Wall Street Journal example). All other example dirs (like YESNO) have symbolic links to those dirs.
+
+<br>
+
+#### Data Prep & Training & Testing: The **run.sh** Script
+
+Now lets cd into the **s5/** directory (which holds all the relevant scripts and data for running this example) and run the **run.sh** script.
+ 
 {% highlight bash %}
-josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ la
-conf  input  local  path.sh  run.sh  steps  utils
-josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ cat path.sh 
-
-export PATH=$PWD/utils/:$PWD/../../../src/bin:$PWD/../../../tools/openfst/bin:$PWD/../../../src/fstbin/:$PWD/../../../src/gmmbin/:$PWD/../../../src/featbin/:$PWD/../../../src/lm/:$PWD/../../../src/sgmmbin/:$PWD/../../../src/fgmmbin/:$PWD/../../../src/latbin/:$PWD:$PATH
-export LC_ALL=C
-josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ . ./path.sh
-{% endhighlight %}
-
-
-{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno$ cd s5/
 josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ ./run.sh 
 --2016-02-08 18:42:03--  http://www.openslr.org/resources/1/waves_yesno.tar.gz
 Resolving www.openslr.org (www.openslr.org)... 107.178.217.247
@@ -430,9 +441,15 @@ decode.sh: feature type is delta
 %WER 0.00 [ 0 / 232, 0 ins, 0 del, 0 sub ] [PARTIAL] exp/mono0a/decode_test_yesno/wer_10
 {% endhighlight %}
 
-You can see from the last line of output, that as we were warned in the README, this data set is not interesting because we get perfect performance, and our **%WER** was indeed 0.00.
+You can see from the last line of output, that as we were warned in the **README**, this data set is not interesting because we get perfect performance, and our percent Word Error Rate was indeed %0.00.
 
-If we take another look at the **yesno** dir, we will see that our **run.sh** file generated some more directories and files for us. I'm using the **tree** function below with the -d flag so we only see directories. Otherwise, all the downloaded WAV files are listed and it's a little much.
+<br> 
+
+#### Post-Training & Testing File Structure
+
+If we take another look at the **yesno** dir, we will see that our **run.sh** file generated some more directories and files for us. 
+
+I'm going to use the **tree** function below with the **-d** flag so we only see directories. Otherwise, all the downloaded WAV files are listed and it's a little much.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ la
@@ -507,6 +524,343 @@ josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./local/
 0 directories, 7 files
 {% endhighlight %}
 
+These are unchanged because these original directories are housing general information about the language (in the **input/** dir) as well as instructions for preparing the data and scoring it (in the **local/** dir) as well as information about the kind of model we want to train and test (in the **conf/** dir).
+
+Logically nothing about these changes after we test and train the model.
+
+The new **data/** directory has a lot of stuff in it. In general, this directory created by the **run.sh** script houses and organizes the files which describe the language (e.g. dictionary, phone lists, etc) and data (e.g. WAV file ids and their transcripts) to test and train the model. 
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./data/
+./data/
+├── lang
+│   ├── L_disambig.fst
+│   ├── L.fst
+│   ├── oov.int
+│   ├── oov.txt
+│   ├── phones
+│   │   ├── align_lexicon.int
+│   │   ├── align_lexicon.txt
+│   │   ├── context_indep.csl
+│   │   ├── context_indep.int
+│   │   ├── context_indep.txt
+│   │   ├── disambig.csl
+│   │   ├── disambig.int
+│   │   ├── disambig.txt
+│   │   ├── extra_questions.int
+│   │   ├── extra_questions.txt
+│   │   ├── nonsilence.csl
+│   │   ├── nonsilence.int
+│   │   ├── nonsilence.txt
+│   │   ├── optional_silence.csl
+│   │   ├── optional_silence.int
+│   │   ├── optional_silence.txt
+│   │   ├── roots.int
+│   │   ├── roots.txt
+│   │   ├── sets.int
+│   │   ├── sets.txt
+│   │   ├── silence.csl
+│   │   ├── silence.int
+│   │   ├── silence.txt
+│   │   ├── wdisambig_phones.int
+│   │   ├── wdisambig.txt
+│   │   └── wdisambig_words.int
+│   ├── phones.txt
+│   ├── topo
+│   └── words.txt
+├── lang_test_tg
+│   ├── G.fst
+│   ├── L_disambig.fst
+│   ├── L.fst
+│   ├── oov.int
+│   ├── oov.txt
+│   ├── phones
+│   │   ├── align_lexicon.int
+│   │   ├── align_lexicon.txt
+│   │   ├── context_indep.csl
+│   │   ├── context_indep.int
+│   │   ├── context_indep.txt
+│   │   ├── disambig.csl
+│   │   ├── disambig.int
+│   │   ├── disambig.txt
+│   │   ├── extra_questions.int
+│   │   ├── extra_questions.txt
+│   │   ├── nonsilence.csl
+│   │   ├── nonsilence.int
+│   │   ├── nonsilence.txt
+│   │   ├── optional_silence.csl
+│   │   ├── optional_silence.int
+│   │   ├── optional_silence.txt
+│   │   ├── roots.int
+│   │   ├── roots.txt
+│   │   ├── sets.int
+│   │   ├── sets.txt
+│   │   ├── silence.csl
+│   │   ├── silence.int
+│   │   ├── silence.txt
+│   │   ├── wdisambig_phones.int
+│   │   ├── wdisambig.txt
+│   │   └── wdisambig_words.int
+│   ├── phones.txt
+│   ├── tmp
+│   │   ├── CLG_1_0.fst
+│   │   ├── disambig_ilabels_1_0.int
+│   │   ├── ilabels_1_0
+│   │   └── LG.fst
+│   ├── topo
+│   └── words.txt
+├── local
+│   ├── dict
+│   │   ├── lexiconp.txt
+│   │   ├── lexicon.txt
+│   │   ├── lexicon_words.txt
+│   │   ├── nonsilence_phones.txt
+│   │   ├── optional_silence.txt
+│   │   └── silence_phones.txt
+│   ├── lang
+│   │   ├── align_lexicon.txt
+│   │   ├── lexiconp_disambig.txt
+│   │   ├── lexiconp.txt
+│   │   ├── lex_ndisambig
+│   │   ├── phone_map.txt
+│   │   └── phones
+│   ├── lm_tg.arpa
+│   ├── test_yesno.txt
+│   ├── test_yesno_wav.scp
+│   ├── train_yesno.txt
+│   ├── train_yesno_wav.scp
+│   ├── waves_all.list
+│   ├── waves.test
+│   └── waves.train
+├── test_yesno
+│   ├── cmvn.scp
+│   ├── feats.scp
+│   ├── spk2utt
+│   ├── split1
+│   │   └── 1
+│   │       ├── cmvn.scp
+│   │       ├── feats.scp
+│   │       ├── spk2utt
+│   │       ├── text
+│   │       ├── utt2spk
+│   │       └── wav.scp
+│   ├── text
+│   ├── utt2spk
+│   └── wav.scp
+└── train_yesno
+    ├── cmvn.scp
+    ├── feats.scp
+    ├── spk2utt
+    ├── split1
+    │   └── 1
+    │       ├── cmvn.scp
+    │       ├── feats.scp
+    │       ├── spk2utt
+    │       ├── text
+    │       ├── utt2spk
+    │       └── wav.scp
+    ├── text
+    ├── utt2spk
+    └── wav.scp
+
+14 directories, 115 files
+{% endhighlight %}
+
+The next directory created by the **run.sh** script is the **exp/** directory. As far as I can gather, "exp" is short for "experiment". I think this is the case becuase the **exp/** dir holds information about the model you're training and testing. It has a lot of files as you see below, and you can see that a lot of them (if not most) are **.log** files. 
+
+I think that Kaldi could have more transparent naming conventions for files and directories, but I will say that the log files are very thorough. There's a lot of info to be found if you do some digging. 
+
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./exp/
+./exp/
+├── make_mfcc
+│   ├── test_yesno
+│   │   ├── cmvn_test_yesno.log
+│   │   └── make_mfcc_test_yesno.1.log
+│   └── train_yesno
+│       ├── cmvn_train_yesno.log
+│       └── make_mfcc_train_yesno.1.log
+└── mono0a
+    ├── 0.mdl
+    ├── 40.mdl
+    ├── 40.occs
+    ├── ali.1.gz
+    ├── cmvn_opts
+    ├── decode_test_yesno
+    │   ├── lat.1.gz
+    │   ├── log
+    │   │   └── decode.1.log
+    │   ├── num_jobs
+    │   ├── scoring
+    │   │   ├── 10.tra
+    │   │   ├── 11.tra
+    │   │   ├── 9.tra
+    │   │   ├── log
+    │   │   │   ├── best_path.10.log
+    │   │   │   ├── best_path.11.log
+    │   │   │   ├── best_path.9.log
+    │   │   │   ├── score.10.log
+    │   │   │   ├── score.11.log
+    │   │   │   └── score.9.log
+    │   │   └── test_filt.txt
+    │   ├── wer_10
+    │   ├── wer_11
+    │   └── wer_9
+    ├── final.mdl -> 40.mdl
+    ├── final.occs -> 40.occs
+    ├── fsts.1.gz
+    ├── graph_tgpr
+    │   ├── disambig_tid.int
+    │   ├── Ha.fst
+    │   ├── HCLGa.fst
+    │   ├── HCLG.fst
+    │   ├── num_pdfs
+    │   ├── phones
+    │   │   ├── align_lexicon.int
+    │   │   ├── align_lexicon.txt
+    │   │   ├── disambig.int
+    │   │   ├── disambig.txt
+    │   │   └── silence.csl
+    │   ├── phones.txt
+    │   └── words.txt
+    ├── log
+    │   ├── acc.10.1.log
+    │   ├── acc.11.1.log
+    │   ├── acc.1.1.log
+    │   ├── acc.12.1.log
+    │   ├── acc.13.1.log
+    │   ├── acc.14.1.log
+    │   ├── acc.15.1.log
+    │   ├── acc.16.1.log
+    │   ├── acc.17.1.log
+    │   ├── acc.18.1.log
+    │   ├── acc.19.1.log
+    │   ├── acc.20.1.log
+    │   ├── acc.21.1.log
+    │   ├── acc.2.1.log
+    │   ├── acc.22.1.log
+    │   ├── acc.23.1.log
+    │   ├── acc.24.1.log
+    │   ├── acc.25.1.log
+    │   ├── acc.26.1.log
+    │   ├── acc.27.1.log
+    │   ├── acc.28.1.log
+    │   ├── acc.29.1.log
+    │   ├── acc.30.1.log
+    │   ├── acc.31.1.log
+    │   ├── acc.3.1.log
+    │   ├── acc.32.1.log
+    │   ├── acc.33.1.log
+    │   ├── acc.34.1.log
+    │   ├── acc.35.1.log
+    │   ├── acc.36.1.log
+    │   ├── acc.37.1.log
+    │   ├── acc.38.1.log
+    │   ├── acc.39.1.log
+    │   ├── acc.4.1.log
+    │   ├── acc.5.1.log
+    │   ├── acc.6.1.log
+    │   ├── acc.7.1.log
+    │   ├── acc.8.1.log
+    │   ├── acc.9.1.log
+    │   ├── align.0.1.log
+    │   ├── align.10.1.log
+    │   ├── align.1.1.log
+    │   ├── align.12.1.log
+    │   ├── align.14.1.log
+    │   ├── align.16.1.log
+    │   ├── align.18.1.log
+    │   ├── align.20.1.log
+    │   ├── align.2.1.log
+    │   ├── align.23.1.log
+    │   ├── align.26.1.log
+    │   ├── align.29.1.log
+    │   ├── align.3.1.log
+    │   ├── align.32.1.log
+    │   ├── align.35.1.log
+    │   ├── align.38.1.log
+    │   ├── align.4.1.log
+    │   ├── align.5.1.log
+    │   ├── align.6.1.log
+    │   ├── align.7.1.log
+    │   ├── align.8.1.log
+    │   ├── align.9.1.log
+    │   ├── compile_graphs.1.log
+    │   ├── init.log
+    │   ├── update.0.log
+    │   ├── update.10.log
+    │   ├── update.11.log
+    │   ├── update.12.log
+    │   ├── update.13.log
+    │   ├── update.14.log
+    │   ├── update.15.log
+    │   ├── update.16.log
+    │   ├── update.17.log
+    │   ├── update.18.log
+    │   ├── update.19.log
+    │   ├── update.1.log
+    │   ├── update.20.log
+    │   ├── update.21.log
+    │   ├── update.22.log
+    │   ├── update.23.log
+    │   ├── update.24.log
+    │   ├── update.25.log
+    │   ├── update.26.log
+    │   ├── update.27.log
+    │   ├── update.28.log
+    │   ├── update.29.log
+    │   ├── update.2.log
+    │   ├── update.30.log
+    │   ├── update.31.log
+    │   ├── update.32.log
+    │   ├── update.33.log
+    │   ├── update.34.log
+    │   ├── update.35.log
+    │   ├── update.36.log
+    │   ├── update.37.log
+    │   ├── update.38.log
+    │   ├── update.39.log
+    │   ├── update.3.log
+    │   ├── update.4.log
+    │   ├── update.5.log
+    │   ├── update.6.log
+    │   ├── update.7.log
+    │   ├── update.8.log
+    │   └── update.9.log
+    ├── num_jobs
+    └── tree
+
+11 directories, 145 files
+{% endhighlight %}
+
+The last directory created by the **run.sh** script isn't super interesting, but it's essential. This is the **mfcc/** dir. This directory holds all the **.ark** (archive) and **.scp** (script) files for (1) the MFCC features as well as (2) the cepstral mean and variance statistics per speaker. 
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./mfcc/
+./mfcc/
+├── cmvn_test_yesno.ark
+├── cmvn_test_yesno.scp
+├── cmvn_train_yesno.ark
+├── cmvn_train_yesno.scp
+├── raw_mfcc_test_yesno.1.ark
+├── raw_mfcc_test_yesno.1.scp
+├── raw_mfcc_train_yesno.1.ark
+└── raw_mfcc_train_yesno.1.scp
+
+0 directories, 8 files
+
+{% endhighlight %}
+
+<br>
+
+## Conclusion
+
+I hope this was helpful! 
+
+Let me know if you have comments or suggestions and you can always leave a comment below. 
+
+Happy Kaldi-ing!
 
 [irstlm]: http://hlt-mt.fbk.eu/technologies/irstlm
 
