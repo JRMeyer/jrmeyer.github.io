@@ -9,11 +9,11 @@ mermaid: True
 
 ## Introduction
 
-Espeak-NG (aka Espeak New Generation) is an open source speech synthesizer which can be found integrated into various projects (e.g. NVDA). Espeak-NG can be also be used as a stand-alone text-to-speech converter to read text out load on a computer.
+Espeak-NG (aka Espeak New Generation) is an open source [formant speech synthesizer][formant] which can be found integrated into various text-to-speech projects (e.g. Ubuntu, NVDA). Espeak-NG can be also be used as a stand-alone text-to-speech converter to read text out load on a computer.
 
 To add a new language to Espeak-NG, you mostly need to know about the language you're interested. Knowledge of programming, while helpful, is not needed. What you need to know is (1) how the sounds of the language work, and (2) how the spelling of the language relates to the sounds.
 
-There is indeed good documentation out there already on how to add a new language to Espeak-NG (and a lot of the information in this post comes directly from the [official documentation][docs]), but in my experience of adding the Kyrgyz langauge I've thought that a clearer, more simple explanation directed towards a non-programmer audience would be useful.
+There is indeed good documentation out there already on how to add a new language to Espeak-NG (and a lot of the information in this post comes directly from the [official documentation][docs]), but in my experience of adding the Kyrgyz langauge I've thought that a clearer, more simple explanation would be useful.
 
 In adding a new language, these are the files that you will need to edit or create. In the following table, **new-language** refers to the full name of the language you're working on (e.g. in my case, **kyrgyz**), **family** refers to the directory of the language family (e.g. in my case **trk** because Kyrgyz is a Turkic language), and finally, **nl** refers to the international two letter code of the new langauge you're adding (e.g. in my case, **kg**).
 
@@ -53,7 +53,7 @@ CHANGELOG.md  dictsource  espeak-ng.pc.in  _layouts     README.md  vim
 configure.ac  docs        .git             Makefile.am  src
 {% endhighlight %}
 
-Now that we've got everything downloaded and in place, let's configure, build, and install Espeak-NG.
+Now that we've got everything downloaded and in place, we run the **autogen.sh** shell script. This is a very short script whose main function is to call three of the [GNU Autotools][autotools]: **autoheader** (which helps **configure** work smoothly), **automake** (generates the Makefiles) and **autoconf** (generates the **configure** file).
 
 {% highlight bash %}
 josh@yoga:~/Desktop/espeak-ng$ ./autogen.sh 
@@ -74,7 +74,8 @@ Makefile.am: installing './INSTALL'
 Makefile.am: installing './depcomp'
 {% endhighlight %}
 
-Now, we're ready to configure.
+
+Now, we're ready to configure. The **./configure** script basically checks to make sure that everything is ready to compile.
 
 
 {% highlight bash %}
@@ -128,8 +129,8 @@ configure:
 
 {% endhighlight %}
 
-The espeak-ng and speak-ng programs, along with the espeak-ng voices, can then be built with **make**:
 
+The espeak-ng and speak-ng programs, along with the espeak-ng voices, can then be compiled with **make**. After this, you should have working, compiled code, but it will only be accessible from the relevant directory (e.g. for me, just a folder on my Desktop).
 
 
 {% highlight bash %}
@@ -150,7 +151,9 @@ Mbrola translation file: /home/josh/Desktop/espeak-ng/espeak-data/mbrola_ph/vz_p
 make[1]: Leaving directory `/home/josh/Desktop/espeak-ng'
 {% endhighlight %}
 
-Finally, we can install Espeak-NG with the following command:
+
+Finally, we can install Espeak-NG (and make it accessible from anywhere on the computer) with the following command:
+
 
 {% highlight bash %}
 josh@yoga:~/Desktop/espeak-ng$ sudo make LIBDIR=/usr/lib/x86_64-linux-gnu install
@@ -548,7 +551,9 @@ Compiling: 'kg_rules'
 	59 rules, 33 groups (0)
 {% endhighlight %}
 
+[formant]: https://en.wikipedia.org/wiki/Speech_synthesis#Formant_synthesis
 [docs]: https://github.com/espeak-ng/espeak-ng/tree/master/docs
+[autotools]: https://www.gnu.org/software/automake/faq/autotools-faq.html#What-does-_002e_002fbootstrap-or-_002e_002fautogen_002esh-do_003f
 [voices]: https://github.com/espeak-ng/espeak-ng/blob/master/docs/voices.md
 [dictionary]: https://github.com/espeak-ng/espeak-ng/blob/master/docs/dictionary.md
 [phonemes]: https://github.com/espeak-ng/espeak-ng/blob/master/docs/phontab.md
