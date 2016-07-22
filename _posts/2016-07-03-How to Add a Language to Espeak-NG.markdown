@@ -258,11 +258,69 @@ To get more specifics the [official documentation on the voice file][voices] is 
 
 Huzzah! We've just created one of the five files we need to create.
 
+
+### Phoneme Definition File
+
+We now need to define what the sounds of the new language actually *sound* like. 
+
+That is, if we want to read text out load on the computer, we need to be able to generate an acoustic output that will come out our computer speakers.
+
+We accomplish this by creating a file which defines the acoustic output for each sound (aka for each phoneme). This is called the phoneme definition file.
+
+Here's a section of my **ph_kyrgyz** phoneme definition file which defines some of the short vowels:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/espeak-ng/phsource$ sed -n '20,55p' ph_kyrgyz 
+
+
+// ============ //
+// SHORT VOWELS //
+// ============ //
+
+
+phoneme a
+  ipa ɑ
+  vowel starttype #i endtype #i
+  length 200
+  FMT(vowel/0_3)
+endphoneme
+
+phoneme e
+  ipa e
+  vowel starttype #e endtype #e
+  length 170
+  FMT(vowel/e)
+endphoneme
+
+phoneme i
+  ipa i
+  vowel starttype #i endtype #i
+  length 170
+  IfNextVowelAppend(;)
+  FMT(vowel/i)
+endphoneme
+
+phoneme o
+  ipa o
+  vowel starttype #o endtype #o
+  length 200
+  FMT(vowel/o_8)
+endphoneme
+
+{% endhighlight %}
+
+More specifics about the syntax of this file can be found best explained by the [official documentation][phonemes].
+
+In the beginning, however, you can get a long way by just finding similar sounds in other languages, and copy and paste those sounds into your new phoneme definition file.
+
+
 ### The Dictionary Files
 
 The dictionary files (which should be saved into the **/dictsource** directory), are responsible for converting text into sounds (aka phonemes). 
 
-Practically all languages are written in a way that is not exact, but we need something extact if we are telling a computer how to read text out-loud. The dictionary files help us create more exact transcriptions of words. These files take written words and convert them into a phonetic transcription. If these dictionary files work well, we will be able to produce a phonetic transcription for any text. Pretty cool, right?!
+Practically all languages are written in a way that is not exact, but we need something extact if we are telling a computer how to read text out-loud. 
+
+The dictionary files help us create more precise transcriptions of words. These files take written words and convert them into a phonetic transcription. If these dictionary files work well, we will be able to produce a phonetic transcription for *any* text. Pretty cool, right?!
 
 The problem is, for almost any 'regular' rule we find in a language, there will be 'exceptions'. This is why there are at least two dictionary files: one for regular rules (**kg_rules**) and one for exceptions (**kg_list**).
 
@@ -332,7 +390,9 @@ josh@yoga:~/Desktop/espeak-ng/dictsource$ sed -n '33,90p' kg_rules
 
 You can see that there are some groups defined at the beginning (e.g. .L01, .L02, etc), and they show up in the rules later on. You can define and use groups like this to make rules about certain contexts.
 
-Some rules can be very simple, like all the rules for vowels seen here. Every language is going to have different rules, so all I want to do here is give you an idea of what this file does. It translates a letter (on the left) to a sound (on the right). In this case, with Kyrgyz, all the letters are Cyrillic and all the sounds are represented by Latin letters.
+Some rules can be very simple, like all the rules for vowels seen here. 
+
+Every language is going to have different rules, so all I want to do here is give you an idea of what this file does. These rules translate a *letter* (on the left) to a *sound* (on the right). In this case, since I'm working on Kyrgyz, all the *letters* are Cyrillic and all the *sounds* are represented by Latin letters. Every sound (written in Latin letters) should have a definition in the phoneme definition file.
 
 Now, let's take a look at my 'exceptions' file. In fact, this file includes exceptions as well as definitions of symbols. Numbers have to be defined here as well. 
 
@@ -347,59 +407,6 @@ _5	b'eS
 {% endhighlight %}
 
 You'll find a much more detailed explaination of these files in the [official documentation][dictionary].
-
-
-### Phoneme Definition File
-
-Now that we have the dictionary files which can read some text and produce a phonetic transcription, we need to define what those sounds actually *sound* like. 
-
-That is, we need to convert our transcription into an acoustic output which will actually come out our computer speakers. 
-
-We accomplish this by creating a file which defines the acoustic output for each sound (aka for each phoneme). This is called the phoneme definition file.
-
-Here's a section of my **ph_kyrgyz** phoneme definition file which defines some of the short vowels:
-
-{% highlight bash %}
-josh@yoga:~/Desktop/espeak-ng/phsource$ sed -n '20,55p' ph_kyrgyz 
-
-
-// ============ //
-// SHORT VOWELS //
-// ============ //
-
-
-phoneme a
-  ipa ɑ
-  vowel starttype #i endtype #i
-  length 200
-  FMT(vowel/0_3)
-endphoneme
-
-phoneme e
-  ipa e
-  vowel starttype #e endtype #e
-  length 170
-  FMT(vowel/e)
-endphoneme
-
-phoneme i
-  ipa i
-  vowel starttype #i endtype #i
-  length 170
-  IfNextVowelAppend(;)
-  FMT(vowel/i)
-endphoneme
-
-phoneme o
-  ipa o
-  vowel starttype #o endtype #o
-  length 200
-  FMT(vowel/o_8)
-endphoneme
-
-{% endhighlight %}
-
-More specifics about the syntax of this file can be found best explained by the [official documentation][phonemes].
 
 
 ### Editing the Master Phoneme File
