@@ -19,12 +19,13 @@ In adding a new language, these are the files that you will need to edit or crea
 
 <br>
 
-| **phsource/phonemes**  | edit  |
-| **phsource/ph_new-language** | create  |
-| **dictsource/nl_extra** | create  |
-| **dictsource/nl_list** | create  |
-| **dictsource/nl_rules** | create  |
-| **espeak-data/voices/family/nl** | create  |
+| **/Makefile.am**  | edit  |
+| **/phsource/phonemes**  | edit  |
+| **/phsource/ph_new-language** | create  |
+| **/dictsource/nl_extra** | create  |
+| **/dictsource/nl_list** | create  |
+| **/dictsource/nl_rules** | create  |
+| **/espeak-data/voices/family/nl** | create  |
 {: align="center"}
 
 <br>

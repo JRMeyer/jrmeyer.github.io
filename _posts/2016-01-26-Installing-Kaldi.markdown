@@ -9,7 +9,7 @@ comments: True
 
 ## Installation via GitHub
 
-Kaldi is now primarily host on GitHub (not SourceForge anymore), so I'm going to just clone their GitHub repository to my Desktop and go from there.
+Kaldi is primarily hosted on GitHub (not SourceForge anymore), so I'm going to just clone [the official GitHub repository][official-repo] to my Desktop and go from there.
 
 {% highlight bash %}
 josh@yoga:~/Desktop$ git clone https://github.com/kaldi-asr/kaldi.git
@@ -31,7 +31,7 @@ COPYING  .git            .gitignore  misc       src    .travis.yml
 egs      .gitattributes  INSTALL     README.md  tools  windows
 {% endhighlight %}
 
-Now there's a lot of good documentation on Kaldi, but I think the best best will always be to see what the **INSTALL** file on the latest version is. So, let's take a look:
+Now there's a lot of good [official documentation][docs] for Kaldi, but I think the best install info will always be in the **INSTALL** file on the latest version is. So, let's take a look:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi$ cat INSTALL 
@@ -127,7 +127,7 @@ All done OK.
 josh@yoga:~/Desktop/kaldi/tools$ 
 {% endhighlight %}
 
-Those last lines recommend we install a language modeling toolkit [IRSTLM][irstlm], and I want to make my own language models, so I'm going to install it.
+Those last lines recommend we install a language modeling toolkit [IRSTLM][irstlm], and I want to make my own language models, so I'm going to install it. If you're using some pre-existing language model, you can skip these next few steps.
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ extras/install_irstlm.sh
@@ -146,21 +146,27 @@ Try 'readlink --help' for more information.
 ***() Please source the tools/env.sh in your path.sh to enable it
 {% endhighlight %}
 
+
+<!---
 It seems we've installed IRSTLM, but we still need to adjust something in our **path.sh** file to enable IRSTLM. If you search for **path.sh** from the **kaldi/** dir, we see that in each of the example directories, there is a separate **path.sh** file:
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/tools$ cd ../
-josh@yoga:~/Desktop/kaldi$ locate path.sh
-/home/josh/Desktop/kaldi/egs/ami/s5/path.sh
-/home/josh/Desktop/kaldi/egs/aspire/s5/path.sh
-/home/josh/Desktop/kaldi/egs/aurora4/s5/path.sh
-                      .
-                      .
-                      .
-/home/josh/Desktop/kaldi/egs/vystadial_en/s5/path.sh
-/home/josh/Desktop/kaldi/egs/wsj/s5/path.sh
-/home/josh/Desktop/kaldi/egs/yesno/s5/path.sh
-/usr/local/MATLAB/R2015b/sys/tomcat/bin/setclasspath.sh
+josh@yoga:~/Desktop/kaldi$ find -name path.sh
+./egs/csj/s5/path.sh
+./egs/timit/s5/path.sh
+./egs/chime2/s5/path.sh
+./egs/tedlium/s5/path.sh
+./egs/fisher_swbd/s5/path.sh
+          .
+          .
+          .
+./egs/sprakbanken/s5/path.sh
+./egs/lre/v1/path.sh
+./egs/fisher_english/s5/path.sh
+./egs/gp/s5/path.sh
+./egs/gp/s1/path.sh
+./egs/aurora4/s5/path.sh
 {% endhighlight %}
 
 
@@ -178,8 +184,20 @@ In this **yesno** example, there are just two commands which set the two environ
 {% highlight bash %}
 source tools/env.sh
 {% endhighlight %}
+-->
 
-But as of right now we don't have to do this since we're just installing.
+Now we should have a working installation of IRSTLM on the computer, and you can verify by looking into **/usr/local**:
+
+{% highlight bash %}
+josh@yoga:~/Desktop/kaldi/tools$ cd /usr/local/
+josh@yoga:/usr/local$ ls
+bin  etc  games  include  irstlm  lib  libexec  man  MATLAB  sbin  share  src
+josh@yoga:/usr/local$ ls irstlm/
+bin  include  lib
+{% endhighlight %}
+
+        
+We don't have to do anything else with IRSTLM right now because we're just installing. But it'll be there when you need it!
 
 So, at this point we've done part (1) of the **kaldi/INSTALL** file (i.e. following the steps in the **kaldi/tools/INSTALL** file). 
 
@@ -863,5 +881,5 @@ Let me know if you have comments or suggestions and you can always leave a comme
 Happy Kaldi-ing!
 
 [irstlm]: http://hlt-mt.fbk.eu/technologies/irstlm
-
-
+[official-repo]: https://github.com/kaldi-asr/kaldi
+[docs]: http://kaldi-asr.org/doc/
