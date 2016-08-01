@@ -544,9 +544,9 @@ josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./local/
 
 These are unchanged because these original directories are housing general information about the language (in the **input/** dir) as well as instructions for preparing the data and scoring it (in the **local/** dir) as well as information about the kind of model we want to train and test (in the **conf/** dir).
 
-Logically nothing about these changes after we test and train the model.
+Logically, nothing about these files and directories should change after we train and test the model.
 
-The new **data/** directory has a lot of stuff in it. In general, this directory created by the **run.sh** script houses and organizes the files which describe the language (e.g. dictionary, phone lists, etc) and data (e.g. WAV file ids and their transcripts) to test and train the model. 
+However, the newly created **data/** directory has a lot of new stuff in it. In general, this directory created by the **run.sh** script houses and organizes the files which describe the language (e.g. dictionary, phone lists, etc) and data (e.g. WAV file ids and their transcripts) to test and train the model. 
 
 {% highlight bash %}
 josh@yoga:~/Desktop/kaldi/egs/yesno/s5$ tree ./data/
