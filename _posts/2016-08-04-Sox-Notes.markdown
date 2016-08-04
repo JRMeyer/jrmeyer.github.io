@@ -1,0 +1,117 @@
+---
+layout: post
+title:  "Some SoX(I) Notes"
+date:   2016-08-02
+categories: sox
+comments: True
+---
+
+[Here's another blog.][blog1]
+
+[And another blog.][blog2]
+
+## SoX
+
+SoX stands for: Sound eXchange
+
+[http://sox.sourceforge.net/][sox]
+
+
+### Get Support for mp3 Files
+
+https://packages.debian.org/wheezy/libsox-fmt-mp3
+
+{% highlight bash %}
+sudo apt-get install libsox-fmt-mp3; sudo apt-get upgrade sox
+{% endhighlight %}
+
+
+### Get Info about Files
+
+{% highlight bash %}
+# just one file
+sox --i test.wav
+
+# all files in dir
+for i in *wav; do sox --i $i; done
+{% endhighlight %}
+
+
+### Play Files (play is from sox)
+
+{% highlight bash %}
+# just one file
+play text.wav
+
+# all files in dir
+for i in *wav; do play $i; done
+{% endhighlight %}
+
+
+### Downsample (to 16kHz)
+
+{% highlight bash %}
+# just one file
+sox test.wav -r 16k test_16k.wav
+
+# all files in dir
+for i in *wav; do sox $i -r 16k ${i}_16k.wav; done
+{% endhighlight %}
+
+
+### Merge Stereo Channels into One Mono
+
+{% highlight bash %}
+# just one file
+sox test.wav test_mono_merged.wav remix 1,2
+
+# all files in dir
+for i in *wav; do sox $i ${i}_mono_merged.wav remix 1,2; done
+{% endhighlight %}
+
+
+## SoXI
+
+SoXI stands for: Sound eXchange Information.
+
+SoXI will display sound file metadata.
+
+[http://sox.sourceforge.net/soxi.html#DESCRIPTION][soxi]
+
+Displays information from the header of a given audio file or files.
+Supported audio file types are listed and described in soxformat(7).
+Note however, that soxi is intended for use only with audio files
+with a self-describing header.
+
+### Get Duration of Audio Files
+
+{% highlight bash %}
+# just one file
+soxi -D text.wav
+
+# all files in dir
+for i in *wav; do soxi -D $i; done
+{% endhighlight %}
+
+### Calculate Combined Duration of all WAV Files in dir
+
+{% highlight bash %}
+OUTPUT="$(for i in *wav; do soxi -D $i; done)";
+echo "${OUTPUT}"
+
+## get total number of seconds of WAVs in dir
+TOTAL_SECS=0
+for i in *wav; do      
+    SECS="$(soxi -D $i)"
+    TOTAL_SECS=$(echo "$TOTAL_SECS + $SECS" | bc)
+    done
+printf "\n\nThere are a total of ${TOTAL_SECS}
+       seconds of WAV files in the dir\n\n"
+{% endhighlight %}
+
+
+
+[blog1]: http://www.thegeekstuff.com/2009/05/sound-exchange-sox-15-examples-to-manipulate-audio-files/
+[blog2]: http://www.linuxandlife.com/2013/03/how-to-use-sox-audio-editing.html
+[sox]: http://sox.sourceforge.net/
+[soxi]: http://sox.sourceforge.net/soxi.html#DESCRIPTION
