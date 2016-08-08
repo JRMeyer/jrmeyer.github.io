@@ -5,6 +5,9 @@ date:   2016-02-01
 categories: kaldi
 comments: True
 ---
+
+Here's "[Kaldi For Dummies][kaldi-for-dummies]".
+
 Here's a good [blog][good-blog].
 
 Here's a good [tutorial][tutorial1].
@@ -198,3 +201,4 @@ In my case I'm using "\<unk\>" because that's what I get from IRSTLM in my langu
 [slides]: http://www.danielpovey.com/files/Lecture1.pdf
 [tutorial1]: http://m.mr-pc.org/work/jsalt2015lab.pdf
 [tutorial2]: http://pages.jh.edu/~echodro1/tutorial/kaldi/kaldi-intro.html
+[kaldi-for-dummies]: http://www.dsp.agh.edu.pl/_media/pl:dydaktyka:kaldi_for_dummies.pdf
