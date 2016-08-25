@@ -6,7 +6,8 @@ categories: cmusphinx
 comments: True
 ---
 
-==== POST IN PROGRESS ====
+<img src="/misc/sphinx.jpg" align="right" alt="logo" style="width: 300px;"/>
+
 
 ## Overview
 

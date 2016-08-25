@@ -5,6 +5,8 @@ date:   2016-01-19 22:03:04 -0700
 categories: installation
 comments: True
 ---
+<img src="/misc/praat.png" align="right" alt="logo" style="width: 200px;"/>
+
 
 ## Some Background
 

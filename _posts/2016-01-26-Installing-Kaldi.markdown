@@ -6,6 +6,12 @@ categories: kaldi
 comments: True
 ---
 
+<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 ## Installation via GitHub
 

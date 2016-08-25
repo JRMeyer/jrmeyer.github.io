@@ -6,6 +6,12 @@ categories: kaldi
 comments: True
 ---
 
+<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
+
+<br/>
+<br/>
+<br/>
+
 Here's "[Kaldi For Dummies][kaldi-for-dummies]".
 
 Here's a good [blog][good-blog].

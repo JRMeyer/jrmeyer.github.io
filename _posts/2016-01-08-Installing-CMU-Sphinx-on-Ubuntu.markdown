@@ -6,6 +6,10 @@ categories: installation
 comments: True
 ---
 
+<img src="/misc/sphinx.jpg" align="right" alt="logo" style="width: 300px;"/>
+
+<br/>
+
 ## Some Background
 
 I recently installed Ubuntu 14.04 on my Lenovo Yoga, and it's time to reinstall SPHINX. 
