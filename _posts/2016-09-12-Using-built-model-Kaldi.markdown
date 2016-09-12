@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to use an existing recognizer for decoding in Kaldi"
+title:  "How to use an Existing Recognizer for Decoding in Kaldi"
 date:   2016-09-12
 categories: kaldi
 comments: True
@@ -11,6 +11,9 @@ comments: True
 <br/>
 <br/>
 <br/>
+<br/>
+
+This post is essentially a walk through of [this shell script]({{ site.url }}/misc/run-decode.sh).
 
 ## Introduction
 
@@ -201,5 +204,14 @@ utils/int2sym.pl -f 2- \
     > transcriptions/one-best-hypothesis.txt
 {% endhighlight %}
 
-[kaldi-install]:
-[kaldi-notes]: 
+## Conclusion
+
+If you run all the above programs successfully, you should end up with a new file **transcriptions/one-best-hypothesis.txt**, which will list your files and their transcriptions.
+
+I hope this was helpful!
+
+If you have any feedback or questions, don't hesitate to leave a comment!
+
+
+[kaldi-install]: http://jrmeyer.github.io/kaldi/2016/01/26/Installing-Kaldi.html
+[kaldi-notes]: http://jrmeyer.github.io/kaldi/2016/02/01/Kaldi-notes.html
