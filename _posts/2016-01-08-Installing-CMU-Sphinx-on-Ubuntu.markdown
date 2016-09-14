@@ -749,6 +749,8 @@ Hopefully this was helpful for you. If you ran into issues or have suggestions o
 
 I can't seem to find the code on CMU-Sphinx's GitHub account, so I'm just went through sourceforge instead. 
 
+**NB** A reader recommended to try this link from svn instead: svn://svn.code.sf.net/p/cmusphinx/code/trunk/cmuclmtk
+
 {% highlight bash %}
 josh@yoga:~/Desktop$ svn checkout svn://svn.code.sf.net/p/cmusphinx/code/trunk cmusphinx-code
                            .
