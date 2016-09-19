@@ -577,6 +577,24 @@ With these final three changes to **Makefile.am**, you should be ready to go!
 
 ## Conclusion
 
+If you've gone through all these steps successfully, you should be ready to start making updates to the various language definition files.
+
+Whenever you make an update, (for instance to a file like **ph_kyrgyz**) you should be able to quickly listen to your changes by re-running the **make** and **sudo make install** commands.
+
+{% highlight bash %}
+josh@yoga:~/Desktop/espeak-ng$ make
+{% endhighlight %}
+
+And then 
+
+{% highlight bash %}
+josh@yoga:~/Desktop/espeak-ng$ sudo make install
+{% endhighlight %}
+
+There shouldn't be a need to re-run **./autogen.sh** or **./configure**, as far as I can tell.
+
+My workflow has been (1) make a change, (2) run **make** and **sudo make install**, (3) listen to change, (4) go back to (1).
+
 I hope you found this post useful!
 
 If you have any questions or comments or find an issue, you can email me or leave a comment!
