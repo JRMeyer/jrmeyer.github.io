@@ -15,7 +15,7 @@ To add a new language to eSpeak NG, you need to have an understanding of the sou
 
 Specifically, you need to know two things: (1) how the sounds of the language work, and (2) how the spelling of the language relates to those sounds.
 
-There is indeed good documentation out there already on how to add a new language to eSpeak NG (and a lot of the information in this post comes directly from the [official documentation][docs]), but in my experience of adding the Kyrgyz langauge I've thought that a clearer, more simple explanation would be useful.
+There is indeed good documentation out there already on how to add a new language to eSpeak NG (and a lot of the information in this post comes directly from the [official documentation][docs]). I decided to create yet another set of instructions, because in my experience of adding the Kyrgyz langauge to eSpeak NG, it took a while to digest some of the steps and links, and what I've written here is a version that makes sense to me.
 
 In adding a new language, these are the files that you will need to edit or create. In the following table, **new-language** refers to the full name of the language you're working on (e.g. in my case, this will be **kyrgyz**). The word **family** refers to the directory of the language family (e.g. in my case **trk** because Kyrgyz is a Turkic language). Finally, the two letters **nl** refer to the international two letter code of the new langauge you're adding (e.g. in my case, **ky**).
 
