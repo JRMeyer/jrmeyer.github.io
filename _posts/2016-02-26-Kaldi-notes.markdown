@@ -12,13 +12,9 @@ comments: True
 <br/>
 <br/>
 
-Here's "[Kaldi For Dummies][kaldi-for-dummies]".
+## Documentation
 
-Here's a good [blog][good-blog].
-
-Here's a good [tutorial][tutorial1].
-
-Another [tutorial][tutorial2].
+Here's some [documentation]({{ site.url }}/misc/kaldi-documentation/kaldi-documentation.pdf) I've been working on as a walk-through of a typical Kaldi **run.sh** script.
 
 ## Bayes Rule and ASR
 
@@ -199,6 +195,17 @@ zh_S 133
 This file has a single line with the word (not the phone!) for out of vocabulary items.
 
 In my case I'm using "\<unk\>" because that's what I get from IRSTLM in my language model (task.arpabo), and this entry has to be identical to that.
+
+
+## Other Blogs
+
+Here's "[Kaldi For Dummies][kaldi-for-dummies]".
+
+Here's a good [blog][good-blog].
+
+Here's a good [tutorial][tutorial1].
+
+Another [tutorial][tutorial2].
 
 
 [symboltables]: http://www.openfst.org/doxygen/fst/html/classfst_1_1_symbol_table.html

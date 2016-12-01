@@ -1,0 +1,208 @@
+Author: Joshua Meyer jrmeyer.github.io
+
+A lot of this information comes straight from Gales and Young's:
+The Application of Hidden Markov Models in Speech Recognition 
+<http://www.cslu.ogi.edu/~zak/cs506-lvr/mjfg_NOW.pdf>
+
+
+
+###                    ###
+### FEATURE EXTRACTION ###
+###                    ###
+
+The feature extraction stage seeks to provide a compact representa-
+tion of the speech waveform. This form should minimise the loss of
+information that discriminates between words, and provide a good
+match with the distributional assumptions made by the acoustic mod-
+els.
+
+In addition to spectral coefficients (MFCC or PLP), first order (delta) 
+and second-order (delta–delta) regression coefficients are often appended
+in a heuristic attempt to compensate for the conditional independence
+assumption made by the HMM-based acoustic models.
+
+
+
+
+
+###                         ###
+### ACOUSTIC MODEL TRAINING ###
+###                         ###
+
+## BROAD STROKES ##
+
+Given audio, transcripts, and a lexicon:
+
+(1) A flat-start monophone set is created in which each base
+    phone is a monophone single-Gaussian HMM with means and
+    covariances equal to the mean and covariance of the train-
+    ing data.
+
+(2) The parameters of the Gaussian monophones are re-
+    estimated using 3 or 4 iterations of EM.
+
+(3) Each single Gaussian monophone *q* is cloned once for each
+    distinct triphone left_context + *q* + right_context that 
+    appears in the training data.
+
+(4) The resulting set of training-data triphones is again re-
+    estimated using EM and the state occupation counts of the
+    last iteration are saved.
+
+(5) A decision tree is created for each state in each base phone,
+    the training-data triphones are mapped into a smaller set of
+    tied-state triphones and iteratively re-estimated using EM.
+
+
+## MORE DETAIL ##
+
+MONOPHONE TRAINING:
+
+          - create a 3-state GMM-HMM topography (just a shell) for each phoneme 
+            found in the lexicon
+
+          - set all transitions between states in each phone to be equiprobable
+ 
+          FLAT START:
+
+               - convert each transcript to a sequence of phones
+
+               - convert each sequence of phones into a beads-on-a-string
+                 composite GMM-HMM
+
+               - given each audio segment and its corresponding composite
+                 GMM-HMM, preform simple linear alignment to assign feature
+                 vectors to states. That is, if an audio segment has 2 words, 
+                 with 4 phones in each word, there are a total of 8 phones in
+                 the audio file, and each phone is a 3-state GMM-HMM, so there
+                 are a total of 3x8 = 24 states for the audio file. Therefore, 
+                 each state (in flat start training) is assigned 1/24 of the 
+                 total number of feature vectors (eg. MFCC, PLP). If for
+                 instance, there are 48 feature vectors from the audio, state 1
+                 of the composite HMM will be assigned vectors 1-2, state 2
+                 will get states 3-4, etc. 
+
+               - Given the simple linear alignment of feature vectors to GMM-HMM
+                 states (for all the training audio and transcripts), update 
+                 the parameters of each phone's GMM-HMM. This update is done via
+                 Maximum Likelihood Estimation (This MLE is the M-step of the EM
+                 Algorithm (Juang etal. 1986). However, note that the E-step in 
+                 flat-start training (Viterbi or Forward-Backward) is absent for 
+                 the very first alignment, because we do a simple linear 
+                 alignment instead to assign vectors to states).
+                 
+
+TRIPHONE TRAINING:
+         
+         STATE TYING:
+               The major problem with *monophones* is that decomposing each vocabulary
+               word into a sequence of context-independent base phones fails to cap-
+               ture the very large degree of context-dependent variation that exists
+               in real speech.
+
+               A simple way to mitigate this problem is to use a unique phone
+               model for every possible pair of left and right neighbours. The resulting
+               models are called *triphones* and if there are N base phones, there are
+               N^3 potential triphones. To avoid the resulting data sparsity problems,
+               the complete set of logical triphones *L* can be mapped to a reduced
+               set of physical models *P* by clustering and tying together the param-
+               eters in each cluster.
+
+               The choice of which states to tie is commonly made using decision trees.
+
+               Each state *i* of each (tri-state) phone *q* has a binary tree associated with it.
+               Each node of the tree carries a question regarding the context. To clus-
+               ter state *i* of phone *q*, all states *i* of all of the logical models derived
+               from *q* are collected into a single pool at the root node of the tree.
+               Depending on the answer to the question at each node, the pool of
+               states is successively split until all states have trickled down to leaf
+               nodes. All states in each leaf node are then tied to form a physical
+               model.
+
+
+###                                     ###
+### FEATURE/MODEL SPACE-TRANSFORMATIONS ###
+###                                     ###
+
+LDA+MLLT feature transformations are “discriminative” in the sense that they try to improve the separability of acoustic classes in the feature space (CMU-Sphinx docs).
+
+Linear transforms have been shown to be a powerful tool for both speaker and environmental 
+adaptation.
+
+Usually, linear transformations are described as being applied in either the model–space
+or feature–space (Sankar & Lee, 1995). Thus, a feature–space transform is required to
+only act on the features, it is not allowed to alter the recognizer stage in any way.
+
+ML training of strict linear feature–space transformations may be shown to be inappropriate 
+for speech recognition (see Gales, 1997a). In contrast, model–space transformations, 
+which act on the model parameters themselves, have been shown to reduce word error rates for 
+speaker and environmental adaptation tasks.
+
+Good overview of MLLT-LDA in Gales 1998.
+
+## LDA stands for Linear Discriminant Analysis.
+
+LDA will reduce the dimension of pattern space using the projection of feature vectors from the original space to a space with lower dimensions (Psutka 2007)
+
+Simply selecting subspaces that yield large variances (as in Principal component analysis) does not necessarily yield subspaces that
+discriminate between the classes. To address this problem, supervised
+approaches such as the linear discriminant analysis (LDA) criterion
+can be used. In LDA the objective is to increase the ratio of the between
+class variance to the average within class variance for each dimension.
+
+Linear discriminant analysis (LDA) is a generalization of Fisher's linear discriminant, a method used in statistics, pattern recognition and machine learning to find a linear combination of features that characterizes or separates two or more classes of objects or events. The resulting combination may be used as a linear classifier, or, more commonly, for dimensionality reduction before later classification. (wikipedia)
+
+LDA is closely related to analysis of variance (ANOVA) and regression analysis, which also attempt to express one dependent variable as a linear combination of other features or measurements.[1][2] However, ANOVA uses categorical independent variables and a continuous dependent variable, whereas discriminant analysis has continuous independent variables and a categorical dependent variable (i.e. the class label).[3] Logistic regression and probit regression are more similar to LDA than ANOVA is, as they also explain a categorical variable by the values of continuous independent variables. These other methods are preferable in applications where it is not reasonable to assume that the independent variables are normally distributed, which is a fundamental assumption of the LDA method. (wikipedia)
+
+In Kaldi, the classes are the pdf-ids (i.e. the clustered states).
+
+LDA and MLLT usually go together in Kaldi. 
+
+LDA+MLLT refers to the way we transform the features after computing
+the MFCCs: we splice across several frames, reduce the dimension (to 40
+by default) using Linear Discriminant Analysis), and then later estimate,
+over multiple iterations, a diagonalizing transform known as MLLT or CTC.
+See http://kaldi.sourceforge.net/transform.html for more explanation. (train_lda_mllt.sh)
+
+The number of parameters in the LDA+MLLT matrix depends on the input feature dimension, the amount of splicing and the output dimension.  A typical configuration has 13-dimension input, -3..3 splicing and 40-dimensional output, so the number of parameters would be (13 * 7 + 1) * 40.  [the + 1 is for the bias term, which subtracts the mean, IIRC] (Povey, google group)
+
+## MLLT stands for Maximum Likelihood Linear Transform.
+
+MLLT transforms the trained GMM-HMM model-space
+
+There are 2 kinds of MLLT transforms: They may be split into two groups: (i) unconstrained, where the mean and variance
+transform are unrelated to one another; and (ii) constrained, where the variance
+transform has the same form as the mean transform. (Gales 1998)
+
+## fMLLR stands for Feature-space MLLR, also known as constrained MLLR, is a speaker adaptation technique (Varadarajan & Povey 2008).
+According to Dan Povey, "fMLLR is not expected to be very helpful if the utterances are shorter than about 10 seconds, and if you are doing adaptation per utterance (instead of per speaker).  In that case you should use basis fMLLR."
+
+## SAT stands for Speaker adaptive training (Anastasakos et al., 1996). Standard SAT uses an
+unconstrained model–space transform of the mean in both training and testing.
+In SAT, speaker characteristics are modeled explicitly as linear transformations of the SI acoustic parameters. The effect of inter-speaker variability in the training data is reduced, leading to parsimonious acoustic models that represent more accurately the phonetically relevant information of the speech signal. (Anastasakos 1997). Povey etal have a 2008 paper on fast SAT.
+
+
+
+
+
+
+
+###          ###
+### DECODING ###
+###          ###
+
+It is relatively simple to generate not just the most
+likely hypothesis but the N -best set of hypotheses. N is usually in the
+range 100–1000. This is extremely useful since it allows multiple passes
+over the data without the computational expense of repeatedly solving
+the Viterbi algorithm from scratch. A compact and efficient structure 
+for storing these hypotheses is the word lattice.
+
+A word lattice consists of a set of nodes representing points in time
+and a set of spanning arcs representing word hypotheses. In addition 
+to the word IDs, each arc can also carry score information such as the acoustic
+and language model scores.
+
+Lattices are extremely flexible. For example, they can be rescored by
+using them as an input recognition network and they can be expanded
+to allow rescoring by a higher order language model.

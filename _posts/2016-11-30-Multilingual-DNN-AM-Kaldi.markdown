@@ -15,6 +15,8 @@ comments: True
 
 This post draws information from Vu et al. (2014) *Multilingual deep neural network based acoustic modeling for rapid language adaptation*, a paper co-authored by Dan Povey which explains Kaldi's approach to multilingual DNN AM training.
 
+If you want to take a step back, I have posts on [how to install Kaldi][kaldi-install] or some [miscellaneous Kaldi notes][kaldi-notes].
+
 ## Introduction
 
 {% highlight bash %}
