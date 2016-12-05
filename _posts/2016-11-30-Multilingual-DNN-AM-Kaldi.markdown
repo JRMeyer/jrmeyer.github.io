@@ -50,9 +50,8 @@ Vu et al. (2014) [*Multilingual deep neural network based acoustic modeling for 
 
 [kaldi-install]: http://jrmeyer.github.io/kaldi/2016/01/26/Installing-Kaldi.html
 [kaldi-notes]: http://jrmeyer.github.io/kaldi/2016/02/01/Kaldi-notes.html
-[heigold-2013]:http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40807.pdf
-[vu-2014]:https://pdfs.semanticscholar.org/df92/0708f2e8d075223f9169b6cb7126f9aba17d.pdf
-[ghoshal-2013]:http://www.cstr.ed.ac.uk/downloads/publications/2013/Ghoshal_ICASSP2013.pdf
-[bourlard-2011]:https://www.researchgate.net/profile/Philip_Garner/publication/230608454_Current_Trends_in_Multilingual_Speech_Processing/links/00b49537209f578796000000.pdf
-[bourlard-2011-old]:http://s3.amazonaws.com/academia.edu.documents/43939925/Current_Trends_in_Multilingual_Speech_Pr20160321-13554-co75ru.pdf?AWSAccessKeyId=AKIAJ56TQJRTWSMTNPEA&Expires=1480700304&Signature=uk5%2FHJcN9Q%2BacktLKqv5vHsJmdM%3D&response-content-disposition=inline%3B%20filename%3DCurrent_trends_in_multilingual_speech_pr.pdf
-[huang-2013]:http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.368.5160&rep=rep1&type=pdf
+[heigold-2013]: http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40807.pdf
+[vu-2014]: https://pdfs.semanticscholar.org/df92/0708f2e8d075223f9169b6cb7126f9aba17d.pdf
+[ghoshal-2013]: http://www.cstr.ed.ac.uk/downloads/publications/2013/Ghoshal_ICASSP2013.pdf
+[bourlard-2011]: https://www.researchgate.net/profile/Philip_Garner/publication/230608454_Current_Trends_in_Multilingual_Speech_Processing/links/00b49537209f578796000000.pdf
+[huang-2013]: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.368.5160&rep=rep1&type=pdf
