@@ -37,7 +37,7 @@ If you have any feedback or questions, don't hesitate to leave a comment!
 
 ## Relevant Papers
 
-Bourlard et al. (2011) [*Current trends in multilingual speech processing*], a survey paper.
+Bourlard et al. (2011) [*Current trends in multilingual speech processing*][bourlard-2011], a survey paper.
 
 Heigold et al. (2013) [*Multilingual Acoustic Models Using Distributed Deep Neural Networks*][heigold-2013], a Google Research Paper on their approach.
 
