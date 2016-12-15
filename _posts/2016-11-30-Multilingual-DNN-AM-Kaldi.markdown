@@ -84,6 +84,13 @@ As you can see in the table below, this shared hidden layer multilingual trainin
 <br/>
 
 
+
+### Huang et al. (2014) [*Multilingual Deep Neural Network*][huang-2014]. 
+
+This is a United States patent application from Microsoft which is essentially a repetition of the Huang et al. (2013) paper. However, since it is a patent application is is more thorough with many more figures and outlines of the architecture.
+
+
+
 ### Ghoshal et al. (2013) [*Multilingual Training of Deep Neural Networks*][ghoshal-2013]
 
 This paper investigates language-sequential training, where the hidden layers of a DNN get passed from one language to the next, fine-tuned on each language's data in sequence.
@@ -101,3 +108,4 @@ This paper is co-authored by Dan Povey and explains Kaldi's approach to multilin
 [ghoshal-2013]: http://www.cstr.ed.ac.uk/downloads/publications/2013/Ghoshal_ICASSP2013.pdf
 [bourlard-2011]: https://www.researchgate.net/profile/Philip_Garner/publication/230608454_Current_Trends_in_Multilingual_Speech_Processing/links/00b49537209f578796000000.pdf
 [huang-2013]: http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.368.5160&rep=rep1&type=pdf
+[huang-2014]: https://www.google.com/patents/US20140257805
