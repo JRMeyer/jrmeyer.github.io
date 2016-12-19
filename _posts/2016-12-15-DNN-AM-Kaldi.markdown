@@ -20,7 +20,7 @@ THIS POST IS IN PROGRESS
 ========================
 
 
-If you want to take a step back, I have posts on [how to install Kaldi][kaldi-install] or some [miscellaneous Kaldi notes][kaldi-notes] which contain some documentation.
+If you want to take a step back and learn about Kaldi in general, I have posts on [how to install Kaldi][kaldi-install] or some [miscellaneous Kaldi notes][kaldi-notes] which contain some documentation.
 
 ## Introduction
 
@@ -37,11 +37,7 @@ If you have any feedback or questions, don't hesitate to leave a comment!
 
 ## Relevant Papers
 
-### Bourlard et al. (2011) [*Current trends in multilingual speech processing*][bourlard-2011]
-
-A survey paper (Section 5 relevant to multilingual DNN AMs)
-
-### Maas et al. (2013) [*Building DNN Acoustic Models for Large Vocabulary Speech Recognition*][maas-2013]
+### Maas et al. (2013) [*Building DNN Acoustic Models for Large Vocabulary Speech Recognition*][maas-2014]
 
 From the abstract:
 
