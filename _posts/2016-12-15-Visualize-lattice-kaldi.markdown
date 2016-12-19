@@ -125,27 +125,53 @@ josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ ./utils/show_lattice.sh \
 
 All the script takes is: 
 
-(1) the utterance ID of the lattice you want to visualize
-(2) the path to the (compressed) ark file of lattices in which the target utterance is located
-(3) the word list of the graph you used to decode the utterance
+1. the utterance ID of the lattice you want to visualize
+2. the path to the (compressed) ark file of lattices in which the target utterance is located
+3. the word list of the graph you used to decode the utterance
 
 It's as simple as that!
 
 There are a couple of parameters you can play around with while visualizing the lattice.
 
-(1) Acoustic model scale: **--acoustic-scale**
-(2) Language model scale: **--lm-scale**
+1. Acoustic model scale: **--acoustic-scale**
+2. Language model scale: **--lm-scale**
 
-The size of the vertices on the graph will change according to the values you insert for these two parameters. The default value for both parameters is **0.0**, and with that you will be shown a plain graph where all the vertices are the same size. All the edges will contain the word and the word ID, and vertices will have an ID as well. For example, here is a graph I made with **--acoustic-scale=0** and **--lm-scale=0**:
+The size of the vertices on the graph will change according to the values you insert for these two parameters. The default value for both parameters is **0.0**, and with that you will be shown a plain graph where all the vertices are the same size. All the edges will contain the word and the word ID, and vertices will have an ID as well. 
 
-<br/>
-<br/>
-
-<img src="/misc/atai_81.svg" align="center" style="width: 500px;"/>
+Here is a graph with **--acoustic-scale=0** and **--lm-scale=0**:
 
 <br/>
 <br/>
 
+<center><img src="/misc/atai_81_lm0_am0.svg" style="width: 600px;"/>
+</center>
+
+<br/>
+<br/>
+
+Here is a graph with **--acoustic-scale=0.1** and **--lm-scale=0**:
+
+<center><img src="/misc/atai_81_lm0_am0.1.svg" style="width: 600px;"/>
+</center>
+
+<br/>
+<br/>
+
+Here is a graph with **--acoustic-scale=0** and **--lm-scale=10**:
+
+<center><img src="/misc/atai_81_lm10_am0.svg" style="width: 600px;"/>
+</center>
+
+<br/>
+<br/>
+
+Here is a graph with **--acoustic-scale=0.1** and **--lm-scale=10**:
+
+<center><img src="/misc/atai_81_lm10_am0.1.svg" style="width: 600px;"/>
+</center>
+
+<br/>
+<br/>
 
  
 ## Conclusion
