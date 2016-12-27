@@ -1,0 +1,72 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.15in]{geometry}
+\usepackage{fancyhdr} % fancy header
+\pagestyle{fancy} % so fancy
+\usepackage[utf8]{inputenc}
+\usepackage[cmex10]{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{booktabs}
+% adjustbox makes tables fit nicely on the page
+\usepackage[export]{adjustbox}
+% figures
+\usepackage{graphicx}
+\graphicspath{{figs/}}
+
+% single quotes, 'shown here'
+\def\sq#1{\lq{#1}\rq}
+
+\lhead{Joshua MEYER}
+\rhead{Kaldi Documentation}
+\cfoot{\href{http://jrmeyer.github.io/}{jrmeyer.github.io}} %% make empty to get rid of the page number %% \cfoot{Page \thepage}
+\renewcommand{\footrulewidth}{0.4pt} %% this puts a fancy line at the footer
+
+
+\begin{document}
+
+
+\section*{\Large{Josh's Kaldi Documentation}}
+
+\vspace{.25cm}
+
+\begin{center}
+\textit{This documentation is a work in progress.}\\
+\textit{Last update: December 1, 2016}\\
+\end{center}
+
+\vspace{.25cm}
+
+Most of what is presented here is stitched together directly from the official Kaldi documentation at \href{http://kaldi-asr.org/doc/}{http://kaldi-asr.org/doc/}. As such, the credit for the content here mainly goes to Dan Povey and the other Kaldi folks who wrote up the original documentation. I've tried here to put the information together in a way that made sense to me, adding in a few of my own interpretations and information from other blogs and some of the seminal papers these techniques are based on.  
+
+As such, most of the credit for this goes to the Kaldi team, \textsc{however}, if there are errors here, they are most likely my own faults, and not those of the Kaldi folks.
+
+My intention is for this documentation to be read along with one of the \texttt{run.sh} scripts from the Kaldi \texttt{egs} directory. These scripts are all different, and I don't cover any of the data preparation here. As such, this is a rough guide, but I hope it can be useful.
+
+\vspace{1cm}
+
+\section*{\large{Training}}
+
+\begin{itemize}
+
+\vspace{1cm}
+\item \textsc{Train Neural Net Acoustic Model}
+  \begin{itemize}
+    \vspace{.25cm}
+  \item \textsc{nnet-am-init.cc}
+
+    Given (1) a senome decision tree generated from a GMM-HMM model, (2) an HMM topology, and (3) a neural-net without an associated acoustic model, this program will return (1) an initialized neural net. \\
+
+As you can see in the exmaple code below, the raw neural net which is fed into \textbf{nnet-am-init.cc} is generated on the fly by \textbf{nnet-init.cc}. As per the documentation, \textbf{nnet-init.cc} wiil ``[i]nitialize the nnet2 neural network from a config file with a line for each component.  Note, this only outputs the neural net itself, not the associated information such as the transition-model; you'll probably want to pipe the output into something like nnet-am-init.''\\
+
+    \begin{verbatim}
+      nnet-am-init \
+          experiment/triphones\_del\_aligned/tree \
+          data/lang/topo \
+          "nnet-init experiment/nnet2/nnet.config -|" \
+          experiment/nnet2/0.mdl \
+          || exit 1;
+    \end{verbatim}
+
+  \end{itemize}
+\end{itemize}
+
+\end{document}
