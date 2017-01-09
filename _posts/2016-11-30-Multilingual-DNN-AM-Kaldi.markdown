@@ -4,6 +4,7 @@ title:  "Multilingual Deep Neural Net Acoustic Modeling with Kaldi"
 date:   2016-11-30
 categories: kaldi
 comments: True
+published: False
 ---
 
 <img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
