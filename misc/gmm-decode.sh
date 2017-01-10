@@ -3,7 +3,7 @@
 # Author Joshua Meyer (2016)
 
 # USAGE:
-#    $ kaldi/egs/your-model/your-model-1/run-decode.sh
+#    $ kaldi/egs/your-model/your-model-1/gmm-decode.sh
 # 
 #    This script is meant to demonstrate how an existing GMM-HMM
 #    model and its corresponding HCLG graph, build via Kaldi,
