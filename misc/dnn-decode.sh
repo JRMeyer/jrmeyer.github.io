@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Author Joshua Meyer (2016)
+# Author Joshua Meyer (2017)
 
 # USAGE:
-#    $ kaldi/egs/your-model/your-model-1/gmm-decode.sh
+#    $ kaldi/egs/your-model/your-model-1/dnn-decode.sh
 # 
 #    This script is meant to demonstrate how an existing DNN-HMM
 #    model and its corresponding HCLG graph, build via Kaldi,

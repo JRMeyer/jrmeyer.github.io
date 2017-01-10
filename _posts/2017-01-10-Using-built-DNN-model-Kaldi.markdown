@@ -81,7 +81,7 @@ josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/config$ cat mfcc.conf
 
 ### final.mdl
 
-Next, you need a trained DNN acoustic model, such as **final.mdl**. This should have been produced in your training phase, and should be located somewhere like **egs/your-model/your-model-1/exp/triphones_deldel/final.mdl**. It doesn't make too much sense to a human, but here's what the head of the file looks like:
+Next, you need a trained DNN acoustic model, such as **final.mdl**. This should have been produced in your training phase, and should be located somewhere like **egs/your-model/your-model-1/exp/nnet2/final.mdl**. It doesn't make too much sense to a human, but here's what the head of the file looks like:
 
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/nnet2_online/nnet_a_baseline$ head final.mdl 
