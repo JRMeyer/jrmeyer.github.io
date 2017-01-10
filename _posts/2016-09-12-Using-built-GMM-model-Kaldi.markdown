@@ -17,11 +17,11 @@ This post is essentially a walk through of [this shell script]({{ site.url }}/mi
 
 ## Introduction
 
-If you're reading this, I'm assuming that you've already [downloaded and installed Kaldi][kaldi-install] and successfully trained a GMM-HMM acoustic model along with a decoding graph. 
+If you're reading this, I'm assuming that you've already [downloaded and installed Kaldi][kaldi-install] and successfully trained a GMM acoustic model along with a decoding graph. 
 
 If you've run one of the Kaldi **run.sh** scripts from the example directory **egs/**, then you should be ready to go.
 
-This post was prompted by a comment on my [Kaldi notes][kaldi-notes] post, which basically asked, "Now that I've trained a model, how can I start using it?". I think this is a very relevant question for the people who want to use Kaldi to create and implement a speech recognition system for some application. The Kaldi scripts are currently set up in a researcher-focused way, and so I think this more applied question is a good one. With this in mind, I decided to write a small post on how to use an existing Kaldi model and graph to generate transcriptions for some new audio.
+This post was prompted by a comment on my [Kaldi notes][kaldi-notes] post, which basically asked, "Now that I've trained a [GMM] model, how can I start using it?". I think this is a very relevant question for the people who want to use Kaldi to create and implement a speech recognition system for some application. The Kaldi scripts are currently set up in a researcher-focused way, and so I think this more applied question is a good one. With this in mind, I decided to write a small post on how to use an existing Kaldi model and graph to generate transcriptions for some new audio.
 
 We normally generate transcriptions for new audio with the Kaldi testing and scoring scripts, so I just simply dug out the most important parts of these scripts to demonstrate in a concise way how decoding can work. 
 
@@ -62,7 +62,7 @@ atai_45 input/audio/atai_45.wav
 
 ### mfcc.conf
 
-Next, you should have a configuration file specifying how to extract MFCCs. You need to extract the exact same number of features for this new audio file as you did in training. If not, the existing acoustic model and new audio feature vectors will have a different number of parameters. Comparing these two would be like asking where a 3-D point exists in 2-D space, it doesn't make sense. So, you don't need to adjust anything in the config file. I used MFCCs, and my config file looks like this:
+Next, you should have a configuration file specifying how to extract MFCCs. You need to extract the exact same number of features for this new audio file as you did in training. If not, the existing GMM acoustic model and new audio feature vectors will have a different number of parameters. Comparing these two would be like asking where a 3-D point exists in 2-D space, it doesn't make sense. So, you don't need to adjust anything in the config file. I used MFCCs, and my config file looks like this:
 
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/config$ cat mfcc.conf 
@@ -79,7 +79,7 @@ josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/config$ cat mfcc.conf
 
 ### final.mdl
 
-Next, you need a trained acoustic model, such as **final.mdl**. This should have been produced in your training phase, and should be located somewhere like **egs/your-model/your-model-1/exp/triphones_deldel/final.mdl**. It doesn't make too much sense to a human, but here's what the head of the file looks like:
+Next, you need a trained GMM acoustic model, such as **final.mdl**. This should have been produced in your training phase, and should be located somewhere like **egs/your-model/your-model-1/exp/triphones_deldel/final.mdl**. It doesn't make too much sense to a human, but here's what the head of the file looks like:
 
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/triphones_deldel$ head final.mdl 
@@ -161,7 +161,7 @@ compute-mfcc-feats \
     ark,scp:transcriptions/feats.ark,transcriptions/feats.scp
 {% endhighlight %}
 
-Next, since I trained my acoustic model with delta + delta-delta features, we need to add them to our vanilla MFCC feature vectors. We give as input (1) the MFCC feature vectors generated above and receive as output (1) extended feature vectors with delta + delta-delta features.
+Next, since I trained my GMM acoustic model with delta + delta-delta features, we need to add them to our vanilla MFCC feature vectors. We give as input (1) the MFCC feature vectors generated above and receive as output (1) extended feature vectors with delta + delta-delta features.
  
 {% highlight bash %}
 add-deltas \
@@ -171,7 +171,7 @@ add-deltas \
 
 ### Trained GMM-HMM + Feature Vectors --> Lattice
 
-Now that we have feature vectors from our new audio in the appropriate shape, we can use our acoustic model and decoding graph to generate lattices of hypothesized transcriptions. This program takes as input (1) our word-to-symbol table, (2) a trained acoustic model, (3) a compiled decoding graph, and (4) the features from our new audio, and we are returned (1) a file of lattices.
+Now that we have feature vectors from our new audio in the appropriate shape, we can use our GMM acoustic model and decoding graph to generate lattices of hypothesized transcriptions. This program takes as input (1) our word-to-symbol table, (2) a trained acoustic model, (3) a compiled decoding graph, and (4) the features from our new audio, and we are returned (1) a file of lattices.
 
 {% highlight bash %}
 gmm-latgen-faster \
