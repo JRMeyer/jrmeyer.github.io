@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to use an Existing Recognizer for Decoding in Kaldi"
+title:  "How to use an Existing GMM Recognizer for Decoding in Kaldi"
 date:   2016-09-12
 categories: kaldi
 comments: True
@@ -13,11 +13,11 @@ comments: True
 <br/>
 <br/>
 
-This post is essentially a walk through of [this shell script]({{ site.url }}/misc/run-decode.sh).
+This post is essentially a walk through of [this shell script]({{ site.url }}/misc/gmm-decode.sh).
 
 ## Introduction
 
-If you're reading this, I'm assuming that you've already [downloaded and installed Kaldi][kaldi-install] and successfully trained an acoustic model along with a decoding graph. 
+If you're reading this, I'm assuming that you've already [downloaded and installed Kaldi][kaldi-install] and successfully trained a GMM-HMM acoustic model along with a decoding graph. 
 
 If you've run one of the Kaldi **run.sh** scripts from the example directory **egs/**, then you should be ready to go.
 
@@ -57,7 +57,7 @@ I'm just going to decode one audio file, so my **wav.scp** file is one line long
 
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/transcriptions$ cat wav.scp 
-atai_45 input/audio/atai_110.wav
+atai_45 input/audio/atai_45.wav
 {% endhighlight %}
 
 ### mfcc.conf
@@ -72,9 +72,9 @@ josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/config$ cat mfcc.conf
 --frame-shift=10 # default is 10
 --high-freq=0 # relative to Nyquist (ie. 8000 +/- x for 16k sampling rate)
 --low-freq=0 # low cutoff frequency for mel bins
---num-ceps=12 # the default is 12
+--num-ceps=13
 --window-type=hamming # Dans window is default
---use-energy=false
+--use-energy=true
 {% endhighlight %}
 
 ### final.mdl
