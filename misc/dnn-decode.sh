@@ -39,6 +39,12 @@
 #        one-best-hypothesis.txt
 
 
+. ./path.sh  
+# make sure you include the path to the nnet2 bin
+# the following two export commands are what my path.sh script contains:
+# export PATH=$PWD/utils/:$PWD/../../../src/bin:$PWD/../../../tools/openfst/bin:$PWD/../../../src/fstbin/:$PWD/../../../src/gmmbin/:$PWD/../../../src/featbin/:$PWD/../../../src/lm/:$PWD/../../../src/sgmmbin/:$PWD/../../../src/fgmmbin/:$PWD/../../../src/latbin/:$PWD/../../../src/nnet2bin/:$PWD:$PATH
+# export LC_ALL=C
+
 
 ### DNN-HMM DECODING ###
 
