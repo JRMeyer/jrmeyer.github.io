@@ -45,7 +45,7 @@ At the end, we hopefully end up with a DNN which will assign the correct phoneme
 
 ## Training a Deep Neural Net
 
-### README
+### Introduction
 
 When I start learning a new method, I begin with the most basic, well-documented code I can find. 
 
@@ -436,7 +436,7 @@ fi
 {% endhighlight %}
 
 
-This script outputs a matrix for the LDA transform, and this very matrix will come up again when we initialize the neural net as a **FixedAffineComponent**, just after our input layer with splicing. That means, once we've got our LDA transform, it will applied to all input, and because it is a **FixedComponent**, the matrix will not be updated by back-propagation.
+This script outputs a matrix for the LDA transform, and this very matrix will show up again as a **FixedAffineComponent** when we initialize the neural net, just after our input layer with splicing. That means, once we've got our LDA transform, it will applied to all input, and because it is a **FixedComponent**, the matrix will not be updated by back-propagation.
 
 Here are the new files created by **get_lda.sh**.
 
@@ -595,7 +595,7 @@ nnet2/
     ├── 0.mdl
     ├── hidden.config
     ├── log
-    │   └── nnet_init.log
+    │   └── nnet_init.log
     └── nnet.config
 
 2 directories, 4 files
@@ -688,11 +688,65 @@ $cmd $parallel_opts JOB=1:$num_jobs_nnet $exp_dir/log/train.$x.JOB.log \
      || exit 1;
 {% endhighlight %}
 
-Copy-and-pasting from the comments of the **nnet-train-parallel.cc** source code:
+Directly quoting from the comments of the **nnet-train-parallel.cc** source code:
 
->Train the neural network parameters with backprop and stochastic
->gradient descent using minibatches.  As nnet-train-simple, but
->uses multiple threads in a Hogwild type of update (for CPU, not GPU).
+> Train the neural network parameters with backprop and stochastic
+> gradient descent using minibatches.  As nnet-train-simple, but
+> uses multiple threads in a Hogwild type of update (for CPU, not GPU).
+
+So, using this parallelized training routine, we will in fact train multiple DNNs for each iteration. You see with the log files, we have **train.$x.JOB.log**, where **$x** is the iteration number and **JOB** is the job number. In my case, since I have only four processors on my laptop, I'm running each iteration four jobs. That means each iteration I have to either merge these four nets in a smart way, or just choose the best one.
+
+The original **train_pnorm_simple.sh** script is set up in a way to either average or choose the best model. The rational behind this is that on certain iterations, the model will be unstable, and it's better to just choose the best one instead of averaging. The unstable iterations are either (a) the very first iteration or (b) an iteration where we've just added a new hidden layer.
+
+In the comments of the original script, the authors note:
+
+
+> On iteration zero or when we just added a layer, use a smaller minibatch
+> size and just one job: the model-averaging doesn't seem to be helpful
+> when the model is changing too fast (i.e. it worsens the objective
+> function), and the smaller minibatch size will help to keep
+> the update stable.
+
+Here's the loop which will either average our models or choose the best one:
+
+
+{% highlight bash %}
+if $do_average; then
+
+    $cmd $exp_dir/log/average.$x.log \
+        nnet-am-average \
+            $nnets_list - \| \
+        nnet-am-copy \
+            --learning-rate=$learning_rate \
+            - \
+            $exp_dir/$[$x+1].mdl \
+            || exit 1;
+
+else
+    # choose the best model ($n) from the different jobs.
+
+    n=$(perl -e '($nj,$pat)=@ARGV; $best_n=1; $best_logprob=-1.0e+10; for ($n=1;$n<=$nj;$n++) {
+  $fn = sprintf($pat,$n); open(F, "<$fn") || die "Error opening log file $fn";
+  undef $logprob; while (<F>) { if (m/log-prob-per-frame=(\S+)/) { $logprob=$1; } }
+  close(F); if (defined $logprob && $logprob > $best_logprob) { $best_logprob=$logprob; 
+  $best_n=$n; } } print "$best_n\n"; ' $num_jobs_nnet $exp_dir/log/train.$x.%d.log) \
+      || exit 1;
+
+    [ -z "$n" ] && echo "Error getting best model" && exit 1;
+
+    $cmd $exp_dir/log/select.$x.log \
+        nnet-am-copy \
+            --learning-rate=$learning_rate \
+            $exp_dir/$[$x+1].$n.mdl \
+            $exp_dir/$[$x+1].mdl \
+            || exit 1;
+
+fi
+{% endhighlight %}
+
+Next, in the original script, we would normally have the option of mixing up the number of components in the neural net. However, I chose to take out the mixing up option for the sake of make as minimal a net as possible.
+
+
 
 
 
