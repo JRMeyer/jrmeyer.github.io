@@ -17,3 +17,6 @@ markdown: kramdown
 
 # syntax highlighter
 highlighter: rouge
+
+# Google services
+google_analytics: UA-90329904-1
