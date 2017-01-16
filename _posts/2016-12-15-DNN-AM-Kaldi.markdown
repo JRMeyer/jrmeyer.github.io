@@ -53,6 +53,20 @@ So, when approaching Kaldi's DNN code, I chose to start with the **nnet2** code,
 
 Then, I chose to start with the **run_nnet2_baseline.sh** script from the Wall Street Journal **egs** directory. This script is located at **kaldi/egs/wsj/s5/local/online/run_nnet2_baseline.sh**. This is, as far as I can gather, the simplest DNN training script for Kaldi at the present moment.
 
+Going off this script, I threw away as many "extra" features and steps as possible. A lot of what I threw away is very important practically speaking, but I want to show the bare minimum of what you need to do to train and test a DNN. 
+
+Amoung other things, I threw away:
+
+1. CMVN adaptation of raw (MFCC/PLP) features
+2. pnorm non-linearities
+3. online preconditioning of weights and biases
+4. all training diagnostics (no more validation examples)
+5. final model combination
+6. weighting of posteriors of silence phones
+
+<br/>
+<br/>
+
 ### First Things First: train a GMM system and generate alignments
 
 I'm not going to go into detail on how to train a GMM system. 
@@ -72,25 +86,21 @@ Here's the specific files you need from these four dirs:
 
 # DATA DIR FILES
 $data_dir/feats.scp
-$data_dir/cmvn.scp                 # assuming you did CMVN transform in GMM training
-$data_dir/utt2spk 
-$data_dir/utt2dur
-$data_dir/splitJOBN                # where JOB is the total number of JOBs, there's only one dir here (eg. split4)
+$data_dir/splitJOBN                # where JOBN is the total number of JOBs (eg. split4)
                    /JOB            # one dir for each JOB, up to JOBN
                         /feats.scp
-                        /cmvn.scp
-                        /utt2spk
+
 
 # LANGUAGE DIR FILES
 $lang_dir/topo
-$lang_dir/oov.int
-$lang_dir/phones/silence.csl
+
 
 # ALIGN DIR FILES
 $ali_dir/ali.JOB.gz                     # for as many JOBs as you ran
 $ali_dir/final.mdl
 $ali_dir/tree
 $ali_dir/num_jobs
+
 
 # MFCC DIR FILES
 $mfcc_dir/raw_mfcc_train.JOB.{ark,scp}  # for as many JOBs as you ran
@@ -106,29 +116,18 @@ For the **data** dir:
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/data$ tree train/
 train/
-├── cmvn.scp
 ├── feats.scp
-├── split4
-│   ├── 1
-│   │   ├── cmvn.scp
-│   │   ├── feats.scp
-│   │   └── utt2spk
-│   ├── 2
-│   │   ├── cmvn.scp
-│   │   ├── feats.scp
-│   │   └── utt2spk
-│   ├── 3
-│   │   ├── cmvn.scp
-│   │   ├── feats.scp
-│   │   └── utt2spk
-│   └── 4
-│       ├── cmvn.scp
-│       ├── feats.scp
-│       └── utt2spk
-├── utt2dur
-└── utt2spk
+└── split4
+    ├── 1
+    │   └── feats.scp
+    ├── 2
+    |   └── feats.scp
+    ├── 3
+    │   └── feats.scp
+    └── 4
+        └── feats.scp
 
-5 directories, 16 files
+5 directories, 5 files
 {% endhighlight %}
 
 
@@ -138,12 +137,9 @@ For the **lang** dir:
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/data$ tree lang/
 lang/
-├── oov.int
-├── phones
-│   └── silence.csl
 └── topo
 
-1 directory, 3 files
+0 directories, 1 file
 {% endhighlight %}
 
 
@@ -151,18 +147,17 @@ For the **align** dir:
 
 
 {% highlight bash %}
-josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment$ tree triphones_lda_mllt_sat_aligned/
-triphones_lda_mllt_sat_aligned/
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment$ tree triphones_aligned/
+triphones_aligned/
 ├── ali.1.gz
 ├── ali.2.gz
 ├── ali.3.gz
 ├── ali.4.gz
-├── final.mat
 ├── final.mdl
 ├── num_jobs
 └── tree
 
-0 directories, 8 files
+0 directories, 7 files
 {% endhighlight %}
 
 
@@ -184,7 +179,10 @@ mfcc/
 0 directories, 8 files
 {% endhighlight %}
 
-### The Main Run Script: **run_nnet2_toy_example.sh**
+<br/>
+<br/>
+
+### The Main Run Script: **run_nnet2_simple.sh**
 
 I've adjusted the this main run script (as well as it's dependencies) to work for my own data set. Originally, I took **run_nnet2_baseline.sh** and simplified it as much as possible, changed the normal **pnorm** nonlinearity to more basic **tanh**, and removed online preconditioning (which is used to find better learning rates).
 
@@ -192,18 +190,26 @@ In general, I've deleted as much as I could of the original script along the way
 
 As you may have noticed in other **run.sh** scripts, this script mainly defines variables and then sends off the heavy lifting of data preparation, training, and testing to other, more specialized scripts. 
 
-With this is mind, here's the beginning of my modified **run_nnet2_toy_example.sh** script, which defines some variables:
+With this is mind, here's the beginning of my modified **run_nnet2_simple.sh** script, which defines some variables:
 
 
 {% highlight bash %}
+#!/bin/bash
+
+# Joshua Meyer 2017
+# This script is based off the run_nnet2_baseline.sh script from the wsj eg
+# This is very much a toy example, intended to be for learning the ropes of 
+# nnet2 training and testing in Kaldi. You will not get state-of-the-art
+# results.
+# The default parameters here are in general low, to make training and 
+# testing faster on a CPU.
+
 stage=1
-train_stage=-10
-experiment_dir=experiment/nnet2/nnet2_toy_example
+experiment_dir=experiment/nnet2/nnet2_simple
 num_threads=4
 minibatch_size=128
-parallel_opts="-pe smp $num_threads"
 unknown_phone=SPOKEN_NOISE # having these explicit is just something I did when
-silence_phone=SIL          # I was debugging, they are now required by decode.sh
+silence_phone=SIL          # I was debugging, they are now required by decode_simple.sh
 
 
 . ./path.sh
@@ -211,12 +217,11 @@ silence_phone=SIL          # I was debugging, they are now required by decode.sh
 {% endhighlight%}
 
 
-Next, now that we've set our general variables, we have the main code to call the training script. In the original **run_nnet2_baseline.sh**, the training script called here was **train_pnorm_simple.sh**. I've modified this training script heavily, and maybe most importantly I replaced the **pnorm** non-linearity with the simpler **tanh** function. As such, I've changed the name from **train_pnorm_simple.sh** to **train_simple.sh**. 
+Next, now that we've set our general variables, we have the main code to call the training script. In the original **run_nnet2_baseline.sh**, the training script called here was **train_pnorm_simple.sh**. I've modified this training script heavily, and most importantly I replaced the **pnorm** non-linearity with the simpler **tanh** function, and I also removed preconditioning of the weights and biases. As such, I've changed the name from **train_pnorm_simple.sh** to **train_simple.sh**. 
 
 So, our main run script will call our main train script as such:
 
 {% highlight bash %}
-
 if [ $stage -le 1 ]; then
 
     echo ""
@@ -224,26 +229,25 @@ if [ $stage -le 1 ]; then
     echo "### BEGIN TRAINING ###"
     echo "######################"
 
+    mkdir -p $experiment_dir
+
     steps/nnet2/train_simple.sh \
-        --stage $train_stage \
-        --parallel-opts "$parallel_opts" \
+        --stage -10 \
         --num-threads "$num_threads" \
-        --num-jobs-nnet 4 \
         --feat-type raw \
-        --cmvn-opts "--norm-means=false --norm-vars=false" \
         --splice-width 4 \
-        --lda_dim 40 \
-        --num-hidden-layers 3 \
-        --hidden-layer-dim 100 \
-        --add-layers-period 2 \
-        --num-epochs 15 \
-        --mix-up 2000 \
+        --lda_dim 65 \
+        --num-hidden-layers 2 \
+        --hidden-layer-dim 50 \
+        --add-layers-period 5 \
+        --num-epochs 10 \
+        --iters-per-epoch 2 \
         --initial-learning-rate 0.02 \
         --final-learning-rate 0.004 \
         --minibatch-size "$minibatch_size" \
         data/train \
         data/lang \
-        experiment/triphones_lda_mllt_sat_aligned \
+        experiment/triphones_aligned \
         $experiment_dir \
         || exit 1;
 
@@ -262,7 +266,67 @@ As you can see, the only obligatory arguments for **train_simple.sh** are:
 3. our alignments from our previous GMM-HMM model
 4. the name of the dir where we will save our new DNN model
 
-So far this is pretty straightforward: you feed in the right data to the script and you get back a nice shiny DNN. At this point, you could keep this **train_simple.sh** script a black box, and not worry about what's going on inside, or you could dive into it. I'm going to take the time to go through it here for anyone who's interested, but if you aren't interested you can skip down below.
+So far this is pretty straightforward: you feed in the right data to the script and you get back a nice shiny DNN. At this point, you could keep this **train_simple.sh** script a black box, and not worry about what's going on inside, or you could dive into it. I'm going to take the time to go through it below for anyone who's interested.
+
+However, for now I'll finish up presenting the last section of the main run script: testing.
+
+Here's what our testing section looks like: 
+
+
+{% highlight bash %}
+if [ $stage -le 2 ]; then
+
+    echo ""
+    echo "#####################"
+    echo "### BEGIN TESTING ###"
+    echo "#####################"
+
+    steps/nnet2/decode_simple.sh \
+        --num-threads "$num_threads" \
+        --beam 8 \
+        --max-active 500 \
+        --lattice-beam 3 \
+        experiment/triphones/graph \
+        data/test \
+        $experiment_dir/final.mdl
+        $unknown_phone \
+        $silence_phone \
+        $experiment_dir/decode \
+        || exit 1;
+
+    for x in ${experiment_dir}/decode*; do
+        [ -d $x ] && grep WER $x/wer_* | \
+            utils/best_wer.sh > nnet2_simple_wer.txt;
+    done
+
+    echo ""
+    echo "###################"
+    echo "### END TESTING ###"
+    echo "###################"
+
+fi
+{% endhighlight %}
+
+It's as simple as that! You decode the test data using your freshly trained DNN, and you use **best_wer.sh** to give you a score at the very end for your word error rate.
+
+The main decode script, **decode_simple.sh**, takes in five arguments. The last two arguments are not usually present in the standard Kaldi scripts, but I added them to make sure I knew where my unknown and silence phones were being used and defined. Feel free to take them out and deduce them from something like **phones.txt**.
+
+In any case, **decode_simple.sh** takes in five arguments:
+
+1. the original decoding graph from your GMM-HMM
+2. dir for your test data
+3. new dir to save decoding information in (lattices, etc)
+4. the "unknown" phone (eg. <UNK>)
+5. the "silence" phone (eg. SIL)
+
+So, up to this point you should have been able to successfully train and test a deep neural net acoustic model. 
+
+It probably didn't get you a great word error rate, but now that you have something working you can go and tweak parameters, add in more sophisticated non-linearities, try out different posterior weighting, or some CMVN or other speaker adaptive transformations.
+
+For those wanting to get more into the training script, I'm now going to walk through the main training script called by the main run script.
+
+<br/>
+<br/>
 
 ### The Main Train Script: **train_simple.sh**
 
@@ -276,67 +340,29 @@ First, we have a bunch of default parameters to set:
 #           2013  Guoguo Chen
 #           2014  Vimal Manohar
 # Apache 2.0.
-
-# Final model-combination: we combine models over typically a whole epoch, 
-# and because that would be too many iterations to
-# easily be able to combine over, we arrange the iterations into groups (20
-# groups by default) and average over each group.
 #
 
 # Begin configuration section.
 cmd=run.pl
 stage=-4
-num_epochs=15      # Number of epochs of training;
-                   # the number of iterations is worked out from this.
+num_epochs=15      # Number of epochs of training
 initial_learning_rate=0.04
 final_learning_rate=0.004
 bias_stddev=0.5
-hidden_layer_dim=100
+hidden_layer_dim=0
+add_layers_period=2 # by default, add new layers every 2 iterations.
+num_hidden_layers=3
 minibatch_size=128 # by default use a smallish minibatch size for neural net
                    # training; this controls instability which would otherwise
                    # be a problem with multi-threaded update. 
-samples_per_iter=400000 # each iteration of training, see this many samples
-                        # per job.  This option is passed to get_egs.sh
-num_jobs_nnet=16   # Number of neural net jobs to run in parallel.  This option
-                   # is passed to get_egs.sh.
-online_ivector_dir=
-max_models_combine=20 # The "max_models_combine" is the maximum number of models we give
-  # to the final 'combine' stage, but these models will themselves be averages of
-  # iteration-number ranges.
-shuffle_buffer_size=5000 # This "buffer_size" variable controls randomization of the samples
-                # on each iter.  You could set it to 0 or to a large value for complete
-                # randomization, but this would both consume memory and cause spikes in
-                # disk I/O.  Smaller is easier on disk and memory but less random.  It's
-                # not a huge deal though, as samples are anyway randomized right at the start.
-                # (the point of this is to get data in different minibatches on different iterations,
-                # since in the preconditioning method, 2 samples in the same minibatch can
-                # affect each others' gradients.
-add_layers_period=2 # by default, add new layers every 2 iterations.
-num_hidden_layers=3
-io_opts="-tc 5" # for jobs with a lot of I/O, limits the number running at one time.
+num_threads=4   # Number of jobs to run in parallel.
 splice_width=4 # meaning +- 4 frames on each side for second LDA
-randprune=4.0 # speeds up LDA.
-max_change_per_sample=0.075
-mix_up=0 # Number of components to mix up to (should be > #tree leaves, if  specified.)
-num_threads=16
-parallel_opts="--num-threads 16 --mem 1G" 
-  # by default we use 16 threads; this lets the queue know.
-  # note: parallel_opts doesn't automatically get adjusted if you adjust num-threads.
-combine_num_threads=8
-combine_parallel_opts="--num-threads 16"  # queue options for "combine" stage.
-cleanup=true
 lda_dim=40
-transform_dir=     # If supplied, overrides ali_dir
-cmvn_opts=  # will be passed to get_lda.sh and get_egs.sh, if supplied.  
-            # only relevant for "raw" features, not lda.
-feat_type=  # Can be used to force "raw" features.
-prior_subset_size=10000 # 10k samples per job, for computing priors.  Should be
-                        # more than enough.
-
-echo "$0 $@"  # Print the command line for logging
+feat_type=raw  # raw, untransformed features (probably MFCC or PLP)
+iters_per_epoch=5
 
 . ./path.sh || exit 1; # make sure we have a path.sh script
-. parse_options.sh || exit 1;
+. ./utils/parse_options.sh || exit 1;
 {% endhighlight %}
 
 After parsing the command-line arguments, we check to make sure our important files are where they should be. All these files should have been generated during our GMM-HMM training.
@@ -350,10 +376,7 @@ exp_dir=$4
 # Check some files from our GMM-HMM system
 for f in \
     $data_dir/feats.scp \
-    $data_dir/utt2spk \
     $lang_dir/topo \
-    $lang_dir/oov.int \
-    $lang_dir/phones/silence.csl \
     $ali_dir/ali.1.gz \
     $ali_dir/final.mdl \
     $ali_dir/tree \
@@ -369,35 +392,22 @@ Once we're sure all the important files are in place, we extract some variables 
 {% highlight bash %}
 # Set number of leaves
 num_leaves=`tree-info $ali_dir/tree 2>/dev/null | grep num-pdfs | awk '{print $2}'` || exit 1;
-[ -z $num_leaves ] && echo "\$num_leaves is unset" && exit 1;
-[ "$num_leaves" -eq "0" ] && echo "\$num_leaves is 0" && exit 1;
 
 # set up some dirs and parameter definition files
 nj=`cat $ali_dir/num_jobs` || exit 1;
-sdata=$data_dir/split$nj
-utils/split_data.sh $data_dir $nj
-mkdir -p $exp_dir/log
 echo $nj > $exp_dir/num_jobs
-cp $ali_dir/tree $exp_dir
-
-# set some extra options
-extra_opts=()
-[ ! -z "$cmvn_opts" ] && extra_opts+=(--cmvn-opts "$cmvn_opts")
-[ ! -z "$feat_type" ] && extra_opts+=(--feat-type $feat_type)
-[ ! -z "$online_ivector_dir" ] && extra_opts+=(--online-ivector-dir $online_ivector_dir)
-[ -z "$transform_dir" ] && transform_dir=$ali_dir
-extra_opts+=(--transform-dir $transform_dir)
-extra_opts+=(--splice-width $splice_width)
+cp $ali_dir/tree $exp_dir/tree
+mkdir -p $exp_dir/log
 {% endhighlight %}
 
 
-At this point in the script, we have defined a bunch of variables, created two files (1) **tree** (copied from the GMM-HMM) and (2) **num_jobs**, and created an empty **log** directory. We can see these new additions in our main experiment dir:
+At this point in the script, we have defined a bunch of variables, created two files (1) **tree** (copied from the GMM-HMM), (2) **num_jobs**, and created an empty **log** directory. We can see these new additions in our main experiment dir:
 
 
 {% highlight bash %}
-josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment$ tree nnet2_online/
-nnet2_online/
-└── nnet_a_baseline
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ tree experiment/nnet2/
+experiement/nnet2/
+└── nnet2_simple
     ├── log
     ├── num_jobs
     └── tree
@@ -406,20 +416,22 @@ nnet2_online/
 {% endhighlight %}
 
 
-Now we move on to data preparation before training, and we start with getting the LDA feature transform (via **get_lda.sh**) we will use before we take our features as input to our DNN. Remember, we're still in **train_simple.sh** at this point.
+Now we move on to data preparation before training, and we start with getting the LDA feature transform (via **get_lda_simple.sh**) we will use before we take our features as input to our DNN. Remember, we're still in **train_simple.sh** at this point.
+
 
 {% highlight bash %}
-if [ $stage -le -4 ]; then
+if [ $stage -le -5 ]; then
 
     echo ""
-    echo "########################"
-    echo "### BEGIN get_lda.sh ###"
-    echo "########################"
+    echo "###############################"
+    echo "### BEGIN GET LDA TRANSFORM ###"
+    echo "###############################"
 
-    steps/nnet2/get_lda.sh \
+    steps/nnet2/get_lda_simple.sh \
         --cmd "$cmd" \
         --lda-dim $lda_dim \
-        "${extra_opts[@]}" \
+        --feat-type $feat_type \
+        --splice-width $splice_width \
         $data_dir \
         $lang_dir \
         $ali_dir \
@@ -428,58 +440,65 @@ if [ $stage -le -4 ]; then
 
     # these files should have been written by get_lda.sh
     feat_dim=$(cat $exp_dir/feat_dim) || exit 1;
-    ivector_dim=$(cat $exp_dir/ivector_dim) || exit 1;
     lda_dim=$(cat $exp_dir/lda_dim) || exit 1;
     lda_mat=$exp_dir/lda.mat || exit;
 
+    echo ""
+    echo "#############################"
+    echo "### END GET LDA TRANSFORM ###"
+    echo "#############################"
 fi
 {% endhighlight %}
 
 
-This script outputs a matrix for the LDA transform, and this very matrix will show up again as a **FixedAffineComponent** when we initialize the neural net, just after our input layer with splicing. That means, once we've got our LDA transform, it will applied to all input, and because it is a **FixedComponent**, the matrix will not be updated by back-propagation.
+This script outputs a matrix for the LDA transform, and this same matrix will show up again as a **FixedAffineComponent** when we initialize the neural net, just after our input layer with splicing. That means, once we've got our LDA transform, it will applied to all input, and because it is a **FixedComponent**, the matrix will not be updated by back-propagation.
 
-Here are the new files created by **get_lda.sh**.
+Here are the new files created by **get_lda_simple.sh**.
 
 {% highlight bash %}
-# At this point, we have generated the following:
-# josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment$ tree nnet2/
-# nnet2/
-# └── nnet2_toy_example
-#     ├── cholesky.tpmat
-#     ├── cmvn_opts
-#     ├── feat_dim
-#     ├── ivector_dim
-#     ├── lda.acc
-#     ├── lda_dim
-#     ├── lda.mat
-#     ├── log
-#     │   ├── lda_acc.1.log
-#     │   ├── lda_acc.2.log
-#     │   ├── lda_acc.3.log
-#     │   ├── lda_acc.4.log
-#     │   ├── lda_est.log
-#     │   └── lda_sum.log
-#     └── within_covar.spmat
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ tree experiment/nnet2/
+experiment/nnet2/
+└── nnet2_simple
+    ├── feat_dim
+    ├── lda.1.acc
+    ├── lda.2.acc
+    ├── lda.3.acc
+    ├── lda.4.acc
+    ├── lda.acc
+    ├── lda_dim
+    ├── lda.mat
+    ├── log
+    │   ├── lda_acc.1.log
+    │   ├── lda_acc.2.log
+    │   ├── lda_acc.3.log
+    │   ├── lda_acc.4.log
+    │   ├── lda_est.log
+    │   └── lda_sum.log
+    ├── num_jobs
+    └── tree
 
-# 2 directories, 14 files
+2 directories, 16 files
 {% endhighlight %}
 
-Now that we've estimated the LDA transform which we will later apply to our spliced feature frames in training, we will split up our data into the appropriate directories for training and validation:
+Now that we've estimated the LDA transform which we will later apply to our spliced feature frames in training and testing, we will format our training data. In the original get_egs.sh script, we split the training data into training and validation and the validation is used for diagnostics during the training iterations. 
+
+However, for my modified **get_egs_simple.sh** I took out validation and diagnostics altogether. As such, my version merely takes the training data and formats it without chopping it up into various subsets for diagnostics.
+
 
 {% highlight bash  %}
-if [ $stage -le -3 ]; then
+if [ $stage -le -4 ]; then
 
     echo ""
-    echo "########################"
-    echo "### BEGIN get_egs.sh ###"
-    echo "########################"
+    echo "###################################"
+    echo "### BEGIN GET TRAINING EXAMPLES ###"
+    echo "###################################"
 
-    steps/nnet2/get_egs.sh \
+    steps/nnet2/get_egs_simple.sh \
         --cmd "$cmd" \
-        "${extra_opts[@]}" \
-        --samples-per-iter $samples_per_iter \
-        --num-jobs-nnet $num_jobs_nnet \
-        --io-opts "$io_opts" \
+        --feat-type $feat_type \
+        --splice-width $splice_width \
+        --num-jobs-nnet $num_threads \
+        --iters-per-epoch $iters_per_epoch \
         $data_dir \
         $ali_dir \
         $exp_dir \
@@ -488,46 +507,67 @@ if [ $stage -le -3 ]; then
     # this is the path to the new egs dir that was just created
     egs_dir=$exp_dir/egs
 
+    echo ""
+    echo "#################################"
+    echo "### END GET TRAINING EXAMPLES ###"
+    echo "#################################"
+
 fi
+
 {% endhighlight %}
 
-After we run the **get_egs.sh** script, we find that we have generated 27 new files and one new **egs** dir.
+After we run the **get_egs.sh** script, we find that we have generated a new **egs** dir.
 
 {% highlight bash %}
-josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment$ tree nnet2/
-nnet2/
-└── nnet_toy_example
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ tree experiment/nnet2/
+experiment/nnet2/
+└── nnet2_simple
     ├── egs
-    │   ├── combine.egs
     │   ├── egs.1.0.ark
+    │   ├── egs.1.1.ark
     │   ├── egs.2.0.ark
+    │   ├── egs.2.1.ark
     │   ├── egs.3.0.ark
+    │   ├── egs.3.1.ark
     │   ├── egs.4.0.ark
+    │   ├── egs.4.1.ark
     │   ├── iters_per_epoch
-    │   ├── num_jobs_nnet
-    │   ├── samples_per_iter
-    │   ├── train_diagnostic.egs
-    │   └── valid_diagnostic.egs
+    │   └── num_jobs_nnet
+    ├── feat_dim
+    ├── lda.1.acc
+    ├── lda.2.acc
+    ├── lda.3.acc
+    ├── lda.4.acc
+    ├── lda.acc
+    ├── lda_dim
+    ├── lda.mat
     ├── log
-    │   ├── create_train_subset_combine.log
-    │   ├── create_train_subset_diagnostic.log
-    │   ├── create_train_subset.log
-    │   ├── create_valid_subset_combine.log
-    │   ├── create_valid_subset_diagnostic.log
-    │   ├── create_valid_subset.log
     │   ├── get_egs.1.log
     │   ├── get_egs.2.log
     │   ├── get_egs.3.log
     │   ├── get_egs.4.log
+    │   ├── lda_acc.1.log
+    │   ├── lda_acc.2.log
+    │   ├── lda_acc.3.log
+    │   ├── lda_acc.4.log
+    │   ├── lda_est.log
+    │   ├── lda_sum.log
     │   ├── shuffle.0.1.log
     │   ├── shuffle.0.2.log
     │   ├── shuffle.0.3.log
-    │   └── shuffle.0.4.log
-    ├── num_frames
-    ├── train_subset_uttlist
-    └── valid_uttlist
+    │   ├── shuffle.0.4.log
+    │   ├── shuffle.1.1.log
+    │   ├── shuffle.1.2.log
+    │   ├── shuffle.1.3.log
+    │   ├── shuffle.1.4.log
+    │   ├── split_egs.1.log
+    │   ├── split_egs.2.log
+    │   ├── split_egs.3.log
+    │   └── split_egs.4.log
+    ├── num_jobs
+    └── tree
 
-3 directories, 27 files
+3 directories, 42 files
 {% endhighlight %}
 
 Now that we have the training examples (phone-to-frame alignments) sorted and in the correct format, we go on to initialize our neural net.
@@ -537,11 +577,11 @@ Similar to our **topo** configuration file we used in GMM-HMM training, we have 
 
 {% highlight bash %}
     cat >$exp_dir/nnet.config <<EOF
-SpliceComponent input-dim=$tot_input_dim left-context=$splice_width right-context=$splice_width const-component-dim=$ivector_dim
+SpliceComponent input-dim=$feat_dim left-context=$splice_width right-context=$splice_width
 FixedAffineComponent matrix=$lda_mat
 AffineComponent input-dim=$lda_dim output-dim=$hidden_layer_dim learning-rate=$initial_learning_rate param-stddev=$stddev bias-stddev=$bias_stddev
 TanhComponent dim=$hidden_layer_dim
-AffineComponent input-dim=$hidden_layer_dim output-dim=$num_leaves learning-rate=$initial_learning_rate param-stddev=0 bias-stddev=0
+AffineComponent input-dim=$hidden_layer_dim output-dim=$num_leaves learning-rate=$initial_learning_rate param-stddev=$stddev bias-stddev=$bias_stddev
 SoftmaxComponent dim=$num_leaves
 EOF
 {% endhighlight %}
@@ -591,7 +631,7 @@ Let's do another "check-in" to see what files we had created. We find that we've
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment$ tree nnet2/
 nnet2/
-└── nnet2_toy_example
+└── nnet2_simple
     ├── 0.mdl
     ├── hidden.config
     ├── log
@@ -606,7 +646,7 @@ Also, we can take a look at our untrained model and get some info about it by ma
 
 
 {% highlight bash %}
-josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/nnet2/nnet2_toy_example$ ../../../../../../src/nnet2bin/nnet-am-info 0.mdl
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/nnet2/nnet2_simple$ ../../../../../../src/nnet2bin/nnet-am-info 0.mdl
 ../../../../../../src/nnet2bin/nnet-am-info 0.mdl 
 num-components 6
 num-updatable-components 2
@@ -649,7 +689,7 @@ Taking another quote from the offical [nnet2 docs][nnet2-docs] with regards to *
 These priors are stored back in the model, and we can see that they exist by again getting info about our neural net with **nnet-am-info.cc**
 
 {% highlight bash %}
-josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/nnet2/nnet2_toy_example$ ../../../../../../src/nnet2bin/nnet-am-info 0.mdl
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/nnet2/nnet2_simple$ ../../../../../../src/nnet2bin/nnet-am-info 0.mdl
 ../../../../../../src/nnet2bin/nnet-am-info 0.mdl 
 num-components 6
 num-updatable-components 2
@@ -669,26 +709,94 @@ prior dimension: 1759, prior sum: 1, prior min: 1.68406e-05
 
 Now we move on to the main training loop, which will update our parameters via backpropagation.
 
-Here's the most important code snippet from this loop:
-
-
 {% highlight bash %}
-$cmd $parallel_opts JOB=1:$num_jobs_nnet $exp_dir/log/train.$x.JOB.log \
-     nnet-shuffle-egs \
-         --buffer-size=$shuffle_buffer_size \
-         --srand=$x \
-         ark:$egs_dir/egs.JOB.$[$x%$iters_per_epoch].ark \
-         ark:- \| \
-     nnet-train-parallel \
-         --num-threads=$num_threads \
-         --minibatch-size=$this_minibatch_size \
-         --srand=$x "$mdl" \
-         ark:- \
-         $exp_dir/$[$x+1].JOB.mdl \
-     || exit 1;
+if [ $stage -le -2 ]; then
+
+    echo ""
+    echo "#################################"
+    echo "### BEGIN TRAINING NEURAL NET ###"
+    echo "#################################"
+    
+    # get some info on iterations and number of models we're training
+    iters_per_epoch=`cat $egs_dir/iters_per_epoch` || exit 1;
+    num_jobs_nnet=`cat $egs_dir/num_jobs_nnet` || exit 1;
+    num_tot_iters=$[$num_epochs * $iters_per_epoch]
+
+    echo "Will train for $num_epochs epochs = $num_tot_iters iterations"
+    
+    # Main training loop
+    x=0
+    while [ $x -lt $num_tot_iters ]; do
+            
+        echo "Training neural net (pass $x)"
+        
+        # IF *not* first iteration \
+        # AND we still have layers to add \
+        # AND its the right time to add a layer
+        if [ $x -gt 0 ] \
+            && [ $x -le $[($num_hidden_layers-1)*$add_layers_period] ] \
+            && [ $[($x-1) % $add_layers_period] -eq 0 ]; 
+        then
+            echo "Adding new hidden layer"
+            mdl="nnet-init --srand=$x $exp_dir/hidden.config - |"
+            mdl="$mdl nnet-insert $exp_dir/$x.mdl - - |" 
+        else
+            # otherwise just use the past model
+            mdl=$exp_dir/$x.mdl
+        fi
+        
+        # Shuffle examples and train nets with SGD
+        $cmd JOB=1:$num_jobs_nnet $exp_dir/log/train.$x.JOB.log \
+            nnet-shuffle-egs \
+                --srand=$x \
+                ark:$egs_dir/egs.JOB.$[$x%$iters_per_epoch].ark \
+                ark:- \| \
+            nnet-train-parallel \
+                --num-threads=$num_threads \
+                --minibatch-size=$minibatch_size \
+                --srand=$x \
+                "$mdl" \
+                ark:- \
+                $exp_dir/$[$x+1].JOB.mdl \
+                || exit 1;
+        
+        # Get a list of all the nnets which were run on different jobs
+        nnets_list=
+        for n in `seq 1 $num_jobs_nnet`; do
+            nnets_list="$nnets_list $exp_dir/$[$x+1].$n.mdl"
+        done
+        
+        learning_rate=`perl -e '($x,$n,$i,$f)=@ARGV; print ($x >= $n ? $f : $i*exp($x*log($f/$i)/$n));' $[$x+1] $num_tot_iters $initial_learning_rate $final_learning_rate`;
+        
+        # Average all SGD-trained models for this iteration
+        $cmd $exp_dir/log/average.$x.log \
+            nnet-am-average \
+                $nnets_list - \| \
+            nnet-am-copy \
+                --learning-rate=$learning_rate \
+                - \
+                $exp_dir/$[$x+1].mdl \
+                || exit 1;
+        
+        # on to the next model
+        x=$[$x+1]
+        
+    done;
+    
+    # copy and rename final model as final.mdl
+    cp $exp_dir/$x.mdl $exp_dir/final.mdl
+    
+    echo ""
+    echo "################################"
+    echo "### DONE TRAINING NEURAL NET ###"
+    echo "################################"
+    
+fi
 {% endhighlight %}
 
-Directly quoting from the comments of the **nnet-train-parallel.cc** source code:
+The main program doing the training in this loop is **nnet-train-parallel.cc**. 
+
+Directly quoting from the comments of the source code:
 
 > Train the neural network parameters with backprop and stochastic
 > gradient descent using minibatches.  As nnet-train-simple, but
@@ -707,48 +815,12 @@ In the comments of the original script, the authors note:
 > function), and the smaller minibatch size will help to keep
 > the update stable.
 
-Here's the loop which will either average our models or choose the best one:
 
+I've taken the option of choosing the one-best job out of **train_simple.sh**. This will surely lead to instability, but it simplifies the training process and makes the big picture easier to see.
 
-{% highlight bash %}
-if $do_average; then
+Furthermore, in the original script, we would normally have the option of mixing up the number of components in the neural net. However, I chose to take out the mixing up option for the sake of make as minimal a net as possible.
 
-    $cmd $exp_dir/log/average.$x.log \
-        nnet-am-average \
-            $nnets_list - \| \
-        nnet-am-copy \
-            --learning-rate=$learning_rate \
-            - \
-            $exp_dir/$[$x+1].mdl \
-            || exit 1;
-
-else
-    # choose the best model ($n) from the different jobs.
-
-    n=$(perl -e '($nj,$pat)=@ARGV; $best_n=1; $best_logprob=-1.0e+10; for ($n=1;$n<=$nj;$n++) {
-  $fn = sprintf($pat,$n); open(F, "<$fn") || die "Error opening log file $fn";
-  undef $logprob; while (<F>) { if (m/log-prob-per-frame=(\S+)/) { $logprob=$1; } }
-  close(F); if (defined $logprob && $logprob > $best_logprob) { $best_logprob=$logprob; 
-  $best_n=$n; } } print "$best_n\n"; ' $num_jobs_nnet $exp_dir/log/train.$x.%d.log) \
-      || exit 1;
-
-    [ -z "$n" ] && echo "Error getting best model" && exit 1;
-
-    $cmd $exp_dir/log/select.$x.log \
-        nnet-am-copy \
-            --learning-rate=$learning_rate \
-            $exp_dir/$[$x+1].$n.mdl \
-            $exp_dir/$[$x+1].mdl \
-            || exit 1;
-
-fi
-{% endhighlight %}
-
-Next, in the original script, we would normally have the option of mixing up the number of components in the neural net. However, I chose to take out the mixing up option for the sake of make as minimal a net as possible.
-
-
-
-
+So that's how **train_simple.sh** works... I hope you found this walkthrough useful.
 
 ## Conclusion
 
