@@ -66,6 +66,7 @@ Amoung other things, I threw away:
 4. all training diagnostics (no more validation examples)
 5. final model combination
 6. weighting of posteriors of silence phones
+7. "mixing up" the number of nodes before the Softmax layer
 
 <br/>
 
