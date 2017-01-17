@@ -16,11 +16,15 @@ comments: True
 
 If you want to take a step back and learn about Kaldi in general, I have posts on [how to install Kaldi][kaldi-install] or some [miscellaneous Kaldi notes][kaldi-notes] which contain some documentation.
 
+All the scripts presented in this post or required for training can be downloaded [here]({{ site.url }}/misc/nnet2_simple.tar.gz).
+
+Much of the information in this post comes directly from the [official `nnet2` documentation][nnet2-docs]. 
+
+If there are any mistakes or misrepresentations in this post, they are surely my fault and not of the Kaldi teams. If you find something off, or have questions, please leave a comment!
+
 <br/>
 
 ## Introduction
-
-All the scripts presented in this post or required for training can be downloaded [here]({{ site.url }}/misc/nnet2_simple.tar.gz).
 
 I've you reading this, you've probably already trained a standard GMM-HMM acoustic model. 
 
