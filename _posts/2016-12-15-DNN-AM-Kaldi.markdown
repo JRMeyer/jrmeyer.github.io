@@ -846,6 +846,24 @@ If you have any feedback or questions, don't hesitate to leave a comment!
 
 ## Relevant Papers
 
+### Povery et al. (2015) [*Parallel Training of DNNs with Natural Gradient and Parameter Averaging*][povery-2015]
+
+According to the official docs, this is the best published description of `nnet2` (Dan's DNN setup):
+
+> We describe the neural-network training framework used in the Kaldi speech
+> recognition toolkit, which is geared towards training DNNs with large amounts
+> of training data using multiple GPU-equipped or multi-core machines. In order to
+> be as hardware-agnostic as possible, we needed a way to use multiple machines
+> without generating excessive network traffic. Our method is to average the neural
+> network parameters periodically (typically every minute or two), and redistribute
+> the averaged parameters to the machines for further training. Each machine sees
+> different data. By itself, this method does not work very well. However, we have
+> another method, an approximate and efficient implementation of Natural Gradient
+> for Stochastic Gradient Descent (NG-SGD), which seems to allow our periodic-
+> averaging method to work well,  as well as substantially improving the conver-
+> gence of SGD on a single machine.
+
+
 ### Rath et al. (2013) [*Improved feature processing for Deep Neural Networks*][rath-2013]
 
 > In this paper, we investigate alternative ways of processing
@@ -891,4 +909,5 @@ Co-authors include Dan Jurafsky and Andrew Ng, among others. This is a longer pa
 [kaldi-notes]: http://jrmeyer.github.io/kaldi/2016/02/01/Kaldi-notes.html
 [maas-2013]: https://arxiv.org/pdf/1406.7806.pdf
 [rath-2013]: http://www.danielpovey.com/files/2013_interspeech_nnet_lda.pdf
+[povey-2015]: https://arxiv.org/pdf/1410.7455v4.pdf
 [nnet2-docs]: http://kaldi-asr.org/doc/dnn2.html
