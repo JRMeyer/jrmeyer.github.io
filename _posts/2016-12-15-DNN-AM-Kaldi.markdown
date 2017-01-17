@@ -20,7 +20,7 @@ All the scripts presented in this post or required for training can be downloade
 
 Much of the information in this post comes directly from the [official `nnet2` documentation][nnet2-docs]. 
 
-If there are any mistakes or misrepresentations in this post, they are surely my fault and not of the Kaldi teams. If you find something off, or have questions, please leave a comment!
+If there are any mistakes or misrepresentations in this post, they are more than likely my fault and not of the Kaldi team. If you find something off, or have questions, please leave a comment!
 
 <br/>
 
