@@ -20,6 +20,8 @@ If you want to take a step back and learn about Kaldi in general, I have posts o
 
 ## Introduction
 
+All the scripts presented in this post or required for training can be downloaded [here]({{ site.url }}/misc/nnet2_simple.tar.gz).
+
 I've you reading this, you've probably already trained a standard GMM-HMM acoustic model. 
 
 If you haven't already, you should do that first, because if you're planning on following the standard Kaldi scripts for DNN training, you need to train a GMM-HMM and use it to generate alignments for your training audio.
