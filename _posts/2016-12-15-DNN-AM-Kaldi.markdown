@@ -846,7 +846,7 @@ If you have any feedback or questions, don't hesitate to leave a comment!
 
 ## Relevant Papers
 
-### Povery et al. (2015) [*Parallel Training of DNNs with Natural Gradient and Parameter Averaging*][povery-2015]
+### Povery et al. (2015) [*Parallel Training of DNNs with Natural Gradient and Parameter Averaging*][povey-2015]
 
 According to the official docs, this is the best published description of `nnet2` (Dan's DNN setup):
 
