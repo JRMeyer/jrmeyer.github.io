@@ -8,11 +8,32 @@ permalink: /about/
 <script async defer src="//platform.instagram.com/en_US/embeds.js"></script>
 
 <br/>
+<br/>
 
-I'm a PhD student in computational linguistics at the University of Arizona. My research is mainly on automatic speech recognition, but I do some natural language processing and I'm interested in general machine learning as well. This blog is some of what I'm learning along the way.
+My name's Josh and I'm a PhD student in computational linguistics at the University of Arizona. My research is mainly on automatic speech recognition, but I do some natural language processing and I'm interested in general machine learning as well. This blog is some of what I'm learning along the way.
+
+Even though I spend most of the day with my NLP / machine learning hat on, I'm still very much a linguist in that I love languages. I've spent a good amount of time studying French and Russian, and I've dabbled in a handful of others. [Kyrgyz](https://en.wikipedia.org/wiki/Kyrgyz_language) is the language I often use in my research, because it's pretty cool!
+
+<br/>
+
+<center>Sometimes I also like to make music:)</center>
+<br/>
+
+<center><audio controls>
+ <source src="http://jrmeyer.github.io/misc/piano_6.wav"
+         type='audio/wav'>
+ <!-- The next two lines are only executed if the browser doesn't support WAV files -->
+ <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"
+         type='audio/ogg; codecs=vorbis'>
+ <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
+ <p>Your user agent does not support the HTML5 Audio element.</p>
+</audio></center>
+
+<br/>
+<br/>
 
 In case you're interested, you can find my [academic CV here]({{ site.url }}/misc/josh-meyer-cv.pdf).
 
-If you have comments or spot some issues in a post, I would very much appreciate your thoughts!
+<br/>
 
 joshuameyer # email $ arizona $ edu {# -> @, $ -> .}
