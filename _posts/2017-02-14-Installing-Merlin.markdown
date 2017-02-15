@@ -365,8 +365,236 @@ josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree .
 14 directories, 20 files
 {% endhighlight %}
 
+So, what should we take away from the files and directories present?
+
+Firstly, if we just look at the first layer of files and dirs inside `s1`, we see three (3) dirs, three (3) scripts, and two (2) documentation files.
+
+As for the three dirs, the first dir (in alphabetical order) is `conf`. The `conf` dir (short for configuration) houses a dir of DNN configuration files. These DNN "conf" files define some information about the paths to relevant directories, information about the training data, and the architecture of the DNNs we want to train.
+
+There are a total of four (4) DNN configuration files, the first two for training and the last two for testing:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/conf/dnn$ tree .
+.
+├── acoustic_slt_arctic_full.conf
+├── duration_slt_arctic_full.conf
+├── test_dur_synth_slt_arctic_full.conf
+└── test_synth_slt_arctic_full.conf
+
+0 directories, 4 files
+{% endhighlight %}
+
+In Merlin, we don't just model the phonemes of the language. We also model their durations. For both (1) phoneme modeling and (2) duration modeling, we use DNNs, and as such we have two configuration files as seen in the `conf/dnn/` dir above.
+
+Quoting from the team's [demonstration paper][merlin-demo-paper], they concisely describe the duration model as such:
+
+> **Duration modelling** Merlin models duration using a separate
+> DNN to the acoustic model.  The duration model is trained on
+> the aligned data, to predict phone- and/or state-level durations.
+> At synthesis time, duration is predicted first, and is used as an
+> input to the acoustic model to predict the speech parameters.
+
+Moving onto the second directory within `s1`, we find the location of our data preparation scripts.
+
+Logically, this directory is labeled `scripts`.
+
+Let's take a look inside:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/scripts$ tree .
+├── prepare_config_files_for_synthesis.sh
+├── prepare_config_files.sh
+├── prepare_labels_from_txt.sh
+├── remove_intermediate_files.sh
+├── setup.sh
+└── submit.sh
+
+0 directories, 6 files
+{% endhighlight %}
+
+The first four files have very transparent filenames, so I won't elaborate on them.
+
+Skipping to the `setup.sh` script, you should know that the main purpose of this script is to create the main directories to house the current experiment, move test and train data into those directories, and define the global configuration file.
+
+Some main snippets from this file:
+
+Making the dirs and moving data:
+
+{% highlight bash %}
+experiments_dir=${current_working_dir}/experiments
+voice_dir=${experiments_dir}/${voice_name}
+acoustic_dir=${voice_dir}/acoustic_model
+duration_dir=${voice_dir}/duration_model
+synthesis_dir=${voice_dir}/test_synthesis
+
+mkdir -p ${experiments_dir}
+mkdir -p ${voice_dir}
+mkdir -p ${acoustic_dir}
+mkdir -p ${duration_dir}
+
+mv ${data_dir}/merlin_baseline_practice/duration_data/ ${duration_dir}/data
+mv ${data_dir}/merlin_baseline_practice/acoustic_data/ ${acoustic_dir}/data
+mv ${data_dir}/merlin_baseline_practice/test_data/ ${synthesis_dir}
+{% endhighlight %}
+
+Saving important information to the global config file:
+
+{% highlight bash %}
+global_config_file=conf/global_settings.cfg
+
+echo "MerlinDir=${merlin_dir}" >  $global_config_file
+echo "WorkDir=${current_working_dir}" >>  $global_config_file
+echo "Voice=${voice_name}" >> $global_config_file
+echo "Labels=state_align" >> $global_config_file
+echo "QuestionFile=questions-radio_dnn_416.hed" >> $global_config_file
+echo "Vocoder=WORLD" >> $global_config_file
+echo "SamplingFreq=16000" >> $global_config_file
+
+echo "FileIDList=file_id_list_demo.scp" >> $global_config_file
+echo "Train=50" >> $global_config_file 
+echo "Valid=5" >> $global_config_file 
+echo "Test=5" >> $global_config_file 
+{% endhighlight %}
+
+This config file will contain information on where the Merlin compiled programs are located, where the current working dir is, what kind of Vocoder we're using is, and how many files to use for training and testing.
+
+It will also download the data for this particular demo and move data to the right location. This happens earlier in the script, but I think because it is specific to the demo data used here, it is not the main purpose of this `setup.sh` script.
+
+Moving on, the next script located in the `s1/scripts/` dir which deserves a word of explanation is the `submit.sh` script. However, the name is transparent once you know that this script will take any Theano job and submit it to either a GPU or CPU, depending on what you have available.
+
+Moving back up a level to the `s1/` dir, the last of the three main dirs is `testrefs`. This dir contains only four (4) files, which are all log files from training performed by the CSTR team. These files can be used to compare against our own training in case we hit any problems.
+
+At this point, we've briefly gone over the content of all the three dirs in the first level of the main model dir: `s1`. Specifically, we mentioned:
+
+1. `conf`: contains configuration files for building, training, and testing our DNNs
+2. `scripts`: contains scripts for preparing data and submitting Theano jobs
+2. `testrefs`: contains log files from the CSTR team for our reference
+
+Now that we've gone over our dirs, we can go to our three scripts in the top level of `s1`:
+
+1. `merlin_synthesis.sh`
+2. `run_demo.sh`
+3. `run_full_voice.sh`
+
+I would normally walk through the scripts in alphabetical order, but in fact, the `s1/README.md` file directs us to run the `run_demo.sh` script first, so I will start there. I'm going to skip over the `run_full_voice.sh` altogether, since it is the equivalent of `run_demo.sh` but with more data.
+
+So, walking through the `run_demo.sh` script, the first thing we see is the data prep stage:
+
+{% highlight bash %}
+### Step 1: setup directories and the training data files ###
+echo "Step 1: setting up experiments directory and the training data files..."
+global_config_file=conf/global_settings.cfg
+./scripts/setup.sh slt_arctic_demo
+./scripts/prepare_config_files.sh $global_config_file
+./scripts/prepare_config_files_for_synthesis.sh $global_config_file
+{% endhighlight %}
+
+Running these scripts one-by-one, it's easier to see what's going on in my opinion. In the following, I'll be inserting `exit` after the section in question, and commenting out all previous lines of code. I could just run one line of code at a time in the terminal, but there are some variables floating around and I don't want to bother with them, so in the following you will see I'm running the `run_demo.sh` script over and over again, but keep in mind I'm actually only running the code of interest.
+
+So, beginning with the `setup.sh` script, we get the following output to the terminal:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh 
+Step 1: setting up experiments directory and the training data files...
+downloading data.....
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 12.9M  100 12.9M    0     0  2856k      0  0:00:04  0:00:04 --:--:-- 3181k
+unzipping files......
+data is ready!
+Merlin default voice settings configured in conf/global_settings.cfg
+setup done...!Step 1: setting up experiments directory and the training data files...
+downloading data.....
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 12.9M  100 12.9M    0     0  2856k      0  0:00:04  0:00:04 --:--:-- 3181k
+unzipping files......
+data is ready!
+Merlin default voice settings configured in conf/global_settings.cfg
+setup done...!
+{% endhighlight %}
+
+Looking into the file structure at this time, we first see we have a new global config file in the `conf` dir:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree conf/
+conf/
+├── dnn
+│   ├── acoustic_slt_arctic_full.conf
+│   ├── duration_slt_arctic_full.conf
+│   ├── test_dur_synth_slt_arctic_full.conf
+│   └── test_synth_slt_arctic_full.conf
+├── global_settings.cfg
+└── logging_config.conf
+
+1 directory, 6 files
+{% endhighlight %}
+
+We also see that a new directory (`experiments`) has been created with 14 sub directories:
+
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    ├── acoustic_model
+    │   └── data
+    │       ├── bap
+    │       │   ├── arctic_a0001.bap
+    │       │   ├── arctic_a0002.bap
+    │       │   └── arctic_a0003.bap
+    │       ├── file_id_list_demo.scp
+    │       ├── label_phone_align
+    │       │   ├── arctic_a0001.lab
+    │       │   ├── arctic_a0002.lab
+    │       │   └── arctic_a0003.lab
+    │       ├── label_state_align
+    │       │   ├── arctic_a0001.lab
+    │       │   ├── arctic_a0002.lab
+    │       │   └── arctic_a0003.lab
+    │       ├── lf0
+    │       │   ├── arctic_a0001.lf0
+    │       │   ├── arctic_a0002.lf0
+    │       │   └── arctic_a0003.lf0
+    │       └── mgc
+    │           ├── arctic_a0001.mgc
+    │           ├── arctic_a0002.mgc
+    │           └── arctic_a0003.mgc
+    ├── duration_model
+    │   └── data
+    │       ├── file_id_list_demo.scp
+    │       ├── label_phone_align
+    │       │   ├── arctic_a0001.lab
+    │       │   ├── arctic_a0002.lab
+    │       │   └── arctic_a0003.lab
+    │       └── label_state_align
+    │           ├── arctic_a0001.lab
+    │           ├── arctic_a0002.lab
+    │           └── arctic_a0003.lab
+    └── test_synthesis
+        ├── prompt-lab
+        │   ├── arctic_a0001.lab
+        │   ├── arctic_a0002.lab
+        │   └── arctic_a0003.lab
+        └── test_id_list.scp
+
+14 directories, 433 files
+
+{% endhighlight %} 
+
+In the above output I've omitted displaying most files because there's a lot, specifically, there's 433 files.
+
+In terms of the file formats, we find the following:
+
+1. `*.bap`: band a-periodicities
+2. `*.lab`: label files (time-to-phone alignments)
+3. `*.lf0`: log-fundamental frequencies
+4. `*.mgc`: generalized cepstral coefficients
+
+
 
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
 [merlin-cstr]: http://www.cstr.ed.ac.uk/projects/merlin/
 [pip-install]: https://pip.pypa.io/en/stable/installing/
+[merlin-demo-paper]: http://homepages.inf.ed.ac.uk/s1432486/papers/Merlin_demo_paper.pdf
