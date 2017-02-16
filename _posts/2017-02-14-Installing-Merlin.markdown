@@ -13,7 +13,13 @@ Here's the official [Merlin GitHub repository][merlin-github].
 
 Here's the official [CSTR Merlin webpage][merlin-cstr].
 
-## Clone
+
+<br/>
+<br/>
+
+## Installation
+
+### Clone
 
 Like good open-source software, the Merlin toolkit is hosted on GitHub and can be easily downloaded (cloned) with a single line of code:
 
@@ -129,7 +135,7 @@ So, we find that to install Merlin succesfully, we have to:
 
 Let's follow those instructions in the order suggested, and start with the instructions in the `tools/INSTALL` file:
 
-## Compile
+### Compile
 
 {% highlight bash %}
 
@@ -224,7 +230,7 @@ All tools successfully compiled!!
 Since the output to the terminal was pretty long, I cut out a big part in the middle as you can see.
 
 
-## Python Dependencies
+### Install Python Dependencies
 
 So now that we have compiled our Merlin tools, let's move on to the second step in the main `merlin/INSTALL` file where we are instructred to make sure we have the right Python dependencies installed. It's not explicit, but I'm pretty sure we need Python2 and not Python3. In any case, I've tested this out with Python2 on my system and it seems to work ok.
 
@@ -262,6 +268,9 @@ So now, at this point we have downloaded and compiled Merlin along with all its 
 
 Now let's go on to run the demo.
 
+
+<br/>
+<br/>
 
 ## Running the demo
 
@@ -321,7 +330,9 @@ Step 2: ./merlin_synthesis.sh
 
 So, we're going to start with the simpler `demo voice` as suggested.
 
-But, before we just go and run that `run_demo.sh`, lets investigate what data and scripts we have so far so that we can get an idea of what Merlin requires and what the workflow is.
+### Pre-existing Dirs & Files
+
+Before we just go and run that `run_demo.sh`, lets investigate what data and scripts we have so far so that we can get an idea of what Merlin requires and what the workflow is.
 
 So, I always like to use the `tree` program for Linux. It's a very simple program that will list out the contents of a directory recursively with 
 {% highlight bash %}
@@ -367,7 +378,9 @@ josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree .
 
 So, what should we take away from the files and directories present?
 
-Firstly, if we just look at the first layer of files and dirs inside `s1`, we see three (3) dirs, three (3) scripts, and two (2) documentation files.
+<br/>
+
+##### `conf`
 
 As for the three dirs, the first dir (in alphabetical order) is `conf`. The `conf` dir (short for configuration) houses a dir of DNN configuration files. These DNN "conf" files define some information about the paths to relevant directories, information about the training data, and the architecture of the DNNs we want to train.
 
@@ -394,6 +407,10 @@ Quoting from the team's [demonstration paper][merlin-demo-paper], they concisely
 > At synthesis time, duration is predicted first, and is used as an
 > input to the acoustic model to predict the speech parameters.
 
+<br/>
+
+##### `scripts`
+
 Moving onto the second directory within `s1`, we find the location of our data preparation scripts.
 
 Logically, this directory is labeled `scripts`.
@@ -412,55 +429,15 @@ josh@yoga:~/git/merlin/egs/slt_arctic/s1/scripts$ tree .
 0 directories, 6 files
 {% endhighlight %}
 
-The first four files have very transparent filenames, so I won't elaborate on them.
+The first four data preparation scripts in the `scripts` dir have very transparent filenames, so I won't elaborate on them.
 
-Skipping to the `setup.sh` script, you should know that the main purpose of this script is to create the main directories to house the current experiment, move test and train data into those directories, and define the global configuration file.
-
-Some main snippets from this file:
-
-Making the dirs and moving data:
-
-{% highlight bash %}
-experiments_dir=${current_working_dir}/experiments
-voice_dir=${experiments_dir}/${voice_name}
-acoustic_dir=${voice_dir}/acoustic_model
-duration_dir=${voice_dir}/duration_model
-synthesis_dir=${voice_dir}/test_synthesis
-
-mkdir -p ${experiments_dir}
-mkdir -p ${voice_dir}
-mkdir -p ${acoustic_dir}
-mkdir -p ${duration_dir}
-
-mv ${data_dir}/merlin_baseline_practice/duration_data/ ${duration_dir}/data
-mv ${data_dir}/merlin_baseline_practice/acoustic_data/ ${acoustic_dir}/data
-mv ${data_dir}/merlin_baseline_practice/test_data/ ${synthesis_dir}
-{% endhighlight %}
-
-Saving important information to the global config file:
-
-{% highlight bash %}
-global_config_file=conf/global_settings.cfg
-
-echo "MerlinDir=${merlin_dir}" >  $global_config_file
-echo "WorkDir=${current_working_dir}" >>  $global_config_file
-echo "Voice=${voice_name}" >> $global_config_file
-echo "Labels=state_align" >> $global_config_file
-echo "QuestionFile=questions-radio_dnn_416.hed" >> $global_config_file
-echo "Vocoder=WORLD" >> $global_config_file
-echo "SamplingFreq=16000" >> $global_config_file
-
-echo "FileIDList=file_id_list_demo.scp" >> $global_config_file
-echo "Train=50" >> $global_config_file 
-echo "Valid=5" >> $global_config_file 
-echo "Test=5" >> $global_config_file 
-{% endhighlight %}
-
-This config file will contain information on where the Merlin compiled programs are located, where the current working dir is, what kind of Vocoder we're using is, and how many files to use for training and testing.
-
-It will also download the data for this particular demo and move data to the right location. This happens earlier in the script, but I think because it is specific to the demo data used here, it is not the main purpose of this `setup.sh` script.
+However, we should note that the main purpose of the `setup.sh` script is to download the demo data, create the main directories to house the current experiment, move test and train data into those directories, and define the global configuration file.
 
 Moving on, the next script located in the `s1/scripts/` dir which deserves a word of explanation is the `submit.sh` script. However, the name is transparent once you know that this script will take any Theano job and submit it to either a GPU or CPU, depending on what you have available.
+
+<br/>
+
+##### `testrefs`
 
 Moving back up a level to the `s1/` dir, the last of the three main dirs is `testrefs`. This dir contains only four (4) files, which are all log files from training performed by the CSTR team. These files can be used to compare against our own training in case we hit any problems.
 
@@ -476,9 +453,13 @@ Now that we've gone over our dirs, we can go to our three scripts in the top lev
 2. `run_demo.sh`
 3. `run_full_voice.sh`
 
-I would normally walk through the scripts in alphabetical order, but in fact, the `s1/README.md` file directs us to run the `run_demo.sh` script first, so I will start there. I'm going to skip over the `run_full_voice.sh` altogether, since it is the equivalent of `run_demo.sh` but with more data.
+<br/>
 
-So, walking through the `run_demo.sh` script, the first thing we see is the data prep stage:
+### Running the `run_demo.sh` Script
+
+The `s1/README.md` file directs us to run the `run_demo.sh` script first, so I will start there.
+
+So, walking through the `run_demo.sh` script, the first thing we see is three scripts in the data prep stage:
 
 {% highlight bash %}
 ### Step 1: setup directories and the training data files ###
@@ -489,9 +470,13 @@ global_config_file=conf/global_settings.cfg
 ./scripts/prepare_config_files_for_synthesis.sh $global_config_file
 {% endhighlight %}
 
-Running these scripts one-by-one, it's easier to see what's going on in my opinion. In the following, I'll be inserting `exit` after the section in question, and commenting out all previous lines of code. I could just run one line of code at a time in the terminal, but there are some variables floating around and I don't want to bother with them, so in the following you will see I'm running the `run_demo.sh` script over and over again, but keep in mind I'm actually only running the code of interest.
+Running these scripts one-by-one, it's easier to see what's going on in my opinion.
 
-So, beginning with the `setup.sh` script, we get the following output to the terminal:
+<br/>
+
+#### `setup.sh`
+
+So, beginning by running *only* the `setup.sh` script (from within `run_demo.sh`), we get the following output to the terminal:
 
 {% highlight bash %}
 josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh 
@@ -530,8 +515,11 @@ conf/
 1 directory, 6 files
 {% endhighlight %}
 
-We also see that a new directory (`experiments`) has been created with 14 sub directories:
+We also see that a new directory (`experiments`) has been created within the main `s1` dir.
 
+At this point, the `experiments` directory and its sub-direrctories hold mostly just extracted audio feature files. These data files have been downloaded automatically if you don't have them already. The data was downloaded from [Srikanth Ronanki's homepage][ronanki].
+
+Here's what we find in our new `experiments` dir:
 
 {% highlight bash %}
 josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
@@ -584,17 +572,164 @@ experiments/
 
 In the above output I've omitted displaying most files because there's a lot, specifically, there's 433 files.
 
+<br/>
+
+#### File Formats in `experiments` Dir
+
+Since there's a lot of stuff going on in this dir, I tihnk it's worth the time to briefly explain what we have in terms of feature files.
+
 In terms of the file formats, we find the following:
 
 1. `*.bap`: band a-periodicities
 2. `*.lab`: label files (time-to-phone alignments)
 3. `*.lf0`: log-fundamental frequencies
 4. `*.mgc`: generalized cepstral coefficients
+5. `*.scp`: script file for filenames
 
 
+<br/>
+
+#### `*.bap`
+
+The first file type, `*.bap`, is a kind of feature extracted from the audio, and we have one file for every audio file in our data set. If we look into the `*.bap` file itself, we find it is not human readable, but that makes sense, because it contains extracted audio features:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/bap$ head arctic_a0001.bap 
+B#߿�
+    ��]����T��,�x�kQ�����[kr�զ������B#���Q��D���������f�A����d_�������Rz�����%�u��3
+                                                                                          �hZ
+                                                                                             ����ځK���[���n�l��F���LJ���ؿ|��Ƅd�|)��.���-����D�~�$�J�&�eV����s[���u��̞�����Ҩ��
+                                                                                                                                                                                   �h���6���TR�Q<,��������	C"��PN��g��]��K�Đ���(1���?����9�7�Y.���A�nj*���.�R�W��!���>�����@�R����L����4���^̄��:F�����;�ֿ=�׿�d�ʷ6� ��A���Z�"�����k@=��6�qcϿ�"�
+                                                                                                                                             A6��Q鿩κ�w������ƿ�ڿߗ��ֿ�g�������w���i��H���݊@��9~�jXf��1�~����'��d�DD����J��ID��i��~��T����1$�	�S�������#WI�s�=����Y�N��J��7'�P8D�8� �w��
+�o�y�;w�8���I�T���o�4e������J������������<������q.ݿ2����B���                   0������Y������f�������!�P����@��9?���.��v7�2�$�o�������4L�m��E�����V�:�����Ԡ��|�[�n�%��ϣ��z��m`"���3�.���
+��1?�X=�-�,�b���Pÿ�+��]`޿\�o����3�[�d�:��D)��dX�l�6�܌S���,���W�� @��fj�tr�e+t��<���$r�����g����ɿ9��v��~I�'���U'#�yL�������y��At�W�u���Y�L }���G>����m{p������T��E�G��O%��0�3���2��]��Z���r����u�y���iT��?�����x�sGT�A{�����p�u$ҿ#�.��8,��ғ�/���zT�X�ؿ��H��/5�<������������c�����j�����I��������2���a�F�5���.r��{v��s���\����0��;X�d�`��!H�4d��A�-�?���f��)�S,\�
+                                                                                                                                                                    M�?f�t(�1��MM��6����bp7�K<h���I�	i���_}>�6S�_*�s��[ڒ�����t�7Hh�XY3���7���BR��|��Kb�?�������z��̒�ao~���u������%����f�y�A�;�.X4���W���<�c\�S�7�{�a#��DQ���d���@�W𮿂���r&��
+�Z�2���c�aٝ�����d                                                                                                                                 �e��m���ֵ�Z���[�Ϳ����8��D|C�D�����
+��]�����T����͊�}�J���/���'��aR�Y��	IM@��4@���d���
+                                                       �DJ(�v\/�~���89�A?���A\M���+���j�i���SFa�B�B��ER�o�0V���9h������n�|�:�:�/�Q�f��uY���=�$��@	�׉��[9D���>J��)v�ße���Q�� N�IT�����|90��:]�D
+B���	���-�����g�W[��׳
+{% endhighlight %}
+
+
+<br/>
+
+#### `*.lab`
+
+The second file type in the `experiments` dir is `*.lab`. These files are the "label" files which contain alignments for either phones or states to our audio files from our data set. We have two kinds of files here: (1) for phoneme alignments, and (2) for state alignments.
+
+First, for phoneme alignments, we see something like this:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_phone_align$ head arctic_a0001.lab 
+0 2050000 x^x-sil+sil=ao@x_x/A:0_0_0/B:x-x-x@x-x&x-x#x-x$x-x!x-x;x-x|x/C:0+0+0/D:0_0/E:x+x@x+x&x+x#x+x/F:0_0/G:0_0/H:x=x@1=2|0/I:0=0/J:14+8-2
+2050000 3400000 sil^sil-ao+th=er@1_2/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+3400000 4650000 sil^ao-th+er=ah@2_1/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+4650000 5950000 ao^th-er+ah=v@1_1/A:1_1_2/B:0-0-1@2-1&2-6#1-4$1-3!1-1;1-3|er/C:1+0+2/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+5950000 6650000 th^er-ah+v=dh@1_2/A:0_0_1/B:1-0-2@1-1&3-5#1-3$1-3!2-2;2-2|ah/C:0+0+2/D:content_2/E:in+1@2+4&2+2#1+2/F:det_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+6650000 7650000 er^ah-v+dh=ax@2_1/A:0_0_1/B:1-0-2@1-1&3-5#1-3$1-3!2-2;2-2|ah/C:0+0+2/D:content_2/E:in+1@2+4&2+2#1+2/F:det_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+7650000 8200000 ah^v-dh+ax=d@1_2/A:1_0_2/B:0-0-2@1-1&4-4#2-3$1-3!1-1;3-1|ax/C:1+1+4/D:in_1/E:det+1@3+3&2+2#2+1/F:content_2/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+8200000 8500000 v^dh-ax+d=ey@2_1/A:1_0_2/B:0-0-2@1-1&4-4#2-3$1-3!1-1;3-1|ax/C:1+1+4/D:in_1/E:det+1@3+3&2+2#2+1/F:content_2/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+8500000 9450000 dh^ax-d+ey=n@1_4/A:0_0_2/B:1-1-4@1-2&5-3#2-2$1-2!2-2;4-2|ey/C:0+0+1/D:det_1/E:content+2@4+2&2+1#3+1/F:content_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+9450000 10450000 ax^d-ey+n=jh@2_3/A:0_0_2/B:1-1-4@1-2&5-3#2-2$1-2!2-2;4-2|ey/C:0+0+1/D:det_1/E:content+2@4+2&2+1#3+1/F:content_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2
+{% endhighlight %}
+
+For state-level alignments, we get the following:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align$ head arctic_a0001.lab 
+0 50000 x^x-sil+sil=ao@x_x/A:0_0_0/B:x-x-x@x-x&x-x#x-x$x-x!x-x;x-x|x/C:0+0+0/D:0_0/E:x+x@x+x&x+x#x+x/F:0_0/G:0_0/H:x=x@1=2|0/I:0=0/J:14+8-2[2]
+50000 100000 x^x-sil+sil=ao@x_x/A:0_0_0/B:x-x-x@x-x&x-x#x-x$x-x!x-x;x-x|x/C:0+0+0/D:0_0/E:x+x@x+x&x+x#x+x/F:0_0/G:0_0/H:x=x@1=2|0/I:0=0/J:14+8-2[3]
+100000 150000 x^x-sil+sil=ao@x_x/A:0_0_0/B:x-x-x@x-x&x-x#x-x$x-x!x-x;x-x|x/C:0+0+0/D:0_0/E:x+x@x+x&x+x#x+x/F:0_0/G:0_0/H:x=x@1=2|0/I:0=0/J:14+8-2[4]
+150000 1700000 x^x-sil+sil=ao@x_x/A:0_0_0/B:x-x-x@x-x&x-x#x-x$x-x!x-x;x-x|x/C:0+0+0/D:0_0/E:x+x@x+x&x+x#x+x/F:0_0/G:0_0/H:x=x@1=2|0/I:0=0/J:14+8-2[5]
+1700000 2050000 x^x-sil+sil=ao@x_x/A:0_0_0/B:x-x-x@x-x&x-x#x-x$x-x!x-x;x-x|x/C:0+0+0/D:0_0/E:x+x@x+x&x+x#x+x/F:0_0/G:0_0/H:x=x@1=2|0/I:0=0/J:14+8-2[6]
+2050000 2400000 sil^sil-ao+th=er@1_2/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2[2]
+2400000 2550000 sil^sil-ao+th=er@1_2/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2[3]
+2550000 2650000 sil^sil-ao+th=er@1_2/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2[4]
+2650000 2700000 sil^sil-ao+th=er@1_2/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2[5]
+2700000 3400000 sil^sil-ao+th=er@1_2/A:0_0_0/B:1-1-2@1-2&1-7#1-4$1-3!0-2;0-4|ao/C:0+0+1/D:0_0/E:content+2@1+5&1+2#0+3/F:in_1/G:0_0/H:7=5@1=2|L-L%/I:7=3/J:14+8-2[6]
+{% endhighlight %}
+
+For a little sanity check, we can see that the two `*.lab` files for the same audio file have different number of lines. Specifically, since each line represents and alignment in time, we would expect that since for any given `phoneme` alignment, we would have more than three times more lines for its `state` alignment. That is because we usually use triphone phonemes to do alignment. We'd have to look more into the details of the acoustic model used to do forced alignment to generate the labels, but the difference between number of lines in the alignment files are around the expected numbers:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data$ wc -l label_phone_align/arctic_a0001.lab 
+37 label_phone_align/arctic_a0001.lab
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data$ wc -l label_state_align/arctic_a0001.lab 
+185 label_state_align/arctic_a0001.lab
+{% endhighlight %}
+
+In this case, we have for the audio file `arctic_a0001.lab` a total of **37 phonemes** and **185 states**. This comes out to `185/37 = 5` states per phoneme. Five states per phoneme is not a crazy number at all.
+
+
+<br/>
+
+#### `*.lf0`
+
+The `*.lf0` files are the log-fundamental frequency files, aka, another kind of feature file extracted from our audio files in our data set.
+
+We can expect these files to not be human-readable, and that's just what we see when we look in to one such file:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/lf0$ head arctic_a0001.lf0 
+����������������������������������������������������������������������������������������M1�@�y�@�d�@x��@���@5��@Xg�@Ní@yE�@��b�@�8�@d�@���@�ȫ@|��@쬫@"ޫ@���@��@�a�@���@2��@���@�Ȭ@�	�@)r�@�/�@���@���@�������������������������������k�@滿@A��@�߷@@ղ@~�@(J�@�ů@���@���@�ȯ@�Я@'�@C�@�2�@�S�@Uk�@܊�@r��@���@���@���@��@4ש@N;�@ޗ�@���@A+�@j3�@�7�@yR�@R��@A�@�t�@�[�@���@�@W	0�@;�@5��@5��@�r�@��Pˣ@M�@�Q�@G�@1��@��@���@,_�@�$�@o�@i��@�ȩ@
+�@ب@�z�@ݤ�@ߥ@��@QX�@�
+                       �@/�@�7�@���@'�@���@R٠@U�@�2�@P��@��@��@k
+�@aR�@���@+�@!
+�@
+b�@!��@(g�@�\�@kW�@)0�@o>�@�I�@n-�@5:�@�=�@@^�@��������������������+�@A��@�~�@�]�@���@���@�ʦ@�Ŧ@sæ@Ţ�@�Y�@aC�@QM�@�Z�@�H�@Lt�@�@��@̓�@襦@<��@�@�@
+
+
+�@i�@'��@�q�@�t�@���@���@���@'��@��@���@?��@=ʦ@�̦@�Φ@�ܦ@|ަ@���@��@��@@�@6t�@�)�@J�@(¦@#
+                                                                                          �@�@�3�@�P�@(A���@>*�@�x�@M��@�_�@a��@�S�@���������������������������������������������������Ь�@r�@���@ذ�@R+�@�@���@4Ǩ@�Ψ@�Ǩ@/��@Ŭ�@bè@�ب@���@�1�@�o�@��@��@�m�@��@�ͪ@p��@3$�@��@^(�@[C�@���@\�@�]�@�R�@o��@0n�@l��@Jk�@6��@���@���@���@�������������������������������������������������������������������������
+=�@���@��@�̧@@x��@�x�@6a�@f�@�n�@�n�@�p�@Hy�@訧@��@X��@���@���@��@�T�@��@��@,��@���@q��@���@*��@�Z�@E��@���@���@��@ʦ@�Ҧ@�֦@���@1!�@z+�@2*�@<�@'�@�s�@�~�@tç@�ʧ@�Ч@칧@�ŧ@�ۧ@ۧ@���@=0�@�4�@mǦ@;ͦ@@S�@@��@���@�8�@����������������������������������������������������������������x��@����������������������������������������������������9�@2��@�&�@ƨ@Nm�@���@@f�@���@]ͦ@�Ʀ@F��@˹�@���@	~�@���@�m�@�$�@���@Q�@���@ ��@�@�ע��@R��@U(�@�Q�@�q�@��@���@���@�v�@�e�@;p�@�Z�@��@��@ �@���@��@f��@wդ@�Ǥ@���@⚤@;Y�@
+                                                                                                                                                                                                 1�@
+�@���@���@���@�գ@�0�@̑�@�@w��@q�@�W�@   �@Kݤ@��@�A�@�^�@���@�@;�@5��@ �@�ˢ@�ǣ@|��@���@2�@�����������������������������������������������������������������������������
+{% endhighlight %}
+
+I've deleted a bunch of empty lines in the above output so as not to take up so much space.
+
+
+<br/>
+
+#### `*.mgc`
+
+Next, we move onto our next feature file type: `*.mgc`. These files contain the generalized cepstral coefficients for our audio files in our data set. Again, this is not very human readable:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/mgc$ head arctic_a0001.mgc 
+5��?;�?o�\?��M?聥>FԄ>��r>�n�>�B�>���0�<x��>�d�&�>\��آ�<�
+                                                           =�8�=8E�8Wq��׹�=�qV��և�o��<z�J=��`�ĸ��'�+<�ư=0!I�
+                                                                                                               ���D<1=̫=J5ҽ(>����n<c�=���
+{% endhighlight %}
+                                                                                                                                      
+
+
+
+<br/>
+
+#### `*.scp`
+
+Moving on to the next file type, the `*.scp` files here, I'm guessing, are similar to Kaldi's `*.scp` files. These files are "script" files which typically contain lists of information. In this case, the `experiments` dir contains two `*.scp` files which contain lists of file ids. For example:
+ 
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data$ head file_id_list_demo.scp 
+arctic_a0001
+arctic_a0002
+arctic_a0003
+arctic_a0004
+arctic_a0005
+arctic_a0006
+arctic_a0007
+arctic_a0008
+arctic_a0009
+arctic_a0010
+{% endhighlight %}
+
+This global config file (`conf/global_settings.cfg`) will contain information on where the compiled Merlin programs are located, where the current working dir is, what kind of Vocoder we're using, and how many files to use for training and testing.
 
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
 [merlin-cstr]: http://www.cstr.ed.ac.uk/projects/merlin/
 [pip-install]: https://pip.pypa.io/en/stable/installing/
 [merlin-demo-paper]: http://homepages.inf.ed.ac.uk/s1432486/papers/Merlin_demo_paper.pdf
+[ronanki]: http://104.131.174.95/
