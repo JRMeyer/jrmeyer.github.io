@@ -773,6 +773,82 @@ That's all for `setup.sh`!
 
 ### Calling the `prepare_config_files.sh` script from `run_demo.sh`
 
+As above with the `setup.sh` script, now I'm going to run *just* the `prepare_config_files.sh` script and take a look at what it does.
+
+This script produces two configuration files for training:
+
+1. `duration_slt_arctic_demo.conf`
+2. `acoustic_slt_arctic_demo.conf`
+
+When we run the script, we only get two lines of output to the terminal: 
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh 
+Duration configuration settings stored in conf/duration_slt_arctic_demo.conf
+Acoustic configuration settings stored in conf/acoustic_slt_arctic_demo.conf
+{% endhighlight %}
+
+Sure enough, as promised by our two above messages, when we look into our pre-existing `conf` directory, we find two new configuration files:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree conf/
+conf/
+├── acoustic_slt_arctic_demo.conf
+├── dnn
+│   ├── acoustic_slt_arctic_full.conf
+│   ├── duration_slt_arctic_full.conf
+│   ├── test_dur_synth_slt_arctic_full.conf
+│   └── test_synth_slt_arctic_full.conf
+├── duration_slt_arctic_demo.conf
+├── global_settings.cfg
+└── logging_config.conf
+
+1 directory, 8 files
+{% endhighlight %}
+
+These two new configuration files are of the same form as the original configuration files we found pre-existing when we cloned Merlin from GitHub. 
+
+They define architecture and training procedure for the acoustic model DNN and the duration model DNN. 
+
+Pretty straightforward overall. 
+
+
+### Calling the `prepare_config_files_for_synthesis.sh` script from `run_demo.sh`
+
+In the previous script we created the configuration files for our training procedure, now we do the same for our testing (aka aynthesis) phase.
+
+Just like before, we get two lines of output to the terminal.
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh 
+Duration configuration settings stored in conf/test_dur_synth_slt_arctic_demo.conf
+Acoustic configuration settings stored in conf/test_synth_slt_arctic_demo.conf
+{% endhighlight %}
+
+Also, just like before, we have two new files in our `conf` dir:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree conf/
+conf/
+├── acoustic_slt_arctic_demo.conf
+├── dnn
+│   ├── acoustic_slt_arctic_full.conf
+│   ├── duration_slt_arctic_full.conf
+│   ├── test_dur_synth_slt_arctic_full.conf
+│   └── test_synth_slt_arctic_full.conf
+├── duration_slt_arctic_demo.conf
+├── global_settings.cfg
+├── logging_config.conf
+├── test_dur_synth_slt_arctic_demo.conf
+└── test_synth_slt_arctic_demo.conf
+
+1 directory, 10 files
+{% endhighlight %}
+
+
+### Training the Duration Model
+
+<asciinema-player src="/misc/train-dur-model.json"></asciinema-player>
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
 [merlin-cstr]: http://www.cstr.ed.ac.uk/projects/merlin/

@@ -1,0 +1,2958 @@
+{
+  "title": null,
+  "width": 213,
+  "version": 1,
+  "command": null,
+  "duration": 269.722912,
+  "env": {
+    "TERM": "xterm",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.054486,
+      "\u001b]0;josh@yoga: ~/git/merlin/egs/slt_arctic/s1\u0007josh@yoga:~/git/merlin/egs/slt_arctic/s1$ "
+    ],
+    [
+      5.863546,
+      "."
+    ],
+    [
+      0.017,
+      "/"
+    ],
+    [
+      1.559595,
+      "r"
+    ],
+    [
+      0.085851,
+      "u"
+    ],
+    [
+      0.081828,
+      "n"
+    ],
+    [
+      0.112142,
+      "\u0007_"
+    ],
+    [
+      0.89667,
+      "d"
+    ],
+    [
+      0.16128,
+      "emo.sh "
+    ],
+    [
+      1.246485,
+      "\r\n"
+    ],
+    [
+      0.003664,
+      "Step 2: training duration model...\r\n"
+    ],
+    [
+      0.00817,
+      "Architecture: x86_64\r\n"
+    ],
+    [
+      0.046103,
+      "Distribution: Ubuntu 14.04.5 LTS\r\nHOSTNAME=yoga\r\n"
+    ],
+    [
+      3.2e-05,
+      "USER=josh\r\n \r\n"
+    ],
+    [
+      0.000103,
+      "PATH:\r\n"
+    ],
+    [
+      0.003112,
+      "    /usr/local/sbin\r\n    /usr/local/bin\r\n    /usr/sbin\r\n    /usr/bin\r\n    /sbin\r\n    /bin\r\n    /usr/games\r\n    /usr/local/games\r\n    /usr/lib/jvm/java-8-oracle/bin\r\n    /usr/lib/jvm/java-8-oracle/db/bin\r\n    /usr/lib/jvm/java-8-oracle/jre/bin\r\n"
+    ],
+    [
+      0.000156,
+      "LD_LIBRARY_PATH:\r\n"
+    ],
+    [
+      0.004438,
+      "PYTHONPATH:\r\n"
+    ],
+    [
+      0.004337,
+      "PYTHONBIN: python\r\nMERLIN_THEANO_FLAGS:\r\n"
+    ],
+    [
+      0.001562,
+      "    cuda.root=/opt/6.5.19\r\n    floatX=float32\r\n    on_unused_input=ignore\r\n"
+    ],
+    [
+      0.000105,
+      " \r\n"
+    ],
+    [
+      0.010986,
+      "No GPU is available! Running on CPU...\r\n"
+    ],
+    [
+      0.35709,
+      "2017-02-16 12:14:05,348    DEBUG  configuration: successfully read and parsed user configuration file /home/josh/git/merlin/egs/slt_arctic/s1/conf/duration_slt_arctic_demo.conf\r\n"
+    ],
+    [
+      0.00029,
+      "2017-02-16 12:14:05,348     INFO  configuration:           Paths:work has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model\r\n"
+    ],
+    [
+      0.000177,
+      "2017-02-16 12:14:05,349     INFO  configuration:           Paths:data has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data\r\n"
+    ],
+    [
+      0.000176,
+      "2017-02-16 12:14:05,349     INFO  configuration:           Paths:plot has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/plots\r\n"
+    ],
+    [
+      0.000145,
+      "2017-02-16 12:14:05,349     INFO  configuration:         Utility:plot has default value False\r\n"
+    ],
+    [
+      0.000127,
+      "2017-02-16 12:14:05,349     INFO  configuration:      Utility:profile has default value False\r\n"
+    ],
+    [
+      0.000232,
+      "2017-02-16 12:14:05,349     INFO  configuration:   Paths:file_id_list has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/file_id_list_demo.scp\r\n"
+    ],
+    [
+      0.000116,
+      "2017-02-16 12:14:05,349     INFO  configuration:   Paths:test_id_list has    user value None\r\n"
+    ],
+    [
+      0.00013,
+      "2017-02-16 12:14:05,349     INFO  configuration:         Paths:GV_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/GV\r\n"
+    ],
+    [
+      0.000127,
+      "2017-02-16 12:14:05,350     INFO  configuration:   Paths:in_stepw_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/stepw\r\n"
+    ],
+    [
+      0.000122,
+      "2017-02-16 12:14:05,350     INFO  configuration:     Paths:in_mgc_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/mgc\r\n"
+    ],
+    [
+      0.000121,
+      "2017-02-16 12:14:05,350     INFO  configuration:     Paths:in_lf0_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/lf0\r\n"
+    ],
+    [
+      0.000119,
+      "2017-02-16 12:14:05,350     INFO  configuration:     Paths:in_bap_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/bap\r\n"
+    ],
+    [
+      0.000116,
+      "2017-02-16 12:14:05,350     INFO  configuration:      Paths:in_sp_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/sp\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,350     INFO  configuration:  Paths:in_seglf0_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/lf03\r\n"
+    ],
+    [
+      9.4e-05,
+      "2017-02-16 12:14:05,350     INFO  configuration:      Paths:in_F0_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/F0\r\n"
+    ],
+    [
+      9.8e-05,
+      "2017-02-16 12:14:05,350     INFO  configuration:    Paths:in_Gain_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/Gain\r\n"
+    ],
+    [
+      9.8e-05,
+      "2017-02-16 12:14:05,351     INFO  configuration:     Paths:in_HNR_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/HNR\r\n"
+    ],
+    [
+      9.4e-05,
+      "2017-02-16 12:14:05,351     INFO  configuration:     Paths:in_LSF_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/LSF\r\n"
+    ],
+    [
+      0.000101,
+      "2017-02-16 12:14:05,351     INFO  configuration: Paths:in_LSFsource_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/LSFsource\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-16 12:14:05,351     INFO  configuration: Paths:in_seq_dur_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/S2S_dur\r\n"
+    ],
+    [
+      0.00015,
+      "2017-02-16 12:14:05,351     INFO  configuration:     Paths:in_dur_dir has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/dur\r\n"
+    ],
+    [
+      0.000102,
+      "2017-02-16 12:14:05,351     INFO  configuration: Paths:nn_norm_temp_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/step_hidden9\r\n"
+    ],
+    [
+      0.000108,
+      "2017-02-16 12:14:05,351     INFO  configuration: Labels:process_labels_in_work_dir has default value False\r\n"
+    ],
+    [
+      9.8e-05,
+      "2017-02-16 12:14:05,351     INFO  configuration:   Labels:label_style has default value HTS\r\n"
+    ],
+    [
+      8.9e-05,
+      "2017-02-16 12:14:05,351     INFO  configuration:    Labels:label_type has    user value state_align\r\n"
+    ],
+    [
+      0.000124,
+      "2017-02-16 12:14:05,351     INFO  configuration:   Labels:label_align has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align\r\n"
+    ],
+    [
+      0.000112,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:question_file_name has    user value /home/josh/git/merlin/misc/questions/questions-radio_dnn_416.hed\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:silence_pattern has    user value ['*-sil+*']\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:subphone_feats has    user value none\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:additional_features has default value {}\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:xpath_file_name has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/xml_labels/xpaths.txt\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration:  Labels:label_config has default value configuration/examplelabelconfigfile.py\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:add_frame_features has    user value False\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:fill_missing_values has default value False\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:xpath_label_align has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:enforce_silence has default value False\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-16 12:14:05,352     INFO  configuration: Labels:remove_silence_using_binary_labels has default value False\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration: Labels:precompile_xpaths has default value True\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration: Labels:iterate_over_frames has default value True\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration: Labels:appended_input_dim has default value 0\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration:     Data:buffer_size has    user value 200000\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration: Data:train_file_number has    user value 50\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration: Data:valid_file_number has    user value 5\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration: Data:test_file_number has    user value 5\r\n"
+    ],
+    [
+      0.000131,
+      "2017-02-16 12:14:05,353     INFO  configuration:       Paths:log_path has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/log\r\n"
+    ],
+    [
+      0.000135,
+      "2017-02-16 12:14:05,353     INFO  configuration:       Paths:log_file has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/log/mylogfilename.log\r\n"
+    ],
+    [
+      0.0001,
+      "2017-02-16 12:14:05,353     INFO  configuration: Paths:log_config_file has    user value /home/josh/git/merlin/egs/slt_arctic/s1/conf/logging_config.conf\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-16 12:14:05,353     INFO  configuration:           Paths:sptk has default value tools/bin/SPTK-3.9\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration:       Paths:straight has default value tools/bin/straight\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration:          Paths:world has default value tools/bin/WORLD\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:network_type has default value RNN\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:model_type has default value DNN\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:hidden_layer_type has    user value ['TANH', 'TANH', 'TANH', 'TANH']\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:output_layer_type has default value LINEAR\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:sequential_training has    user value False\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:dropout_rate has    user value 0.0\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration:  Architecture:scheme has default value stagewise\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:index_to_project has default value 0\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:projection_insize has default value 10000\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:projection_outsize has default value 10\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-16 12:14:05,354     INFO  configuration: Architecture:initial_projection_distrib has default value gaussian\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:projection_weights_output_dir has default value some_path\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:layers_with_projection_input has default value [0]\r\n"
+    ],
+    [
+      8.9e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:projection_learning_rate_scaling has default value 1.0\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:learning_rate has    user value 0.002\r\n"
+    ],
+    [
+      9.3e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:L2_regularization has default value 1e-05\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:L1_regularization has default value 0.0\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:batch_size has    user value 64\r\n"
+    ],
+    [
+      7.6e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:training_epochs has    user value 25\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:hidden_activation has default value tanh\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:output_activation has    user value linear\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:hidden_layer_size has    user value [512, 512, 512, 512]\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-16 12:14:05,355     INFO  configuration: Architecture:private_hidden_sizes has default value [1024]\r\n"
+    ],
+    [
+      9.2e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:stream_weights has default value [1.0]\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:private_l2_reg has default value 1e-05\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:warmup_epoch has    user value 10\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:warmup_momentum has    user value 0.3\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:momentum has default value 0.9\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:warmup_epoch has    user value 10\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:mdn_component has default value 1\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:var_floor has default value 0.01\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:beta_opt has default value False\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:eff_sample_size has default value 0.8\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:mean_log_det has default value -100.0\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-16 12:14:05,356     INFO  configuration: Architecture:start_from_trained_model has default value _\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration: Architecture:use_rprop has default value 0\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:          Outputs:mgc has default value 60\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:         Outputs:dmgc has default value 180\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:          Outputs:vuv has default value 1\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:          Outputs:lf0 has default value 1\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:         Outputs:dlf0 has default value 3\r\n"
+    ],
+    [
+      9.2e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:          Outputs:bap has default value 25\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:         Outputs:dbap has default value 75\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:          Outputs:cmp has default value 259\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:    Outputs:stepw_dim has default value 55\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:  Outputs:temp_sp_dim has default value 1025\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-16 12:14:05,357     INFO  configuration:   Outputs:seglf0_dim has default value 7\r\n"
+    ],
+    [
+      0.000104,
+      "2017-02-16 12:14:05,358     INFO  configuration:    Outputs:delta_win has default value [-0.5, 0.0, 0.5]\r\n"
+    ],
+    [
+      0.000101,
+      "2017-02-16 12:14:05,358     INFO  configuration:      Outputs:acc_win has default value [1.0, -2.0, 1.0]\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:      Outputs:do_MLPG has default value True\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:           Outputs:F0 has default value 1\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:          Outputs:dF0 has default value 3\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:         Outputs:Gain has default value 1\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:        Outputs:dGain has default value 3\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:          Outputs:HNR has default value 5\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:         Outputs:dHNR has default value 15\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-16 12:14:05,358     INFO  configuration:          Outputs:LSF has default value 30\r\n"
+    ],
+    [
+      0.000107,
+      "2017-02-16 12:14:05,358     INFO  configuration:         Outputs:dLSF has default value 90\r\n"
+    ],
+    [
+      0.000111,
+      "2017-02-16 12:14:05,359     INFO  configuration:    Outputs:LSFsource has default value 10\r\n"
+    ],
+    [
+      0.000112,
+      "2017-02-16 12:14:05,359     INFO  configuration:   Outputs:dLSFsource has default value 30\r\n"
+    ],
+    [
+      0.000112,
+      "2017-02-16 12:14:05,359     INFO  configuration:      Outputs:seq_dur has default value 1\r\n"
+    ],
+    [
+      0.000113,
+      "2017-02-16 12:14:05,359     INFO  configuration: Outputs:remove_silence_from_dur has default value True\r\n"
+    ],
+    [
+      9.9e-05,
+      "2017-02-16 12:14:05,359     INFO  configuration:          Outputs:dur has    user value 5\r\n"
+    ],
+    [
+      0.000113,
+      "2017-02-16 12:14:05,359     INFO  configuration: Outputs:dur_feature_type has default value numerical\r\n"
+    ],
+    [
+      0.000112,
+      "2017-02-16 12:14:05,359     INFO  configuration: Outputs:output_feature_normalisation has default value MVN\r\n"
+    ],
+    [
+      0.00013,
+      "2017-02-16 12:14:05,359     INFO  configuration: Streams:multistream_switch has default value False\r\n"
+    ],
+    [
+      0.000113,
+      "2017-02-16 12:14:05,359     INFO  configuration: Streams:output_features has    user value ['dur']\r\n"
+    ],
+    [
+      0.000141,
+      "2017-02-16 12:14:05,360     INFO  configuration: Streams:gen_wav_features has default value ['mgc', 'bap', 'lf0']\r\n"
+    ],
+    [
+      0.000117,
+      "2017-02-16 12:14:05,360     INFO  configuration: Waveform:vocoder_type has default value STRAIGHT\r\n"
+    ],
+    [
+      0.000138,
+      "2017-02-16 12:14:05,360     INFO  configuration:  Waveform:samplerate has default value 48000\r\n"
+    ],
+    [
+      0.000126,
+      "2017-02-16 12:14:05,360     INFO  configuration: Waveform:framelength has default value 4096\r\n"
+    ],
+    [
+      0.000134,
+      "2017-02-16 12:14:05,360     INFO  configuration:  Waveform:frameshift has default value 5\r\n"
+    ],
+    [
+      0.00015,
+      "2017-02-16 12:14:05,360     INFO  configuration:      Waveform:sp_dim has default value 2049\r\n"
+    ],
+    [
+      0.000141,
+      "2017-02-16 12:14:05,360     INFO  configuration:    Waveform:fw_alpha has default value 0.77\r\n"
+    ],
+    [
+      0.000119,
+      "2017-02-16 12:14:05,360     INFO  configuration: Waveform:postfilter_coef has default value 1.4\r\n"
+    ],
+    [
+      0.000129,
+      "2017-02-16 12:14:05,361     INFO  configuration: Waveform:minimum_phase_order has default value 2047\r\n"
+    ],
+    [
+      0.000125,
+      "2017-02-16 12:14:05,361     INFO  configuration:  Waveform:use_cep_ap has default value True\r\n"
+    ],
+    [
+      0.000131,
+      "2017-02-16 12:14:05,361     INFO  configuration: Waveform:do_post_filtering has default value True\r\n"
+    ],
+    [
+      0.00012,
+      "2017-02-16 12:14:05,361     INFO  configuration:    Waveform:apply_GV has default value False\r\n"
+    ],
+    [
+      0.000228,
+      "2017-02-16 12:14:05,361     INFO  configuration: Waveform:test_synth_dir has    user value None\r\n"
+    ],
+    [
+      0.000134,
+      "2017-02-16 12:14:05,361     INFO  configuration: Processes:DurationModel has    user value True\r\n"
+    ],
+    [
+      0.000159,
+      "2017-02-16 12:14:05,361     INFO  configuration: Processes:AcousticModel has default value False\r\n"
+    ],
+    [
+      0.000146,
+      "2017-02-16 12:14:05,362     INFO  configuration: Processes:GenTestList has    user value False\r\n"
+    ],
+    [
+      0.000304,
+      "2017-02-16 12:14:05,362     INFO  configuration:    Processes:NORMLAB has    user value True\r\n2017-02-16 12:14:05,362     INFO  configuration:    Processes:MAKEDUR has    user value True\r\n"
+    ],
+    [
+      0.000544,
+      "2017-02-16 12:14:05,362     INFO  configuration:    Processes:MAKECMP has    user value True\r\n2017-02-16 12:14:05,362     INFO  configuration:    Processes:NORMCMP has    user value True\r\n2017-02-16 12:14:05,362     INFO  configuration:   Processes:TRAINDNN has    user value True\r\n2017-02-16 12:14:05,362     INFO  configuration:     Processes:DNNGEN has    user value True\r\n2017-02-16 12:14:05,362     INFO  configuration:     Processes:GENWAV has default value False\r\n"
+    ],
+    [
+      3.1e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:     Processes:CALMCD has    user value True\r\n"
+    ],
+    [
+      0.000127,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Processes:NORMSTEP has default value False\r\n"
+    ],
+    [
+      9e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Processes:GENBNFEA has default value False\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Extensions:mgc_ext has default value .mgc\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Extensions:bap_ext has default value .bap\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Extensions:lf0_ext has default value .lf0\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Extensions:cmp_ext has default value .cmp\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Extensions:lab_ext has default value .lab\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:   Extensions:utt_ext has default value .utt\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration: Extensions:stepw_ext has default value .stepw\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:    Extensions:sp_ext has default value .sp\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:    Extensions:F0_ext has default value .F0\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:05,363     INFO  configuration:  Extensions:Gain_ext has default value .Gain\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:05,364     INFO  configuration:   Extensions:HNR_ext has default value .HNR\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:05,364     INFO  configuration:   Extensions:LSF_ext has default value .LSF\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:05,364     INFO  configuration: Extensions:LSFsource_ext has default value .LSFsource\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:05,364     INFO  configuration:   Extensions:dur_ext has default value .dur\r\n"
+    ],
+    [
+      0.000175,
+      "2017-02-16 12:14:05,364    DEBUG  configuration: loading logging configuration from /home/josh/git/merlin/egs/slt_arctic/s1/conf/logging_config.conf\r\n"
+    ],
+    [
+      0.004272,
+      "2017-02-16 12:14:05,368 \u001b[1;32mINFO    \u001b[0m  configuration: logging is now fully configured\r\n"
+    ],
+    [
+      0.000155,
+      "2017-02-16 12:14:05,368 \u001b[1;34mDEBUG   \u001b[0m  configuration: setting up output features\r\n"
+    ],
+    [
+      8.9e-05,
+      "2017-02-16 12:14:05,368 \u001b[1;34mDEBUG   \u001b[0m  configuration:  dur\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-16 12:14:05,368 \u001b[1;32mINFO    \u001b[0m  configuration:   in_dimension: 5\r\n"
+    ],
+    [
+      8.7e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration:   out_dimension : 5\r\n"
+    ],
+    [
+      0.000102,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration:   in_directory : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/dur\r\n"
+    ],
+    [
+      0.000117,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: multistream dimensions: [5]\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: use_rprop : 0\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: dropout_rate : 0.0\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: projection_outsize : 10\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: early_stop_epochs : 5\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: warmup_epoch : 10\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: learning_rate : 0.002\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: layers_with_projection_input : [0]\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: batch_size : 64\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: model_type : DNN\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:05,369 \u001b[1;32mINFO    \u001b[0m  configuration: hidden_layer_size : [512, 512, 512, 512]\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: projection_learning_rate_scaling : 1.0\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: pretraining_epochs : 10\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: initial_projection_distrib : gaussian\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: index_to_project : 0\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: l2_reg : 1e-05\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: warmup_momentum : 0.3\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: training_epochs : 25\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: hidden_activation : tanh\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: hidden_layer_type : ['TANH', 'TANH', 'TANH', 'TANH']\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: sequential_training : False\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: do_pretraining : False\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: projection_insize : 10000\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: l1_reg : 0.0\r\n"
+    ],
+    [
+      6.2e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: output_activation : linear\r\n"
+    ],
+    [
+      5.3e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: pretraining_lr : 0.0001\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;32mINFO    \u001b[0m  configuration: momentum : 0.9\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:05,370 \u001b[1;34mDEBUG   \u001b[0m  configuration: configuration completed\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    : Installation information:\r\n"
+    ],
+    [
+      0.000124,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :   Merlin directory: /home/josh/git/merlin\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :   PATH:\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/local/sbin\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/local/bin\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/sbin\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/bin\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /sbin\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /bin\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/games\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/local/games\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/lib/jvm/java-8-oracle/bin\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/lib/jvm/java-8-oracle/db/bin\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/lib/jvm/java-8-oracle/jre/bin\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :   LD_LIBRARY_PATH:\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:05,371 \u001b[1;32mINFO    \u001b[0m       main    :   Python version: 2.7.6 (default, Oct 26 2016, 20:30:19) [GCC 4.8.4]\r\n"
+    ],
+    [
+      5.5e-05,
+      "2017-02-16 12:14:05,372 \u001b[1;32mINFO    \u001b[0m       main    :     PYTHONPATH:\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:05,372 \u001b[1;32mINFO    \u001b[0m       main    :   Numpy version: 1.10.4\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-16 12:14:05,372 \u001b[1;32mINFO    \u001b[0m       main    :   Theano version: 0.8.2\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-16 12:14:05,372 \u001b[1;32mINFO    \u001b[0m       main    :     THEANO_FLAGS: cuda.root=/opt/6.5.19,floatX=float32,on_unused_input=ignore\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:05,372 \u001b[1;32mINFO    \u001b[0m       main    :     device: cpu\r\n"
+    ],
+    [
+      0.010453,
+      "2017-02-16 12:14:05,381 \u001b[1;32mINFO    \u001b[0m       main    :   Git is available in the working directory:\r\n"
+    ],
+    [
+      0.012156,
+      "2017-02-16 12:14:05,394 \u001b[1;32mINFO    \u001b[0m       main    :     Merlin version: Merlin_V0-8-g6af8b8c\r\n"
+    ],
+    [
+      0.004262,
+      "2017-02-16 12:14:05,398 \u001b[1;32mINFO    \u001b[0m       main    :     branch: master\r\n"
+    ],
+    [
+      0.004896,
+      "2017-02-16 12:14:05,403 \u001b[1;32mINFO    \u001b[0m       main    :     diff to Merlin version:\r\n"
+    ],
+    [
+      0.000107,
+      "2017-02-16 12:14:05,404 \u001b[1;32mINFO    \u001b[0m       main    :       M egs/slt_arctic/s1/run_demo.sh\r\n"
+    ],
+    [
+      0.00011,
+      "2017-02-16 12:14:05,404 \u001b[1;32mINFO    \u001b[0m       main    :       (all diffs logged in DNN_TANH_TANH_TANH_TANH_LINEAR__dur_50_259_4_512_0.002000_12_14PM_February_16_2017.log.gitdiff)\r\n"
+    ],
+    [
+      0.00546,
+      "2017-02-16 12:14:05,409 \u001b[1;32mINFO    \u001b[0m       main    : Execution information:\r\n"
+    ],
+    [
+      0.000433,
+      "2017-02-16 12:14:05,410 \u001b[1;32mINFO    \u001b[0m       main    :   HOSTNAME: yoga\r\n"
+    ],
+    [
+      0.000145,
+      "2017-02-16 12:14:05,410 \u001b[1;32mINFO    \u001b[0m       main    :   USER: josh\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-16 12:14:05,410 \u001b[1;32mINFO    \u001b[0m       main    :   PID: 4909\r\n"
+    ],
+    [
+      0.000235,
+      "2017-02-16 12:14:05,410 \u001b[1;34mDEBUG   \u001b[0m       main    : Loaded file id list from /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/file_id_list_demo.scp\r\n"
+    ],
+    [
+      0.02615,
+      "2017-02-16 12:14:05,436 \u001b[1;34mDEBUG   \u001b[0m       labels  : HTS-derived input feature dimension is 416 + 0 = 416\r\n"
+    ],
+    [
+      0.000109,
+      "2017-02-16 12:14:05,436 \u001b[1;32mINFO    \u001b[0m       main    : Input label dimension is 416\r\n"
+    ],
+    [
+      0.00028,
+      "2017-02-16 12:14:05,437 \u001b[1;32mINFO    \u001b[0m       main    : preparing label data (input) using standard HTS style labels\r\n"
+    ],
+    [
+      0.000267,
+      "2017-02-16 12:14:05,437 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0001.lab, 185 labels\r\n"
+    ],
+    [
+      0.02686,
+      "2017-02-16 12:14:05,464 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 37 frames x 416 labels\r\n"
+    ],
+    [
+      0.000488,
+      "2017-02-16 12:14:05,464 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0002.lab, 210 labels\r\n"
+    ],
+    [
+      0.029903,
+      "2017-02-16 12:14:05,494 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 42 frames x 416 labels\r\n"
+    ],
+    [
+      0.000491,
+      "2017-02-16 12:14:05,495 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0003.lab, 205 labels\r\n"
+    ],
+    [
+      0.028736,
+      "2017-02-16 12:14:05,523 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 41 frames x 416 labels\r\n"
+    ],
+    [
+      0.000478,
+      "2017-02-16 12:14:05,524 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0004.lab, 140 labels\r\n"
+    ],
+    [
+      0.019762,
+      "2017-02-16 12:14:05,543 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 28 frames x 416 labels\r\n"
+    ],
+    [
+      0.001636,
+      "2017-02-16 12:14:05,544 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0005.lab,  85 labels\r\n"
+    ],
+    [
+      0.013254,
+      "2017-02-16 12:14:05,557 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 17 frames x 416 labels\r\n"
+    ],
+    [
+      0.001015,
+      "2017-02-16 12:14:05,559 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0006.lab, 165 labels\r\n"
+    ],
+    [
+      0.024286,
+      "2017-02-16 12:14:05,584 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 33 frames x 416 labels\r\n"
+    ],
+    [
+      0.000514,
+      "2017-02-16 12:14:05,584 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0007.lab, 200 labels\r\n"
+    ],
+    [
+      0.029538,
+      "2017-02-16 12:14:05,614 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 40 frames x 416 labels\r\n"
+    ],
+    [
+      0.000488,
+      "2017-02-16 12:14:05,614 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0008.lab, 120 labels\r\n"
+    ],
+    [
+      0.014431,
+      "2017-02-16 12:14:05,629 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 24 frames x 416 labels\r\n"
+    ],
+    [
+      0.000469,
+      "2017-02-16 12:14:05,629 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0009.lab, 200 labels\r\n"
+    ],
+    [
+      0.027787,
+      "2017-02-16 12:14:05,657 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 40 frames x 416 labels\r\n"
+    ],
+    [
+      0.000499,
+      "2017-02-16 12:14:05,657 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0010.lab, 205 labels\r\n"
+    ],
+    [
+      0.028057,
+      "2017-02-16 12:14:05,685 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 41 frames x 416 labels\r\n"
+    ],
+    [
+      0.000568,
+      "2017-02-16 12:14:05,686 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0011.lab, 170 labels\r\n"
+    ],
+    [
+      0.024599,
+      "2017-02-16 12:14:05,711 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 34 frames x 416 labels\r\n"
+    ],
+    [
+      0.000533,
+      "2017-02-16 12:14:05,711 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0012.lab, 180 labels\r\n"
+    ],
+    [
+      0.026023,
+      "2017-02-16 12:14:05,736 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 36 frames x 416 labels\r\n"
+    ],
+    [
+      0.002075,
+      "2017-02-16 12:14:05,739 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0013.lab, 260 labels\r\n"
+    ],
+    [
+      0.035871,
+      "2017-02-16 12:14:05,775 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 52 frames x 416 labels\r\n"
+    ],
+    [
+      0.000514,
+      "2017-02-16 12:14:05,776 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0014.lab, 180 labels\r\n"
+    ],
+    [
+      0.02425,
+      "2017-02-16 12:14:05,800 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 36 frames x 416 labels\r\n"
+    ],
+    [
+      0.000485,
+      "2017-02-16 12:14:05,800 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0015.lab,  95 labels\r\n"
+    ],
+    [
+      0.011525,
+      "2017-02-16 12:14:05,812 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 19 frames x 416 labels\r\n"
+    ],
+    [
+      0.000384,
+      "2017-02-16 12:14:05,812 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0016.lab, 205 labels\r\n"
+    ],
+    [
+      0.027656,
+      "2017-02-16 12:14:05,840 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 41 frames x 416 labels\r\n"
+    ],
+    [
+      0.000528,
+      "2017-02-16 12:14:05,840 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0017.lab, 275 labels\r\n"
+    ],
+    [
+      0.036608,
+      "2017-02-16 12:14:05,877 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 55 frames x 416 labels\r\n"
+    ],
+    [
+      0.000493,
+      "2017-02-16 12:14:05,878 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0018.lab,  75 labels\r\n"
+    ],
+    [
+      0.008894,
+      "2017-02-16 12:14:05,887 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 15 frames x 416 labels\r\n"
+    ],
+    [
+      0.000387,
+      "2017-02-16 12:14:05,887 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0019.lab, 220 labels\r\n"
+    ],
+    [
+      0.03095,
+      "2017-02-16 12:14:05,917 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 44 frames x 416 labels\r\n"
+    ],
+    [
+      0.000557,
+      "2017-02-16 12:14:05,918 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0020.lab, 195 labels\r\n"
+    ],
+    [
+      0.025065,
+      "2017-02-16 12:14:05,943 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 39 frames x 416 labels\r\n"
+    ],
+    [
+      0.001843,
+      "2017-02-16 12:14:05,945 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0021.lab, 160 labels\r\n"
+    ],
+    [
+      0.020844,
+      "2017-02-16 12:14:05,966 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 32 frames x 416 labels\r\n"
+    ],
+    [
+      0.00047,
+      "2017-02-16 12:14:05,967 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0022.lab, 270 labels\r\n"
+    ],
+    [
+      0.037498,
+      "2017-02-16 12:14:06,004 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 54 frames x 416 labels\r\n"
+    ],
+    [
+      0.000582,
+      "2017-02-16 12:14:06,005 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0023.lab, 360 labels\r\n"
+    ],
+    [
+      0.04981,
+      "2017-02-16 12:14:06,054 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 72 frames x 416 labels\r\n"
+    ],
+    [
+      0.000582,
+      "2017-02-16 12:14:06,055 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0024.lab, 245 labels\r\n"
+    ],
+    [
+      0.033276,
+      "2017-02-16 12:14:06,088 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 49 frames x 416 labels\r\n"
+    ],
+    [
+      0.000472,
+      "2017-02-16 12:14:06,089 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0025.lab, 190 labels\r\n"
+    ],
+    [
+      0.02386,
+      "2017-02-16 12:14:06,113 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 38 frames x 416 labels\r\n"
+    ],
+    [
+      0.000475,
+      "2017-02-16 12:14:06,113 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0026.lab, 185 labels\r\n"
+    ],
+    [
+      0.025609,
+      "2017-02-16 12:14:06,139 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 37 frames x 416 labels\r\n"
+    ],
+    [
+      0.000476,
+      "2017-02-16 12:14:06,139 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0027.lab, 240 labels\r\n"
+    ],
+    [
+      0.032222,
+      "2017-02-16 12:14:06,171 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 48 frames x 416 labels\r\n"
+    ],
+    [
+      0.000477,
+      "2017-02-16 12:14:06,172 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0028.lab,  85 labels\r\n"
+    ],
+    [
+      0.010065,
+      "2017-02-16 12:14:06,182 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 17 frames x 416 labels\r\n"
+    ],
+    [
+      0.000387,
+      "2017-02-16 12:14:06,182 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0029.lab, 200 labels\r\n"
+    ],
+    [
+      0.028345,
+      "2017-02-16 12:14:06,211 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 40 frames x 416 labels\r\n"
+    ],
+    [
+      0.00042,
+      "2017-02-16 12:14:06,211 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0030.lab,  70 labels\r\n"
+    ],
+    [
+      0.010614,
+      "2017-02-16 12:14:06,222 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 14 frames x 416 labels\r\n"
+    ],
+    [
+      0.000479,
+      "2017-02-16 12:14:06,222 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0031.lab, 130 labels\r\n"
+    ],
+    [
+      0.020211,
+      "2017-02-16 12:14:06,242 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 26 frames x 416 labels\r\n"
+    ],
+    [
+      0.000519,
+      "2017-02-16 12:14:06,243 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0032.lab, 240 labels\r\n"
+    ],
+    [
+      0.033178,
+      "2017-02-16 12:14:06,276 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 48 frames x 416 labels\r\n"
+    ],
+    [
+      0.000584,
+      "2017-02-16 12:14:06,277 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0033.lab, 240 labels\r\n"
+    ],
+    [
+      0.035873,
+      "2017-02-16 12:14:06,311 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 48 frames x 416 labels\r\n"
+    ],
+    [
+      0.000755,
+      "2017-02-16 12:14:06,313 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0034.lab, 220 labels\r\n"
+    ],
+    [
+      0.031096,
+      "2017-02-16 12:14:06,344 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 44 frames x 416 labels\r\n"
+    ],
+    [
+      0.000659,
+      "2017-02-16 12:14:06,345 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0035.lab, 235 labels\r\n"
+    ],
+    [
+      0.033244,
+      "2017-02-16 12:14:06,377 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 47 frames x 416 labels\r\n"
+    ],
+    [
+      0.000632,
+      "2017-02-16 12:14:06,379 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0036.lab,  95 labels\r\n"
+    ],
+    [
+      0.013533,
+      "2017-02-16 12:14:06,393 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 19 frames x 416 labels\r\n"
+    ],
+    [
+      0.000485,
+      "2017-02-16 12:14:06,393 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0037.lab, 140 labels\r\n"
+    ],
+    [
+      0.020205,
+      "2017-02-16 12:14:06,412 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 28 frames x 416 labels\r\n"
+    ],
+    [
+      0.00194,
+      "2017-02-16 12:14:06,414 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0038.lab, 105 labels\r\n"
+    ],
+    [
+      0.013373,
+      "2017-02-16 12:14:06,429 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 21 frames x 416 labels\r\n"
+    ],
+    [
+      0.000448,
+      "2017-02-16 12:14:06,429 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0039.lab, 155 labels\r\n"
+    ],
+    [
+      0.022362,
+      "2017-02-16 12:14:06,451 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 31 frames x 416 labels\r\n"
+    ],
+    [
+      0.000469,
+      "2017-02-16 12:14:06,452 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0040.lab, 155 labels\r\n"
+    ],
+    [
+      0.02306,
+      "2017-02-16 12:14:06,474 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 31 frames x 416 labels\r\n"
+    ],
+    [
+      0.001922,
+      "2017-02-16 12:14:06,476 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0041.lab, 125 labels\r\n"
+    ],
+    [
+      0.016198,
+      "2017-02-16 12:14:06,493 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 25 frames x 416 labels\r\n"
+    ],
+    [
+      0.0004,
+      "2017-02-16 12:14:06,493 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0042.lab, 170 labels\r\n"
+    ],
+    [
+      0.023727,
+      "2017-02-16 12:14:06,517 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 34 frames x 416 labels\r\n"
+    ],
+    [
+      0.000499,
+      "2017-02-16 12:14:06,518 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0043.lab, 230 labels\r\n"
+    ],
+    [
+      0.031563,
+      "2017-02-16 12:14:06,549 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 46 frames x 416 labels\r\n"
+    ],
+    [
+      0.000464,
+      "2017-02-16 12:14:06,550 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0044.lab, 195 labels\r\n"
+    ],
+    [
+      0.028886,
+      "2017-02-16 12:14:06,578 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 39 frames x 416 labels\r\n"
+    ],
+    [
+      0.000485,
+      "2017-02-16 12:14:06,579 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0045.lab, 150 labels\r\n"
+    ],
+    [
+      0.02103,
+      "2017-02-16 12:14:06,600 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 30 frames x 416 labels\r\n"
+    ],
+    [
+      0.000538,
+      "2017-02-16 12:14:06,601 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0046.lab, 175 labels\r\n"
+    ],
+    [
+      0.022555,
+      "2017-02-16 12:14:06,623 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 35 frames x 416 labels\r\n"
+    ],
+    [
+      0.000571,
+      "2017-02-16 12:14:06,624 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0047.lab, 195 labels\r\n"
+    ],
+    [
+      0.02777,
+      "2017-02-16 12:14:06,651 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 39 frames x 416 labels\r\n"
+    ],
+    [
+      0.000471,
+      "2017-02-16 12:14:06,652 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0048.lab, 150 labels\r\n"
+    ],
+    [
+      0.020532,
+      "2017-02-16 12:14:06,672 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 30 frames x 416 labels\r\n"
+    ],
+    [
+      0.000423,
+      "2017-02-16 12:14:06,673 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0049.lab, 180 labels\r\n"
+    ],
+    [
+      0.026602,
+      "2017-02-16 12:14:06,699 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 36 frames x 416 labels\r\n"
+    ],
+    [
+      0.000431,
+      "2017-02-16 12:14:06,700 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0050.lab, 240 labels\r\n"
+    ],
+    [
+      0.034721,
+      "2017-02-16 12:14:06,735 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 48 frames x 416 labels\r\n"
+    ],
+    [
+      0.0005,
+      "2017-02-16 12:14:06,735 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0051.lab, 235 labels\r\n"
+    ],
+    [
+      0.031784,
+      "2017-02-16 12:14:06,767 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 47 frames x 416 labels\r\n"
+    ],
+    [
+      0.000453,
+      "2017-02-16 12:14:06,767 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0052.lab, 125 labels\r\n"
+    ],
+    [
+      0.016375,
+      "2017-02-16 12:14:06,784 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 25 frames x 416 labels\r\n"
+    ],
+    [
+      0.000445,
+      "2017-02-16 12:14:06,784 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0053.lab, 205 labels\r\n"
+    ],
+    [
+      0.028623,
+      "2017-02-16 12:14:06,813 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 41 frames x 416 labels\r\n"
+    ],
+    [
+      0.000494,
+      "2017-02-16 12:14:06,813 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0054.lab, 100 labels\r\n"
+    ],
+    [
+      0.011863,
+      "2017-02-16 12:14:06,825 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 20 frames x 416 labels\r\n"
+    ],
+    [
+      0.000398,
+      "2017-02-16 12:14:06,826 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0055.lab, 250 labels\r\n"
+    ],
+    [
+      0.033178,
+      "2017-02-16 12:14:06,859 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 50 frames x 416 labels\r\n"
+    ],
+    [
+      0.000462,
+      "2017-02-16 12:14:06,859 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0056.lab, 165 labels\r\n"
+    ],
+    [
+      0.02373,
+      "2017-02-16 12:14:06,883 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 33 frames x 416 labels\r\n"
+    ],
+    [
+      0.000459,
+      "2017-02-16 12:14:06,883 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0057.lab, 115 labels\r\n"
+    ],
+    [
+      0.015043,
+      "2017-02-16 12:14:06,898 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 23 frames x 416 labels\r\n"
+    ],
+    [
+      0.00224,
+      "2017-02-16 12:14:06,901 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0058.lab, 235 labels\r\n"
+    ],
+    [
+      0.033907,
+      "2017-02-16 12:14:06,934 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 47 frames x 416 labels\r\n"
+    ],
+    [
+      0.000597,
+      "2017-02-16 12:14:06,935 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0059.lab, 140 labels\r\n"
+    ],
+    [
+      0.019722,
+      "2017-02-16 12:14:06,955 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 28 frames x 416 labels\r\n"
+    ],
+    [
+      0.000472,
+      "2017-02-16 12:14:06,955 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0060.lab, 110 labels\r\n"
+    ],
+    [
+      0.018177,
+      "2017-02-16 12:14:06,974 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 22 frames x 416 labels\r\n"
+    ],
+    [
+      0.09499,
+      "2017-02-16 12:14:07,069 \u001b[1;34mDEBUG   \u001b[0m  acoustic_norm: MinMaxNormalisation created for feature dimension of 416\r\n"
+    ],
+    [
+      0.003946,
+      "2017-02-16 12:14:07,073 \u001b[1;32mINFO    \u001b[0m  acoustic_norm: across 50 files found min/max values of length 416:\r\n"
+    ],
+    [
+      0.004588,
+      "2017-02-16 12:14:07,077 \u001b[1;32mINFO    \u001b[0m  acoustic_norm:   min: [[ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0."
+    ],
+    [
+      2e-05,
+      "  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.\r\n   0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0. -1. -1.  0.  0.  0.\r\n  -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1. -1.  0.  0.  0.\r\n"
+    ],
+    [
+      2.4e-05,
+      "   0. -1. -1. -1. -1. -1. -1. -1.  0.  0.  0. -1. -1.  1. -1.  0.  0.  5.\r\n   3.  0.]]\r\n"
+    ],
+    [
+      0.005511,
+      "2017-02-16 12:14:07,083 \u001b[1;32mINFO    \u001b[0m  acoustic_norm:   max: [[  1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   0.   1.   1.   1.   1.   1.\r\n    0.   1.   0.   0.   0.   1.   1.   1.   1.   1.   0.   1.   1.   1.\r\n    1.   1.   1.   1.   0.   1.   1.   0.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   0.   1.   1.   1.   1.   1.   1.   1.\r\n    0.   1.   1.   1.   1.   1.   0.   1.   0.   0.   0.   1.   1.   1.\r\n    1.   1.   0.   1.   1.   1.   1.   1.   1.   1.   0.   1.   1.   0.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   0.   1.\r\n    1.   1.   1.   1.   1.   1.   0.   1.   1.   1.   1.   1.   0.   1.\r\n    0.   0.   0.   1.   1.   1.   1.   1.   0.   1.   1.   1.   1.   1.\r\n    1.  "
+    ],
+    [
+      3.1e-05,
+      " 1.   0.   1.   1.   0.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   0.   1.   1.   1.   1.   1.   1.   1.   0.   1.\r\n    1.   1.   1.   1.   0.   1.   0.   0.   0.   1.   1.   1.   1.   1.\r\n    0.   1.   1.   1.   1.   1.   1.   1.   0.   1.   1.   0.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   0.   1.   1.   1.\r\n    1.   1.   1.   1.   0.   1.   1.   1.   1.   1.   0.   1.   0.   0.\r\n    0.   1.   1.   1.   1.   1.   0.   1.   1.   1.   1.   1.   1.   1.\r\n    0.   1.   1.   0.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   0.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   0.   1.   1.   0.   0.   0.   1.   1.   1.   1.\r\n    1.   0.   1.   1.   1.   1.   1.   1.   1.   1.   1.   1.   0.   1.\r\n    1.   1.   1.   1.   1.   1.   1.   1.   1.   0.   1.   1.   1.   1.\r\n    1.   1.   1.   1.   1.   1.   0.   1.   1.   6.   6.   1.   1.   6.\r\n    1.   1"
+    ],
+    [
+      1.6e-05,
+      ".   6.   5.   5.  18.  18.   9.  10.   5.   6.   4.   4.  16.\r\n   16.   1.   1.   6.   5.   5.  10.  10.   8.   7.   4.   5.   5.  18.\r\n"
+    ],
+    [
+      3.2e-05,
+      "    9.  18.  10.   3.  -1.  13.   8.  28.  13.   3.]]\r\n"
+    ],
+    [
+      0.034706,
+      "2017-02-16 12:14:07,117 \u001b[1;32mINFO    \u001b[0m       main    : saved 416 vectors to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_norm_HTS_416.dat\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-16 12:14:07,118 \u001b[1;32mINFO    \u001b[0m       main    : creating duration (output) features\r\n"
+    ],
+    [
+      0.000248,
+      "2017-02-16 12:14:07,118 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0001.lab, 185 labels\r\n"
+    ],
+    [
+      0.002423,
+      "2017-02-16 12:14:07,120 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 37 frames x 5 features\r\n"
+    ],
+    [
+      0.000326,
+      "2017-02-16 12:14:07,121 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0002.lab, 210 labels\r\n"
+    ],
+    [
+      0.002591,
+      "2017-02-16 12:14:07,123 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 42 frames x 5 features\r\n"
+    ],
+    [
+      0.00029,
+      "2017-02-16 12:14:07,124 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0003.lab, 205 labels\r\n"
+    ],
+    [
+      0.002547,
+      "2017-02-16 12:14:07,126 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 41 frames x 5 features\r\n"
+    ],
+    [
+      0.000279,
+      "2017-02-16 12:14:07,126 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0004.lab, 140 labels\r\n"
+    ],
+    [
+      0.001753,
+      "2017-02-16 12:14:07,128 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 28 frames x 5 features\r\n"
+    ],
+    [
+      0.000256,
+      "2017-02-16 12:14:07,128 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0005.lab,  85 labels\r\n"
+    ],
+    [
+      0.001162,
+      "2017-02-16 12:14:07,130 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 17 frames x 5 features\r\n"
+    ],
+    [
+      0.000273,
+      "2017-02-16 12:14:07,130 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0006.lab, 165 labels\r\n"
+    ],
+    [
+      0.002055,
+      "2017-02-16 12:14:07,132 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 33 frames x 5 features\r\n"
+    ],
+    [
+      0.000297,
+      "2017-02-16 12:14:07,132 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0007.lab, 200 labels\r\n"
+    ],
+    [
+      0.002805,
+      "2017-02-16 12:14:07,135 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 40 frames x 5 features\r\n"
+    ],
+    [
+      0.00037,
+      "2017-02-16 12:14:07,135 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0008.lab, 120 labels\r\n"
+    ],
+    [
+      0.003571,
+      "2017-02-16 12:14:07,138 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 24 frames x 5 features\r\n"
+    ],
+    [
+      0.001601,
+      "2017-02-16 12:14:07,140 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0009.lab, 200 labels\r\n"
+    ],
+    [
+      0.003328,
+      "2017-02-16 12:14:07,144 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 40 frames x 5 features\r\n"
+    ],
+    [
+      0.000294,
+      "2017-02-16 12:14:07,144 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0010.lab, 205 labels\r\n"
+    ],
+    [
+      0.004076,
+      "2017-02-16 12:14:07,148 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 41 frames x 5 features\r\n"
+    ],
+    [
+      0.001565,
+      "2017-02-16 12:14:07,149 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0011.lab, 170 labels\r\n"
+    ],
+    [
+      0.002515,
+      "2017-02-16 12:14:07,152 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 34 frames x 5 features\r\n"
+    ],
+    [
+      0.000297,
+      "2017-02-16 12:14:07,153 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0012.lab, 180 labels\r\n"
+    ],
+    [
+      0.002284,
+      "2017-02-16 12:14:07,155 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 36 frames x 5 features\r\n"
+    ],
+    [
+      0.000292,
+      "2017-02-16 12:14:07,155 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0013.lab, 260 labels\r\n"
+    ],
+    [
+      0.003187,
+      "2017-02-16 12:14:07,158 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 52 frames x 5 features\r\n"
+    ],
+    [
+      0.000278,
+      "2017-02-16 12:14:07,159 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0014.lab, 180 labels\r\n"
+    ],
+    [
+      0.002202,
+      "2017-02-16 12:14:07,161 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 36 frames x 5 features\r\n"
+    ],
+    [
+      0.000258,
+      "2017-02-16 12:14:07,161 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0015.lab,  95 labels\r\n"
+    ],
+    [
+      0.001247,
+      "2017-02-16 12:14:07,162 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 19 frames x 5 features\r\n"
+    ],
+    [
+      0.000277,
+      "2017-02-16 12:14:07,163 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0016.lab, 205 labels\r\n"
+    ],
+    [
+      0.002854,
+      "2017-02-16 12:14:07,165 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 41 frames x 5 features\r\n"
+    ],
+    [
+      0.00044,
+      "2017-02-16 12:14:07,166 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0017.lab, 275 labels\r\n"
+    ],
+    [
+      0.005619,
+      "2017-02-16 12:14:07,171 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 55 frames x 5 features\r\n"
+    ],
+    [
+      0.000343,
+      "2017-02-16 12:14:07,172 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0018.lab,  75 labels\r\n"
+    ],
+    [
+      0.001416,
+      "2017-02-16 12:14:07,173 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 15 frames x 5 features\r\n"
+    ],
+    [
+      0.001315,
+      "2017-02-16 12:14:07,174 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0019.lab, 220 labels\r\n"
+    ],
+    [
+      0.003964,
+      "2017-02-16 12:14:07,178 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 44 frames x 5 features\r\n"
+    ],
+    [
+      0.001094,
+      "2017-02-16 12:14:07,179 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0020.lab, 195 labels\r\n"
+    ],
+    [
+      0.002961,
+      "2017-02-16 12:14:07,183 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 39 frames x 5 features\r\n"
+    ],
+    [
+      0.000337,
+      "2017-02-16 12:14:07,183 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0021.lab, 160 labels\r\n"
+    ],
+    [
+      0.001992,
+      "2017-02-16 12:14:07,185 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 32 frames x 5 features\r\n"
+    ],
+    [
+      0.000329,
+      "2017-02-16 12:14:07,185 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0022.lab, 270 labels\r\n"
+    ],
+    [
+      0.003284,
+      "2017-02-16 12:14:07,189 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 54 frames x 5 features\r\n"
+    ],
+    [
+      0.000273,
+      "2017-02-16 12:14:07,189 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0023.lab, 360 labels\r\n"
+    ],
+    [
+      0.004394,
+      "2017-02-16 12:14:07,193 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 72 frames x 5 features\r\n"
+    ],
+    [
+      0.000293,
+      "2017-02-16 12:14:07,193 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0024.lab, 245 labels\r\n"
+    ],
+    [
+      0.003968,
+      "2017-02-16 12:14:07,197 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 49 frames x 5 features\r\n"
+    ],
+    [
+      0.000437,
+      "2017-02-16 12:14:07,198 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0025.lab, 190 labels\r\n"
+    ],
+    [
+      0.005187,
+      "2017-02-16 12:14:07,202 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 38 frames x 5 features\r\n"
+    ],
+    [
+      0.001121,
+      "2017-02-16 12:14:07,204 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0026.lab, 185 labels\r\n"
+    ],
+    [
+      0.003512,
+      "2017-02-16 12:14:07,207 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 37 frames x 5 features\r\n"
+    ],
+    [
+      0.000453,
+      "2017-02-16 12:14:07,208 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0027.lab, 240 labels\r\n"
+    ],
+    [
+      0.003024,
+      "2017-02-16 12:14:07,211 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 48 frames x 5 features\r\n"
+    ],
+    [
+      0.000334,
+      "2017-02-16 12:14:07,211 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0028.lab,  85 labels\r\n"
+    ],
+    [
+      0.001502,
+      "2017-02-16 12:14:07,213 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 17 frames x 5 features\r\n"
+    ],
+    [
+      0.000317,
+      "2017-02-16 12:14:07,213 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0029.lab, 200 labels\r\n"
+    ],
+    [
+      0.003832,
+      "2017-02-16 12:14:07,217 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 40 frames x 5 features\r\n"
+    ],
+    [
+      0.001036,
+      "2017-02-16 12:14:07,218 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0030.lab,  70 labels\r\n"
+    ],
+    [
+      0.001562,
+      "2017-02-16 12:14:07,219 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 14 frames x 5 features\r\n"
+    ],
+    [
+      0.000882,
+      "2017-02-16 12:14:07,220 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0031.lab, 130 labels\r\n"
+    ],
+    [
+      0.001859,
+      "2017-02-16 12:14:07,223 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 26 frames x 5 features\r\n"
+    ],
+    [
+      0.000278,
+      "2017-02-16 12:14:07,223 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0032.lab, 240 labels\r\n"
+    ],
+    [
+      0.002917,
+      "2017-02-16 12:14:07,226 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 48 frames x 5 features\r\n"
+    ],
+    [
+      0.000229,
+      "2017-02-16 12:14:07,226 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0033.lab, 240 labels\r\n"
+    ],
+    [
+      0.003511,
+      "2017-02-16 12:14:07,229 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 48 frames x 5 features\r\n"
+    ],
+    [
+      0.000443,
+      "2017-02-16 12:14:07,230 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0034.lab, 220 labels\r\n"
+    ],
+    [
+      0.003282,
+      "2017-02-16 12:14:07,233 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 44 frames x 5 features\r\n"
+    ],
+    [
+      0.000378,
+      "2017-02-16 12:14:07,233 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0035.lab, 235 labels\r\n"
+    ],
+    [
+      0.003616,
+      "2017-02-16 12:14:07,237 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 47 frames x 5 features\r\n"
+    ],
+    [
+      0.000279,
+      "2017-02-16 12:14:07,237 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0036.lab,  95 labels\r\n"
+    ],
+    [
+      0.002463,
+      "2017-02-16 12:14:07,239 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 19 frames x 5 features\r\n"
+    ],
+    [
+      0.000969,
+      "2017-02-16 12:14:07,241 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0037.lab, 140 labels\r\n"
+    ],
+    [
+      0.002406,
+      "2017-02-16 12:14:07,243 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 28 frames x 5 features\r\n"
+    ],
+    [
+      0.000824,
+      "2017-02-16 12:14:07,244 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0038.lab, 105 labels\r\n"
+    ],
+    [
+      0.001448,
+      "2017-02-16 12:14:07,246 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 21 frames x 5 features\r\n"
+    ],
+    [
+      0.000269,
+      "2017-02-16 12:14:07,246 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0039.lab, 155 labels\r\n"
+    ],
+    [
+      0.001869,
+      "2017-02-16 12:14:07,248 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 31 frames x 5 features\r\n"
+    ],
+    [
+      0.000247,
+      "2017-02-16 12:14:07,248 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0040.lab, 155 labels\r\n"
+    ],
+    [
+      0.001984,
+      "2017-02-16 12:14:07,250 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 31 frames x 5 features\r\n"
+    ],
+    [
+      0.000249,
+      "2017-02-16 12:14:07,250 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0041.lab, 125 labels\r\n"
+    ],
+    [
+      0.001527,
+      "2017-02-16 12:14:07,252 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 25 frames x 5 features\r\n"
+    ],
+    [
+      0.000258,
+      "2017-02-16 12:14:07,252 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0042.lab, 170 labels\r\n"
+    ],
+    [
+      0.002335,
+      "2017-02-16 12:14:07,254 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 34 frames x 5 features\r\n"
+    ],
+    [
+      0.000273,
+      "2017-02-16 12:14:07,255 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0043.lab, 230 labels\r\n"
+    ],
+    [
+      0.002919,
+      "2017-02-16 12:14:07,257 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 46 frames x 5 features\r\n"
+    ],
+    [
+      0.000259,
+      "2017-02-16 12:14:07,258 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0044.lab, 195 labels\r\n"
+    ],
+    [
+      0.002958,
+      "2017-02-16 12:14:07,261 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 39 frames x 5 features\r\n"
+    ],
+    [
+      0.001008,
+      "2017-02-16 12:14:07,261 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0045.lab, 150 labels\r\n"
+    ],
+    [
+      0.002088,
+      "2017-02-16 12:14:07,264 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 30 frames x 5 features\r\n"
+    ],
+    [
+      0.000331,
+      "2017-02-16 12:14:07,264 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0046.lab, 175 labels\r\n"
+    ],
+    [
+      0.002937,
+      "2017-02-16 12:14:07,267 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 35 frames x 5 features\r\n"
+    ],
+    [
+      0.000795,
+      "2017-02-16 12:14:07,268 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0047.lab, 195 labels\r\n"
+    ],
+    [
+      0.003907,
+      "2017-02-16 12:14:07,271 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 39 frames x 5 features\r\n"
+    ],
+    [
+      0.001112,
+      "2017-02-16 12:14:07,272 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0048.lab, 150 labels\r\n"
+    ],
+    [
+      0.002469,
+      "2017-02-16 12:14:07,275 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 30 frames x 5 features\r\n"
+    ],
+    [
+      0.000284,
+      "2017-02-16 12:14:07,276 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0049.lab, 180 labels\r\n"
+    ],
+    [
+      0.002231,
+      "2017-02-16 12:14:07,278 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 36 frames x 5 features\r\n"
+    ],
+    [
+      0.000282,
+      "2017-02-16 12:14:07,278 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0050.lab, 240 labels\r\n"
+    ],
+    [
+      0.002886,
+      "2017-02-16 12:14:07,281 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 48 frames x 5 features\r\n"
+    ],
+    [
+      0.000272,
+      "2017-02-16 12:14:07,281 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0051.lab, 235 labels\r\n"
+    ],
+    [
+      0.002836,
+      "2017-02-16 12:14:07,284 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 47 frames x 5 features\r\n"
+    ],
+    [
+      0.000232,
+      "2017-02-16 12:14:07,284 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0052.lab, 125 labels\r\n"
+    ],
+    [
+      0.001714,
+      "2017-02-16 12:14:07,286 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 25 frames x 5 features\r\n"
+    ],
+    [
+      0.00028,
+      "2017-02-16 12:14:07,286 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0053.lab, 205 labels\r\n"
+    ],
+    [
+      0.003544,
+      "2017-02-16 12:14:07,289 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 41 frames x 5 features\r\n2017-02-16 12:14:07,289 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0054.lab, 100 labels\r\n"
+    ],
+    [
+      0.000845,
+      "2017-02-16 12:14:07,291 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 20 frames x 5 features\r\n"
+    ],
+    [
+      0.000342,
+      "2017-02-16 12:14:07,291 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0055.lab, 250 labels\r\n"
+    ],
+    [
+      0.004117,
+      "2017-02-16 12:14:07,295 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 50 frames x 5 features\r\n"
+    ],
+    [
+      0.000351,
+      "2017-02-16 12:14:07,296 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0056.lab, 165 labels\r\n"
+    ],
+    [
+      0.002773,
+      "2017-02-16 12:14:07,298 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 33 frames x 5 features\r\n"
+    ],
+    [
+      0.000394,
+      "2017-02-16 12:14:07,299 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0057.lab, 115 labels\r\n"
+    ],
+    [
+      0.00281,
+      "2017-02-16 12:14:07,301 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 23 frames x 5 features\r\n"
+    ],
+    [
+      0.001008,
+      "2017-02-16 12:14:07,302 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0058.lab, 235 labels\r\n"
+    ],
+    [
+      0.003542,
+      "2017-02-16 12:14:07,306 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 47 frames x 5 features\r\n"
+    ],
+    [
+      0.000296,
+      "2017-02-16 12:14:07,306 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0059.lab, 140 labels\r\n"
+    ],
+    [
+      0.00171,
+      "2017-02-16 12:14:07,308 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 28 frames x 5 features\r\n"
+    ],
+    [
+      0.000251,
+      "2017-02-16 12:14:07,308 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0060.lab, 110 labels\r\n"
+    ],
+    [
+      0.001497,
+      "2017-02-16 12:14:07,310 \u001b[1;34mDEBUG   \u001b[0m       dur     : made duration matrix of 22 frames x 5 features\r\n"
+    ],
+    [
+      0.00021,
+      "2017-02-16 12:14:07,310 \u001b[1;32mINFO    \u001b[0m       main    : creating acoustic (output) features\r\n"
+    ],
+    [
+      0.000155,
+      "2017-02-16 12:14:07,310 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    1 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0001.cmp\r\n"
+    ],
+    [
+      0.000237,
+      "2017-02-16 12:14:07,310 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 37 frames of features\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:07,311 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    2 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0002.cmp\r\n"
+    ],
+    [
+      0.000173,
+      "2017-02-16 12:14:07,311 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 42 frames of features\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-16 12:14:07,311 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    3 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0003.cmp\r\n"
+    ],
+    [
+      0.000171,
+      "2017-02-16 12:14:07,311 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 41 frames of features\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:07,311 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    4 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0004.cmp\r\n"
+    ],
+    [
+      0.000167,
+      "2017-02-16 12:14:07,311 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 28 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,311 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    5 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0005.cmp\r\n"
+    ],
+    [
+      0.000168,
+      "2017-02-16 12:14:07,311 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 17 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,312 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    6 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0006.cmp\r\n"
+    ],
+    [
+      0.000169,
+      "2017-02-16 12:14:07,312 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 33 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,312 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    7 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0007.cmp\r\n"
+    ],
+    [
+      0.000169,
+      "2017-02-16 12:14:07,312 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 40 frames of features\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-16 12:14:07,312 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    8 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0008.cmp\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,312 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 24 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,312 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    9 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0009.cmp\r\n"
+    ],
+    [
+      0.000165,
+      "2017-02-16 12:14:07,312 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 40 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,312 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   10 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0010.cmp\r\n"
+    ],
+    [
+      0.000162,
+      "2017-02-16 12:14:07,313 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 41 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,313 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   11 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0011.cmp\r\n"
+    ],
+    [
+      0.000159,
+      "2017-02-16 12:14:07,313 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 34 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,313 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   12 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0012.cmp\r\n"
+    ],
+    [
+      0.000175,
+      "2017-02-16 12:14:07,313 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 36 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,313 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   13 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0013.cmp\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,313 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 52 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,313 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   14 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0014.cmp\r\n"
+    ],
+    [
+      0.000161,
+      "2017-02-16 12:14:07,314 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 36 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,314 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   15 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0015.cmp\r\n"
+    ],
+    [
+      0.000156,
+      "2017-02-16 12:14:07,314 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 19 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,314 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   16 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0016.cmp\r\n"
+    ],
+    [
+      0.000166,
+      "2017-02-16 12:14:07,314 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 41 frames of features\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:07,314 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   17 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0017.cmp\r\n"
+    ],
+    [
+      0.000158,
+      "2017-02-16 12:14:07,314 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 55 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,314 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   18 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0018.cmp\r\n"
+    ],
+    [
+      0.000165,
+      "2017-02-16 12:14:07,314 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 15 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,314 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   19 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0019.cmp\r\n"
+    ],
+    [
+      0.000161,
+      "2017-02-16 12:14:07,315 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 44 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,315 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   20 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0020.cmp\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,315 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 39 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,315 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   21 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0021.cmp\r\n"
+    ],
+    [
+      0.000157,
+      "2017-02-16 12:14:07,315 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 32 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,315 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   22 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0022.cmp\r\n"
+    ],
+    [
+      0.000158,
+      "2017-02-16 12:14:07,315 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 54 frames of features\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:07,315 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   23 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0023.cmp\r\n"
+    ],
+    [
+      0.000156,
+      "2017-02-16 12:14:07,316 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 72 frames of features\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-16 12:14:07,316 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   24 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0024.cmp\r\n"
+    ],
+    [
+      0.000161,
+      "2017-02-16 12:14:07,316 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 49 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,316 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   25 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0025.cmp\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,316 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 38 frames of features\r\n"
+    ],
+    [
+      0.000174,
+      "2017-02-16 12:14:07,316 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   26 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0026.cmp\r\n"
+    ],
+    [
+      5e-05,
+      "2017-02-16 12:14:07,316 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 37 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,316 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   27 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0027.cmp\r\n"
+    ],
+    [
+      0.000158,
+      "2017-02-16 12:14:07,316 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 48 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,317 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   28 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0028.cmp\r\n"
+    ],
+    [
+      0.000159,
+      "2017-02-16 12:14:07,317 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 17 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,317 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   29 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0029.cmp\r\n"
+    ],
+    [
+      0.000158,
+      "2017-02-16 12:14:07,317 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 40 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-16 12:14:07,317 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   30 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0030.cmp\r\n"
+    ],
+    [
+      0.000839,
+      "2017-02-16 12:14:07,317 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 14 frames of features\r\n2017-02-16 12:14:07,317 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   31 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0031.cmp\r\n2017-02-16 12:14:07,317 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 26 frames of features\r\n2017-02-16 12:14:07,317 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   32 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0032.cmp\r\n2017-02-16 12:14:07,318 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 48 frames of features\r\n2017-02-16 12:14:07,318 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   33 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0033.cmp\r\n"
+    ],
+    [
+      2.1e-05,
+      "2017-02-16 12:14:07,318 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 48 frames of features\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-16 12:14:07,318 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   34 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0034.cmp\r\n"
+    ],
+    [
+      0.000163,
+      "2017-02-16 12:14:07,318 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 44 frames of features\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:07,318 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   35 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0035.cmp\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,318 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 47 frames of features\r\n"
+    ],
+    [
+      6.2e-05,
+      "2017-02-16 12:14:07,318 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   36 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0036.cmp\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,318 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 19 frames of features\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:07,319 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   37 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0037.cmp\r\n"
+    ],
+    [
+      0.000231,
+      "2017-02-16 12:14:07,319 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 28 frames of features\r\n"
+    ],
+    [
+      1.8e-05,
+      "2017-02-16 12:14:07,319 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   38 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0038.cmp\r\n"
+    ],
+    [
+      0.000178,
+      "2017-02-16 12:14:07,319 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 21 frames of features\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-16 12:14:07,319 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   39 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0039.cmp\r\n"
+    ],
+    [
+      0.000181,
+      "2017-02-16 12:14:07,319 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 31 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,319 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   40 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0040.cmp\r\n"
+    ],
+    [
+      0.000171,
+      "2017-02-16 12:14:07,319 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 31 frames of features\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-16 12:14:07,320 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   41 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0041.cmp\r\n"
+    ],
+    [
+      0.000173,
+      "2017-02-16 12:14:07,320 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 25 frames of features\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-16 12:14:07,320 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   42 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0042.cmp\r\n"
+    ],
+    [
+      0.000169,
+      "2017-02-16 12:14:07,320 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 34 frames of features\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:07,320 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   43 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0043.cmp\r\n"
+    ],
+    [
+      0.000192,
+      "2017-02-16 12:14:07,320 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 46 frames of features\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:07,320 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   44 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0044.cmp\r\n"
+    ],
+    [
+      0.000613,
+      "2017-02-16 12:14:07,320 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 39 frames of features\r\n2017-02-16 12:14:07,320 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   45 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0045.cmp\r\n2017-02-16 12:14:07,321 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 30 frames of features\r\n2017-02-16 12:14:07,321 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   46 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0046.cmp\r\n"
+    ],
+    [
+      3.8e-05,
+      "2017-02-16 12:14:07,321 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 35 frames of features\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-16 12:14:07,321 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   47 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0047.cmp\r\n"
+    ],
+    [
+      0.000216,
+      "2017-02-16 12:14:07,321 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 39 frames of features\r\n"
+    ],
+    [
+      5.1e-05,
+      "2017-02-16 12:14:07,321 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   48 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0048.cmp\r\n"
+    ],
+    [
+      0.00018,
+      "2017-02-16 12:14:07,321 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 30 frames of features\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-16 12:14:07,321 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   49 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0049.cmp\r\n"
+    ],
+    [
+      0.000162,
+      "2017-02-16 12:14:07,322 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 36 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,322 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   50 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0050.cmp\r\n"
+    ],
+    [
+      0.000163,
+      "2017-02-16 12:14:07,322 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 48 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,322 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   51 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0051.cmp\r\n"
+    ],
+    [
+      0.000162,
+      "2017-02-16 12:14:07,322 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 47 frames of features\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-16 12:14:07,322 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   52 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0052.cmp\r\n"
+    ],
+    [
+      0.000168,
+      "2017-02-16 12:14:07,322 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 25 frames of features\r\n"
+    ],
+    [
+      0.000929,
+      "2017-02-16 12:14:07,322 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   53 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0053.cmp\r\n2017-02-16 12:14:07,323 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 41 frames of features\r\n2017-02-16 12:14:07,323 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   54 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0054.cmp\r\n2017-02-16 12:14:07,323 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 20 frames of features\r\n2017-02-16 12:14:07,323 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   55 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0055.cmp\r\n2017-02-16 12:14:07,323 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 50 frames of features\r\n"
+    ],
+    [
+      0.000187,
+      "2017-02-16 12:14:07,323 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   56 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0056.cmp\r\n"
+    ],
+    [
+      0.000634,
+      "2017-02-16 12:14:07,324 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 33 frames of features\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-16 12:14:07,324 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   57 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0057.cmp\r\n"
+    ],
+    [
+      0.000882,
+      "2017-02-16 12:14:07,325 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 23 frames of features\r\n"
+    ],
+    [
+      0.000266,
+      "2017-02-16 12:14:07,325 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   58 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0058.cmp\r\n"
+    ],
+    [
+      0.000319,
+      "2017-02-16 12:14:07,326 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 47 frames of features\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-16 12:14:07,326 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   59 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0059.cmp\r\n"
+    ],
+    [
+      0.000181,
+      "2017-02-16 12:14:07,326 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 28 frames of features\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-16 12:14:07,326 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   60 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_dur_5/arctic_a0060.cmp\r\n"
+    ],
+    [
+      0.000181,
+      "2017-02-16 12:14:07,326 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 22 frames of features\r\n"
+    ],
+    [
+      0.086124,
+      "2017-02-16 12:14:07,412 \u001b[1;32mINFO    \u001b[0m       main    : normalising acoustic (output) features using method MVN\r\n"
+    ],
+    [
+      0.004321,
+      "/home/josh/git/merlin/src/frontend/mean_variance_norm.py:69: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.\r\n  if self.mean_vector == None:\r\n/home/josh/git/merlin/src/frontend/mean_variance_norm.py:71: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.\r\n  if self.std_vector  == None:\r\n"
+    ],
+    [
+      0.006493,
+      "2017-02-16 12:14:07,423 \u001b[1;32mINFO    \u001b[0m       main    : saved MVN vectors to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/norm_info_dur_5_MVN.dat\r\n"
+    ],
+    [
+      0.000227,
+      "2017-02-16 12:14:07,423 \u001b[1;32mINFO    \u001b[0m       main    : saved dur variance vector to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/var/dur_5\r\n"
+    ],
+    [
+      0.02138,
+      "2017-02-16 12:14:07,444 \u001b[1;34mDEBUG   \u001b[0m       labels  : HTS-derived input feature dimension is 416 + 0 = 416\r\n"
+    ],
+    [
+      0.000802,
+      "2017-02-16 12:14:07,445 \u001b[1;32mINFO    \u001b[0m       main    : label dimension is 416\r\n"
+    ],
+    [
+      0.0002,
+      "2017-02-16 12:14:07,446 \u001b[1;32mINFO    \u001b[0m       main    : training DNN\r\n"
+    ],
+    [
+      0.000178,
+      "2017-02-16 12:14:07,446 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: Starting train_DNN\r\n"
+    ],
+    [
+      0.000168,
+      "2017-02-16 12:14:07,446 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: Creating training   data provider\r\n"
+    ],
+    [
+      0.000206,
+      "2017-02-16 12:14:07,446 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: Creating validation data provider\r\n"
+    ],
+    [
+      0.019205,
+      "2017-02-16 12:14:07,465 \u001b[1;32mINFO    \u001b[0m main.train_DNN: building the model\r\n"
+    ],
+    [
+      0.697222,
+      "2017-02-16 12:14:08,163 \u001b[1;32mINFO    \u001b[0m main.train_DNN: fine-tuning the DNN model\r\n0.002\r\n"
+    ],
+    [
+      9.009564,
+      "2017-02-16 12:14:17,172 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.426465,
+      "2017-02-16 12:14:17,599 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 1, validation error 4.644241, train error 4.870829  time spent 9.44\r\n"
+    ],
+    [
+      9.069929,
+      "2017-02-16 12:14:26,668 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.427374,
+      "2017-02-16 12:14:27,096 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 2, validation error 4.487165, train error 4.607444  time spent 9.50\r\n"
+    ],
+    [
+      8.772097,
+      "2017-02-16 12:14:35,868 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.42921,
+      "2017-02-16 12:14:36,297 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 3, validation error 4.392767, train error 4.459305  time spent 9.20\r\n"
+    ],
+    [
+      8.629379,
+      "2017-02-16 12:14:44,926 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.426808,
+      "2017-02-16 12:14:45,353 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 4, validation error 4.329393, train error 4.356348  time spent 9.06\r\n"
+    ],
+    [
+      8.836971,
+      "2017-02-16 12:14:54,190 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.425924,
+      "2017-02-16 12:14:54,616 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 5, validation error 4.284837, train error 4.277966  time spent 9.26\r\n"
+    ],
+    [
+      8.727179,
+      "2017-02-16 12:15:03,343 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.439166,
+      "2017-02-16 12:15:03,783 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 6, validation error 4.252743, train error 4.215002  time spent 9.17\r\n"
+    ],
+    [
+      10.121996,
+      "2017-02-16 12:15:13,905 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.429049,
+      "2017-02-16 12:15:14,334 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 7, validation error 4.229135, train error 4.162509  time spent 9.20\r\n"
+    ],
+    [
+      10.038081,
+      "2017-02-16 12:15:24,372 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.427481,
+      "2017-02-16 12:15:24,799 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 8, validation error 4.211323, train error 4.117513  time spent 9.12\r\n"
+    ],
+    [
+      10.063936,
+      "2017-02-16 12:15:34,863 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.428327,
+      "2017-02-16 12:15:35,291 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 9, validation error 4.197459, train error 4.078102  time spent 9.15\r\n"
+    ],
+    [
+      10.037879,
+      "2017-02-16 12:15:45,329 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.42585,
+      "2017-02-16 12:15:45,755 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 10, validation error 4.186284, train error 4.042981  time spent 9.12\r\n"
+    ],
+    [
+      10.149978,
+      "2017-02-16 12:15:55,905 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.431272,
+      "2017-02-16 12:15:56,336 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 11, validation error 4.189965, train error 4.044055  time spent 9.24\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-16 12:15:56,337 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: validation loss increased\r\n"
+    ],
+    [
+      8.781888,
+      "2017-02-16 12:16:05,118 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.430826,
+      "2017-02-16 12:16:05,549 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 12, validation error 4.173001, train error 3.921315  time spent 9.21\r\n"
+    ],
+    [
+      10.07742,
+      "2017-02-16 12:16:15,627 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.427836,
+      "2017-02-16 12:16:16,054 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 13, validation error 4.179362, train error 3.873761  time spent 9.16\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-16 12:16:16,055 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: validation loss increased\r\n"
+    ],
+    [
+      8.912217,
+      "2017-02-16 12:16:24,967 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.429599,
+      "2017-02-16 12:16:25,396 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 14, validation error 4.156760, train error 3.836890  time spent 9.34\r\n"
+    ],
+    [
+      10.021148,
+      "2017-02-16 12:16:35,417 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.428674,
+      "2017-02-16 12:16:35,846 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 15, validation error 4.144701, train error 3.816035  time spent 9.10\r\n"
+    ],
+    [
+      10.008267,
+      "2017-02-16 12:16:45,854 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.429516,
+      "2017-02-16 12:16:46,284 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 16, validation error 4.143400, train error 3.808429  time spent 9.10\r\n"
+    ],
+    [
+      9.98998,
+      "2017-02-16 12:16:56,274 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.429849,
+      "2017-02-16 12:16:56,704 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 17, validation error 4.143185, train error 3.804963  time spent 9.07\r\n"
+    ],
+    [
+      10.013825,
+      "2017-02-16 12:17:06,718 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.423499,
+      "2017-02-16 12:17:07,141 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 18, validation error 4.142815, train error 3.803295  time spent 9.09\r\n"
+    ],
+    [
+      10.006936,
+      "2017-02-16 12:17:17,148 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.430062,
+      "2017-02-16 12:17:17,578 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 19, validation error 4.142603, train error 3.802466  time spent 9.09\r\n"
+    ],
+    [
+      10.081428,
+      "2017-02-16 12:17:27,659 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.43034,
+      "2017-02-16 12:17:28,090 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 20, validation error 4.142498, train error 3.802053  time spent 9.17\r\n"
+    ],
+    [
+      10.087884,
+      "2017-02-16 12:17:38,178 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.427125,
+      "2017-02-16 12:17:38,605 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 21, validation error 4.142447, train error 3.801847  time spent 9.17\r\n"
+    ],
+    [
+      9.993145,
+      "2017-02-16 12:17:48,598 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.427031,
+      "2017-02-16 12:17:49,025 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 22, validation error 4.142421, train error 3.801744  time spent 9.07\r\n"
+    ],
+    [
+      10.046473,
+      "2017-02-16 12:17:59,071 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.428139,
+      "2017-02-16 12:17:59,500 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 23, validation error 4.142409, train error 3.801692  time spent 9.13\r\n"
+    ],
+    [
+      9.998752,
+      "2017-02-16 12:18:09,498 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.429186,
+      "2017-02-16 12:18:09,928 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 24, validation error 4.142403, train error 3.801667  time spent 9.07\r\n"
+    ],
+    [
+      10.456092,
+      "2017-02-16 12:18:20,384 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      0.442424,
+      "2017-02-16 12:18:20,826 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 25, validation error 4.142400, train error 3.801656  time spent 9.55\r\n"
+    ],
+    [
+      1.39413,
+      "2017-02-16 12:18:22,220 \u001b[1;32mINFO    \u001b[0m main.train_DNN: overall  training time: 4.23m validation error 4.142400\r\n"
+    ],
+    [
+      0.001488,
+      "2017-02-16 12:18:22,222 \u001b[1;32mINFO    \u001b[0m       main    : generating from DNN\r\n"
+    ],
+    [
+      0.000236,
+      "2017-02-16 12:18:22,222 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: Starting dnn_generation\r\n"
+    ],
+    [
+      0.778314,
+      "2017-02-16 12:18:23,000 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    1 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0051.lab\r\n"
+    ],
+    [
+      0.178025,
+      "2017-02-16 12:18:23,178 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0051.cmp\r\n"
+    ],
+    [
+      0.000163,
+      "2017-02-16 12:18:23,179 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    2 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0052.lab\r\n"
+    ],
+    [
+      0.117051,
+      "2017-02-16 12:18:23,296 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0052.cmp\r\n"
+    ],
+    [
+      0.000142,
+      "2017-02-16 12:18:23,296 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    3 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0053.lab\r\n"
+    ],
+    [
+      0.150681,
+      "2017-02-16 12:18:23,446 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0053.cmp\r\n"
+    ],
+    [
+      0.000197,
+      "2017-02-16 12:18:23,447 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    4 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0054.lab\r\n"
+    ],
+    [
+      0.147589,
+      "2017-02-16 12:18:23,594 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0054.cmp\r\n"
+    ],
+    [
+      0.00022,
+      "2017-02-16 12:18:23,594 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    5 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0055.lab\r\n"
+    ],
+    [
+      0.174086,
+      "2017-02-16 12:18:23,768 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0055.cmp\r\n"
+    ],
+    [
+      0.000148,
+      "2017-02-16 12:18:23,769 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    6 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0056.lab\r\n"
+    ],
+    [
+      0.131679,
+      "2017-02-16 12:18:23,900 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0056.cmp\r\n"
+    ],
+    [
+      0.000109,
+      "2017-02-16 12:18:23,901 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    7 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0057.lab\r\n"
+    ],
+    [
+      0.115234,
+      "2017-02-16 12:18:24,016 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0057.cmp\r\n"
+    ],
+    [
+      0.000116,
+      "2017-02-16 12:18:24,016 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    8 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0058.lab\r\n"
+    ],
+    [
+      0.171144,
+      "2017-02-16 12:18:24,187 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0058.cmp\r\n"
+    ],
+    [
+      0.000156,
+      "2017-02-16 12:18:24,187 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    9 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0059.lab\r\n"
+    ],
+    [
+      0.131194,
+      "2017-02-16 12:18:24,317 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0059.cmp\r\n"
+    ],
+    [
+      0.000149,
+      "2017-02-16 12:18:24,319 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating   10 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/nn_no_silence_lab_norm_416/arctic_a0060.lab\r\n"
+    ],
+    [
+      0.107719,
+      "2017-02-16 12:18:24,426 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0060.cmp\r\n"
+    ],
+    [
+      0.000252,
+      "2017-02-16 12:18:24,426 \u001b[1;34mDEBUG   \u001b[0m       main    : denormalising generated output using method MVN\r\n"
+    ],
+    [
+      0.00123,
+      "2017-02-16 12:18:24,428 \u001b[1;34mDEBUG   \u001b[0mparam_generation: duration_decomposition for 10 files\r\n"
+    ],
+    [
+      0.000203,
+      "2017-02-16 12:18:24,428 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    1 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0051.cmp\r\n"
+    ],
+    [
+      0.000201,
+      "2017-02-16 12:18:24,428 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0051.dur\r\n"
+    ],
+    [
+      0.000146,
+      "2017-02-16 12:18:24,428 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    2 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0052.cmp\r\n"
+    ],
+    [
+      0.000188,
+      "2017-02-16 12:18:24,428 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0052.dur\r\n"
+    ],
+    [
+      0.000124,
+      "2017-02-16 12:18:24,429 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    3 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0053.cmp\r\n"
+    ],
+    [
+      0.000142,
+      "2017-02-16 12:18:24,429 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0053.dur\r\n"
+    ],
+    [
+      0.00013,
+      "2017-02-16 12:18:24,429 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    4 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0054.cmp\r\n"
+    ],
+    [
+      0.000154,
+      "2017-02-16 12:18:24,429 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0054.dur\r\n"
+    ],
+    [
+      0.000134,
+      "2017-02-16 12:18:24,429 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    5 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0055.cmp\r\n"
+    ],
+    [
+      0.000153,
+      "2017-02-16 12:18:24,429 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0055.dur\r\n"
+    ],
+    [
+      0.000155,
+      "2017-02-16 12:18:24,430 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    6 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0056.cmp\r\n"
+    ],
+    [
+      0.000168,
+      "2017-02-16 12:18:24,430 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0056.dur\r\n"
+    ],
+    [
+      0.000149,
+      "2017-02-16 12:18:24,430 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    7 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0057.cmp\r\n"
+    ],
+    [
+      0.000171,
+      "2017-02-16 12:18:24,430 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0057.dur\r\n"
+    ],
+    [
+      0.000146,
+      "2017-02-16 12:18:24,430 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    8 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0058.cmp\r\n"
+    ],
+    [
+      0.000178,
+      "2017-02-16 12:18:24,430 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0058.dur\r\n"
+    ],
+    [
+      0.000147,
+      "2017-02-16 12:18:24,430 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    9 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0059.cmp\r\n"
+    ],
+    [
+      0.000167,
+      "2017-02-16 12:18:24,431 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0059.dur\r\n"
+    ],
+    [
+      0.000118,
+      "2017-02-16 12:18:24,431 \u001b[1;32mINFO    \u001b[0mparam_generation: processing   10 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0060.cmp\r\n"
+    ],
+    [
+      0.000129,
+      "2017-02-16 12:18:24,431 \u001b[1;34mDEBUG   \u001b[0mparam_generation: wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512/arctic_a0060.dur\r\n"
+    ],
+    [
+      0.00019,
+      "2017-02-16 12:18:24,431 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0051.lab, 235 labels\r\n"
+    ],
+    [
+      0.002285,
+      "2017-02-16 12:18:24,433 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 45 frames x 5 features\r\n"
+    ],
+    [
+      0.000258,
+      "2017-02-16 12:18:24,434 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0052.lab, 125 labels\r\n"
+    ],
+    [
+      0.001123,
+      "2017-02-16 12:18:24,435 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 23 frames x 5 features\r\n"
+    ],
+    [
+      0.000249,
+      "2017-02-16 12:18:24,435 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0053.lab, 205 labels\r\n"
+    ],
+    [
+      0.001785,
+      "2017-02-16 12:18:24,437 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 39 frames x 5 features\r\n"
+    ],
+    [
+      0.000201,
+      "2017-02-16 12:18:24,437 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0054.lab, 100 labels\r\n"
+    ],
+    [
+      0.001118,
+      "2017-02-16 12:18:24,438 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 18 frames x 5 features\r\n"
+    ],
+    [
+      0.000441,
+      "2017-02-16 12:18:24,438 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0055.lab, 250 labels\r\n"
+    ],
+    [
+      0.003622,
+      "2017-02-16 12:18:24,441 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 48 frames x 5 features\r\n"
+    ],
+    [
+      0.000632,
+      "2017-02-16 12:18:24,443 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0056.lab, 165 labels\r\n"
+    ],
+    [
+      0.001558,
+      "2017-02-16 12:18:24,444 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 31 frames x 5 features\r\n"
+    ],
+    [
+      0.000281,
+      "2017-02-16 12:18:24,445 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0057.lab, 115 labels\r\n"
+    ],
+    [
+      0.001187,
+      "2017-02-16 12:18:24,446 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 21 frames x 5 features\r\n"
+    ],
+    [
+      0.000291,
+      "2017-02-16 12:18:24,446 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0058.lab, 235 labels\r\n"
+    ],
+    [
+      0.002023,
+      "2017-02-16 12:18:24,448 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 45 frames x 5 features\r\n"
+    ],
+    [
+      0.000256,
+      "2017-02-16 12:18:24,448 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0059.lab, 140 labels\r\n"
+    ],
+    [
+      0.001283,
+      "2017-02-16 12:18:24,450 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 26 frames x 5 features\r\n"
+    ],
+    [
+      0.000252,
+      "2017-02-16 12:18:24,450 \u001b[1;32mINFO    \u001b[0m       dur     : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/duration_model/data/label_state_align/arctic_a0060.lab, 110 labels\r\n"
+    ],
+    [
+      0.000994,
+      "2017-02-16 12:18:24,451 \u001b[1;34mDEBUG   \u001b[0m       dur     : modifed label with predicted duration of 20 frames x 5 features\r\n"
+    ],
+    [
+      0.000171,
+      "2017-02-16 12:18:24,451 \u001b[1;32mINFO    \u001b[0m       main    : calculating MCD\r\n"
+    ],
+    [
+      0.019518,
+      "2017-02-16 12:18:24,470 \u001b[1;32mINFO    \u001b[0m       main    : Develop: DNN -- RMSE: 6.826 frames/phoneme; CORR: 0.624; \r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-16 12:18:24,471 \u001b[1;32mINFO    \u001b[0m       main    : Test: DNN -- RMSE: 7.840 frames/phoneme; CORR: 0.562; \r\n"
+    ],
+    [
+      0.080886,
+      "\u001b]0;josh@yoga: ~/git/merlin/egs/slt_arctic/s1\u0007josh@yoga:~/git/merlin/egs/slt_arctic/s1$ "
+    ]
+  ],
+  "height": 58
+}
