@@ -848,7 +848,55 @@ conf/
 
 ### Training the Duration Model
 
+If you've gotten here and followed all the previous steps, we're ready to finally start training our DNNs... huzzah!
+
+You'll see in the `run_demo.sh` script that after the data preparation phase is completed, we send a Theano job to our processing unit (CPU or GPU) and we specify that we want to train the duration model:
+
+{% highlight bash %}
+### Step 2: train duration model ###
+echo "Step 2: training duration model..."
+./scripts/submit.sh ${MerlinDir}/src/run_merlin.py conf/duration_${Voice}.conf
+{% endhighlight %}
+
+Since this second step in `run_demo.sh` produces a lot of output, I decided to record my terminal session and embed it here.
+
 <asciinema-player src="/misc/train-dur-model.json"></asciinema-player>
+
+After the training is complete, we can see that we've produced some new dirs and files in our `experiments` directory:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree -d experiments/
+experiments/
+└── slt_arctic_demo
+    ├── acoustic_model
+    │   └── data
+    │       ├── bap
+    │       ├── label_phone_align
+    │       ├── label_state_align
+    │       ├── lf0
+    │       └── mgc
+    ├── duration_model
+    │   ├── data
+    │   │   ├── binary_label_416
+    │   │   ├── dur
+    │   │   ├── label_phone_align
+    │   │   ├── label_state_align
+    │   │   ├── lf0
+    │   │   ├── nn_dur_5
+    │   │   ├── nn_norm_dur_5
+    │   │   ├── nn_no_silence_lab_416
+    │   │   ├── nn_no_silence_lab_norm_416
+    │   │   ├── ref_data
+    │   │   └── var
+    │   ├── gen
+    │   │   └── DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512
+    │   ├── log
+    │   └── nnets_model
+    └── test_synthesis
+        └── prompt-lab
+
+27 directories
+{% endhighlight %}
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
 [merlin-cstr]: http://www.cstr.ed.ac.uk/projects/merlin/
