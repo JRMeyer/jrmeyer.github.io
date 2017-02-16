@@ -330,6 +330,8 @@ Step 2: ./merlin_synthesis.sh
 
 So, we're going to start with the simpler `demo voice` as suggested.
 
+<br/>
+
 ### Pre-existing Dirs & Files
 
 Before we just go and run that `run_demo.sh`, lets investigate what data and scripts we have so far so that we can get an idea of what Merlin requires and what the workflow is.
@@ -470,25 +472,22 @@ global_config_file=conf/global_settings.cfg
 ./scripts/prepare_config_files_for_synthesis.sh $global_config_file
 {% endhighlight %}
 
-Running these scripts one-by-one, it's easier to see what's going on in my opinion.
+If we take the time to run these scripts one-by-one, we can more easily see what's going on. I'm going to run each script here, and look into what's being output by each one.
 
 <br/>
 
-#### `setup.sh`
+### Calling the `setup.sh` script from `run_demo.sh`
+
+`setup.sh` does two important things:
+
+1. download, unzip, and move training and testing data into new `experiments` dir
+2. create global configuration file, `global_settings.cfg`, in our `conf` dir
 
 So, beginning by running *only* the `setup.sh` script (from within `run_demo.sh`), we get the following output to the terminal:
 
 {% highlight bash %}
-josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh 
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh
 Step 1: setting up experiments directory and the training data files...
-downloading data.....
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100 12.9M  100 12.9M    0     0  2856k      0  0:00:04  0:00:04 --:--:-- 3181k
-unzipping files......
-data is ready!
-Merlin default voice settings configured in conf/global_settings.cfg
-setup done...!Step 1: setting up experiments directory and the training data files...
 downloading data.....
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -499,27 +498,41 @@ Merlin default voice settings configured in conf/global_settings.cfg
 setup done...!
 {% endhighlight %}
 
-Looking into the file structure at this time, we first see we have a new global config file in the `conf` dir:
+Looking into the file structure at this time of the `s1` dir (for just the first level, hence the `-L 1` flag, we can see we've created a few new things:
 
 {% highlight bash %}
-josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree conf/
-conf/
-├── dnn
-│   ├── acoustic_slt_arctic_full.conf
-│   ├── duration_slt_arctic_full.conf
-│   ├── test_dur_synth_slt_arctic_full.conf
-│   └── test_synth_slt_arctic_full.conf
-├── global_settings.cfg
-└── logging_config.conf
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree -L 1 .
+.
+├── conf
+├── experiments
+├── merlin_synthesis.sh
+├── README.md
+├── RESULTS.md
+├── run_demo.sh
+├── run_full_voice.sh
+├── scripts
+├── slt_arctic_demo_data
+├── slt_arctic_demo_data.zip
+└── testrefs
 
-1 directory, 6 files
+5 directories, 6 files
 {% endhighlight %}
 
-We also see that a new directory (`experiments`) has been created within the main `s1` dir.
+Specifically, we have created the following:
 
-At this point, the `experiments` directory and its sub-direrctories hold mostly just extracted audio feature files. These data files have been downloaded automatically if you don't have them already. The data was downloaded from [Srikanth Ronanki's homepage][ronanki].
+1. `experiments` dir
+2. `slt_arctic_demo_data` dir
+3. `slt_arctic_demo_data.zip` compressed file
 
-Here's what we find in our new `experiments` dir:
+What happened was that the relevant data files were downloaded from [Srikanth Ronanki's homepage][ronanki], hence the `slt_arctic_demo_data.zip` file.
+
+Then this file was uncompressed and saved as `slt_arctic_demo_data`.
+
+Then the relevant files were copied into the new `experiments` directory.
+
+As such, at this point the `experiments` dir contains mostly just extracted audio feature files. 
+
+Here's what we find in this new `experiments` dir:
 
 {% highlight bash %}
 josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
@@ -572,11 +585,11 @@ experiments/
 
 In the above output I've omitted displaying most files because there's a lot, specifically, there's 433 files.
 
+Since there's a lot of stuff going on in the `experiments` dir, I think it's worth the time to briefly explain what we have downloaded in terms of audio feature, label, and utterance ID files.
+
 <br/>
 
 #### File Formats in `experiments` Dir
-
-Since there's a lot of stuff going on in this dir, I tihnk it's worth the time to briefly explain what we have in terms of feature files.
 
 In terms of the file formats, we find the following:
 
@@ -585,7 +598,6 @@ In terms of the file formats, we find the following:
 3. `*.lf0`: log-fundamental frequencies
 4. `*.mgc`: generalized cepstral coefficients
 5. `*.scp`: script file for filenames
-
 
 <br/>
 
@@ -725,7 +737,41 @@ arctic_a0009
 arctic_a0010
 {% endhighlight %}
 
+<br/>
+
+Now that we've gone through the `experiments` dir and the format of its file contents, here's a short recap of where we are:
+
+> We've just run the `setup.sh` script. This script downloaded, unzipped, and formatted the data we need for training and testing. The data we need includes (1) various audio feature files, (2) label files, and (3) utterance lists.
+
+<br/>
+
+#### Creating `global_settings.cfg` in `conf` dir
+
+We shouldn't forget that the `setup.sh` script created a new, global configuration file in the `conf` dir. 
+
+This new configuration file is called `global_settings.cfg`.
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree conf/
+conf/
+├── dnn
+│   ├── acoustic_slt_arctic_full.conf
+│   ├── duration_slt_arctic_full.conf
+│   ├── test_dur_synth_slt_arctic_full.conf
+│   └── test_synth_slt_arctic_full.conf
+├── global_settings.cfg
+└── logging_config.conf
+
+1 directory, 6 files
+{% endhighlight %}
+
 This global config file (`conf/global_settings.cfg`) will contain information on where the compiled Merlin programs are located, where the current working dir is, what kind of Vocoder we're using, and how many files to use for training and testing.
+
+That's all for `setup.sh`!
+
+<br/>
+
+### Calling the `prepare_config_files.sh` script from `run_demo.sh`
 
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
