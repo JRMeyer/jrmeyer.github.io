@@ -13,6 +13,7 @@ Here's the official [Merlin GitHub repository][merlin-github].
 
 Here's the official [CSTR Merlin webpage][merlin-cstr].
 
+Here's a [tutorial][king-tutorial] on Statistical parametric speech synthesis writen by Simon King, one of the creators of Merlin.
 
 <br/>
 <br/>
@@ -272,7 +273,7 @@ Now let's go on to run the demo.
 <br/>
 <br/>
 
-## Running the demo
+## Run the Demo
 
 As per the main `merlin/README.md` file, we are invited to begin our demo with example `slt_arctic`.
 
@@ -457,7 +458,7 @@ Now that we've gone over our dirs, we can go to our three scripts in the top lev
 
 <br/>
 
-### Running the `run_demo.sh` Script
+### Run the `run_demo.sh` Script
 
 The `s1/README.md` file directs us to run the `run_demo.sh` script first, so I will start there.
 
@@ -474,9 +475,10 @@ global_config_file=conf/global_settings.cfg
 
 If we take the time to run these scripts one-by-one, we can more easily see what's going on. I'm going to run each script here, and look into what's being output by each one.
 
+
 <br/>
 
-### Calling the `setup.sh` script from `run_demo.sh`
+#### Prepare Data & Create Config File
 
 `setup.sh` does two important things:
 
@@ -731,7 +733,7 @@ Now that we've gone through the `experiments` dir and the format of its file con
 
 <br/>
 
-#### Creating `global_settings.cfg` in `conf` dir
+#### Create `global_settings.cfg` in `conf` dir
 
 We shouldn't forget that the `setup.sh` script created a new, global configuration file in the `conf` dir. 
 
@@ -755,11 +757,12 @@ This global config file (`conf/global_settings.cfg`) will contain information on
 
 That's all for `setup.sh`!
 
+
 <br/>
 
-### Calling the `prepare_config_files.sh` script from `run_demo.sh`
+#### Prepare Training Config Files
 
-As above with the `setup.sh` script, now I'm going to run *just* the `prepare_config_files.sh` script and take a look at what it does.
+Now we're going to run *just* the `prepare_config_files.sh` script from within `run_demo.sh`, just like we did above with `setup.sh`), and take a look at what it does.
 
 This script produces two configuration files for training:
 
@@ -799,7 +802,11 @@ They define architecture and training procedure for the acoustic model DNN and t
 Pretty straightforward overall. 
 
 
-### Calling the `prepare_config_files_for_synthesis.sh` script from `run_demo.sh`
+<br/>
+
+#### Prepare Testing Config Files
+
+This section deals with the `prepare_config_files_for_synthesis.sh` script called from `run_demo.sh`.
 
 In the previous script we created the configuration files for our training procedure, now we do the same for our testing (aka aynthesis) phase.
 
@@ -831,8 +838,9 @@ conf/
 1 directory, 10 files
 {% endhighlight %}
 
+<br/>
 
-### Training the Duration Model
+### Train the Duration Model
 
 If you've gotten here and followed all the previous steps, we're ready to finally start training our DNNs... huzzah!
 
@@ -946,25 +954,53 @@ DNN_TANH_TANH_TANH_TANH_LINEAR__dur_0_4_512_512_512_512_416.5.train.50.0.002000.
 
 The filename is long, but it contains some very important information.
 
-Firstly, we get information on the activation functions used in our DNN: `TANH_TANH_TANH_TANH_LINEAR_`.
+1. activation functions used in our DNN layers: `TANH_TANH_TANH_TANH_LINEAR`
+2. model type, acoustic or duration: `dur`
+3. True or False, whether we have a multi-stream model: `0`
+4. number of hidden layers: `4`
+5. dimensionality of hidden layers: `512_512_512_512`
+6. number of input nodes (i.e. the dimensionality of labels (phonemes) in our model): `416`
+7. number of output nodes (i.e. the dimensionality of acoustic features to predict): `5`
+8. the number of utterances used in training: `50`
+9. the learning rate: `0.002000`
 
-Next, we get the general kind of model traing, in our case, a duration model: `dur_`.
+<!--
+%s_             cfg.combined_model_name         DNN_TANH_TANH_TANH_TANH_LINEAR_
+%s_             cfg.combined_feature_name       _dur_
+%d_             int(cfg.multistream_switch)     0_
+%s_             combined_model_arch             4_512_512_512_512_
+%d.             lab_dim                         416.
+%d.             5.                              cfg.cmp_dim
+train.          train.                          "train."
+%d.             50.                             cfg.train_file_number
+%f.             0.002000.                       cfg.hyper_params['learning_rate']
+rnn.model       rnn.model                       "rnn.model"
+-->
 
-Next, we get some information on the dimensionality of our layers: `0_4_512_512_512_512_416`.
 
-Next, we have our dimensionality of our CMP features: `5`.
+<br/>
 
-Second to last, we get the number of utterances used in training: `50`.
+### Train the Acoustic Model
 
-At the very end, we get our learning rate: `0.002000`.
+The process for training the acoustic model is exactly the same as that for training the duration model, the only difference being the configuration file which is used to initialize and train the DNN.
 
-%s_                     %s_                       %d_                         %s_                 %d.
-cfg.combined_model_name cfg.combined_feature_name int(cfg.multistream_switch) combined_model_arch lab_dim
+As you can see from the code snippet below from `run_demo.sh`, we send a `.conf` file to `run_merlin.py`, and then use `submit.sh` to send the job to our processor(s).
+
+{% highlight bash %}
+### Step 3: train acoustic model ###
+echo "Step 3: training acoustic model..."
+./scripts/submit.sh ${MerlinDir}/src/run_merlin.py conf/acoustic_${Voice}.conf
+{% endhighlight %}
+
+
+
+
 
 
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
 [merlin-cstr]: http://www.cstr.ed.ac.uk/projects/merlin/
+[king-tutorial]: http://www.cstr.ed.ac.uk/downloads/publications/2010/king_hmm_tutorial.pdf
 [pip-install]: https://pip.pypa.io/en/stable/installing/
 [merlin-demo-paper]: http://homepages.inf.ed.ac.uk/s1432486/papers/Merlin_demo_paper.pdf
 [ronanki]: http://104.131.174.95/
