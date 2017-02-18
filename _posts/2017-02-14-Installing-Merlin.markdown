@@ -541,49 +541,35 @@ experiments/
     ├── acoustic_model
     │   └── data
     │       ├── bap
-    │       │   ├── arctic_a0001.bap
-    │       │   ├── arctic_a0002.bap
-    │       │   └── arctic_a0003.bap
+    │       │   └── arctic_a0001.bap
     │       ├── file_id_list_demo.scp
     │       ├── label_phone_align
-    │       │   ├── arctic_a0001.lab
-    │       │   ├── arctic_a0002.lab
-    │       │   └── arctic_a0003.lab
+    │       │   └── arctic_a0001.lab
     │       ├── label_state_align
-    │       │   ├── arctic_a0001.lab
-    │       │   ├── arctic_a0002.lab
-    │       │   └── arctic_a0003.lab
+    │       │   └── arctic_a0001.lab
     │       ├── lf0
-    │       │   ├── arctic_a0001.lf0
-    │       │   ├── arctic_a0002.lf0
-    │       │   └── arctic_a0003.lf0
+    │       │   └── arctic_a0001.lf0
     │       └── mgc
-    │           ├── arctic_a0001.mgc
-    │           ├── arctic_a0002.mgc
-    │           └── arctic_a0003.mgc
+    │           └── arctic_a0001.mgc
     ├── duration_model
     │   └── data
     │       ├── file_id_list_demo.scp
     │       ├── label_phone_align
-    │       │   ├── arctic_a0001.lab
-    │       │   ├── arctic_a0002.lab
-    │       │   └── arctic_a0003.lab
+    │       │   └── arctic_a0001.lab
     │       └── label_state_align
-    │           ├── arctic_a0001.lab
-    │           ├── arctic_a0002.lab
-    │           └── arctic_a0003.lab
+    │           └── arctic_a0001.lab
     └── test_synthesis
         ├── prompt-lab
-        │   ├── arctic_a0001.lab
-        │   ├── arctic_a0002.lab
-        │   └── arctic_a0003.lab
+        │   └── arctic_a0001.lab
         └── test_id_list.scp
 
 14 directories, 433 files
 
 {% endhighlight %} 
 
-In the above output I've omitted displaying most files because there's a lot, specifically, there's 433 files.
+In the above output I've omitted displaying all feature files except for `arctic_a0001` because there's a lot of them. 
+
+Specifically, there are 430 feature files in total.
 
 Since there's a lot of stuff going on in the `experiments` dir, I think it's worth the time to briefly explain what we have downloaded in terms of audio feature, label, and utterance ID files.
 
@@ -858,45 +844,124 @@ echo "Step 2: training duration model..."
 ./scripts/submit.sh ${MerlinDir}/src/run_merlin.py conf/duration_${Voice}.conf
 {% endhighlight %}
 
-Since this second step in `run_demo.sh` produces a lot of output, I decided to record my terminal session and embed it here.
+As you can see, what happens here is that the main Merlin run script `run_merlin.py` is called and given its argument, `duration_${Voice}.conf`, a configuration file for the duration DNN model.
+
+This `run_merlin.py` script is then fed into another script, `submit.py` where it is processed as a job and sent to your computer's CPU(s) or GPU(s).
+
+As such, the main script of interest in this training step is `run_merlin.py`.
+
+This is a very clearly written Python script, and I invite you to take a look yourself into the code. Here I will merely show you the main train function and its arguments and defaults:
+
+{% highlight python %}
+def train_DNN(train_xy_file_list,               # training file list
+              valid_xy_file_list,               # validation file list
+              nnets_file_name,                  # filename for DNN we save to disk
+              n_ins,                            # input feature dimensionality
+              n_outs,                           # output feature dimensionality
+              ms_outs,                          # multistream_outs
+              hyper_params,                     # hyperparameters for training and architecture
+              buffer_size,                      # training buffer size
+              plot=False,                       # create plot of (train/dev) training convergence
+              var_dict=None,                    # load covariance matrix
+              cmp_mean_vector = None,           # cmp == audio features used in HTS training
+              cmp_std_vector = None,            # cmp == audio features used in HTS training
+              init_dnn_model_file = None):      # DNN model with which we initialize new DNN
+{% endhighlight %}
+
+Since this step in `run_demo.sh` produces a lot of output, I decided to record my terminal session and embed it here, for those interested in the details.
 
 <asciinema-player src="/misc/train-dur-model.json"></asciinema-player>
 
-After the training is complete, we can see that we've produced some new dirs and files in our `experiments` directory:
+After the training is complete, we can see that we've produced some new dirs and files in our `experiments/duration_model` directory:
+
+Here's our `duration_model` dir **before** training:
 
 {% highlight bash %}
 josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree -d experiments/
 experiments/
 └── slt_arctic_demo
-    ├── acoustic_model
-    │   └── data
-    │       ├── bap
-    │       ├── label_phone_align
-    │       ├── label_state_align
-    │       ├── lf0
-    │       └── mgc
-    ├── duration_model
-    │   ├── data
-    │   │   ├── binary_label_416
-    │   │   ├── dur
-    │   │   ├── label_phone_align
-    │   │   ├── label_state_align
-    │   │   ├── lf0
-    │   │   ├── nn_dur_5
-    │   │   ├── nn_norm_dur_5
-    │   │   ├── nn_no_silence_lab_416
-    │   │   ├── nn_no_silence_lab_norm_416
-    │   │   ├── ref_data
-    │   │   └── var
-    │   ├── gen
-    │   │   └── DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512
-    │   ├── log
-    │   └── nnets_model
-    └── test_synthesis
-        └── prompt-lab
+    └── duration_model
+        └── data
+            ├── file_id_list_demo.scp
+            ├── label_phone_align
+            │   └── arctic_a0001.lab
+            └── label_state_align
+                └── arctic_a0001.lab
+{% endhighlight %}
+
+And here's our `duration_model` dir **after** training:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree -d experiments/
+experiments/
+└── slt_arctic_demo
+     └── duration_model
+         ├── data
+         │   ├── binary_label_416
+         │   │   └── arctic_a0001.lab
+         │   ├── dur
+         │   │   └── arctic_a0001.dur
+         │   ├── file_id_list_demo.scp
+         │   ├── label_norm_HTS_416.dat
+         │   ├── label_phone_align
+         │   │   └── arctic_a0001.lab
+         │   ├── label_state_align
+         │   │   └── arctic_a0001.lab
+         │   ├── lf0
+         │   ├── nn_dur_5
+         │   │   └── arctic_a0001.cmp
+         │   ├── nn_norm_dur_5
+         │   │   └── arctic_a0001.cmp
+         │   ├── nn_no_silence_lab_416
+         │   │   └── arctic_a0001.lab
+         │   ├── nn_no_silence_lab_norm_416
+         │   │   └── arctic_a0001.lab
+         │   ├── norm_info_dur_5_MVN.dat
+         │   ├── ref_data
+         │   │   └── arctic_a0051.dur
+         │   └── var
+         │       └── dur_5
+         ├── gen
+         │   └── DNN_TANH_TANH_TANH_TANH_LINEAR__dur_1_50_416_5_4_512_512
+         │       ├── arctic_a0051.cmp
+         │       ├── arctic_a0051.dur
+         │       └── arctic_a0051.lab
+         ├── log
+         │   ├── DNN_TANH_TANH_TANH_TANH_LINEAR__dur_50_259_4_512_0.002000_12_04PM_February_16_2017.log
+         │   └── DNN_TANH_TANH_TANH_TANH_LINEAR__dur_50_259_4_512_0.002000_12_04PM_February_16_2017.log.gitdiff
+         └── nnets_model
+             └── DNN_TANH_TANH_TANH_TANH_LINEAR__dur_0_4_512_512_512_512_416.5.train.50.0.002000.rnn.model
+
 
 27 directories
 {% endhighlight %}
+
+I'll let you go through the different dirs and files, but I will point out the most important file, the trained DNN model.
+
+This new, shiny DNN can be found in the `nnets_model` dir and, in my case, the filename is:
+
+{% highlight bash %}
+DNN_TANH_TANH_TANH_TANH_LINEAR__dur_0_4_512_512_512_512_416.5.train.50.0.002000.rnn.model
+{% endhighlight %}
+
+The filename is long, but it contains some very important information.
+
+Firstly, we get information on the activation functions used in our DNN: `TANH_TANH_TANH_TANH_LINEAR_`.
+
+Next, we get the general kind of model traing, in our case, a duration model: `dur_`.
+
+Next, we get some information on the dimensionality of our layers: `0_4_512_512_512_512_416`.
+
+Next, we have our dimensionality of our CMP features: `5`.
+
+Second to last, we get the number of utterances used in training: `50`.
+
+At the very end, we get our learning rate: `0.002000`.
+
+%s_                     %s_                       %d_                         %s_                 %d.
+cfg.combined_model_name cfg.combined_feature_name int(cfg.multistream_switch) combined_model_arch lab_dim
+
+
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
 [merlin-cstr]: http://www.cstr.ed.ac.uk/projects/merlin/
