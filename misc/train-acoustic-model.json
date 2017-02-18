@@ -1,0 +1,3026 @@
+{
+  "title": null,
+  "version": 1,
+  "stdout": [
+    [
+      0.0491,
+      "\u001b]0;josh@yoga: ~/git/merlin/egs/slt_arctic/s1\u0007josh@yoga:~/git/merlin/egs/slt_arctic/s1$ "
+    ],
+    [
+      2.070606,
+      "."
+    ],
+    [
+      0.066213,
+      "/"
+    ],
+    [
+      0.290706,
+      "r"
+    ],
+    [
+      0.113686,
+      "u"
+    ],
+    [
+      0.112713,
+      "n"
+    ],
+    [
+      0.14147,
+      "\u0007"
+    ],
+    [
+      3.8e-05,
+      "_"
+    ],
+    [
+      1.142807,
+      "d"
+    ],
+    [
+      0.092125,
+      "e"
+    ],
+    [
+      0.198847,
+      "mo.sh "
+    ],
+    [
+      0.909758,
+      "\r\n"
+    ],
+    [
+      0.004234,
+      "Step 3: training acoustic model...\r\n"
+    ],
+    [
+      0.007812,
+      "Architecture: x86_64\r\n"
+    ],
+    [
+      0.042353,
+      "Distribution: Ubuntu 14.04.5 LTS\r\nHOSTNAME=yoga\r\n"
+    ],
+    [
+      2.5e-05,
+      "USER=josh\r\n \r\nPATH:\r\n"
+    ],
+    [
+      0.001287,
+      "    /usr/local/sbin\r\n    /usr/local/bin\r\n    /usr/sbin\r\n    /usr/bin\r\n    /sbin\r\n    /bin\r\n    /usr/games\r\n    /usr/local/games\r\n    /usr/lib/jvm/java-8-oracle/bin\r\n    /usr/lib/jvm/java-8-oracle/db/bin\r\n    /usr/lib/jvm/java-8-oracle/jre/bin\r\n"
+    ],
+    [
+      0.000146,
+      "LD_LIBRARY_PATH:\r\n"
+    ],
+    [
+      0.001578,
+      "PYTHONPATH:\r\n"
+    ],
+    [
+      0.00125,
+      "PYTHONBIN: python\r\nMERLIN_THEANO_FLAGS:\r\n"
+    ],
+    [
+      0.001299,
+      "    cuda.root=/opt/6.5.19\r\n    floatX=float32\r\n    on_unused_input=ignore\r\n"
+    ],
+    [
+      0.000146,
+      " \r\n"
+    ],
+    [
+      0.029147,
+      "No GPU is available! Running on CPU...\r\n"
+    ],
+    [
+      0.712021,
+      "2017-02-18 17:30:59,726    DEBUG  configuration: successfully read and parsed user configuration file /home/josh/git/merlin/egs/slt_arctic/s1/conf/acoustic_slt_arctic_demo.conf\r\n"
+    ],
+    [
+      0.000234,
+      "2017-02-18 17:30:59,726     INFO  configuration:           Paths:work has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model\r\n"
+    ],
+    [
+      0.00015,
+      "2017-02-18 17:30:59,726     INFO  configuration:           Paths:data has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data\r\n"
+    ],
+    [
+      0.000141,
+      "2017-02-18 17:30:59,727     INFO  configuration:           Paths:plot has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/plots\r\n"
+    ],
+    [
+      0.000118,
+      "2017-02-18 17:30:59,727     INFO  configuration:         Utility:plot has default value False\r\n"
+    ],
+    [
+      6.2e-05,
+      "2017-02-18 17:30:59,727     INFO  configuration:      Utility:profile has default value False\r\n"
+    ],
+    [
+      0.000151,
+      "2017-02-18 17:30:59,727     INFO  configuration:   Paths:file_id_list has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/file_id_list_demo.scp\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-18 17:30:59,727     INFO  configuration:   Paths:test_id_list has    user value None\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-18 17:30:59,727     INFO  configuration:         Paths:GV_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/GV\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,727     INFO  configuration:   Paths:in_stepw_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/stepw\r\n"
+    ],
+    [
+      0.000121,
+      "2017-02-18 17:30:59,727     INFO  configuration:     Paths:in_mgc_dir has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/mgc\r\n"
+    ],
+    [
+      0.000118,
+      "2017-02-18 17:30:59,727     INFO  configuration:     Paths:in_lf0_dir has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/lf0\r\n"
+    ],
+    [
+      0.000115,
+      "2017-02-18 17:30:59,727     INFO  configuration:     Paths:in_bap_dir has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/bap\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:      Paths:in_sp_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/sp\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:  Paths:in_seglf0_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/lf03\r\n"
+    ],
+    [
+      8.9e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:      Paths:in_F0_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/F0\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:    Paths:in_Gain_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/Gain\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:     Paths:in_HNR_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/HNR\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:     Paths:in_LSF_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/LSF\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration: Paths:in_LSFsource_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/LSFsource\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration: Paths:in_seq_dur_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/S2S_dur\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:     Paths:in_dur_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/dur\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration: Paths:nn_norm_temp_dir has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/step_hidden9\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration: Labels:process_labels_in_work_dir has default value False\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:   Labels:label_style has default value HTS\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-18 17:30:59,728     INFO  configuration:    Labels:label_type has    user value state_align\r\n"
+    ],
+    [
+      0.00011,
+      "2017-02-18 17:30:59,729     INFO  configuration:   Labels:label_align has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align\r\n"
+    ],
+    [
+      0.0001,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:question_file_name has    user value /home/josh/git/merlin/misc/questions/questions-radio_dnn_416.hed\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:silence_pattern has    user value ['*-sil+*']\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:subphone_feats has    user value full\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:additional_features has default value {}\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:xpath_file_name has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/xml_labels/xpaths.txt\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration:  Labels:label_config has default value configuration/examplelabelconfigfile.py\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:add_frame_features has    user value True\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:fill_missing_values has default value False\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:xpath_label_align has default value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:enforce_silence has    user value False\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:remove_silence_using_binary_labels has default value False\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,729     INFO  configuration: Labels:precompile_xpaths has default value True\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration: Labels:iterate_over_frames has default value True\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration: Labels:appended_input_dim has default value 0\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration:     Data:buffer_size has    user value 200000\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration: Data:train_file_number has    user value 50\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration: Data:valid_file_number has    user value 5\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration: Data:test_file_number has    user value 5\r\n"
+    ],
+    [
+      0.000109,
+      "2017-02-18 17:30:59,730     INFO  configuration:       Paths:log_path has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/log\r\n"
+    ],
+    [
+      0.000125,
+      "2017-02-18 17:30:59,730     INFO  configuration:       Paths:log_file has    user value /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/log/mylogfilename.log\r\n"
+    ],
+    [
+      9e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration: Paths:log_config_file has    user value /home/josh/git/merlin/egs/slt_arctic/s1/conf/logging_config.conf\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration:           Paths:sptk has    user value /home/josh/git/merlin/tools/bin/SPTK-3.9\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration:       Paths:straight has    user value /home/josh/git/merlin/tools/bin/straight\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-18 17:30:59,730     INFO  configuration:          Paths:world has    user value /home/josh/git/merlin/tools/bin/WORLD\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:network_type has default value RNN\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:model_type has default value DNN\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:hidden_layer_type has    user value ['TANH', 'TANH', 'TANH', 'TANH']\r\n"
+    ],
+    [
+      7.6e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:output_layer_type has default value LINEAR\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:sequential_training has    user value False\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:dropout_rate has    user value 0.0\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration:  Architecture:scheme has default value stagewise\r\n"
+    ],
+    [
+      7.6e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:index_to_project has default value 0\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:projection_insize has default value 10000\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:projection_outsize has default value 10\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:initial_projection_distrib has default value gaussian\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:projection_weights_output_dir has default value some_path\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-18 17:30:59,731     INFO  configuration: Architecture:layers_with_projection_input has default value [0]\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:projection_learning_rate_scaling has default value 1.0\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:learning_rate has    user value 0.002\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:L2_regularization has default value 1e-05\r\n"
+    ],
+    [
+      9e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:L1_regularization has default value 0.0\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:batch_size has    user value 256\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:training_epochs has    user value 25\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:hidden_activation has default value tanh\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:output_activation has    user value linear\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:hidden_layer_size has    user value [512, 512, 512, 512]\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:private_hidden_sizes has default value [1024]\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:stream_weights has default value [1.0]\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:private_l2_reg has default value 1e-05\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,732     INFO  configuration: Architecture:warmup_epoch has    user value 10\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:warmup_momentum has    user value 0.3\r\n"
+    ],
+    [
+      7.8e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:momentum has default value 0.9\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:warmup_epoch has    user value 10\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:mdn_component has default value 1\r\n"
+    ],
+    [
+      7.6e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:var_floor has default value 0.01\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:beta_opt has default value False\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:eff_sample_size has default value 0.8\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:mean_log_det has default value -100.0\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:start_from_trained_model has default value _\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration: Architecture:use_rprop has default value 0\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration:          Outputs:mgc has    user value 60\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration:         Outputs:dmgc has    user value 180\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration:          Outputs:vuv has default value 1\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,733     INFO  configuration:          Outputs:lf0 has    user value 1\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:         Outputs:dlf0 has    user value 3\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:          Outputs:bap has    user value 1\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:         Outputs:dbap has    user value 3\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:          Outputs:cmp has default value 259\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:    Outputs:stepw_dim has default value 55\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:  Outputs:temp_sp_dim has default value 1025\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:   Outputs:seglf0_dim has default value 7\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:    Outputs:delta_win has default value [-0.5, 0.0, 0.5]\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:      Outputs:acc_win has default value [1.0, -2.0, 1.0]\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:      Outputs:do_MLPG has default value True\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:           Outputs:F0 has default value 1\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:          Outputs:dF0 has default value 3\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:         Outputs:Gain has default value 1\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,734     INFO  configuration:        Outputs:dGain has default value 3\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:          Outputs:HNR has default value 5\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:         Outputs:dHNR has default value 15\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:          Outputs:LSF has default value 30\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:         Outputs:dLSF has default value 90\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:    Outputs:LSFsource has default value 10\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:   Outputs:dLSFsource has default value 30\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:      Outputs:seq_dur has default value 1\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration: Outputs:remove_silence_from_dur has default value True\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration:          Outputs:dur has default value 5\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration: Outputs:dur_feature_type has default value numerical\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration: Outputs:output_feature_normalisation has default value MVN\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration: Streams:multistream_switch has default value False\r\n"
+    ],
+    [
+      7.6e-05,
+      "2017-02-18 17:30:59,735     INFO  configuration: Streams:output_features has    user value ['mgc', 'lf0', 'vuv', 'bap']\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Streams:gen_wav_features has    user value ['mgc', 'lf0', 'bap']\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Waveform:vocoder_type has    user value WORLD\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration:  Waveform:samplerate has    user value 16000\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Waveform:framelength has    user value 1024\r\n"
+    ],
+    [
+      0.00011,
+      "2017-02-18 17:30:59,736     INFO  configuration:  Waveform:frameshift has default value 5\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration:      Waveform:sp_dim has default value 2049\r\n"
+    ],
+    [
+      6.8e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration:    Waveform:fw_alpha has    user value 0.58\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Waveform:postfilter_coef has default value 1.4\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Waveform:minimum_phase_order has    user value 511\r\n"
+    ],
+    [
+      7.6e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration:  Waveform:use_cep_ap has default value True\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Waveform:do_post_filtering has default value True\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration:    Waveform:apply_GV has default value False\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Waveform:test_synth_dir has    user value None\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-18 17:30:59,736     INFO  configuration: Processes:DurationModel has default value False\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration: Processes:AcousticModel has    user value True\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration: Processes:GenTestList has    user value False\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:    Processes:NORMLAB has    user value True\r\n"
+    ],
+    [
+      7.3e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:    Processes:MAKEDUR has default value False\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:    Processes:MAKECMP has    user value True\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:    Processes:NORMCMP has    user value True\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:   Processes:TRAINDNN has    user value True\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:     Processes:DNNGEN has    user value True\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:     Processes:GENWAV has    user value True\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:     Processes:CALMCD has    user value True\r\n"
+    ],
+    [
+      7.2e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:   Processes:NORMSTEP has default value False\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:   Processes:GENBNFEA has default value False\r\n"
+    ],
+    [
+      7.5e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:   Extensions:mgc_ext has default value .mgc\r\n"
+    ],
+    [
+      6.7e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:   Extensions:bap_ext has default value .bap\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-18 17:30:59,737     INFO  configuration:   Extensions:lf0_ext has default value .lf0\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:   Extensions:cmp_ext has default value .cmp\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:   Extensions:lab_ext has default value .lab\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:   Extensions:utt_ext has default value .utt\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration: Extensions:stepw_ext has default value .stepw\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:    Extensions:sp_ext has default value .sp\r\n"
+    ],
+    [
+      6.2e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:    Extensions:F0_ext has default value .F0\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:  Extensions:Gain_ext has default value .Gain\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:   Extensions:HNR_ext has default value .HNR\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:   Extensions:LSF_ext has default value .LSF\r\n"
+    ],
+    [
+      5.6e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration: Extensions:LSFsource_ext has default value .LSFsource\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,738     INFO  configuration:   Extensions:dur_ext has default value .dur\r\n"
+    ],
+    [
+      0.000113,
+      "2017-02-18 17:30:59,738    DEBUG  configuration: loading logging configuration from /home/josh/git/merlin/egs/slt_arctic/s1/conf/logging_config.conf\r\n"
+    ],
+    [
+      0.003597,
+      "2017-02-18 17:30:59,741 \u001b[1;32mINFO    \u001b[0m  configuration: logging is now fully configured\r\n"
+    ],
+    [
+      0.00012,
+      "2017-02-18 17:30:59,741 \u001b[1;34mDEBUG   \u001b[0m  configuration: setting up output features\r\n"
+    ],
+    [
+      4e-05,
+      "2017-02-18 17:30:59,742 \u001b[1;34mDEBUG   \u001b[0m  configuration:  mgc\r\n"
+    ],
+    [
+      0.000217,
+      "2017-02-18 17:30:59,742 \u001b[1;32mINFO    \u001b[0m  configuration:   in_dimension: 60\r\n"
+    ],
+    [
+      0.00021,
+      "2017-02-18 17:30:59,742 \u001b[1;32mINFO    \u001b[0m  configuration:   out_dimension : 180\r\n"
+    ],
+    [
+      0.000209,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   in_directory : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/mgc\r\n"
+    ],
+    [
+      0.000213,
+      "2017-02-18 17:30:59,743 \u001b[1;34mDEBUG   \u001b[0m  configuration:  lf0\r\n"
+    ],
+    [
+      0.000213,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   in_dimension: 1\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   out_dimension : 3\r\n"
+    ],
+    [
+      5.4e-05,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   in_directory : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/lf0\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,743 \u001b[1;34mDEBUG   \u001b[0m  configuration:  vuv\r\n"
+    ],
+    [
+      5.6e-05,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   in_dimension: 0\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   out_dimension : 1\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,743 \u001b[1;32mINFO    \u001b[0m  configuration:   in_directory : \r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;34mDEBUG   \u001b[0m  configuration:  bap\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration:   in_dimension: 1\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration:   out_dimension : 3\r\n"
+    ],
+    [
+      8.4e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration:   in_directory : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/bap\r\n"
+    ],
+    [
+      6.6e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: multistream dimensions: [187]\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: use_rprop : 0\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: dropout_rate : 0.0\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: projection_outsize : 10\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: early_stop_epochs : 5\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: warmup_epoch : 10\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: learning_rate : 0.002\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: layers_with_projection_input : [0]\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: batch_size : 256\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: model_type : DNN\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: hidden_layer_size : [512, 512, 512, 512]\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,744 \u001b[1;32mINFO    \u001b[0m  configuration: projection_learning_rate_scaling : 1.0\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: pretraining_epochs : 10\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: initial_projection_distrib : gaussian\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: index_to_project : 0\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: l2_reg : 1e-05\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: warmup_momentum : 0.3\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: training_epochs : 25\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: hidden_activation : tanh\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: hidden_layer_type : ['TANH', 'TANH', 'TANH', 'TANH']\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: sequential_training : False\r\n"
+    ],
+    [
+      5.6e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: do_pretraining : False\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: projection_insize : 10000\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: l1_reg : 0.0\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: output_activation : linear\r\n"
+    ],
+    [
+      5.9e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: pretraining_lr : 0.0001\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m  configuration: momentum : 0.9\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;34mDEBUG   \u001b[0m  configuration: configuration completed\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,745 \u001b[1;32mINFO    \u001b[0m       main    : Installation information:\r\n"
+    ],
+    [
+      0.000118,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :   Merlin directory: /home/josh/git/merlin\r\n"
+    ],
+    [
+      6e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :   PATH:\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/local/sbin\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/local/bin\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/sbin\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/bin\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /sbin\r\n"
+    ],
+    [
+      6.4e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /bin\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/games\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/local/games\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/lib/jvm/java-8-oracle/bin\r\n"
+    ],
+    [
+      5.6e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/lib/jvm/java-8-oracle/db/bin\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :       /usr/lib/jvm/java-8-oracle/jre/bin\r\n"
+    ],
+    [
+      6.3e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :   LD_LIBRARY_PATH:\r\n"
+    ],
+    [
+      6.1e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :   Python version: 2.7.6 (default, Oct 26 2016, 20:30:19) [GCC 4.8.4]\r\n"
+    ],
+    [
+      5e-05,
+      "2017-02-18 17:30:59,746 \u001b[1;32mINFO    \u001b[0m       main    :     PYTHONPATH:\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 17:30:59,747 \u001b[1;32mINFO    \u001b[0m       main    :   Numpy version: 1.10.4\r\n"
+    ],
+    [
+      5.7e-05,
+      "2017-02-18 17:30:59,747 \u001b[1;32mINFO    \u001b[0m       main    :   Theano version: 0.8.2\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:30:59,747 \u001b[1;32mINFO    \u001b[0m       main    :     THEANO_FLAGS: cuda.root=/opt/6.5.19,floatX=float32,on_unused_input=ignore\r\n"
+    ],
+    [
+      6.2e-05,
+      "2017-02-18 17:30:59,747 \u001b[1;32mINFO    \u001b[0m       main    :     device: cpu\r\n"
+    ],
+    [
+      0.039022,
+      "2017-02-18 17:30:59,785 \u001b[1;32mINFO    \u001b[0m       main    :   Git is available in the working directory:\r\n"
+    ],
+    [
+      0.005492,
+      "2017-02-18 17:30:59,791 \u001b[1;32mINFO    \u001b[0m       main    :     Merlin version: Merlin_V0-8-g6af8b8c\r\n"
+    ],
+    [
+      0.00451,
+      "2017-02-18 17:30:59,795 \u001b[1;32mINFO    \u001b[0m       main    :     branch: master\r\n"
+    ],
+    [
+      0.011647,
+      "2017-02-18 17:30:59,807 \u001b[1;32mINFO    \u001b[0m       main    :     diff to Merlin version:\r\n"
+    ],
+    [
+      9e-05,
+      "2017-02-18 17:30:59,807 \u001b[1;32mINFO    \u001b[0m       main    :       M egs/slt_arctic/s1/run_demo.sh\r\n"
+    ],
+    [
+      0.000105,
+      "2017-02-18 17:30:59,808 \u001b[1;32mINFO    \u001b[0m       main    :       (all diffs logged in DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_50_259_4_512_0.002000_05_30PM_February_18_2017.log.gitdiff)\r\n"
+    ],
+    [
+      0.00559,
+      "2017-02-18 17:30:59,813 \u001b[1;32mINFO    \u001b[0m       main    : Execution information:\r\n"
+    ],
+    [
+      0.000438,
+      "2017-02-18 17:30:59,813 \u001b[1;32mINFO    \u001b[0m       main    :   HOSTNAME: yoga\r\n"
+    ],
+    [
+      0.00012,
+      "2017-02-18 17:30:59,814 \u001b[1;32mINFO    \u001b[0m       main    :   USER: josh\r\n"
+    ],
+    [
+      0.0001,
+      "2017-02-18 17:30:59,814 \u001b[1;32mINFO    \u001b[0m       main    :   PID: 2865\r\n"
+    ],
+    [
+      0.000373,
+      "2017-02-18 17:30:59,814 \u001b[1;34mDEBUG   \u001b[0m       main    : Loaded file id list from /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/file_id_list_demo.scp\r\n"
+    ],
+    [
+      0.024136,
+      "2017-02-18 17:30:59,838 \u001b[1;34mDEBUG   \u001b[0m       labels  : HTS-derived input feature dimension is 416 + 9 = 425\r\n"
+    ],
+    [
+      9.6e-05,
+      "2017-02-18 17:30:59,838 \u001b[1;32mINFO    \u001b[0m       main    : Input label dimension is 425\r\n"
+    ],
+    [
+      0.000273,
+      "2017-02-18 17:30:59,839 \u001b[1;32mINFO    \u001b[0m       main    : preparing label data (input) using standard HTS style labels\r\n"
+    ],
+    [
+      0.000872,
+      "2017-02-18 17:30:59,839 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0001.lab, 185 labels\r\n"
+    ],
+    [
+      0.031276,
+      "2017-02-18 17:30:59,871 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 667 frames x 425 labels\r\n"
+    ],
+    [
+      0.004669,
+      "2017-02-18 17:30:59,875 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0002.lab, 210 labels\r\n"
+    ],
+    [
+      0.035436,
+      "2017-02-18 17:30:59,911 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 747 frames x 425 labels\r\n"
+    ],
+    [
+      0.007435,
+      "2017-02-18 17:30:59,918 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0003.lab, 205 labels\r\n"
+    ],
+    [
+      0.03712,
+      "2017-02-18 17:30:59,954 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 637 frames x 425 labels\r\n"
+    ],
+    [
+      0.008719,
+      "2017-02-18 17:30:59,964 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0004.lab, 140 labels\r\n"
+    ],
+    [
+      0.025519,
+      "2017-02-18 17:30:59,989 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 497 frames x 425 labels\r\n"
+    ],
+    [
+      0.005802,
+      "2017-02-18 17:30:59,995 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0005.lab,  85 labels\r\n"
+    ],
+    [
+      0.012608,
+      "2017-02-18 17:31:00,008 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 293 frames x 425 labels\r\n"
+    ],
+    [
+      0.003602,
+      "2017-02-18 17:31:00,011 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0006.lab, 165 labels\r\n"
+    ],
+    [
+      0.028724,
+      "2017-02-18 17:31:00,040 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 589 frames x 425 labels\r\n"
+    ],
+    [
+      0.005844,
+      "2017-02-18 17:31:00,045 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0007.lab, 200 labels\r\n"
+    ],
+    [
+      0.034401,
+      "2017-02-18 17:31:00,080 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 597 frames x 425 labels\r\n"
+    ],
+    [
+      0.020169,
+      "2017-02-18 17:31:00,101 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0008.lab, 120 labels\r\n"
+    ],
+    [
+      0.020517,
+      "2017-02-18 17:31:00,121 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 453 frames x 425 labels\r\n"
+    ],
+    [
+      0.005525,
+      "2017-02-18 17:31:00,127 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0009.lab, 200 labels\r\n"
+    ],
+    [
+      0.033316,
+      "2017-02-18 17:31:00,160 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 615 frames x 425 labels\r\n"
+    ],
+    [
+      0.011731,
+      "2017-02-18 17:31:00,172 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0010.lab, 205 labels\r\n"
+    ],
+    [
+      0.032219,
+      "2017-02-18 17:31:00,204 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 599 frames x 425 labels\r\n"
+    ],
+    [
+      0.007297,
+      "2017-02-18 17:31:00,211 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0011.lab, 170 labels\r\n"
+    ],
+    [
+      0.028409,
+      "2017-02-18 17:31:00,239 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 607 frames x 425 labels\r\n"
+    ],
+    [
+      0.005561,
+      "2017-02-18 17:31:00,245 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0012.lab, 180 labels\r\n"
+    ],
+    [
+      0.031427,
+      "2017-02-18 17:31:00,277 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 563 frames x 425 labels\r\n"
+    ],
+    [
+      0.004122,
+      "2017-02-18 17:31:00,281 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0013.lab, 260 labels\r\n"
+    ],
+    [
+      0.036949,
+      "2017-02-18 17:31:00,318 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 701 frames x 425 labels\r\n"
+    ],
+    [
+      0.008841,
+      "2017-02-18 17:31:00,326 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0014.lab, 180 labels\r\n"
+    ],
+    [
+      0.027223,
+      "2017-02-18 17:31:00,354 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 575 frames x 425 labels\r\n"
+    ],
+    [
+      0.010314,
+      "2017-02-18 17:31:00,364 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0015.lab,  95 labels\r\n"
+    ],
+    [
+      0.013492,
+      "2017-02-18 17:31:00,378 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 371 frames x 425 labels\r\n"
+    ],
+    [
+      0.005202,
+      "2017-02-18 17:31:00,383 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0016.lab, 205 labels\r\n"
+    ],
+    [
+      0.03301,
+      "2017-02-18 17:31:00,416 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 711 frames x 425 labels\r\n"
+    ],
+    [
+      0.007292,
+      "2017-02-18 17:31:00,422 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0017.lab, 275 labels\r\n"
+    ],
+    [
+      0.040934,
+      "2017-02-18 17:31:00,464 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 801 frames x 425 labels\r\n"
+    ],
+    [
+      0.008506,
+      "2017-02-18 17:31:00,473 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0018.lab,  75 labels\r\n"
+    ],
+    [
+      0.014486,
+      "2017-02-18 17:31:00,487 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 317 frames x 425 labels\r\n"
+    ],
+    [
+      0.006334,
+      "2017-02-18 17:31:00,493 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0019.lab, 220 labels\r\n"
+    ],
+    [
+      0.034072,
+      "2017-02-18 17:31:00,527 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 691 frames x 425 labels\r\n"
+    ],
+    [
+      0.007321,
+      "2017-02-18 17:31:00,535 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0020.lab, 195 labels\r\n"
+    ],
+    [
+      0.029734,
+      "2017-02-18 17:31:00,565 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 619 frames x 425 labels\r\n"
+    ],
+    [
+      0.008331,
+      "2017-02-18 17:31:00,573 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0021.lab, 160 labels\r\n"
+    ],
+    [
+      0.027257,
+      "2017-02-18 17:31:00,600 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 497 frames x 425 labels\r\n"
+    ],
+    [
+      0.003873,
+      "2017-02-18 17:31:00,604 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0022.lab, 270 labels\r\n"
+    ],
+    [
+      0.041262,
+      "2017-02-18 17:31:00,645 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 857 frames x 425 labels\r\n"
+    ],
+    [
+      0.005675,
+      "2017-02-18 17:31:00,651 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0023.lab, 360 labels\r\n"
+    ],
+    [
+      0.050432,
+      "2017-02-18 17:31:00,701 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 955 frames x 425 labels\r\n"
+    ],
+    [
+      0.010822,
+      "2017-02-18 17:31:00,712 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0024.lab, 245 labels\r\n"
+    ],
+    [
+      0.038786,
+      "2017-02-18 17:31:00,751 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 787 frames x 425 labels\r\n"
+    ],
+    [
+      0.007,
+      "2017-02-18 17:31:00,758 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0025.lab, 190 labels\r\n"
+    ],
+    [
+      0.032074,
+      "2017-02-18 17:31:00,790 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 615 frames x 425 labels\r\n"
+    ],
+    [
+      0.006027,
+      "2017-02-18 17:31:00,796 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0026.lab, 185 labels\r\n"
+    ],
+    [
+      0.030594,
+      "2017-02-18 17:31:00,827 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 573 frames x 425 labels\r\n"
+    ],
+    [
+      0.007948,
+      "2017-02-18 17:31:00,834 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0027.lab, 240 labels\r\n"
+    ],
+    [
+      0.041141,
+      "2017-02-18 17:31:00,876 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 815 frames x 425 labels\r\n"
+    ],
+    [
+      0.009487,
+      "2017-02-18 17:31:00,885 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0028.lab,  85 labels\r\n"
+    ],
+    [
+      0.019225,
+      "2017-02-18 17:31:00,904 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 475 frames x 425 labels\r\n"
+    ],
+    [
+      0.007103,
+      "2017-02-18 17:31:00,912 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0029.lab, 200 labels\r\n"
+    ],
+    [
+      0.032338,
+      "2017-02-18 17:31:00,944 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 613 frames x 425 labels\r\n"
+    ],
+    [
+      0.007968,
+      "2017-02-18 17:31:00,952 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0030.lab,  70 labels\r\n"
+    ],
+    [
+      0.013907,
+      "2017-02-18 17:31:00,966 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 291 frames x 425 labels\r\n"
+    ],
+    [
+      0.006635,
+      "2017-02-18 17:31:00,972 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0031.lab, 130 labels\r\n"
+    ],
+    [
+      0.023604,
+      "2017-02-18 17:31:00,996 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 399 frames x 425 labels\r\n"
+    ],
+    [
+      0.006034,
+      "2017-02-18 17:31:01,002 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0032.lab, 240 labels\r\n"
+    ],
+    [
+      0.037957,
+      "2017-02-18 17:31:01,040 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 743 frames x 425 labels\r\n"
+    ],
+    [
+      0.004636,
+      "2017-02-18 17:31:01,045 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0033.lab, 240 labels\r\n"
+    ],
+    [
+      0.038492,
+      "2017-02-18 17:31:01,083 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 731 frames x 425 labels\r\n"
+    ],
+    [
+      0.005013,
+      "2017-02-18 17:31:01,088 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0034.lab, 220 labels\r\n"
+    ],
+    [
+      0.034221,
+      "2017-02-18 17:31:01,122 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 647 frames x 425 labels\r\n"
+    ],
+    [
+      0.004464,
+      "2017-02-18 17:31:01,127 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0035.lab, 235 labels\r\n"
+    ],
+    [
+      0.037021,
+      "2017-02-18 17:31:01,164 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 743 frames x 425 labels\r\n"
+    ],
+    [
+      0.007214,
+      "2017-02-18 17:31:01,171 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0036.lab,  95 labels\r\n"
+    ],
+    [
+      0.015651,
+      "2017-02-18 17:31:01,187 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 357 frames x 425 labels\r\n"
+    ],
+    [
+      0.005366,
+      "2017-02-18 17:31:01,192 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0037.lab, 140 labels\r\n"
+    ],
+    [
+      0.023391,
+      "2017-02-18 17:31:01,215 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 477 frames x 425 labels\r\n"
+    ],
+    [
+      0.005721,
+      "2017-02-18 17:31:01,221 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0038.lab, 105 labels\r\n"
+    ],
+    [
+      0.018006,
+      "2017-02-18 17:31:01,239 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 369 frames x 425 labels\r\n"
+    ],
+    [
+      0.006173,
+      "2017-02-18 17:31:01,245 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0039.lab, 155 labels\r\n"
+    ],
+    [
+      0.027014,
+      "2017-02-18 17:31:01,271 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 531 frames x 425 labels\r\n"
+    ],
+    [
+      0.006346,
+      "2017-02-18 17:31:01,279 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0040.lab, 155 labels\r\n"
+    ],
+    [
+      0.027298,
+      "2017-02-18 17:31:01,306 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 521 frames x 425 labels\r\n"
+    ],
+    [
+      0.006073,
+      "2017-02-18 17:31:01,312 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0041.lab, 125 labels\r\n"
+    ],
+    [
+      0.024425,
+      "2017-02-18 17:31:01,336 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 473 frames x 425 labels\r\n"
+    ],
+    [
+      0.003162,
+      "2017-02-18 17:31:01,340 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0042.lab, 170 labels\r\n"
+    ],
+    [
+      0.029397,
+      "2017-02-18 17:31:01,369 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 549 frames x 425 labels\r\n"
+    ],
+    [
+      0.003755,
+      "2017-02-18 17:31:01,373 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0043.lab, 230 labels\r\n"
+    ],
+    [
+      0.036703,
+      "2017-02-18 17:31:01,410 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 689 frames x 425 labels\r\n"
+    ],
+    [
+      0.008054,
+      "2017-02-18 17:31:01,418 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0044.lab, 195 labels\r\n"
+    ],
+    [
+      0.033737,
+      "2017-02-18 17:31:01,451 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 609 frames x 425 labels\r\n"
+    ],
+    [
+      0.00741,
+      "2017-02-18 17:31:01,459 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0045.lab, 150 labels\r\n"
+    ],
+    [
+      0.025857,
+      "2017-02-18 17:31:01,484 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 507 frames x 425 labels\r\n"
+    ],
+    [
+      0.008713,
+      "2017-02-18 17:31:01,493 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0046.lab, 175 labels\r\n"
+    ],
+    [
+      0.02987,
+      "2017-02-18 17:31:01,523 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 663 frames x 425 labels\r\n"
+    ],
+    [
+      0.004425,
+      "2017-02-18 17:31:01,528 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0047.lab, 195 labels\r\n"
+    ],
+    [
+      0.031643,
+      "2017-02-18 17:31:01,559 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 643 frames x 425 labels\r\n"
+    ],
+    [
+      0.009526,
+      "2017-02-18 17:31:01,569 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0048.lab, 150 labels\r\n"
+    ],
+    [
+      0.02478,
+      "2017-02-18 17:31:01,594 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 509 frames x 425 labels\r\n"
+    ],
+    [
+      0.003767,
+      "2017-02-18 17:31:01,597 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0049.lab, 180 labels\r\n"
+    ],
+    [
+      0.027692,
+      "2017-02-18 17:31:01,625 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 547 frames x 425 labels\r\n"
+    ],
+    [
+      0.004283,
+      "2017-02-18 17:31:01,629 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0050.lab, 240 labels\r\n"
+    ],
+    [
+      0.041827,
+      "2017-02-18 17:31:01,671 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 739 frames x 425 labels\r\n"
+    ],
+    [
+      0.004618,
+      "2017-02-18 17:31:01,676 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0051.lab, 235 labels\r\n"
+    ],
+    [
+      0.038336,
+      "2017-02-18 17:31:01,714 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 821 frames x 425 labels\r\n"
+    ],
+    [
+      0.009021,
+      "2017-02-18 17:31:01,723 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0052.lab, 125 labels\r\n"
+    ],
+    [
+      0.020776,
+      "2017-02-18 17:31:01,744 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 407 frames x 425 labels\r\n"
+    ],
+    [
+      0.005349,
+      "2017-02-18 17:31:01,749 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0053.lab, 205 labels\r\n"
+    ],
+    [
+      0.034463,
+      "2017-02-18 17:31:01,784 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 613 frames x 425 labels\r\n"
+    ],
+    [
+      0.010067,
+      "2017-02-18 17:31:01,794 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0054.lab, 100 labels\r\n"
+    ],
+    [
+      0.013992,
+      "2017-02-18 17:31:01,808 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 323 frames x 425 labels\r\n"
+    ],
+    [
+      0.006729,
+      "2017-02-18 17:31:01,814 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0055.lab, 250 labels\r\n"
+    ],
+    [
+      0.042688,
+      "2017-02-18 17:31:01,857 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 829 frames x 425 labels\r\n"
+    ],
+    [
+      0.008922,
+      "2017-02-18 17:31:01,866 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0056.lab, 165 labels\r\n"
+    ],
+    [
+      0.028222,
+      "2017-02-18 17:31:01,894 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 573 frames x 425 labels\r\n"
+    ],
+    [
+      0.009528,
+      "2017-02-18 17:31:01,904 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0057.lab, 115 labels\r\n"
+    ],
+    [
+      0.019633,
+      "2017-02-18 17:31:01,923 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 479 frames x 425 labels\r\n"
+    ],
+    [
+      0.003254,
+      "2017-02-18 17:31:01,927 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0058.lab, 235 labels\r\n"
+    ],
+    [
+      0.036688,
+      "2017-02-18 17:31:01,963 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 703 frames x 425 labels\r\n"
+    ],
+    [
+      0.006656,
+      "2017-02-18 17:31:01,970 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0059.lab, 140 labels\r\n"
+    ],
+    [
+      0.021125,
+      "2017-02-18 17:31:01,991 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 465 frames x 425 labels\r\n"
+    ],
+    [
+      0.003836,
+      "2017-02-18 17:31:01,995 \u001b[1;32mINFO    \u001b[0m       labels  : loaded /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_state_align/arctic_a0060.lab, 110 labels\r\n"
+    ],
+    [
+      0.018397,
+      "2017-02-18 17:31:02,013 \u001b[1;34mDEBUG   \u001b[0m       labels  : made label matrix of 463 frames x 425 labels\r\n"
+    ],
+    [
+      0.192593,
+      "2017-02-18 17:31:02,206 \u001b[1;34mDEBUG   \u001b[0m  acoustic_norm: MinMaxNormalisation created for feature dimension of 425\r\n"
+    ],
+    [
+      0.048058,
+      "2017-02-18 17:31:02,254 \u001b[1;32mINFO    \u001b[0m  acoustic_norm: across 50 files found min/max values of length 425:\r\n"
+    ],
+    [
+      0.004799,
+      "2017-02-18 17:31:02,259 \u001b[1;32mINFO    \u001b[0m  acoustic_norm:   min: [[ 0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.    "
+    ],
+    [
+      2.7e-05,
+      "      0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0. "
+    ],
+    [
+      1.4e-05,
+      "         0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   "
+    ],
+    [
+      1.5e-05,
+      "0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n"
+    ],
+    [
+      1.2e-05,
+      "   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.          0.          0.          0.          0.          0.\r\n   0.          0.         -1.         -1.          0.          0.          0.\r\n  -1.         -1.         -1.         -1.         -1.         -1.         -1.\r\n  -1.         -1.         -1.         -1.         -1.         -1.         -1.\r\n  -1.          0.          0.          0.          0.         -1.         -1.\r\n  -1.         -1.         -1.         -1.         -1.          0.          0.\r\n   0.         -1.         -1.          1.         -1.          0.          0.\r\n   5.          3.          0.          0.03225806  0.03225806  1.          1.\r\n   1.          5.          0.01449275  0.01449275  0.01449275]]\r\n"
+    ],
+    [
+      0.005245,
+      "2017-02-18 17:31:02,264 \u001b[1;32mINFO    \u001b[0m  acoustic_norm:   max: [[  1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    0.           0.           0.           1.           1.           1.\r\n    1.  "
+    ],
+    [
+      2.9e-05,
+      "         1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           0.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    0.           0.           0.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           0.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.    "
+    ],
+    [
+      1.1e-05,
+      "       1.           1.           1.           0.           1.\r\n    0.           0.           0.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           0.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    0.           0.           0.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           0.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.      "
+    ],
+    [
+      1.1e-05,
+      "     1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    0.           0.           0.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           0.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           0.           1.           1.           0.\r\n    0.        "
+    ],
+    [
+      1e-05,
+      "   0.           1.           1.           1.           1.\r\n    1.           0.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           1.\r\n    0.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           1.           0.\r\n    1.           1.           1.           1.           1.           1.\r\n    1.           1.           1.           1.           0.           1.\r\n    1.           6.           6.           1.           1.           6.\r\n    1.           1.           6.           5.           5.          18.\r\n   18.           9.          10.           5.           6.           4.\r\n    4.          16.          16.           1.           1.           6.\r\n    5.           5.          10.          10.           8.           7.\r\n    4.           5.           5.          18.           9.          18.\r\n   10.           3.          -1.          13.           8.          28.\r\n   13.          "
+    ],
+    [
+      1e-05,
+      " 3.           1.           1.          31.           5.\r\n    5.          69.           0.87878788   1.           1.        ]]\r\n"
+    ],
+    [
+      0.411392,
+      "2017-02-18 17:31:02,676 \u001b[1;32mINFO    \u001b[0m       main    : saved 425 vectors to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/label_norm_HTS_425.dat\r\n"
+    ],
+    [
+      4e-05,
+      "2017-02-18 17:31:02,676 \u001b[1;32mINFO    \u001b[0m       main    : creating acoustic (output) features\r\n"
+    ],
+    [
+      0.000215,
+      "2017-02-18 17:31:02,676 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    1 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0001.cmp\r\n"
+    ],
+    [
+      0.315197,
+      "2017-02-18 17:31:02,991 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 672 frames of features\r\n"
+    ],
+    [
+      3.6e-05,
+      "2017-02-18 17:31:02,991 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    2 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0002.cmp\r\n"
+    ],
+    [
+      0.360226,
+      "2017-02-18 17:31:03,351 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 752 frames of features\r\n"
+    ],
+    [
+      3.7e-05,
+      "2017-02-18 17:31:03,352 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    3 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0003.cmp\r\n"
+    ],
+    [
+      0.306436,
+      "2017-02-18 17:31:03,658 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 642 frames of features\r\n"
+    ],
+    [
+      0.000149,
+      "2017-02-18 17:31:03,658 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    4 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0004.cmp\r\n"
+    ],
+    [
+      0.242074,
+      "2017-02-18 17:31:03,900 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 502 frames of features\r\n"
+    ],
+    [
+      0.000153,
+      "2017-02-18 17:31:03,900 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    5 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0005.cmp\r\n"
+    ],
+    [
+      0.146671,
+      "2017-02-18 17:31:04,047 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 298 frames of features\r\n"
+    ],
+    [
+      0.000107,
+      "2017-02-18 17:31:04,047 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    6 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0006.cmp\r\n"
+    ],
+    [
+      0.301323,
+      "2017-02-18 17:31:04,348 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 594 frames of features\r\n"
+    ],
+    [
+      0.000104,
+      "2017-02-18 17:31:04,349 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    7 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0007.cmp\r\n"
+    ],
+    [
+      0.315838,
+      "2017-02-18 17:31:04,664 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 602 frames of features\r\n"
+    ],
+    [
+      9.4e-05,
+      "2017-02-18 17:31:04,664 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    8 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0008.cmp\r\n"
+    ],
+    [
+      0.22148,
+      "2017-02-18 17:31:04,886 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 458 frames of features\r\n"
+    ],
+    [
+      5.4e-05,
+      "2017-02-18 17:31:04,886 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file    9 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0009.cmp\r\n"
+    ],
+    [
+      0.306948,
+      "2017-02-18 17:31:05,193 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 620 frames of features\r\n"
+    ],
+    [
+      4.8e-05,
+      "2017-02-18 17:31:05,193 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   10 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0010.cmp\r\n"
+    ],
+    [
+      0.309814,
+      "2017-02-18 17:31:05,503 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 604 frames of features\r\n"
+    ],
+    [
+      0.000102,
+      "2017-02-18 17:31:05,503 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   11 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0011.cmp\r\n"
+    ],
+    [
+      0.31407,
+      "2017-02-18 17:31:05,817 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 612 frames of features\r\n"
+    ],
+    [
+      6.5e-05,
+      "2017-02-18 17:31:05,817 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   12 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0012.cmp\r\n"
+    ],
+    [
+      0.281561,
+      "2017-02-18 17:31:06,099 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 568 frames of features\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-18 17:31:06,099 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   13 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0013.cmp\r\n"
+    ],
+    [
+      0.367062,
+      "2017-02-18 17:31:06,466 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 706 frames of features\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-18 17:31:06,466 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   14 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0014.cmp\r\n"
+    ],
+    [
+      0.299661,
+      "2017-02-18 17:31:06,765 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 580 frames of features\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-18 17:31:06,766 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   15 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0015.cmp\r\n"
+    ],
+    [
+      0.189696,
+      "2017-02-18 17:31:06,955 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 376 frames of features\r\n"
+    ],
+    [
+      8.7e-05,
+      "2017-02-18 17:31:06,955 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   16 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0016.cmp\r\n"
+    ],
+    [
+      0.360369,
+      "2017-02-18 17:31:07,316 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 716 frames of features\r\n"
+    ],
+    [
+      0.000157,
+      "2017-02-18 17:31:07,316 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   17 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0017.cmp\r\n"
+    ],
+    [
+      0.399923,
+      "2017-02-18 17:31:07,716 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 806 frames of features\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-18 17:31:07,716 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   18 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0018.cmp\r\n"
+    ],
+    [
+      0.166649,
+      "2017-02-18 17:31:07,882 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 322 frames of features\r\n"
+    ],
+    [
+      8e-05,
+      "2017-02-18 17:31:07,883 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   19 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0019.cmp\r\n"
+    ],
+    [
+      0.338047,
+      "2017-02-18 17:31:08,221 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 696 frames of features\r\n"
+    ],
+    [
+      9.8e-05,
+      "2017-02-18 17:31:08,221 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   20 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0020.cmp\r\n"
+    ],
+    [
+      0.31173,
+      "2017-02-18 17:31:08,532 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 624 frames of features\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-18 17:31:08,533 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   21 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0021.cmp\r\n"
+    ],
+    [
+      0.244906,
+      "2017-02-18 17:31:08,777 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 502 frames of features\r\n"
+    ],
+    [
+      0.000153,
+      "2017-02-18 17:31:08,778 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   22 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0022.cmp\r\n"
+    ],
+    [
+      0.416965,
+      "2017-02-18 17:31:09,195 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 862 frames of features\r\n"
+    ],
+    [
+      0.000159,
+      "2017-02-18 17:31:09,195 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   23 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0023.cmp\r\n"
+    ],
+    [
+      0.466364,
+      "2017-02-18 17:31:09,661 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 960 frames of features\r\n"
+    ],
+    [
+      0.000154,
+      "2017-02-18 17:31:09,661 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   24 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0024.cmp\r\n"
+    ],
+    [
+      0.39087,
+      "2017-02-18 17:31:10,052 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 792 frames of features\r\n"
+    ],
+    [
+      0.000159,
+      "2017-02-18 17:31:10,052 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   25 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0025.cmp\r\n"
+    ],
+    [
+      0.304176,
+      "2017-02-18 17:31:10,356 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 620 frames of features\r\n"
+    ],
+    [
+      0.000148,
+      "2017-02-18 17:31:10,357 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   26 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0026.cmp\r\n"
+    ],
+    [
+      0.294376,
+      "2017-02-18 17:31:10,651 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 578 frames of features\r\n"
+    ],
+    [
+      4.7e-05,
+      "2017-02-18 17:31:10,651 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   27 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0027.cmp\r\n"
+    ],
+    [
+      0.395874,
+      "2017-02-18 17:31:11,047 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 820 frames of features\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-18 17:31:11,047 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   28 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0028.cmp\r\n"
+    ],
+    [
+      0.231745,
+      "2017-02-18 17:31:11,279 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 480 frames of features\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 17:31:11,279 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   29 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0029.cmp\r\n"
+    ],
+    [
+      0.301894,
+      "2017-02-18 17:31:11,581 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 618 frames of features\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-18 17:31:11,581 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   30 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0030.cmp\r\n"
+    ],
+    [
+      0.143253,
+      "2017-02-18 17:31:11,724 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 296 frames of features\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-18 17:31:11,724 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   31 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0031.cmp\r\n"
+    ],
+    [
+      0.192223,
+      "2017-02-18 17:31:11,916 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 404 frames of features\r\n"
+    ],
+    [
+      8.7e-05,
+      "2017-02-18 17:31:11,917 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   32 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0032.cmp\r\n"
+    ],
+    [
+      0.35676,
+      "2017-02-18 17:31:12,273 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 748 frames of features\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-18 17:31:12,273 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   33 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0033.cmp\r\n"
+    ],
+    [
+      0.350721,
+      "2017-02-18 17:31:12,624 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 736 frames of features\r\n"
+    ],
+    [
+      9.2e-05,
+      "2017-02-18 17:31:12,624 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   34 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0034.cmp\r\n"
+    ],
+    [
+      0.311176,
+      "2017-02-18 17:31:12,935 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 652 frames of features\r\n"
+    ],
+    [
+      8.9e-05,
+      "2017-02-18 17:31:12,935 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   35 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0035.cmp\r\n"
+    ],
+    [
+      0.354514,
+      "2017-02-18 17:31:13,290 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 748 frames of features\r\n"
+    ],
+    [
+      0.000106,
+      "2017-02-18 17:31:13,290 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   36 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0036.cmp\r\n"
+    ],
+    [
+      0.177525,
+      "2017-02-18 17:31:13,467 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 362 frames of features\r\n"
+    ],
+    [
+      0.00011,
+      "2017-02-18 17:31:13,468 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   37 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0037.cmp\r\n"
+    ],
+    [
+      0.230873,
+      "2017-02-18 17:31:13,698 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 482 frames of features\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-18 17:31:13,699 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   38 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0038.cmp\r\n"
+    ],
+    [
+      0.180905,
+      "2017-02-18 17:31:13,879 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 374 frames of features\r\n"
+    ],
+    [
+      0.000109,
+      "2017-02-18 17:31:13,880 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   39 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0039.cmp\r\n"
+    ],
+    [
+      0.253698,
+      "2017-02-18 17:31:14,133 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 536 frames of features\r\n"
+    ],
+    [
+      9.2e-05,
+      "2017-02-18 17:31:14,133 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   40 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0040.cmp\r\n"
+    ],
+    [
+      0.250776,
+      "2017-02-18 17:31:14,384 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 526 frames of features\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-18 17:31:14,384 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   41 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0041.cmp\r\n"
+    ],
+    [
+      0.2299,
+      "2017-02-18 17:31:14,614 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 478 frames of features\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-18 17:31:14,614 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   42 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0042.cmp\r\n"
+    ],
+    [
+      0.267347,
+      "2017-02-18 17:31:14,882 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 554 frames of features\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-18 17:31:14,882 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   43 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0043.cmp\r\n"
+    ],
+    [
+      0.330626,
+      "2017-02-18 17:31:15,212 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 694 frames of features\r\n"
+    ],
+    [
+      9.4e-05,
+      "2017-02-18 17:31:15,212 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   44 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0044.cmp\r\n"
+    ],
+    [
+      0.292897,
+      "2017-02-18 17:31:15,505 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 614 frames of features\r\n"
+    ],
+    [
+      9.1e-05,
+      "2017-02-18 17:31:15,505 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   45 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0045.cmp\r\n"
+    ],
+    [
+      0.24187,
+      "2017-02-18 17:31:15,747 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 512 frames of features\r\n"
+    ],
+    [
+      7.9e-05,
+      "2017-02-18 17:31:15,747 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   46 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0046.cmp\r\n"
+    ],
+    [
+      0.318433,
+      "2017-02-18 17:31:16,066 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 668 frames of features\r\n"
+    ],
+    [
+      2.6e-05,
+      "2017-02-18 17:31:16,066 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   47 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0047.cmp\r\n"
+    ],
+    [
+      0.311923,
+      "2017-02-18 17:31:16,378 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 648 frames of features\r\n"
+    ],
+    [
+      4.5e-05,
+      "2017-02-18 17:31:16,378 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   48 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0048.cmp\r\n"
+    ],
+    [
+      0.245858,
+      "2017-02-18 17:31:16,624 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 514 frames of features\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 17:31:16,624 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   49 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0049.cmp\r\n"
+    ],
+    [
+      0.26367,
+      "2017-02-18 17:31:16,887 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 552 frames of features\r\n"
+    ],
+    [
+      8.2e-05,
+      "2017-02-18 17:31:16,888 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   50 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0050.cmp\r\n"
+    ],
+    [
+      0.352643,
+      "2017-02-18 17:31:17,240 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 744 frames of features\r\n"
+    ],
+    [
+      9e-05,
+      "2017-02-18 17:31:17,240 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   51 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0051.cmp\r\n"
+    ],
+    [
+      0.388319,
+      "2017-02-18 17:31:17,628 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 826 frames of features\r\n"
+    ],
+    [
+      9.6e-05,
+      "2017-02-18 17:31:17,629 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   52 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0052.cmp\r\n"
+    ],
+    [
+      0.196456,
+      "2017-02-18 17:31:17,825 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 412 frames of features\r\n"
+    ],
+    [
+      8.3e-05,
+      "2017-02-18 17:31:17,825 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   53 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0053.cmp\r\n"
+    ],
+    [
+      0.296396,
+      "2017-02-18 17:31:18,121 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 618 frames of features\r\n"
+    ],
+    [
+      0.000146,
+      "2017-02-18 17:31:18,122 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   54 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0054.cmp\r\n"
+    ],
+    [
+      0.161277,
+      "2017-02-18 17:31:18,283 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 328 frames of features\r\n"
+    ],
+    [
+      0.000129,
+      "2017-02-18 17:31:18,283 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   55 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0055.cmp\r\n"
+    ],
+    [
+      0.396108,
+      "2017-02-18 17:31:18,679 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 834 frames of features\r\n"
+    ],
+    [
+      0.000128,
+      "2017-02-18 17:31:18,679 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   56 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0056.cmp\r\n"
+    ],
+    [
+      0.281731,
+      "2017-02-18 17:31:18,961 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 578 frames of features\r\n"
+    ],
+    [
+      0.000146,
+      "2017-02-18 17:31:18,961 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   57 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0057.cmp\r\n"
+    ],
+    [
+      0.236748,
+      "2017-02-18 17:31:19,198 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 484 frames of features\r\n"
+    ],
+    [
+      0.000137,
+      "2017-02-18 17:31:19,198 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   58 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0058.cmp\r\n"
+    ],
+    [
+      0.336426,
+      "2017-02-18 17:31:19,534 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 708 frames of features\r\n"
+    ],
+    [
+      0.000139,
+      "2017-02-18 17:31:19,535 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   59 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0059.cmp\r\n"
+    ],
+    [
+      0.226739,
+      "2017-02-18 17:31:19,761 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 470 frames of features\r\n"
+    ],
+    [
+      0.000138,
+      "2017-02-18 17:31:19,762 \u001b[1;32mINFO    \u001b[0m  acoustic_comp: processing file   60 of   60 : /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_mgc_lf0_vuv_bap_187/arctic_a0060.cmp\r\n"
+    ],
+    [
+      0.229521,
+      "2017-02-18 17:31:19,991 \u001b[1;34mDEBUG   \u001b[0m  acoustic_comp:  wrote 468 frames of features\r\n"
+    ],
+    [
+      0.124884,
+      "2017-02-18 17:31:20,116 \u001b[1;32mINFO    \u001b[0m       main    : normalising acoustic (output) features using method MVN\r\n"
+    ],
+    [
+      0.059453,
+      "/home/josh/git/merlin/src/frontend/mean_variance_norm.py:69: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.\r\n  if self.mean_vector == None:\r\n/home/josh/git/merlin/src/frontend/mean_variance_norm.py:71: FutureWarning: comparison to `None` will result in an elementwise object comparison in the future.\r\n  if self.std_vector  == None:\r\n"
+    ],
+    [
+      0.090062,
+      "2017-02-18 17:31:20,265 \u001b[1;32mINFO    \u001b[0m       main    : saved MVN vectors to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/norm_info_mgc_lf0_vuv_bap_187_MVN.dat\r\n"
+    ],
+    [
+      0.00339,
+      "2017-02-18 17:31:20,269 \u001b[1;32mINFO    \u001b[0m       main    : saved mgc variance vector to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/var/mgc_180\r\n"
+    ],
+    [
+      0.000234,
+      "2017-02-18 17:31:20,269 \u001b[1;32mINFO    \u001b[0m       main    : saved vuv variance vector to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/var/vuv_1\r\n"
+    ],
+    [
+      0.000214,
+      "2017-02-18 17:31:20,269 \u001b[1;32mINFO    \u001b[0m       main    : saved lf0 variance vector to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/var/lf0_3\r\n"
+    ],
+    [
+      0.000196,
+      "2017-02-18 17:31:20,270 \u001b[1;32mINFO    \u001b[0m       main    : saved bap variance vector to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/var/bap_3\r\n"
+    ],
+    [
+      0.018399,
+      "2017-02-18 17:31:20,288 \u001b[1;34mDEBUG   \u001b[0m       labels  : HTS-derived input feature dimension is 416 + 9 = 425\r\n"
+    ],
+    [
+      0.000333,
+      "2017-02-18 17:31:20,288 \u001b[1;32mINFO    \u001b[0m       main    : label dimension is 425\r\n"
+    ],
+    [
+      0.000278,
+      "2017-02-18 17:31:20,289 \u001b[1;32mINFO    \u001b[0m       main    : training DNN\r\n"
+    ],
+    [
+      0.000213,
+      "2017-02-18 17:31:20,289 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: Starting train_DNN\r\n"
+    ],
+    [
+      0.000164,
+      "2017-02-18 17:31:20,289 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: Creating training   data provider\r\n"
+    ],
+    [
+      0.000211,
+      "2017-02-18 17:31:20,289 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: Creating validation data provider\r\n"
+    ],
+    [
+      0.201472,
+      "2017-02-18 17:31:20,490 \u001b[1;32mINFO    \u001b[0m main.train_DNN: building the model\r\n"
+    ],
+    [
+      0.850962,
+      "2017-02-18 17:31:21,341 \u001b[1;32mINFO    \u001b[0m main.train_DNN: fine-tuning the DNN model\r\n0.002\r\n"
+    ],
+    [
+      204.244238,
+      "2017-02-18 17:34:45,586 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.996906,
+      "2017-02-18 17:34:52,583 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 1, validation error 181.222183, train error 182.346848  time spent 211.24\r\n"
+    ],
+    [
+      204.159264,
+      "2017-02-18 17:38:16,742 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.996964,
+      "2017-02-18 17:38:23,739 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 2, validation error 178.898849, train error 176.184540  time spent 211.16\r\n"
+    ],
+    [
+      203.979514,
+      "2017-02-18 17:41:47,718 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.992181,
+      "2017-02-18 17:41:54,710 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 3, validation error 177.940338, train error 174.229126  time spent 210.97\r\n"
+    ],
+    [
+      204.220361,
+      "2017-02-18 17:45:18,931 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.986514,
+      "2017-02-18 17:45:25,917 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 4, validation error 177.438766, train error 173.173172  time spent 211.21\r\n"
+    ],
+    [
+      204.033995,
+      "2017-02-18 17:48:49,951 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.980555,
+      "2017-02-18 17:48:56,932 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 5, validation error 177.118423, train error 172.455261  time spent 211.01\r\n"
+    ],
+    [
+      204.070174,
+      "2017-02-18 17:52:21,002 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.971606,
+      "2017-02-18 17:52:27,974 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 6, validation error 176.886353, train error 171.904541  time spent 211.04\r\n"
+    ],
+    [
+      205.319796,
+      "2017-02-18 17:55:53,293 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.984715,
+      "2017-02-18 17:56:00,278 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 7, validation error 176.695206, train error 171.448746  time spent 210.84\r\n"
+    ],
+    [
+      205.302299,
+      "2017-02-18 17:59:25,581 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.976534,
+      "2017-02-18 17:59:32,557 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 8, validation error 176.507187, train error 171.044907  time spent 210.81\r\n"
+    ],
+    [
+      205.177156,
+      "2017-02-18 18:02:57,734 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.978402,
+      "2017-02-18 18:03:04,713 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 9, validation error 176.291580, train error 170.659302  time spent 210.69\r\n"
+    ],
+    [
+      205.303491,
+      "2017-02-18 18:06:30,016 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.974403,
+      "2017-02-18 18:06:36,990 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 10, validation error 176.033279, train error 170.264816  time spent 210.81\r\n"
+    ],
+    [
+      205.244282,
+      "2017-02-18 18:10:02,235 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.969321,
+      "2017-02-18 18:10:09,204 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 11, validation error 175.961914, train error 170.316025  time spent 210.74\r\n"
+    ],
+    [
+      205.245471,
+      "2017-02-18 18:13:34,450 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.97028,
+      "2017-02-18 18:13:41,420 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 12, validation error 175.159561, train error 168.870529  time spent 210.75\r\n"
+    ],
+    [
+      205.300597,
+      "2017-02-18 18:17:06,720 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.973951,
+      "2017-02-18 18:17:13,694 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 13, validation error 174.652985, train error 167.983139  time spent 210.80\r\n"
+    ],
+    [
+      205.316169,
+      "2017-02-18 18:20:39,011 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.978686,
+      "2017-02-18 18:20:45,989 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 14, validation error 174.518661, train error 167.511108  time spent 210.83\r\n"
+    ],
+    [
+      206.032104,
+      "2017-02-18 18:24:12,021 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.943047,
+      "2017-02-18 18:24:18,964 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 15, validation error 174.408234, train error 167.273178  time spent 211.50\r\n"
+    ],
+    [
+      207.387075,
+      "2017-02-18 18:27:46,351 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      7.0232,
+      "2017-02-18 18:27:53,375 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 16, validation error 174.365356, train error 167.151108  time spent 212.92\r\n"
+    ],
+    [
+      215.242003,
+      "2017-02-18 18:31:28,617 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      7.4137,
+      "2017-02-18 18:31:36,030 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 17, validation error 174.357254, train error 167.086380  time spent 221.16\r\n"
+    ],
+    [
+      211.455562,
+      "2017-02-18 18:35:07,486 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.998587,
+      "2017-02-18 18:35:14,484 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 18, validation error 174.352554, train error 167.051895  time spent 216.98\r\n"
+    ],
+    [
+      206.308211,
+      "2017-02-18 18:38:40,793 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.972317,
+      "2017-02-18 18:38:47,765 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 19, validation error 174.350937, train error 167.034058  time spent 211.80\r\n"
+    ],
+    [
+      205.139393,
+      "2017-02-18 18:42:12,904 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.946818,
+      "2017-02-18 18:42:19,851 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 20, validation error 174.349579, train error 167.025330  time spent 210.62\r\n"
+    ],
+    [
+      204.741121,
+      "2017-02-18 18:45:44,592 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.976672,
+      "2017-02-18 18:45:51,569 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 21, validation error 174.348816, train error 167.021027  time spent 210.25\r\n"
+    ],
+    [
+      204.739784,
+      "2017-02-18 18:49:16,309 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.97181,
+      "2017-02-18 18:49:23,281 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 22, validation error 174.348419, train error 167.018875  time spent 210.24\r\n"
+    ],
+    [
+      204.860174,
+      "2017-02-18 18:52:48,141 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.96234,
+      "2017-02-18 18:52:55,103 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 23, validation error 174.348236, train error 167.017807  time spent 210.35\r\n"
+    ],
+    [
+      204.895679,
+      "2017-02-18 18:56:19,999 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.974383,
+      "2017-02-18 18:56:26,973 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 24, validation error 174.348129, train error 167.017288  time spent 210.40\r\n"
+    ],
+    [
+      204.579596,
+      "2017-02-18 18:59:51,553 \u001b[1;34mDEBUG   \u001b[0m main.train_DNN: calculating validation loss\r\n"
+    ],
+    [
+      6.971531,
+      "2017-02-18 18:59:58,524 \u001b[1;32mINFO    \u001b[0m main.train_DNN: epoch 25, validation error 174.348083, train error 167.017044  time spent 210.08\r\n"
+    ],
+    [
+      1.467562,
+      "2017-02-18 18:59:59,992 \u001b[1;32mINFO    \u001b[0m main.train_DNN: overall  training time: 88.64m validation error 174.348083\r\n"
+    ],
+    [
+      0.001846,
+      "2017-02-18 18:59:59,994 \u001b[1;32mINFO    \u001b[0m       main    : generating from DNN\r\n"
+    ],
+    [
+      0.000318,
+      "2017-02-18 18:59:59,994 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: Starting dnn_generation\r\n"
+    ],
+    [
+      0.793252,
+      "2017-02-18 19:00:00,787 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    1 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0051.lab\r\n"
+    ],
+    [
+      1.965874,
+      "2017-02-18 19:00:02,753 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0051.cmp\r\n"
+    ],
+    [
+      0.00012,
+      "2017-02-18 19:00:02,753 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    2 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0052.lab\r\n"
+    ],
+    [
+      0.960233,
+      "2017-02-18 19:00:03,713 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0052.cmp\r\n"
+    ],
+    [
+      8.5e-05,
+      "2017-02-18 19:00:03,714 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    3 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0053.lab\r\n"
+    ],
+    [
+      1.534529,
+      "2017-02-18 19:00:05,248 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0053.cmp\r\n"
+    ],
+    [
+      7.7e-05,
+      "2017-02-18 19:00:05,248 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    4 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0054.lab\r\n"
+    ],
+    [
+      0.789894,
+      "2017-02-18 19:00:06,038 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0054.cmp\r\n"
+    ],
+    [
+      0.000124,
+      "2017-02-18 19:00:06,038 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    5 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0055.lab\r\n"
+    ],
+    [
+      2.003029,
+      "2017-02-18 19:00:08,041 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0055.cmp\r\n"
+    ],
+    [
+      8.7e-05,
+      "2017-02-18 19:00:08,042 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    6 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0056.lab\r\n"
+    ],
+    [
+      1.341874,
+      "2017-02-18 19:00:09,383 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0056.cmp\r\n"
+    ],
+    [
+      7e-05,
+      "2017-02-18 19:00:09,384 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    7 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0057.lab\r\n"
+    ],
+    [
+      0.950598,
+      "2017-02-18 19:00:10,334 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0057.cmp\r\n"
+    ],
+    [
+      0.000148,
+      "2017-02-18 19:00:10,334 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    8 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0058.lab\r\n"
+    ],
+    [
+      1.69598,
+      "2017-02-18 19:00:12,030 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0058.cmp\r\n"
+    ],
+    [
+      0.000122,
+      "2017-02-18 19:00:12,030 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating    9 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0059.lab\r\n"
+    ],
+    [
+      1.038605,
+      "2017-02-18 19:00:13,069 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0059.cmp\r\n"
+    ],
+    [
+      7.1e-05,
+      "2017-02-18 19:00:13,069 \u001b[1;32mINFO    \u001b[0m dnn_generation: generating   10 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/nn_no_silence_lab_norm_425/arctic_a0060.lab\r\n"
+    ],
+    [
+      1.052395,
+      "2017-02-18 19:00:14,121 \u001b[1;34mDEBUG   \u001b[0m dnn_generation: saved to /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0060.cmp\r\n"
+    ],
+    [
+      0.000218,
+      "2017-02-18 19:00:14,122 \u001b[1;34mDEBUG   \u001b[0m       main    : denormalising generated output using method MVN\r\n"
+    ],
+    [
+      0.008853,
+      "2017-02-18 19:00:14,130 \u001b[1;34mDEBUG   \u001b[0mparam_generation: acoustic_decomposition for 10 files\r\n"
+    ],
+    [
+      0.000401,
+      "2017-02-18 19:00:14,131 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    1 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0051.cmp\r\n"
+    ],
+    [
+      5e-05,
+      "2017-02-18 19:00:14,131 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000838,
+      "2017-02-18 19:00:14,132 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.011661,
+      "2017-02-18 19:00:14,143 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 763 by 60\r\n"
+    ],
+    [
+      0.000382,
+      "2017-02-18 19:00:14,144 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0051.mgc\r\n"
+    ],
+    [
+      3.2e-05,
+      "2017-02-18 19:00:14,144 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000192,
+      "2017-02-18 19:00:14,144 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000427,
+      "2017-02-18 19:00:14,144 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 763 by 1\r\n"
+    ],
+    [
+      0.001296,
+      "2017-02-18 19:00:14,146 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0051.lf0\r\n"
+    ],
+    [
+      5.3e-05,
+      "2017-02-18 19:00:14,146 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000154,
+      "2017-02-18 19:00:14,146 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000401,
+      "2017-02-18 19:00:14,146 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 763 by 1\r\n"
+    ],
+    [
+      0.000157,
+      "2017-02-18 19:00:14,147 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0051.bap\r\n"
+    ],
+    [
+      0.000209,
+      "2017-02-18 19:00:14,147 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    2 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0052.cmp\r\n"
+    ],
+    [
+      5.3e-05,
+      "2017-02-18 19:00:14,147 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000438,
+      "2017-02-18 19:00:14,147 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.011256,
+      "2017-02-18 19:00:14,157 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 363 by 60\r\n"
+    ],
+    [
+      0.001101,
+      "2017-02-18 19:00:14,159 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0052.mgc\r\n"
+    ],
+    [
+      0.000446,
+      "2017-02-18 19:00:14,159 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000538,
+      "2017-02-18 19:00:14,160 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.001004,
+      "2017-02-18 19:00:14,161 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 363 by 1\r\n"
+    ],
+    [
+      0.001118,
+      "2017-02-18 19:00:14,163 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0052.lf0\r\n"
+    ],
+    [
+      4.8e-05,
+      "2017-02-18 19:00:14,163 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000172,
+      "2017-02-18 19:00:14,163 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000349,
+      "2017-02-18 19:00:14,163 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 363 by 1\r\n"
+    ],
+    [
+      0.000168,
+      "2017-02-18 19:00:14,163 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0052.bap\r\n"
+    ],
+    [
+      0.000243,
+      "2017-02-18 19:00:14,164 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    3 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0053.cmp\r\n"
+    ],
+    [
+      0.000128,
+      "2017-02-18 19:00:14,164 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000604,
+      "2017-02-18 19:00:14,164 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.007987,
+      "2017-02-18 19:00:14,172 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 592 by 60\r\n"
+    ],
+    [
+      0.00029,
+      "2017-02-18 19:00:14,173 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0053.mgc\r\n"
+    ],
+    [
+      4.7e-05,
+      "2017-02-18 19:00:14,173 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000181,
+      "2017-02-18 19:00:14,173 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000392,
+      "2017-02-18 19:00:14,173 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 592 by 1\r\n"
+    ],
+    [
+      0.001043,
+      "2017-02-18 19:00:14,174 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0053.lf0\r\n"
+    ],
+    [
+      5.8e-05,
+      "2017-02-18 19:00:14,174 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000149,
+      "2017-02-18 19:00:14,175 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000359,
+      "2017-02-18 19:00:14,175 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 592 by 1\r\n"
+    ],
+    [
+      0.00016,
+      "2017-02-18 19:00:14,175 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0053.bap\r\n"
+    ],
+    [
+      0.000189,
+      "2017-02-18 19:00:14,175 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    4 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0054.cmp\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-18 19:00:14,175 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000401,
+      "2017-02-18 19:00:14,176 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.005645,
+      "2017-02-18 19:00:14,181 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 282 by 60\r\n"
+    ],
+    [
+      0.000232,
+      "2017-02-18 19:00:14,182 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0054.mgc\r\n"
+    ],
+    [
+      4.5e-05,
+      "2017-02-18 19:00:14,182 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000154,
+      "2017-02-18 19:00:14,182 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000304,
+      "2017-02-18 19:00:14,182 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 282 by 1\r\n"
+    ],
+    [
+      0.00059,
+      "2017-02-18 19:00:14,183 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0054.lf0\r\n"
+    ],
+    [
+      8.1e-05,
+      "2017-02-18 19:00:14,183 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000133,
+      "2017-02-18 19:00:14,183 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000299,
+      "2017-02-18 19:00:14,183 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 282 by 1\r\n"
+    ],
+    [
+      0.000139,
+      "2017-02-18 19:00:14,183 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0054.bap\r\n"
+    ],
+    [
+      0.000307,
+      "2017-02-18 19:00:14,184 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    5 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0055.cmp\r\n"
+    ],
+    [
+      7.4e-05,
+      "2017-02-18 19:00:14,184 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000738,
+      "2017-02-18 19:00:14,184 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.016863,
+      "2017-02-18 19:00:14,201 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 780 by 60\r\n"
+    ],
+    [
+      0.00035,
+      "2017-02-18 19:00:14,202 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0055.mgc\r\n"
+    ],
+    [
+      4.3e-05,
+      "2017-02-18 19:00:14,202 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000184,
+      "2017-02-18 19:00:14,202 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000442,
+      "2017-02-18 19:00:14,202 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 780 by 1\r\n"
+    ],
+    [
+      0.001336,
+      "2017-02-18 19:00:14,204 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0055.lf0\r\n"
+    ],
+    [
+      0.000117,
+      "2017-02-18 19:00:14,204 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000165,
+      "2017-02-18 19:00:14,204 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000429,
+      "2017-02-18 19:00:14,204 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 780 by 1\r\n"
+    ],
+    [
+      0.000172,
+      "2017-02-18 19:00:14,205 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0055.bap\r\n"
+    ],
+    [
+      0.000247,
+      "2017-02-18 19:00:14,205 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    6 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0056.cmp\r\n"
+    ],
+    [
+      4.7e-05,
+      "2017-02-18 19:00:14,205 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.00055,
+      "2017-02-18 19:00:14,205 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.007234,
+      "2017-02-18 19:00:14,213 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 514 by 60\r\n"
+    ],
+    [
+      0.000279,
+      "2017-02-18 19:00:14,213 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0056.mgc\r\n"
+    ],
+    [
+      5e-05,
+      "2017-02-18 19:00:14,213 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000177,
+      "2017-02-18 19:00:14,213 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000379,
+      "2017-02-18 19:00:14,214 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 514 by 1\r\n"
+    ],
+    [
+      0.000934,
+      "2017-02-18 19:00:14,214 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0056.lf0\r\n"
+    ],
+    [
+      5.1e-05,
+      "2017-02-18 19:00:14,215 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000153,
+      "2017-02-18 19:00:14,215 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000353,
+      "2017-02-18 19:00:14,215 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 514 by 1\r\n"
+    ],
+    [
+      0.000164,
+      "2017-02-18 19:00:14,215 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0056.bap\r\n"
+    ],
+    [
+      0.000205,
+      "2017-02-18 19:00:14,215 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    7 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0057.cmp\r\n"
+    ],
+    [
+      6.9e-05,
+      "2017-02-18 19:00:14,216 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.00047,
+      "2017-02-18 19:00:14,216 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.013281,
+      "2017-02-18 19:00:14,229 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 358 by 60\r\n"
+    ],
+    [
+      0.000261,
+      "2017-02-18 19:00:14,229 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0057.mgc\r\n"
+    ],
+    [
+      4.9e-05,
+      "2017-02-18 19:00:14,230 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000176,
+      "2017-02-18 19:00:14,230 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000375,
+      "2017-02-18 19:00:14,230 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 358 by 1\r\n"
+    ],
+    [
+      0.000708,
+      "2017-02-18 19:00:14,231 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0057.lf0\r\n"
+    ],
+    [
+      9.6e-05,
+      "2017-02-18 19:00:14,231 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000149,
+      "2017-02-18 19:00:14,231 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000333,
+      "2017-02-18 19:00:14,231 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 358 by 1\r\n"
+    ],
+    [
+      0.000167,
+      "2017-02-18 19:00:14,232 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0057.bap\r\n"
+    ],
+    [
+      0.0003,
+      "2017-02-18 19:00:14,232 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    8 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0058.cmp\r\n"
+    ],
+    [
+      9.3e-05,
+      "2017-02-18 19:00:14,232 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000711,
+      "2017-02-18 19:00:14,233 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.008373,
+      "2017-02-18 19:00:14,241 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 658 by 60\r\n"
+    ],
+    [
+      0.000303,
+      "2017-02-18 19:00:14,241 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0058.mgc\r\n"
+    ],
+    [
+      4.9e-05,
+      "2017-02-18 19:00:14,241 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000178,
+      "2017-02-18 19:00:14,242 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000403,
+      "2017-02-18 19:00:14,242 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 658 by 1\r\n"
+    ],
+    [
+      0.001136,
+      "2017-02-18 19:00:14,243 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0058.lf0\r\n"
+    ],
+    [
+      8.6e-05,
+      "2017-02-18 19:00:14,243 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000141,
+      "2017-02-18 19:00:14,243 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000377,
+      "2017-02-18 19:00:14,244 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 658 by 1\r\n"
+    ],
+    [
+      0.000144,
+      "2017-02-18 19:00:14,244 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0058.bap\r\n"
+    ],
+    [
+      0.0002,
+      "2017-02-18 19:00:14,244 \u001b[1;32mINFO    \u001b[0mparam_generation: processing    9 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0059.cmp\r\n"
+    ],
+    [
+      6.2e-05,
+      "2017-02-18 19:00:14,244 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000448,
+      "2017-02-18 19:00:14,245 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.011001,
+      "2017-02-18 19:00:14,255 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 394 by 60\r\n"
+    ],
+    [
+      0.001144,
+      "2017-02-18 19:00:14,256 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0059.mgc\r\n"
+    ],
+    [
+      0.000301,
+      "2017-02-18 19:00:14,257 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.000318,
+      "2017-02-18 19:00:14,257 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.001057,
+      "2017-02-18 19:00:14,258 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 394 by 1\r\n"
+    ],
+    [
+      0.001531,
+      "2017-02-18 19:00:14,259 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0059.lf0\r\n"
+    ],
+    [
+      0.000222,
+      "2017-02-18 19:00:14,260 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000155,
+      "2017-02-18 19:00:14,260 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.000357,
+      "2017-02-18 19:00:14,261 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 394 by 1\r\n"
+    ],
+    [
+      0.000175,
+      "2017-02-18 19:00:14,261 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0059.bap\r\n"
+    ],
+    [
+      0.00023,
+      "2017-02-18 19:00:14,261 \u001b[1;32mINFO    \u001b[0mparam_generation: processing   10 of   10: /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0060.cmp\r\n"
+    ],
+    [
+      4.6e-05,
+      "2017-02-18 19:00:14,261 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: mgc\r\n"
+    ],
+    [
+      0.000453,
+      "2017-02-18 19:00:14,262 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.006487,
+      "2017-02-18 19:00:14,268 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 400 by 60\r\n"
+    ],
+    [
+      0.000262,
+      "2017-02-18 19:00:14,268 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0060.mgc\r\n"
+    ],
+    [
+      4.6e-05,
+      "2017-02-18 19:00:14,268 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: lf0\r\n"
+    ],
+    [
+      0.00017,
+      "2017-02-18 19:00:14,269 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.00035,
+      "2017-02-18 19:00:14,269 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 400 by 1\r\n"
+    ],
+    [
+      0.000772,
+      "2017-02-18 19:00:14,270 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0060.lf0\r\n"
+    ],
+    [
+      3.9e-05,
+      "2017-02-18 19:00:14,270 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature: bap\r\n"
+    ],
+    [
+      0.000147,
+      "2017-02-18 19:00:14,270 \u001b[1;34mDEBUG   \u001b[0mparam_generation: starting MLParameterGeneration.generation\r\n"
+    ],
+    [
+      0.00032,
+      "2017-02-18 19:00:14,270 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  feature dimensions: 400 by 1\r\n"
+    ],
+    [
+      0.000161,
+      "2017-02-18 19:00:14,270 \u001b[1;34mDEBUG   \u001b[0mparam_generation:  wrote to file /home/josh/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/gen/DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512/arctic_a0060.bap\r\n"
+    ],
+    [
+      9.5e-05,
+      "2017-02-18 19:00:14,270 \u001b[1;32mINFO    \u001b[0m       main    : reconstructing waveform(s)\r\n"
+    ],
+    [
+      0.000101,
+      "2017-02-18 19:00:14,271 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    1 of   10: arctic_a0051\r\n"
+    ],
+    [
+      1.299028,
+      "2017-02-18 19:00:15,569 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    2 of   10: arctic_a0052\r\n"
+    ],
+    [
+      0.691013,
+      "2017-02-18 19:00:16,260 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    3 of   10: arctic_a0053\r\n"
+    ],
+    [
+      1.04575,
+      "2017-02-18 19:00:17,306 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    4 of   10: arctic_a0054\r\n"
+    ],
+    [
+      0.596292,
+      "2017-02-18 19:00:17,902 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    5 of   10: arctic_a0055\r\n"
+    ],
+    [
+      1.315361,
+      "2017-02-18 19:00:19,218 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    6 of   10: arctic_a0056\r\n"
+    ],
+    [
+      0.922641,
+      "2017-02-18 19:00:20,140 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    7 of   10: arctic_a0057\r\n"
+    ],
+    [
+      0.709261,
+      "2017-02-18 19:00:20,850 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    8 of   10: arctic_a0058\r\n"
+    ],
+    [
+      1.132947,
+      "2017-02-18 19:00:21,983 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for    9 of   10: arctic_a0059\r\n"
+    ],
+    [
+      0.743098,
+      "2017-02-18 19:00:22,726 \u001b[1;32mINFO    \u001b[0m wav_generation: creating waveform for   10 of   10: arctic_a0060\r\n"
+    ],
+    [
+      0.759294,
+      "2017-02-18 19:00:23,485 \u001b[1;32mINFO    \u001b[0m       main    : calculating MCD\r\n"
+    ],
+    [
+      0.056735,
+      "2017-02-18 19:00:23,542 \u001b[1;32mINFO    \u001b[0m       main    : Develop: DNN -- MCD: 6.559 dB; BAP: 0.242 dB; F0:- RMSE: 19.573 Hz; CORR: 0.529; VUV: 11.655%\r\n"
+    ],
+    [
+      8.8e-05,
+      "2017-02-18 19:00:23,542 \u001b[1;32mINFO    \u001b[0m       main    : Test   : DNN -- MCD: 6.586 dB; BAP: 0.259 dB; F0:- RMSE: 15.309 Hz; CORR: 0.701; VUV: 8.821%\r\n"
+    ],
+    [
+      0.077172,
+      "\u001b]0;josh@yoga: ~/git/merlin/egs/slt_arctic/s1\u0007josh@yoga:~/git/merlin/egs/slt_arctic/s1$ "
+    ]
+  ],
+  "duration": 5369.883875,
+  "command": null,
+  "env": {
+    "SHELL": "/bin/bash",
+    "TERM": "xterm"
+  },
+  "width": 213,
+  "height": 58
+}

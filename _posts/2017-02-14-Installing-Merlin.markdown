@@ -992,10 +992,203 @@ echo "Step 3: training acoustic model..."
 ./scripts/submit.sh ${MerlinDir}/src/run_merlin.py conf/acoustic_${Voice}.conf
 {% endhighlight %}
 
+This process runs a lot longer than training the duration model. That's because our output layer is much larger, and we have a lot more parameters in our DNN to train. 
+
+This took about an hour and a half on my laptop to train.
+
+<asciinema-player src="/misc/train-acoustic-model.json"></asciinema-player>
+
+Now if we look into our `experiments` dir to see what new things we've added to the `acoustic_model` subdir, we see a similar picture to what we saw with the `duration_model` subdir.
+
+First, let's look at the `acoustic_model` subdir before training the DNN:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    └── acoustic_model
+        └── data
+            ├── bap
+            │   └── arctic_a0001.bap
+            ├── file_id_list_demo.scp
+            ├── label_phone_align
+            │   └── arctic_a0001.lab
+            ├── label_state_align
+            │   └── arctic_a0001.lab
+            ├── lf0
+            │   └── arctic_a0001.lf0
+            └── mgc
+                └── arctic_a0001.mgc
+{% endhighlight %}
 
 
+And here's what we get after we run the training script:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    └── acoustic_model
+        ├── data
+        │   ├── bap
+        │   │   └── arctic_a0001.bap
+        │   ├── binary_label_425
+        │   │   └── arctic_a0001.lab
+        │   ├── dur
+        │   ├── file_id_list_demo.scp
+        │   ├── label_norm_HTS_425.dat
+        │   ├── label_phone_align
+        │   │   └── arctic_a0001.lab
+        │   ├── label_state_align
+        │   │   └── arctic_a0001.lab
+        │   ├── lf0
+        │   │   └── arctic_a0001.lf0
+        │   ├── mgc
+        │   │   └── arctic_a0001.mgc
+        │   ├── nn_mgc_lf0_vuv_bap_187
+        │   │   └── arctic_a0001.cmp
+        │   ├── nn_norm_mgc_lf0_vuv_bap_187
+        │   │   └── arctic_a0001.cmp
+        │   ├── nn_no_silence_lab_425
+        │   │   └── arctic_a0001.lab
+        │   ├── nn_no_silence_lab_norm_425
+        │   │   └── arctic_a0001.lab
+        │   ├── norm_info_mgc_lf0_vuv_bap_187_MVN.dat
+        │   ├── ref_data
+        │   │   ├── arctic_a0051.bap
+        │   │   ├── arctic_a0051.lf0
+        │   │   └── arctic_a0051.mgc
+        │   └── var
+        │       ├── bap_3
+        │       ├── lf0_3
+        │       ├── mgc_180
+        │       └── vuv_1
+        ├── gen
+        │   └── DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_1_50_425_187_4_512_512
+        │       ├── arctic_a0051.bap
+        │       ├── arctic_a0051.cmp
+        │       ├── arctic_a0051.lf0
+        │       ├── arctic_a0051.mgc
+        │       ├── arctic_a0051.mgc_b0
+        │       ├── arctic_a0051.mgc_p_b0
+        │       ├── arctic_a0051.mgc_p_mgc
+        │       ├── arctic_a0051.mgc_p_r0
+        │       ├── arctic_a0051.mgc_r0
+        │       ├── arctic_a0051.wav
+        │       └── weight
+        ├── log
+        │   ├── DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_50_259_4_512_0.002000_12_07PM_February_18_2017.log
+        │   └── DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_50_259_4_512_0.002000_12_07PM_February_18_2017.log.gitdiff
+        └── nnets_model
+            └── DNN_TANH_TANH_TANH_TANH_LINEAR__mgc_lf0_vuv_bap_0_4_512_512_512_512_425.187.train.50.0.002000.rnn.model
+{% endhighlight %}
 
 
+<br/>
+
+### Synthesize Speech
+
+{% highlight bash %}
+### Step 4: synthesize speech   ###
+echo "Step 4: synthesizing speech..."
+./scripts/submit.sh ${MerlinDir}/src/run_merlin.py conf/test_dur_synth_${Voice}.conf
+{% endhighlight %}
+
+
+<asciinema-player src="/misc/synthesize-dur-model.json"></asciinema-player>
+
+
+Before running the synthesis script:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    └── test_synthesis
+        ├── prompt-lab
+        │   └── arctic_a0001.lab
+        └── test_id_list.scp
+{% endhighlight %}
+
+After running the duration synthesis script:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    └── test_synthesis
+        ├── gen-lab
+        │   ├── arctic_a0001.cmp
+        │   ├── arctic_a0001.dur
+        │   └── arctic_a0001.lab
+        ├── prompt-lab
+        │   └── arctic_a0001.lab
+        └── test_id_list.scp
+{% endhighlight %}
+
+Now we run the acoustic synthesis script:
+
+{% highlight bash %}
+./scripts/submit.sh ${MerlinDir}/src/run_merlin.py conf/test_synth_${Voice}.conf
+{% endhighlight %}
+
+<asciinema-player src="/misc/synthesize-acoustic-model.json"></asciinema-player>
+
+Here's what we find in the `test_synthesis` dir after we've generated our wav files:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    └── test_synthesis
+        ├── gen-lab
+        │   ├── arctic_a0001.cmp
+        │   ├── arctic_a0001.dur
+        │   ├── arctic_a0001.lab
+        ├── prompt-lab
+        │   ├── arctic_a0001.lab
+        ├── test_id_list.scp
+        └── wav
+            ├── arctic_a0001.bap
+            ├── arctic_a0001.cmp
+            ├── arctic_a0001.lf0
+            ├── arctic_a0001.mgc
+            ├── arctic_a0001.mgc_b0
+            ├── arctic_a0001.mgc_p_b0
+            ├── arctic_a0001.mgc_p_mgc
+            ├── arctic_a0001.mgc_p_r0
+            ├── arctic_a0001.mgc_r0
+            ├── arctic_a0001.wav
+            └── weight
+{% endhighlight %}
+
+<br/>
+
+### Clean up
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ ./run_demo.sh 
+Step 5: deleting intermediate synthesis files...
+synthesized audio files are in: experiments/slt_arctic_demo/test_synthesis/wav
+All successfull!! Your demo voice is ready :)
+{% endhighlight %}
+
+
+Here's our nice, cleaned up `test_synthesis` dir:
+
+{% highlight bash %}
+josh@yoga:~/git/merlin/egs/slt_arctic/s1$ tree experiments/
+experiments/
+└── slt_arctic_demo
+    └── test_synthesis
+        ├── gen-lab
+        │   └── arctic_a0001.lab
+        ├── prompt-lab
+        │   └── arctic_a0001.lab
+        ├── test_id_list.scp
+        └── wav
+            └── arctic_a0001.wav
+{% endhighlight %}
 
 
 [merlin-github]: https://github.com/CSTR-Edinburgh/merlin
