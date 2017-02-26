@@ -646,23 +646,22 @@ In terms of the file formats, we find the following:
 
 #### `*.bap`
 
-The first file type, `*.bap`, is a kind of feature extracted from the audio, and we have one file for every audio file in our data set. If we look into the `*.bap` file itself, we find it is not human readable, but that makes sense, because it contains extracted audio features:
+The first file type, `*.bap`, is a kind of feature extracted from the audio, and we have one file for every audio file in our data set. We look into the `*.bap` file itself with the help of the `x2x` program which is included in Merlin via `SPTK` (Speech Signal Processing Toolkit). In the following command we use `+fa` to convert our binary floats ("f") to ASCII ("a").
+
+The only reason I'm using `head` and `tail` here is to get a section of the file which has numbers other than zeros, so it's more interesting.
 
 {% highlight bash %}
-josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/bap$ head arctic_a0001.bap 
-B#߿�
-    ��]����T��,�x�kQ�����[kr�զ������B#���Q��D���������f�A����d_�������Rz�����%�u��3
-                                                                                          �hZ
-                                                                                             ����ځK���[���n�l��F���LJ���ؿ|��Ƅd�|)��.���-����D�~�$�J�&�eV����s[���u��̞�����Ҩ��
-                                                                                                                                                                                   �h���6���TR�Q<,��������	C"��PN��g��]��K�Đ���(1���?����9�7�Y.���A�nj*���.�R�W��!���>�����@�R����L����4���^̄��:F�����;�ֿ=�׿�d�ʷ6� ��A���Z�"�����k@=��6�qcϿ�"�
-                                                                                                                                             A6��Q鿩κ�w������ƿ�ڿߗ��ֿ�g�������w���i��H���݊@��9~�jXf��1�~����'��d�DD����J��ID��i��~��T����1$�	�S�������#WI�s�=����Y�N��J��7'�P8D�8� �w��
-�o�y�;w�8���I�T���o�4e������J������������<������q.ݿ2����B���                   0������Y������f�������!�P����@��9?���.��v7�2�$�o�������4L�m��E�����V�:�����Ԡ��|�[�n�%��ϣ��z��m`"���3�.���
-��1?�X=�-�,�b���Pÿ�+��]`޿\�o����3�[�d�:��D)��dX�l�6�܌S���,���W�� @��fj�tr�e+t��<���$r�����g����ɿ9��v��~I�'���U'#�yL�������y��At�W�u���Y�L }���G>����m{p������T��E�G��O%��0�3���2��]��Z���r����u�y���iT��?�����x�sGT�A{�����p�u$ҿ#�.��8,��ғ�/���zT�X�ؿ��H��/5�<������������c�����j�����I��������2���a�F�5���.r��{v��s���\����0��;X�d�`��!H�4d��A�-�?���f��)�S,\�
-                                                                                                                                                                    M�?f�t(�1��MM��6����bp7�K<h���I�	i���_}>�6S�_*�s��[ڒ�����t�7Hh�XY3���7���BR��|��Kb�?�������z��̒�ao~���u������%����f�y�A�;�.X4���W���<�c\�S�7�{�a#��DQ���d���@�W𮿂���r&��
-�Z�2���c�aٝ�����d                                                                                                                                 �e��m���ֵ�Z���[�Ϳ����8��D|C�D�����
-��]�����T����͊�}�J���/���'��aR�Y��	IM@��4@���d���
-                                                       �DJ(�v\/�~���89�A?���A\M���+���j�i���SFa�B�B��ER�o�0V���9h������n�|�:�:�/�Q�f��uY���=�$��@	�׉��[9D���>J��)v�ße���Q�� N�IT�����|90��:]�D
-B���	���-�����g�W[��׳
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/bap$ ../../../../../../../../tools/bin/SPTK-3.9/x2x +fa arctic_a0001.bap | head -50 | tail -10
+0
+0
+0
+0
+-1.74326
+-1.80508
+-7.27617
+-6.94787
+-3.88911
+-5.94744
 {% endhighlight %}
 
 
@@ -726,23 +725,20 @@ In this case, we have for the audio file `arctic_a0001.lab` a total of **37 phon
 
 The `*.lf0` files are the log-fundamental frequency files, aka, another kind of feature file extracted from our audio files in our data set.
 
-We can expect these files to not be human-readable, and that's what we find when we look in to one such file:
+Again here, we're using the `x2x` program to get something human-readable from the feature file:
 
 {% highlight bash %}
-josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/lf0$ head arctic_a0001.lf0 
-����������������������������������������������������������������������������������������M1�@�y�@�d�@x��@���@5��@Xg�@Ní@yE�@��b�@�8�@d�@���@�ȫ@|��@쬫@"ޫ@���@��@�a�@���@2��@���@�Ȭ@�	�@)r�@�/�@���@���@�������������������������������k�@滿@A��@�߷@@ղ@~�@(J�@�ů@���@���@�ȯ@�Я@'�@C�@�2�@�S�@Uk�@܊�@r��@���@���@���@��@4ש@N;�@ޗ�@���@A+�@j3�@�7�@yR�@R��@A�@�t�@�[�@���@�@W	0�@;�@5��@5��@�r�@��Pˣ@M�@�Q�@G�@1��@��@���@,_�@�$�@o�@i��@�ȩ@
-�@ب@�z�@ݤ�@ߥ@��@QX�@�
-                       �@/�@�7�@���@'�@���@R٠@U�@�2�@P��@��@��@k
-�@aR�@���@+�@!
-�@
-b�@!��@(g�@�\�@kW�@)0�@o>�@�I�@n-�@5:�@�=�@@^�@��������������������+�@A��@�~�@�]�@���@���@�ʦ@�Ŧ@sæ@Ţ�@�Y�@aC�@QM�@�Z�@�H�@Lt�@�@��@̓�@襦@<��@�@�@
-
-
-�@i�@'��@�q�@�t�@���@���@���@'��@��@���@?��@=ʦ@�̦@�Φ@�ܦ@|ަ@���@��@��@@�@6t�@�)�@J�@(¦@#
-                                                                                          �@�@�3�@�P�@(A���@>*�@�x�@M��@�_�@a��@�S�@���������������������������������������������������Ь�@r�@���@ذ�@R+�@�@���@4Ǩ@�Ψ@�Ǩ@/��@Ŭ�@bè@�ب@���@�1�@�o�@��@��@�m�@��@�ͪ@p��@3$�@��@^(�@[C�@���@\�@�]�@�R�@o��@0n�@l��@Jk�@6��@���@���@���@�������������������������������������������������������������������������
-=�@���@��@�̧@@x��@�x�@6a�@f�@�n�@�n�@�p�@Hy�@訧@��@X��@���@���@��@�T�@��@��@,��@���@q��@���@*��@�Z�@E��@���@���@��@ʦ@�Ҧ@�֦@���@1!�@z+�@2*�@<�@'�@�s�@�~�@tç@�ʧ@�Ч@칧@�ŧ@�ۧ@ۧ@���@=0�@�4�@mǦ@;ͦ@@S�@@��@���@�8�@����������������������������������������������������������������x��@����������������������������������������������������9�@2��@�&�@ƨ@Nm�@���@@f�@���@]ͦ@�Ʀ@F��@˹�@���@	~�@���@�m�@�$�@���@Q�@���@ ��@�@�ע��@R��@U(�@�Q�@�q�@��@���@���@�v�@�e�@;p�@�Z�@��@��@ �@���@��@f��@wդ@�Ǥ@���@⚤@;Y�@
-                                                                                                                                                                                                 1�@
-�@���@���@���@�գ@�0�@̑�@�@w��@q�@�W�@   �@Kݤ@��@�A�@�^�@���@�@;�@5��@ �@�ˢ@�ǣ@|��@���@2�@�����������������������������������������������������������������������������
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/lf0$ ../../../../../../../../tools/bin/SPTK-3.9/x2x +fa arctic_a0001.lf0 | head -50 | tail -10
+-1e+10
+-1e+10
+-1e+10
+-1e+10
+5.63102
+5.70239
+5.6373
+5.46527
+5.46528
+5.45657
 {% endhighlight %}
 
 I've deleted a bunch of empty lines in the above output so as not to take up so much space.
@@ -755,10 +751,17 @@ I've deleted a bunch of empty lines in the above output so as not to take up so 
 Next, we move onto our next feature file type: `*.mgc`. These files contain the generalized cepstral coefficients for our audio files in our data set. Again, this is not very human readable:
 
 {% highlight bash %}
-josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/mgc$ head arctic_a0001.mgc 
-5��?;�?o�\?��M?聥>FԄ>��r>�n�>�B�>���0�<x��>�d�&�>\��آ�<�
-                                                           =�8�=8E�8Wq��׹�=�qV��և�o��<z�J=��`�ĸ��'�+<�ư=0!I�
-                                                                                                               ���D<1=̫=J5ҽ(>����n<c�=���
+josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_model/data/mgc$ ../../../../../../../../tools/bin/SPTK-3.9/x2x +fa arctic_a0001.mgc | head -50 | tail -10
+-0.0696582
+-0.0268611
+0.0244125
+0.038228
+-0.0542025
+0.0157833
+0.0227506
+-0.0430836
+0.0407014
+-0.0229975
 {% endhighlight %}
                                                                                                                                       
 
