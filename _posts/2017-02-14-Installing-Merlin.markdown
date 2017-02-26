@@ -671,6 +671,12 @@ josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_mo
 
 The second file type in the `experiments` dir is `*.lab`. These files are the "label" files which contain alignments for either phones or states to our audio files from our data set. We have two kinds of files here: (1) for phoneme alignments, and (2) for state alignments.
 
+Quoting from email communication with Srikanth Ronanki (one of the Merlin creators):
+
+>To train a voice using Merlin, you either require phone-level or state-level alignments but not both. This option is configurable in `global_settings.cfg`.
+>
+>Only very few international languages have enough resources to derive state-level alignments using HMMs -- therefore Merlin is configured to even run with phone-level alignments which can be manually-labelled. But, the default demo runs using state-level alignments.
+
 First, for phoneme alignments, we see something like this:
 
 {% highlight bash %}
