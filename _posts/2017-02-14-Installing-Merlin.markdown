@@ -424,7 +424,8 @@ dnn/
 0 directories, 4 files
 {% endhighlight %}
 
-In Merlin, we don't just model the phonemes of the language. We also model their durations. For both (1) phoneme modeling and (2) duration modeling, we use DNNs, and as such we have two configuration files as seen in the `conf/dnn` dir above.
+ In Merlin, we don’t just model the acoustics of phonemes of the language. We also model their durations. For both (1) acoustic modeling and (2) duration modeling, we use DNNs, and as such we have two configuration files as seen in the `conf/dnn` dir above.
+
 
 Quoting from the team's [demonstration paper][merlin-demo-paper], they concisely describe the duration model as such:
 
@@ -671,7 +672,7 @@ josh@yoga:~/git/merlin/egs/slt_arctic/s1/experiments/slt_arctic_demo/acoustic_mo
 
 The second file type in the `experiments` dir is `*.lab`. These files are the "label" files which contain alignments for either phones or states to our audio files from our data set. We have two kinds of files here: (1) for phoneme alignments, and (2) for state alignments.
 
-Quoting from email communication with Srikanth Ronanki (one of the Merlin creators):
+Quoting from email communication with Srikanth Ronanki (one of the Merlin developers):
 
 >To train a voice using Merlin, you either require phone-level or state-level alignments but not both. This option is configurable in `global_settings.cfg`.
 >
