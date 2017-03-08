@@ -11,12 +11,23 @@ mermaid: True
 
 *This code/post was written in conjunction with [Michael Capizzi][capizzi]. Sections of the original code on which this is based were written with [Joe Meyer][joe].*
 
+>Update: March 8, 2017 - Now supports TensorFlow 1.0
+
 ### Quick Start
 
 You can get the code and data discussed in this post (as well as presentation slides from the [Tucson Data Science Meetup][meetup]) by cloning the following repo:
 
 {% highlight python %}
 git clone https://github.com/JRMeyer/tensorflow-tutorial.git
+cd tensorflow-tutorial
+{% endhighlight %}
+
+#### Dependencies
+
+{% highlight python %}
+sudo apt-get install python3-pip
+sudo pip3 install -r requirements.txt
+sudo apt-get install python3-tk # for some reason won't work with pip3
 {% endhighlight %}
 
 Once you have the code and data, you can run a training session and get some output with the following:
