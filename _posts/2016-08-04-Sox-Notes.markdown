@@ -25,6 +25,14 @@ https://packages.debian.org/wheezy/libsox-fmt-mp3
 sudo apt-get install libsox-fmt-mp3; sudo apt-get upgrade sox
 {% endhighlight %}
 
+### Maybe more simple mp3 support
+
+{% highlight bash %}
+sudo apt-get mp3info
+# get time in seconds
+for i in *mp3; do mp3info -p "%S" $i; echo ""; done
+{% endhighlight %}
+
 
 ### Get Info about Files
 
