@@ -26,7 +26,7 @@ cd tensorflow-tutorial
 
 {% highlight python %}
 sudo apt-get install python3-pip
-sudo pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt # this will throw an error for tkinter, just ignore it
 sudo apt-get install python3-tk # for some reason won't work with pip3
 {% endhighlight %}
 
