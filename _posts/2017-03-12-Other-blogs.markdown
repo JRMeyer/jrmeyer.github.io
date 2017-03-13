@@ -32,6 +32,13 @@ Chris Olah's well-known blog has excellent visualizations and clean explanations
 
 > A wandering machine learning researcher, bouncing between groups. I want to understand things clearly, and explain them well.
 
+#### [Adit Deshpande][adit]
+
+Good use of visuals and intuition to explain concepts in deep learning.
+
+> I’m a second year undergraduate student currently studying at UCLA. I’m majoring in computer science while also pursuing a minor in Bioinformatics. I’ve had two research internships in my career, one at Boston University and one at the U.S Naval Research Laboratory in Washington D.C.
+> 
+> I’m passionate about applying my knowledge of computer science and machine learning to areas in healthcare where we can really engineer better solutions for helping doctors and taking care of patients.
 
 <br/>
 
@@ -71,3 +78,4 @@ I've found his posts on hardware for deep-learning particularly useful.
 [kaparthy-academic]: http://cs.stanford.edu/people/karpathy/
 [chodroff]: https://www.eleanorchodroff.com/tutorial/kaldi/kaldi-intro.html
 [king]: http://www.speech.zone/
+[adit]: https://adeshpande3.github.io/
