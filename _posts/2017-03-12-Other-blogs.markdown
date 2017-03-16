@@ -63,6 +63,15 @@ A nice walk through of getting started with Kaldi.
 
 ### General
 
+#### [The Synthetic Language Learner][sll]
+
+Some nice posts on (deep) automatic speech recognition... good visualizations!
+
+> This blog is about modeling cognitive development and cognitive functions, especially early language acquisition. We write about technical, theoretical, methodological or empirical issues regarding the use of machine learning and/or big data in cognitive modeling.
+> 
+> Regular bloggers include members of the [Bootphon Project][bootphon], and we welcome guest posts from other scientists in the vast cognitive science/AI community.
+
+
 #### [Tim Dettmers][dettmers]
 
 I've found his posts on hardware for deep-learning particularly useful.
@@ -79,3 +88,5 @@ I've found his posts on hardware for deep-learning particularly useful.
 [chodroff]: https://www.eleanorchodroff.com/tutorial/kaldi/kaldi-intro.html
 [king]: http://www.speech.zone/
 [adit]: https://adeshpande3.github.io/
+[sll]: http://bootphon.blogspot.com/
+[bootphon]: http://www.lscp.net/persons/dupoux/bootphon/index.html
