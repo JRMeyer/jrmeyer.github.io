@@ -22,6 +22,8 @@ published: True
 
 ### Leggetter & Woodland (1995) [*Maximum likelihood linear regression for speaker adaptation of continuous density hidden Markov models*][leggetter-1995]
 
+> The parameters of the HMM system are adapted using transforms which are estimated in a maximum likelihood framework. The least squares regression calculation used by Hewett (1989) has been replaced by maximum likelihood estimation taking into account different state distributions. If only a small amount of adaptation data is presented a global transform is used for all models in the system, and if more data is available the number of transforms is increased. This ensures that all model states can be adapted even if no model-specific data is available. We refer to this method as maximum likelihood linear regression (MLLR) adaptation. The statistics used to estimate the transform matrices are generated using a forward–backward alignment of the adaptation data. Hence, the method has clear links with standard Baum–Welch HMM training.
+
 <br/>
 <br/>
 
