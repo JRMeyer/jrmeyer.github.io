@@ -10,6 +10,21 @@ published: True
 
 
 
+## Context-Dependent Triphone State-Tying
+
+### Young et al. (1994) [*Tree-based state tying for high accuracy acoustic modelling*][young-1994]
+
+<br/>
+<br/>
+
+
+## MLLR Adaptation
+
+### Leggetter & Woodland (1995) [*Maximum likelihood linear regression for speaker adaptation of continuous density hidden Markov models*][leggetter-1995]
+
+<br/>
+<br/>
+
 
 ## Hybrid DNN-HMM Approach
 
@@ -19,6 +34,20 @@ published: True
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
 ## Multilingual Acoustic Modeling
 
 ### Bourlard et al. (2011) [*Current trends in multilingual speech processing*][bourlard-2011]
@@ -85,8 +114,12 @@ This paper investigates language-sequential training, where the hidden layers of
 
 This paper is co-authored by Dan Povey and explains Kaldi's approach to multilingual DNN AM training.
 
+-->
 
 
+
+[young-1994]: http://ucrel.lancs.ac.uk/acl/H/H94/H94-1062.pdf
+[leggetter-1995]: http://www.eecs.yorku.ca/course_archive/2004-05/F/6328/Reading/Leg_MLLR.pdf
 [heigold-2013]: http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/40807.pdf
 [vu-2014]: https://pdfs.semanticscholar.org/df92/0708f2e8d075223f9169b6cb7126f9aba17d.pdf
 [ghoshal-2013]: http://www.cstr.ed.ac.uk/downloads/publications/2013/Ghoshal_ICASSP2013.pdf
