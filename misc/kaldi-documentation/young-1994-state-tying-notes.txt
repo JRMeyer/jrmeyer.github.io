@@ -1,0 +1,138 @@
+Young etal 1994: Tree-based State Tying for High Accuracy Acoustic Modelling
+
+
+### REMEMBER this works for HMMs with any number of states! That is, don't confuse the left and right context
+### with the left and right states in a 3-state HMM. You can even have a 1-state CD triphone model!
+
+### Unseen triphones are important when constructing the HCLG from words and n-grams in your dict and LM. If you have
+### a word with a /h/ /a/ /t/ sequence in the dict, but you never saw /a/ with that context, you would be stuck in
+### building it into HCLG
+### IE - unseen here means unseen in audio transcripts but seen in LM or dict!
+
+(0) ABSTRACT
+
+Problem: finding balance between model complexity and available training data.
+
+Tree-Based clustering here covers mapping for unseen triphones.
+
+State tying better than model tying.
+
+
+
+(1) INTRODUCTION
+
+We need CD phones and complex GMMs, both need lots of data.
+
+The new system is based on the use of phonetic decision trees
+which are used to determine contextually equivalent sets of
+HMM states.
+
+In order to be able to handle large training sets, the tree
+building is based only on the statistics encoded within
+each HMM state and there is no direct reference made
+to the original data
+
+
+
+(2) Tied-State HMM System
+
+The aim in building a tied-state HMM system is to en-
+sure that there is sufficient training data to robustly es-
+timate each set of state output distribution parameters
+whilst retaining the important context-dependent acous-
+tic distinctions within each phone class.
+
+
+Four steps in building a tied state HMM system:
+
+(a) An initial set of a 3 state left-right monophone mod-
+els with single Gaussian output probability density
+functions is created and trained.
+
+(b) The state output distributions of these monophones
+are then cloned to initialise a set of untied context
+dependent triphone models which are then (re)-trained
+using Baum-Welch re-estimation. The transition
+matrix is not cloned but remains tied across all the
+triphones of each phone.
+
+(c) For each set of triphones derived from the same
+monophone, corresponding states (ie. B,M,E) are clustered. In
+each resulting cluster, a typical state is chosen as
+exemplar and all cluster members are tied to this
+state.
+
+(d) The number of mixture components in each state
+is incremented and the models re-estimated until
+performance on a development test set peaks or the
+desired number of mixture components is reached.
+
+
+
+As noted in the introduction, previous work on state-
+tying used a data-driven agglomerative clustering pro-
+cedure in which the distance metric depended on the
+Euclidean distance between the state means scaled by
+the state variances. This works well but it provides no
+easy way of handling unseen triphones.
+
+
+
+(3) Tree-Based Clustering
+
+A phonetic decision tree is a binary tree in which a ques-
+tion is attached to each node. In the system described
+here, each of these questions relates to the phonetic con-
+text to the immediate left or right.
+
+One tree is constructed for each state of each
+phone to cluster all of the corresponding states of all of
+the associated triphones.
+
+The states in each subset
+are tied to form a single state and the questions and the
+tree topology are chosen to maximise the likelihood of
+the training data given these tied states whilst ensur-
+ing that there is sufficient data associated with each tied
+state to estimate the parameters of a mixture Gaussian
+PDF.
+
+
+Initially, all of the states to be
+clustered are placed in the root node of the tree and the
+log likelihood of the training data calculated on the as-
+sumption that all of the states in that node are tied. This
+node is then split into two by finding the question which
+partitions the states in the parent node so as to give the
+maximum increase in log likelihood. This process is then
+repeated by splitting the node which yields the greatest
+increase in log likelihood until this increase falls below
+a threshold.
+
+To ensure that all terminal nodes have suf-
+ficient training data associated with them, a minimum
+occupation count is applied.
+
+
+
+
+
+
+
+
+###### HTK BOOK
+
+It is possible to calculate the log likelihood of the training data given any pool of states (or
+models). Furthermore, this can be done without reference to the training data itself since for
+single Gaussian distributions the means, variances and state occupation counts (input via a stats
+file) form sufficient statistics. Splitting any pool into two will increase the log likelihood since it
+provides twice as many parameters to model the same amount of data. The increase obtained when
+each possible question is used can thus be calculated and the question selected which gives the
+biggest improvement.
+Trees are therefore built using a top-down sequential optimisation process. Initially all states
+(or models) are placed in a single cluster at the root of the tree. The question is then found which
+gives the best split of the root node. This process is repeated until the increase in log likelihood falls
+below the threshold specified in the TB command. As a final stage, the decrease in log likelihood
+is calculated for merging terminal nodes with differing parents. Any pair of nodes for which this
+decrease is less than the threshold used to stop splitting are then merged.
+(p. 156)
