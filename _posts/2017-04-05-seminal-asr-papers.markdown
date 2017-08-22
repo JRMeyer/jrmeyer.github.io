@@ -17,6 +17,13 @@ published: True
 <br/>
 <br/>
 
+## Weighted Finite-State Transducer Decoding
+
+### Mohri et al. (2001) [*Weighted Finite-State Transducers in Speech Recognition*][mohri-2001]
+
+<br/>
+<br/>
+
 
 ## MLLR Adaptation
 
@@ -130,3 +137,4 @@ This paper is co-authored by Dan Povey and explains Kaldi's approach to multilin
 [huang-2014]: https://www.google.com/patents/US20140257805
 
 [dahl-2012]: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/dbn4lvcsr-transaslp.pdf
+[mohri-2001]: http://www.cs.nyu.edu/~mohri/pub/csl01.pdf
