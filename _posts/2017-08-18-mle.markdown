@@ -13,11 +13,15 @@ comments: True
 
 ### The Big Picture
   
-Maximum Likelihood Estimation (MLE) is a tool we use to accomplish a very common task. The task is to create a good statistical model, using information from some data that we have. The model can be a classifier, regression model, or something else, so the nature of the task is not what's most important. What's most important is that MLE helps us exploit existing data to build a _good_ model, by making the model _fit_ the data.
+[Maximum Likelihood Estimation](https://en.wikipedia.org/wiki/Maximum_likelihood_estimation) (MLE) is a tool we use to accomplish a _very_ common task in machine learning.
 
-Today, we're talking about MLE for Gaussians, so this is going to be a classification task. That is, we have data with labels, and we want to take some new data, and classify it, _using the labels from the old data_. For example, in the below images, we see data with two labels (**left**), and new, unlabeled data (**right**). We want to be able to categorize each point from the new data as belonging to either the `blue` group or the `yellow` group.
+The task is to create a good statistical model, using information from some data. The model can be a [classifier](https://en.wikipedia.org/wiki/Statistical_classification), [regression model](https://en.wikipedia.org/wiki/Regression_analysis), or something else, so the nature of the task is not what's most important in defining MLE. The key, defining characteristic of MLE is that it helps us exploit existing data to build a _good_ model, by making the model _fit_ the data, _only_ using the data.[^1]
 
-Labeling dots as either `blue` or `yellow` sounds pretty boring, but the same idea applies to labeling emails as `spam` or `regular` or classifying audio clips as the vowel `[a]` or the vowel `[o]`.
+[^1]: For another approach to parameter estimation using not only information from the data, but a prior bias, see [Maximum A Posteriori estimation](https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation).
+
+Today, we're talking about MLE for [Gaussians](https://en.wikipedia.org/wiki/Normal_distribution), so this is going to be a classification task. That is, we have data with labels, and we want to take some new data, and classify it, _using the labels from the old data_. For example, in the below images, we see data with two labels (**left**), and new, unlabeled data (**right**). We want to be able to categorize each point from the new data as belonging to either the `purple` group or the `yellow` group.
+
+Labeling dots as either `purple` or `yellow` sounds pretty boring, but the same idea applies to labeling emails as `spam` or `regular` or classifying audio clips as the vowel `[a]` or the vowel `[o]`.
 
 <br><br>
 <img src="/misc/figs/mle_1.png" align="left" style="width: 350px;"/>
@@ -26,18 +30,19 @@ Labeling dots as either `blue` or `yellow` sounds pretty boring, but the same id
 <br><br>
 
 
-To accomplish that task, we build a statistical model, learning its shape from the old labeled data. For example, for the above data we could build two models (eg. GMMs), a `blue` model and a `yellow` model, and then see which model is more similar to a new data point. Another approach would be to build a single model (eg. a neural net) that distinguishes `blue` points from `yellow` points, and then see how it categorizes a new point. Here, we're working here with the former approach (build two models).
+To accomplish that task, we build a statistical model, learning its shape from the old labeled data. For example, for the above data we could build two models (i.e. 2-D Gaussians), a `purple` model and a `yellow` model, and then see which model is more similar to a new data point. Another approach would be to build a single model (eg. a neural net) that distinguishes `purple` points from `yellow` points, and then see how it categorizes a new point.[^2] Here, we're working here with the former approach (build two models and see which one fits better).
 
+[^2]: This is an example of a [discriminative](https://en.wikipedia.org/wiki/Discriminative_model) model, as opposed to a [generative](https://en.wikipedia.org/wiki/Generative_model) model. The classification approach described here is the latter approach.
 
 <br><br>
-<img src="/misc/figs/mle_model_2.png" align="right" style="width: 350px;"/>
-<img src="/misc/figs/mle_model_1.png" align="left" style="width: 350px;"/>
-<center>Yellow Model (<b>left</b>) Blue Model (<b>right</b>)</center>
+<img src="/misc/figs/mle_model_2.png" align="left" style="width: 350px;"/>
+<img src="/misc/figs/mle_model_1.png" align="right" style="width: 350px;"/>
+<center>Purple Model (<b>left</b>) Yellow Model (<b>right</b>)</center>
 <br><br>
 
 We assume the data was in a sense _generated_ by some process, and we're try to model what that process was. This is called the [generative approach](https://en.wikipedia.org/wiki/Generative_model). The model we're trying to learn is an approximation of the underlying process that created the data in the first place. So our data is just a sample from a process, and we want to learn the process.
 
-At the end of the day, once we have our two models, we will use them to find which model was more likely to have _generated_ a new data point. To take the leap from data $$\rightarrow$$ model, we need to be able to not only estimate the parameters of the model (eg. for Gaussians we need $$[\mu, \Sigma]$$), but we want to estimate them to get the BEST model possible for our data. That's were MLE comes into play.
+At the end of the day, once we have our two models, we will use them to find which model was more likely to have _generated_ a new data point. To take the leap from data $$\rightarrow$$ model, we need to be able to not only estimate the parameters of the model (eg. for Gaussians we need $$[\mu, \Sigma]$$), but we want to estimate them to get the _best_ model possible for our data. That's were MLE comes into play.
 
 
 <br><br>
@@ -51,7 +56,7 @@ MLE is one flavor of parameter estimation in machine learning, and in order to p
 3. a set of parameters from that function $$\theta$$
 4. some evaluation of the goodness of our parameters (an objective function)
 
-In MLE, the objective function (evaluation) we chose is the _likelihood_ of the data given our model. This intuitively makes sense if you keep in mind that we don't get to change our data, and we have to make some assumption about the form of our model, but we CAN adjust the parameterization of our model. So, we are limited to adjusting $$\theta$$, and we might as well choose the best $$\theta$$ for our data. To find the best $$\theta$$ then, find the $$\theta$$ with maximizes our evaluation function (the likelihood). Therefore, in its general form the MLE is:
+In MLE, the objective function (evaluation) we chose is the _likelihood_ of the data given our model. This intuitively makes sense if you keep in mind that we don't get to change our data, and we have to make some assumption about the form of our model, but we _can_ adjust the parameterization of our model. So, we are limited to adjusting $$\theta$$, and we might as well choose the best $$\theta$$ for our data. To find the best $$\theta$$ then, we need to find the $$\theta$$ which maximizes our evaluation function (the likelihood). Therefore, in its general form the MLE is:
 
 
 $$\theta_{MLE} = \underset{\theta}{\operatorname{argmax}} p(\mathbf{X}|\theta)$$
@@ -287,8 +292,8 @@ $$\begin{align}
   0 &=  \sum\limits_{n=1}^{N} (x_{n} - \mu) \\
   0 &=  \sum\limits_{n=1}^{N} x_{n} - \sum\limits_{n=1}^{N} \mu \\
   0 &=  \sum\limits_{n=1}^{N} x_{n} - N \cdot \mu \\
-  N \cdot \mu &=  \sum\limits_{n=1}^{N} x_{n} \\
-  \mu  &=  \frac{1}{N}\sum\limits_{n=1}^{N} x_{n} \\
+  N \cdot \mu &= \sum\limits_{n=1}^{N} x_{n} \\
+  \mu &= \frac{1}{N}\sum\limits_{n=1}^{N} x_{n} \\
 \end{align}$$
 
 Huzzah! We've reached the promised land! We now have a formula we can use to estimate one model parameter ($$\mu$$) from our data ($$\mathbf{X}$$). Let's take a second to think about what this formula means. Remember that we started with a bunch of data points:
@@ -296,20 +301,20 @@ Huzzah! We've reached the promised land! We now have a formula we can use to est
 <img src="/misc/figs/mle_1.png" align="middle" style="width: 350px;"/>
 
 
-We want to take that data and make some models which we think represent that data well. In our case we are learning two Gaussian models, one for the `yellow` data and one for the `blue` data:
+We want to take that data and make some models which we think represent that data well. In our case we are learning two Gaussian models, one for the `yellow` data and one for the `purple` data:
 
 <br><br>
-<img src="/misc/figs/mle_model_2.png" align="right" style="width: 350px;"/>
-<img src="/misc/figs/mle_model_1.png" align="left" style="width: 350px;"/>
-<center>Yellow Model (<b>left</b>) Blue Model (<b>right</b>)</center>
+<img src="/misc/figs/mle_model_2.png" align="left" style="width: 350px;"/>
+<img src="/misc/figs/mle_model_1.png" align="right" style="width: 350px;"/>
+<center>Purple Model (<b>left</b>) Yellow Model (<b>right</b>)</center>
 <br><br>
 
 
 To make our Gaussians fit the data as well as we can, we can do two things: (1) move the center of the curve or (2) adjust the width of the peak. Right now, with $$\mu$$ we're only talking about the placement of the center of the curve, we're not talking at all about its width.
 
-Where is the best place to put a bell curve to cover all our data? Well, how about the center of our data! Dead-center, bull's eye, whatever you call it, we're putting our Gaussian right in the middle of it all (the mean). We're taking all our points, summing them up, and dividing by the number of data points. This is the AVERAGE, and it is (for the likelihood function) the best place to put the mean of our model.
+Where is the best place to put a bell curve to cover all our data? Well, how about the center of our data! Dead-center, bull's eye, whatever you call it, we're putting our Gaussian right in the middle of it all (the mean). We're taking all our points, summing them up, and dividing by the number of data points. This is the _average_, and it is (for the likelihood function) the best place to put the mean of our model.
 
-Sure enough, if you take a look at the data, you'll see that the `yellow` data is grouped around the point `[-1,-1]` and that the `blue` data points are all clustered around `[1,1]`. Now take a look at the models we've made. You'll see that the center of the peak for the `yellow` model is somewhere near  `[-1,-1]` and that the peak of the `blue` model is around `[1,1]`.
+Sure enough, if you take a look at the data, you'll see that the `yellow` data is grouped around the point `[-1,-1]` and that the `purple` data points are all clustered around `[1,1]`. Now take a look at the models we've made. You'll see that the center of the peak for the `yellow` model is somewhere near  `[-1,-1]` and that the peak of the `purple` model is around `[1,1]`.
 
 
 <br><br>
@@ -348,7 +353,7 @@ $$\begin{align}
   &= -\frac{N}{2\sigma^{2}} + \frac{\partial}{\partial \sigma^{2}} \Big( - \frac{1}{2\sigma^{2}} \sum\limits_{n=1}^{N} (x_{n} - \mu)^{2} \Big)\\
 \end{align}$$
 
-Now, using the same logic as above, we can move the derivative operator inside the summation operator:
+Now, using the same logic as above with $$\mu$$, we can move the derivative operator inside the summation operator:
 
 $$\begin{align}
   \frac{\partial \mathcal{LL}}{\partial \sigma^{2}} &= -\frac{N}{2\sigma^{2}} + \frac{\partial}{\partial \sigma^{2}} \Big( - \frac{1}{2\sigma^{2}} \sum\limits_{n=1}^{N} (x_{n} - \mu)^{2} \Big)\\
@@ -401,5 +406,33 @@ $$\begin{align}
   N\sigma^2 &= \sum\limits_{n=1}^{N} (x_{n} - \mu)^{2}\\
   \sigma^2 &= \frac{1}{N}\sum\limits_{n=1}^{N} (x_{n} - \mu)^{2}\\
 \end{align}$$
+
+And there we have it! All that work has boiled down to a simple equation do get the best $$\sigma^2$$ for our Gaussian given our data. Just like with $$\mu$$ if we take a second to look at the equation, we find it has a very intuitive interpretation.
+
+We're iterating over each data point ($$x_{n}$$) and finding its particular deviation from the mean of all the data points $$\mu$$. We sum up all the deviations, and then take the average!
+
+Just as when we were finding the best $$\mu$$ for our Gaussian by setting it to the average ($$\mu$$) of the data, we're now setting our standard deviation to be, well, the _standard_ deviation of the data! Think of _standard_ as being a synonym to _average_, and it becomes pretty clear.
+
+
+
+<br><br>
+
+### Conclusion
+
+We did a lot of algebra, some calculus, and used some tricks with $$\log_{e}$$ to get to this point.
+
+Along the way it's easy to get lost in the weeds, but if we keep in mind that all these equations have some interpretation, we can catch the big picture. In our case, the big picture is very clear:
+
+> When using Maximum Likelihood Estimation to estimate parameters of a Gaussian, set the mean of the Gaussian to be the mean of the data, and set the standard deviation of the Gaussian to be the standard deviation of the data.
+
+$$\begin{align}
+  \mu_{MLE} &= \frac{1}{N}\sum\limits_{n=1}^{N} x_{n} \\    
+  \sigma^{2}_{MLE} &= \frac{1}{N}\sum\limits_{n=1}^{N} (x_{n} - \mu)^{2}\\
+\end{align}$$
+
+I hope this was helpful or interesting! If you find errors or have comments, let me know!
+
+<br><br>
+<br><br>
 
 
