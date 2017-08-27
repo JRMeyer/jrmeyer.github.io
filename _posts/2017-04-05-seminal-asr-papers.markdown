@@ -9,6 +9,14 @@ published: True
 
 
 
+## i-vectors
+
+### Dehak et al. (2010) [*Front-End Factor Analysis For Speaker Verification*[dehak-2010]]
+
+
+<br/>
+<br/>
+
 
 ## Context-Dependent Triphone State-Tying
 
@@ -138,3 +146,4 @@ This paper is co-authored by Dan Povey and explains Kaldi's approach to multilin
 
 [dahl-2012]: https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/dbn4lvcsr-transaslp.pdf
 [mohri-2001]: http://www.cs.nyu.edu/~mohri/pub/csl01.pdf
+[dehak-2010]: https://www.researchgate.net/profile/Pierre_Dumouchel/publication/224166071_Front-End_Factor_Analysis_for_Speaker_Verification/links/0deec5176777115c24000000.pdf
