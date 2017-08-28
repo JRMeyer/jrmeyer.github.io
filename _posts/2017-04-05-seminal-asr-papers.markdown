@@ -11,7 +11,7 @@ published: True
 
 ## i-vectors
 
-### Dehak et al. (2010) [*Front-End Factor Analysis For Speaker Verification*][dehak-2010]]
+### Dehak et al. (2010) [*Front-End Factor Analysis For Speaker Verification*][dehak-2010]
 
 
 <br/>
