@@ -12,14 +12,20 @@ comments: True
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
 
 This post is essentially a walk through of [this shell script]({{ site.url }}/misc/dnn-decode.sh).
+
+
+
+<br/>
 
 ## Introduction
 
 If you're reading this, I'm assuming that you've already [downloaded and installed Kaldi][kaldi-install] and successfully trained a DNN-HMM acoustic model along with a decoding graph. 
 
-If you've run one of the DNN Kaldi **run.sh** scripts from the example directory **egs/**, then you should be ready to go. You may want to start with the baseline script for nnet2 in the Wall Street Journal example. The script is **run_nnet2_baseline.sh**
+If you've run one of the DNN Kaldi `run.sh` scripts from the example directory `egs/`, then you should be ready to go. You may want to start with the baseline script for nnet2 in the Wall Street Journal example. The script is `run_nnet2_baseline.sh`
 
 I originally wrote this very [same post for GMM models]({{site.url}}/kaldi/2016/09/12/Using-built-GMM-model-Kaldi.html), and now I want to make it for DNN.  
 
@@ -27,6 +33,9 @@ We normally generate transcriptions for new audio with the Kaldi testing and sco
 
 What you see here is what I gather to be the *simplest* way to do decoding with a DNN in Kaldi - it is by no means garanteed to be the *best* way to do decoding.
 
+
+<br/>
+<br/>
 
 ## Things you need
 
@@ -49,18 +58,25 @@ What you see here is what I gather to be the *simplest* way to do decoding with 
 #                words.txt
 {% endhighlight %}
 
+
+<br/>
+<br/>
+
 ### wav.scp
 
-The first file you need is **wav.scp**. This is the only file that you need to make for your new audio files. All the other files listed below should have already been created during the training phase.
+The first file you need is `wav.scp`. This is the only file that you need to make for your new audio files. All the other files listed below should have already been created during the training phase.
 
-This should be the same format as the **wav.svp** file generated during training and testing. It will be a two-column file, with the utterance ID on the left column and the path to the audio file on the right column.
+This should be the same format as the `wav.svp` file generated during training and testing. It will be a two-column file, with the utterance ID on the left column and the path to the audio file on the right column.
 
-I'm just going to decode one audio file, so my **wav.scp** file is one line long, and it looks like this:
+I'm just going to decode one audio file, so my `wav.scp` file is one line long, and it looks like this:
 
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/transcriptions$ cat wav.scp 
 atai_45 input/audio/atai_45.wav
 {% endhighlight %}
+
+<br/>
+<br/>
 
 ### mfcc.conf
 
@@ -79,9 +95,12 @@ josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/config$ cat mfcc.conf
 --use-energy=true
 {% endhighlight %}
 
+<br/>
+<br/>
+
 ### final.mdl
 
-Next, you need a trained DNN acoustic model, such as **final.mdl**. This should have been produced in your training phase, and should be located somewhere like **egs/your-model/your-model-1/exp/nnet2/final.mdl**. It doesn't make too much sense to a human, but here's what the head of the file looks like:
+Next, you need a trained DNN acoustic model, such as `final.mdl`. This should have been produced in your training phase, and should be located somewhere like `egs/your-model/your-model-1/exp/nnet2/final.mdl`. It doesn't make too much sense to a human, but here's what the head of the file looks like:
 
 {% highlight bash %}
 josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/nnet2_online/nnet_a_baseline$ head final.mdl 
@@ -104,9 +123,12 @@ B<TransitionModel> <Topology> 
 �
 {% endhighlight %}
 
+<br/>
+<br/>
+
 ### HCLG.fst
 
-The compiled decoding graph, **HCLG.fst** is a key part of the decoding process, as it combines the acoustic model (**HC**), the pronunciation dictionary (**lexicon**), and the language model (**G**). 
+The compiled decoding graph, `HCLG.fst` is a key part of the decoding process, as it combines the acoustic model (`HC`), the pronunciation dictionary (`lexicon`), and the language model (`G`). 
 
 You will notice this graph is not located in the same directory as the trained DNN acoustic model. This is not a mistake. You must train a GMM-HMM before you train a DNN-HMM, and you use the graph from the GMM-HMM in decoding.
 
@@ -154,9 +176,13 @@ h�@"�
 
 {% endhighlight %}
  
+
+<br/>
+<br/>
+
 ### words.txt
 
-Lastly, if we want to be able to read our transcriptions as an utterance of words instead of a list of intergers, we need to provide the mapping of word-IDs to words themselves. **HCLG.fst** uses the intergers representing words without worrying about what the words are. As such, we need **words.txt** to map from the list of intergers we get from decoding to something readable.
+Lastly, if we want to be able to read our transcriptions as an utterance of words instead of a list of intergers, we need to provide the mapping of word-IDs to words themselves. `HCLG.fst` uses the intergers representing words without worrying about what the words are. As such, we need `words.txt` to map from the list of intergers we get from decoding to something readable.
 
 This file should have been generated during the data preparation (training) phase.
 
@@ -174,13 +200,26 @@ josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model/experiment/triphones_lda_mllt_sat/gra
 аарчысын 9
 {% endhighlight %}
 
+
+
+<br/>
+<br/>
+<br/>
+<br/><br/>
+<br/>
+<br/>
+<br/>
+
 ## Step-by-Step Decoding
 
 Assuming you've got all the files listed above in the right place, I'm now going to go step-by-step through the decoding process.
 
+<br/>
+<br/>
+
 ### Audio --> Feature Vectors
 
-First, we're going to extract MFCCs from the audio according to the specifications listed in the **mfcc.conf** file. At this point, we give as input (1) our configuration file and (2) our list of audio files, and we get as output (1) ark and scp feature files.
+First, we're going to extract MFCCs from the audio according to the specifications listed in the `mfcc.conf` file. At this point, we give as input (1) our configuration file and (2) our list of audio files, and we get as output (1) ark and scp feature files.
 
 {% highlight bash %}
 compute-mfcc-feats \
@@ -190,6 +229,10 @@ compute-mfcc-feats \
 {% endhighlight %}
 
 Next, we can go straight to decoding from the MFCCs, because even though you probably trained your GMM-HMM with deltas and delta+deltas, DNN acoustic models typically don't use them, because they splice frames at the input layer to take into acount time information.
+
+
+<br/>
+<br/>
 
 ### Trained DNN-HMM + Feature Vectors --> Lattice
 
@@ -204,6 +247,10 @@ nnet-latgen-faster \
     ark,t:transcriptions/lattices.ark;
 {% endhighlight %}
 
+
+<br/>
+<br/>
+
 ### Lattice --> Best Path Through Lattice
 
 Some people might be happy to stop with the lattice, and do their own post-processing, but I think many people will want a single *best-guess* transcription for the audio. The following program takes as input (1) the generated lattices from above and (2) the word-to-symbol table and returns (1) the best path through the lattice.
@@ -214,6 +261,11 @@ lattice-best-path \
     ark:transcriptions/lattices.ark \
     ark,t:transcriptions/one-best.tra;
 {% endhighlight %}
+
+
+
+<br/>
+<br/>
 
 ### Best Path Intergers --> Best Path Words
 
@@ -226,13 +278,22 @@ utils/int2sym.pl -f 2- \
     > transcriptions/one-best-hypothesis.txt;
 {% endhighlight %}
 
+
+<br/>
+<br/>
+
 ## Conclusion
 
-If you run all the above programs successfully, you should end up with a new file **transcriptions/one-best-hypothesis.txt**, which will list your files and their transcriptions.
+If you run all the above programs successfully, you should end up with a new file `transcriptions/one-best-hypothesis.txt`, which will list your files and their transcriptions.
 
 I hope this was helpful!
 
 If you have any feedback or questions, don't hesitate to leave a comment!
+
+<br/>
+<br/><br/>
+<br/><br/>
+<br/>
 
 
 [kaldi-install]: http://jrmeyer.github.io/kaldi/2016/01/26/Installing-Kaldi.html
