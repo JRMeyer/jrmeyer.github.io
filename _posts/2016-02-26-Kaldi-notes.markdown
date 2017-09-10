@@ -197,6 +197,50 @@ This file has a single line with the word (not the phone!) for out of vocabulary
 In my case I'm using "\<unk\>" because that's what I get from IRSTLM in my language model (task.arpabo), and this entry has to be identical to that.
 
 
+<br>
+<br>
+
+## Tree Info
+
+In the below simple acoustic model, I have 25 phones. I have a 3-state HMM typology for non-silence phones, and a 5-state typology for silence phones. Since I have 24 non-silence phones, and only one silence phone, I get:
+
+`(24 x 3) + (1 x 5) = 77`
+
+77 total states in the acousitc model.
+
+{% highlight bash %}
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ ../../../src/gmmbin/gmm-info exp/monophones/final.mdl 
+../../../src/gmmbin/gmm-info exp/monophones/final.mdl 
+number of phones 25
+number of pdfs 77
+number of transition-ids 162
+number of transition-states 77
+feature dimension 39
+number of gaussians 499
+{% endhighlight %}
+
+Looking at the decision tree for a monophone model, we see there is one `pdf` per state.
+
+{% highlight bash %}
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ ../../../src/bin/tree-info exp/monophones/tree 
+../../../src/bin/tree-info exp/monophones/tree 
+num-pdfs 77
+context-width 1
+central-position 0
+{% endhighlight %}
+
+You can easily visualize a tree with Kaldi's `draw-tree.cc` and `dot`:
+
+{% highlight bash %}
+josh@yoga:~/git/kaldi/egs/kgz/kyrgyz-model$ ../../../src/bin/draw-tree data_no_voice/lang/phones.txt exp_no_voice/triphones/tree | dot -Gsize=8,10.5 -Tps | ps2pdf - ./mono-tree.pdf
+../../../src/bin/draw-tree data_no_voice/lang/phones.txt exp_no_voice/triphones/tree 
+{% endhighlight %}
+
+We end up with a nice graph in the file `mono-tree.pdf`:
+
+<img src="/misc/mono-tree.png" style="width: 800px;"/>
+
+
 ## Other Blogs
 
 Here's "[Kaldi For Dummies][kaldi-for-dummies]".
