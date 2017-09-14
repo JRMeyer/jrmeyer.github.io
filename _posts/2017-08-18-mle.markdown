@@ -208,7 +208,9 @@ To get the $${\operatorname{argmax}}$$ for each parameter we have to do two thin
 1. derive the partial derivative of the function with respect to that parameter, and then
 2. set that partial derivative to zero, and solve for our parameter
 
-By doing step (1), we get an equation for the change of the function, and we know that if the function isn't changing at a certain point, that point is a maximum or a minimum. Since we're working with a Gaussian function, we already know ahead of time that there is one and only one maximum, and there is no minimum! Easy as that!
+By doing step (1), we get an equation for the change of the function, and we know that if the function isn't changing at a certain point, that point is a maximum or a minimum (or a [saddle point](https://en.wikipedia.org/wiki/Saddle_point)).
+
+In our case, our log-likelihood function is concave, so we know that at $$\frac{\partial \mathcal{LL}}{\partial \mu}=0$$ we get a maximum.
 
 <br><br>
 
