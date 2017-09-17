@@ -78,6 +78,13 @@ for i in *wav; do sox $i ${i}_mono_merged.wav remix 1,2; done
 {% endhighlight %}
 
 
+### Split file on silence
+
+{% highlight bash %}
+sox file.mp3 file_new_.mp3 silence -l 1 0.0 -40d 1 1.1 -40d : newfile : restart
+{% endhighlight %}
+
+
 ## SoXI
 
 SoXI stands for: Sound eXchange Information.
