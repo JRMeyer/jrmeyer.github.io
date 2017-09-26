@@ -253,7 +253,7 @@ Another [tutorial][tutorial2].
 
 
 [symboltables]: http://www.openfst.org/doxygen/fst/html/classfst_1_1_symbol_table.html
-[graph-test-recipe]: http://kaldi.sourceforge.net/graph_recipe_test.html
+[graph-test-recipe]: http://kaldi-asr.org/doc/graph_recipe_test.html
 [good-blog]: http://white.ucc.asn.au/Kaldi-Notes/tidigits/train
 [slides]: http://www.danielpovey.com/files/Lecture1.pdf
 [tutorial1]: http://m.mr-pc.org/work/jsalt2015lab.pdf
