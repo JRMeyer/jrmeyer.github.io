@@ -22,6 +22,7 @@ comments: True
 
 ## General Notes
 
+1. Nice [intro to Amazon's EC2][ec2] services
 2. Use `tmux`: nice for running a model in background after exiting `ssh`
 3. Install `emacs` or `vim`: you're going to need some kind of text editor which works well in the terminal.
 4. Installing Kaldi on `t2.micro` will run out of RAM and crash.
@@ -107,6 +108,7 @@ If you've gotten to this point without any hiccups, you should have a working `U
 
 ## Install Kaldi on Instance
 
+The following is a list of commands, assuming you've already had experience installing Kaldi. However, if you're interested, here's a thorough [walk-through on installing Kaldi][install-kaldi].
 
 ### Clone Kaldi
 
@@ -147,7 +149,7 @@ ubuntu@ip-172-31-35-58:~/kaldi/egs/yesno/s5$ ./run.sh
 
 If it runs as normal, you're good to go:)
 
-Now you can tranfer your own data to your instance and start working. You should probably check out Amazon's `EBS` volumes for storing your data, but that's another post. Here, I'm just going to show you how to transfrom data from your local computer to your new instance, and then you should be able to train models as if they were on your machine.
+Now you can tranfer your own data to your instance and start working. You should probably check out [Amazon's EBS volumes][ebs] for storing your data, but that's another post. Here, I'm just going to show you how to transfrom data from your local computer to your new instance, and then you should be able to train models as if they were on your machine.
 
 <br/>
 <br/>
@@ -166,10 +168,13 @@ scp -i ~/Desktop/your-key-pair.pem ~/Desktop/your-local-data.tar.gz ubuntu@ec2-1
 <br/>
 <br/>
 
+
+
 ## Train Models
 
+If you want a real walk-through, check out my post on how to [train a DNN in Kaldi][train-kaldi]. The following is more of a cheatsheet than anything.
 
-### SSH into instance
+### The Quick and Dirty
 
 1. `ssh -i ~/Desktop/your-key-pair.pem ubuntu@ec2-11-222-33-444.us-west-2.compute.amazonaws.com`
 2. start new terminal session: `tmux new -s my-session`
@@ -192,6 +197,7 @@ Let me know if you have comments or suggestions and you can always leave a comme
 
 Happy Kaldi-ing!
 
-[irstlm]: http://hlt-mt.fbk.eu/technologies/irstlm
-[official-repo]: https://github.com/kaldi-asr/kaldi
-[docs]: http://kaldi-asr.org/doc/
+[install-kaldi]: http://jrmeyer.github.io/kaldi/2016/01/26/Installing-Kaldi.html
+[train-kaldi]: http://jrmeyer.github.io/kaldi/2016/12/15/DNN-AM-Kaldi.html
+[ebs]: https://www.youtube.com/watch?v=DKftR47Ljvw
+[ec2]: https://www.youtube.com/watch?v=Px7ZPLq4AOU
