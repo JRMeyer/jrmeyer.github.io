@@ -34,6 +34,13 @@ for i in *mp3; do mp3info -p "%S" $i; echo ""; done
 {% endhighlight %}
 
 
+### Convert Format
+
+{% highlight bash %}
+# very simple conversion
+sox input.mp3 output.wav
+{% endhighlight %}
+
 ### Get Info about Files
 
 {% highlight bash %}

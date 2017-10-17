@@ -1,0 +1,197 @@
+---
+layout: post
+title:  "Kaldi on AWS"
+date:   2017-10-13
+categories: kaldi
+comments: True
+---
+
+<br/>
+
+<img src="/misc/kaldi_text_and_logo.png" align="left" style="height: 95px"/>
+<img src="/misc/right-arrow.svg" align="middle" style="height: 80px"/>
+<img src="/misc/aws-logo.svg" align="right" style="height: 90px"/>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+
+## General Notes
+
+2. Use `tmux`: nice for running a model in background after exiting `ssh`
+3. Install `emacs` or `vim`: you're going to need some kind of text editor which works well in the terminal.
+4. Installing Kaldi on `t2.micro` will run out of RAM and crash.
+
+
+<br/>
+<br/>
+
+## Set up Instance
+
+### Choose Instance
+
+You can only launch instances which you have permissions for, find the list of available instances here:
+
+<br/>
+<img src="/misc/aws-screenshot.png" align="left" alt="logo" style="width: 800px"/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+### Instance Info
+
+`https://aws.amazon.com/ec2/instance-types/`
+
+
+### Instance Pricing
+
+`https://aws.amazon.com/ec2/pricing/on-demand/`
+
+
+### My Set-up
+
+I've been working on the following set-up, so it should work for you as well.
+
+1. operating system: `Ubuntu Server 16.04 LTS`
+2. instance type: `c4.xlarge`
+
+The instance type I'm using is for CPUs, but you will probably want GPUs... especially if you're using `nnet3`.
+
+
+Don't forget: a standard, compiled Kaldi will take up to `15 gigs` of disk space, so make sure you allocate it on the instance when you're setting it up (on the `Storage` step).
+
+
+### Download Key Pair
+
+Generate a key-pair, and make it secure with `chmod` (this is a necessary step).
+
+Don't lose this file, or you won't be able to get back into your instance!
+
+{% highlight bash %}
+chmod 400 your-key-pair.pem
+{% endhighlight %}
+
+
+### SSH into instance
+
+Now use your key-pair and `ssh` into your instance.
+
+{% highlight bash %}
+ssh -i "your-key-pair.pem" ubuntu@ec2-11-222-33-444.us-west-2.compute.amazonaws.com
+{% endhighlight %}
+
+
+### Update and Upgrade Ubuntu
+
+This is necessary to install Kaldi successfully.
+
+{% highlight bash %}
+sudo apt-get update; sudo apt-get upgrade
+{% endhighlight %}
+
+If you've gotten to this point without any hiccups, you should have a working `Ubuntu` installation on your `AWS` instance! Now, let's quickly download and compile `Kaldi` on our new instance:)
+
+<br/>
+<br/>
+
+## Install Kaldi on Instance
+
+
+### Clone Kaldi
+
+{% highlight bash %}
+git clone https://github.com/kaldi-asr/kaldi.git
+{% endhighlight %}
+
+### Install Dependencies
+
+{% highlight bash %}
+sudo apt-get install g++ make automake autoconf python zlib1g-dev make automake autoconf libtool subversion libatlas3-base sox bc emacs24 tmux
+{% endhighlight %}
+
+
+### Compile 3rd Party Tools
+{% highlight bash %}
+ubuntu@ip-172-31-35-58:~/kaldi/tools$ make -j `nproc`
+ubuntu@ip-172-31-35-58:~/kaldi/tools$ extras/install_irstlm.sh
+{% endhighlight %}
+
+
+### Compile Kaldi Source
+{% highlight bash %}
+ubuntu@ip-172-31-35-58:~/kaldi/src$ ./configure
+ubuntu@ip-172-31-35-58:~/kaldi/src$ make depend -j `nproc`
+ubuntu@ip-172-31-35-58:~/kaldi/src$ make -j `nproc`
+{% endhighlight %}
+
+At this point, if you didn't get any `ERROR` messages or major `WARNING`s, you should have a working installation of `Kaldi` in the cloud!
+
+To make sure you've go everything working, go ahead and run the simple `yesno` demo:
+
+### Compile Kaldi Source
+{% highlight bash %}
+ubuntu@ip-172-31-35-58:~/kaldi/src$ cd ../egs/yesno/s5
+ubuntu@ip-172-31-35-58:~/kaldi/egs/yesno/s5$ ./run.sh
+{% endhighlight %}
+
+If it runs as normal, you're good to go:)
+
+Now you can tranfer your own data to your instance and start working. You should probably check out Amazon's `EBS` volumes for storing your data, but that's another post. Here, I'm just going to show you how to transfrom data from your local computer to your new instance, and then you should be able to train models as if they were on your machine.
+
+<br/>
+<br/>
+
+## Transfer Data
+
+### Transfer Data from Laptop to Instace
+
+You can easily transfer data from your local machine to your new `AWS` instance. Open a terminal on your machine and do something like this:
+{% highlight bash %}
+scp -i ~/Desktop/your-key-pair.pem ~/Desktop/your-local-data.tar.gz ubuntu@ec2-11-222-33-444.us-west-2.compute.amazonaws.com:~/data/
+{% endhighlight %}
+
+
+
+<br/>
+<br/>
+
+## Train Models
+
+
+### SSH into instance
+
+1. `ssh -i ~/Desktop/your-key-pair.pem ubuntu@ec2-11-222-33-444.us-west-2.compute.amazonaws.com`
+2. start new terminal session: `tmux new -s my-session`
+3. run model: `KALDI$ ./run.sh`
+4. exit terminal session without terminating: `Ctrl-b d`
+5. get back into terminal session: `tmux a -t my-session`
+
+
+
+{% highlight bash %}
+{% endhighlight %}
+
+<br>
+
+## Conclusion
+
+I hope this was helpful! 
+
+Let me know if you have comments or suggestions and you can always leave a comment below. 
+
+Happy Kaldi-ing!
+
+[irstlm]: http://hlt-mt.fbk.eu/technologies/irstlm
+[official-repo]: https://github.com/kaldi-asr/kaldi
+[docs]: http://kaldi-asr.org/doc/

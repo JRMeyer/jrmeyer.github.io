@@ -139,11 +139,6 @@ This is a United States patent application from Microsoft which is essentially a
 
 
 
-### Ghoshal et al. (2013) [*Multilingual Training of Deep Neural Networks*][ghoshal-2013]
-
-This paper investigates language-sequential training, where the hidden layers of a DNN get passed from one language to the next, fine-tuned on each language's data in sequence.
-
-
 ### Vu et al. (2014) [*Multilingual deep neural network based acoustic modeling for rapid language adaptation*][vu-2014]
 
 This paper is co-authored by Dan Povey and explains Kaldi's approach to multilingual DNN AM training.
