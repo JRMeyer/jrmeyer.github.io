@@ -16,6 +16,8 @@ comments: True
 
 ## Introduction
 
+Code may be found [here][code].
+
 The challenge was set up as such:
 
 Given a training set of audio (from now on, `train`), and a set of development data (ie. `dev`), create and assess a speaker identification system which can assign a speaker label (`spkID`) to a previously unheard test utterance (`utt`).
@@ -326,3 +328,4 @@ Enjoy your new speaker identification system:)
 
 
 [kaldi-install]: http://jrmeyer.github.io/kaldi/2016/01/26/Installing-Kaldi.html
+[code]: https://github.com/JRMeyer/speakerID_challenge
