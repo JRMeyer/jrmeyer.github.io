@@ -455,4 +455,4 @@ Using Tensorboard with this data:
 [learning-tf]: http://learningtensorflow.com/
 [official-resources]: https://www.tensorflow.org/versions/r0.7/resources/index.html
 [meetup]: http://www.meetup.com/Tucson-Data-Science-Meetup/events/228349803/
-[read-corpus][https://github.com/JRMeyer/tensorflow-tutorial/blob/master/make-your-own-data/read_corpus.py]
+[read-corpus]: https://github.com/JRMeyer/tensorflow-tutorial/blob/master/make-your-own-data/read_corpus.py
