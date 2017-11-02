@@ -11,6 +11,8 @@ mermaid: True
 
 *This code/post was written in conjunction with [Michael Capizzi][capizzi]. Sections of the original code on which this is based were written with [Joe Meyer][joe].*
 
+>Update: November 2, 2017 - New script for raw text feature extraction [read_corpus.py][read-corpus]
+
 >Update: March 8, 2017 - Now supports TensorFlow 1.0
 
 ### Quick Start
@@ -453,3 +455,4 @@ Using Tensorboard with this data:
 [learning-tf]: http://learningtensorflow.com/
 [official-resources]: https://www.tensorflow.org/versions/r0.7/resources/index.html
 [meetup]: http://www.meetup.com/Tucson-Data-Science-Meetup/events/228349803/
+[read-corpus][https://github.com/JRMeyer/tensorflow-tutorial/blob/master/make-your-own-data/read_corpus.py]
