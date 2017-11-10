@@ -1,0 +1,290 @@
+---
+layout: post
+title:  "nnet3 notes"
+date:   2017-11-09
+categories: kaldi
+comments: True
+---
+
+<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
+
+<br/>
+<br/>
+<br/>
+
+
+## Introduction
+
+In an attempt to be more systematic about tuning my hyperparameters for an `nnet3` model, I've decided to keep this post as a kind of collection of running notes.
+
+
+
+
+<br/>
+<br/>
+
+## DNN Architecture
+
+Looking through the official example scripts (found in `KALDI/egs/`), here's what I find for typical architectures:
+
+
+### Switchboard Corpus
+
+{% highlight bash %}
+
+# Taken from script: KALDI/egs/swbd/s5c/local/nnet3/run_tdnn.sh
+
+input dim=100 name=ivector
+input dim=40 name=input
+
+# please note that it is important to have input layer with the name=input
+# as the layer immediately preceding the fixed-affine-layer to enable
+# the use of short notation for the descriptor
+fixed-affine-layer name=lda input=Append(-2,-1,0,1,2,ReplaceIndex(ivector, t, 0)) affine-transform-file=$dir/configs/lda.mat
+
+# the first splicing is moved before the lda layer, so no splicing here
+relu-renorm-layer name=tdnn1 dim=1024
+relu-renorm-layer name=tdnn2 input=Append(-1,2) dim=1024
+relu-renorm-layer name=tdnn3 input=Append(-3,3) dim=1024
+relu-renorm-layer name=tdnn4 input=Append(-3,3) dim=1024
+relu-renorm-layer name=tdnn5 input=Append(-7,2) dim=1024
+relu-renorm-layer name=tdnn6 dim=1024
+
+output-layer name=output input=tdnn6 dim=$num_targets max-change=1.5 presoftmax-scale-file=$dir/configs/presoftmax_prior_scale.vec
+{% endhighlight %}
+
+
+### Wallstreet Journal
+
+{% highlight bash %}
+
+# Taken from script KALDI/egs/wsj/s5/local/nnet3/run_tdnn.sh
+
+input dim=100 name=ivector
+input dim=40 name=input
+
+# please note that it is important to have input layer with the name=input
+# as the layer immediately preceding the fixed-affine-layer to enable
+# the use of short notation for the descriptor
+fixed-affine-layer name=lda input=Append(-2,-1,0,1,2,ReplaceIndex(ivector, t, 0)) affine-transform-file=$dir/configs/lda.mat
+
+# the first splicing is moved before the lda layer, so no splicing here
+relu-renorm-layer name=tdnn1 dim=650
+relu-renorm-layer name=tdnn2 dim=650 input=Append(-1,0,1)
+relu-renorm-layer name=tdnn3 dim=650 input=Append(-1,0,1)
+relu-renorm-layer name=tdnn4 dim=650 input=Append(-3,0,3)
+relu-renorm-layer name=tdnn5 dim=650 input=Append(-6,-3,0)
+output-layer name=output dim=$num_targets max-change=1.5
+
+{% endhighlight %}
+
+
+### Tedlium
+
+Some scripts use the `steps/nnet3/tdnn/make_configs.py` script to automatically generate the config file, and they look something like this:
+
+{% highlight bash %}
+
+# Taken from script: /egs/tedlium/s5/local/nnet3/run_tdnn.sh
+
+# create the config files for nnet initialization
+python steps/nnet3/tdnn/make_configs.py  \
+    --feat-dir data/${train_set}_hires \
+    --ivector-dir exp/nnet3/ivectors_${train_set} \
+    --ali-dir $ali_dir \
+    --relu-dim 500 \
+    --splice-indexes "-1,0,1 -1,0,1,2 -3,0,3 -3,0,3 -3,0,3 -6,-3,0" \
+    --use-presoftmax-prior-scale true \
+    $dir/configs || exit 1;
+{% endhighlight %}
+
+### Librispeech
+
+
+{% highlight bash %}
+
+# Taken from script: KALDI/egs/librispeech/s5/local/nnet3/run_tdnn.sh
+
+# create the config files for nnet initialization
+python steps/nnet3/tdnn/make_configs.py  \
+   --feat-dir $train_data_dir \
+   --ivector-dir $train_ivector_dir \
+   --ali-dir $ali_dir \
+   --relu-dim 1280 \
+   --splice-indexes "-2,-1,0,1,2 -1,2 -3,3 -7,2 0"  \
+   --use-presoftmax-prior-scale true \
+   $dir/configs || exit 1;
+
+{% endhighlight %}
+
+
+### Fisher Switchboard
+
+{% highlight bash %}
+
+# Taken from script: KALDI/egs/fisher_swbd/s5/local/nnet3/run_tdnn.sh
+
+# create the config files for nnet initialization
+python steps/nnet3/tdnn/make_configs.py  \
+   --feat-dir data/${train_set}_hires \
+   --ivector-dir exp/nnet3/ivectors_${train_set} \
+   --ali-dir $ali_dir \
+   --relu-dim 1024 \
+   --splice-indexes "-2,-1,0,1,2 -1,2 -3,3 -3,3 -7,2 0"  \
+   --use-presoftmax-prior-scale true \
+
+{% endhighlight %}
+
+
+
+<br/>
+<br/>
+
+## Learning Rates
+
+{% highlight bash %}
+babel/s5d/local/chain/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.001 \
+babel/s5d/local/chain/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.0001 \
+babel/s5d/local/nnet3/run_tdnn.sh:    --initial-effective-lrate 0.0017 --final-effective-lrate 0.00017 \
+callhome_egyptian/s5/local/nnet3/run_tdnn.sh:    --initial-effective-lrate 0.005 --final-effective-lrate 0.0005 \
+aspire/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.0017 \
+aspire/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.00017 \
+librispeech/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.0017 \
+librispeech/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.00017 \
+iban/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.005 \
+iban/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.0005 \
+fisher_swbd/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.0017 \
+fisher_swbd/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.00017 \
+ami/s5b/local/chain/multi_condition/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.001 \
+ami/s5b/local/chain/multi_condition/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.0001 \
+ami/s5b/local/nnet3/run_tdnn.sh:    --initial-effective-lrate 0.0015 --final-effective-lrate 0.00015 \
+ami/s5/local/nnet3/run_tdnn.sh:    --initial-effective-lrate 0.0015 --final-effective-lrate 0.00015 \
+tedlium/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.0015 \
+tedlium/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.00015 \
+sprakbanken/s5/local/nnet3/run_tdnn.sh:    --initial-effective-lrate 0.0015 --final-effective-lrate 0.00015 \
+multi_en/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.0017 \
+multi_en/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.00017 \
+csj/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.initial-effective-lrate 0.0017 \
+csj/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.final-effective-lrate 0.00017 \
+{% endhighlight %}
+
+
+
+<br/>
+<br/>
+
+## Number of Training Epochs
+
+{% highlight bash %}
+iban/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 4 \
+iban/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 2 \
+callhome_egyptian/s5/local/nnet3/run_tdnn.sh:    --num-epochs 8 --num-jobs-initial 2 --num-jobs-final 14 \
+aspire/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 3 \
+tedlium/s5/local/chain/run_tdnn.sh:num_epochs=4
+tedlium/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 2 \
+sprakbanken/s5/local/nnet3/run_tdnn.sh:num_epochs=3
+librispeech/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 4 \
+wsj/s5/steps/nnet3/train_tdnn.sh:num_epochs=15      # Number of epochs of training;
+wsj/s5/steps/nnet3/chain/train_tdnn.sh:num_epochs=10      # Number of epochs of training;
+ami/s5b/local/chain/multi_condition/run_tdnn.sh:    --trainer.num-epochs 4 \
+ami/s5b/local/nnet3/run_tdnn.sh:num_epochs=3
+ami/s5/local/nnet3/run_tdnn.sh:num_epochs=3
+hkust/s5/local/chain/run_tdnn.sh:num_epochs=4
+hkust/s5/local/nnet3/run_tdnn.sh:num_epochs=4
+csj/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 2 \
+multi_en/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 4 \
+fisher_swbd/s5/local/nnet3/run_tdnn.sh:    --trainer.num-epochs 4 \
+aishell/s5/local/nnet3/run_tdnn.sh:num_epochs=4
+babel/s5d/local/chain/run_tdnn.sh:    --trainer.num-epochs 4 \
+babel/s5d/local/nnet3/run_tdnn.sh:    --num-epochs 5 --num-jobs-initial 2 --num-jobs-final 6 \
+fisher_english/s5/local/chain/run_tdnn.sh:num_epochs=4
+{% endhighlight %}
+
+
+
+
+<br/>
+<br/>
+
+## Number of Jobs Initial / Final
+
+
+### TL;DR
+
+1. small data ==> small num jobs
+2. few GPUs ==> small num jobs
+
+
+### Some insights
+
+Dan Povey's [reponse][povey-1] to a question about optimizing `num-jobs-intial` and `num-jobs-final`:
+
+
+>Q: In training nnet2/nnet3 networks, do the num-jobs-initial/final parameters make any important difference to the result, or is this just an efficiency heuristic to distribute as many jobs as the nnet can deal with (in terms of averaging the parallel jobs results I suppose)?
+>[ David van Leeuwen ]
+
+>A: They do make a bit of a difference, but in general fewer is better [except if your system has too many parameters and is overtraining excessively, but best the solution for that is to use fewer epochs or fewer parameters.]
+>
+>... in general it's best to use no more jobs than the number of GPUs that you have.  And when reducing the num-jobs, it might be a good idea to reduce the number of epochs slightly.
+>[ Dan Povey ]
+
+Another [response][povey-2] from Povey on the Kaldi teams views towards these parameters:
+
+>Q: if I change the value of num-jobs-initial and num-jobs-final : do I need to change also the other parameters like the learning rate? changing the values of num-jobs-initial and num-jobs-final doesn't affect the accuracy of the training ? That's why I wonder why the author of run_tdnn.sh has chosen the value "2" and "12" for these parameters, it's the same question when I see others parameters in kaldi scripts like "$nj" set to a precise value, if we change $nj does it affect the final accuracy and the WER ?
+>[ Mannix ]
+
+>A: You don't have to change the learning rate, those are automatically adjusted in a suitable way.  It may affect results,  and it may be a good idea to reduce the num-epochs if you reduce the num-jobs, but we normally don't tune the num-jobs for WER (we choose it based on convenience in training time) so the WER could be better or worse. In general, for non-neural-net scripts and for decoding, the $nj option makes no difference to the results. 
+> [ Dan Povey ]
+
+
+{% highlight bash %}
+iban/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 2 \
+iban/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 4 \
+callhome_egyptian/s5/local/nnet3/run_tdnn.sh:    --num-epochs 8 --num-jobs-initial 2 --num-jobs-final 14 \
+aspire/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 4 \
+aspire/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 22 \
+tedlium/s5/local/chain/run_tdnn.sh:num_jobs_initial=3
+tedlium/s5/local/chain/run_tdnn.sh:num_jobs_final=8
+tedlium/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 3 \
+tedlium/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 8 \
+sprakbanken/s5/local/nnet3/run_tdnn.sh:    --num-epochs $num_epochs --num-jobs-initial 2 --num-jobs-final 12 \
+librispeech/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 3 \
+librispeech/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 16 \
+ami/s5b/local/chain/multi_condition/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 2 \
+ami/s5b/local/chain/multi_condition/run_tdnn.sh:    --trainer.optimization.num-jobs-final 12 \
+ami/s5b/local/nnet3/run_tdnn.sh:    --num-epochs $num_epochs --num-jobs-initial 2 --num-jobs-final 12 \
+ami/s5/local/nnet3/run_tdnn.sh:    --num-epochs $num_epochs --num-jobs-initial 2 --num-jobs-final 12 \
+hkust/s5/local/chain/run_tdnn.sh:num_jobs_initial=2
+hkust/s5/local/chain/run_tdnn.sh:num_jobs_final=12
+hkust/s5/local/nnet3/run_tdnn.sh:num_jobs_initial=2
+hkust/s5/local/nnet3/run_tdnn.sh:num_jobs_final=12
+csj/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 1 \
+csj/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 4 \
+multi_en/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 3 \
+multi_en/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 16 \
+fisher_swbd/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 3 \
+fisher_swbd/s5/local/nnet3/run_tdnn.sh:    --trainer.optimization.num-jobs-final 16 \
+aishell/s5/local/nnet3/run_tdnn.sh:num_jobs_initial=2
+aishell/s5/local/nnet3/run_tdnn.sh:num_jobs_final=12
+babel/s5d/local/chain/run_tdnn.sh:    --trainer.optimization.num-jobs-initial 2 \
+babel/s5d/local/chain/run_tdnn.sh:    --trainer.optimization.num-jobs-final 12 \
+babel/s5d/local/nnet3/run_tdnn.sh:    --num-epochs 5 --num-jobs-initial 2 --num-jobs-final 6 \
+fisher_english/s5/local/chain/run_tdnn.sh:num_jobs_initial=3
+fisher_english/s5/local/chain/run_tdnn.sh:num_jobs_final=16
+{% endhighlight %}
+
+
+
+
+## Other Documentation
+
+Here's some [documentation]({{ site.url }}/misc/kaldi-documentation/kaldi-documentation.pdf) I wrote up as a walk-through of a typical Kaldi GMM **run.sh** script.
+
+Here's some more [general Kaldi notes][kaldi-notes] I've put together. They cover topics like `HCLG` and file formats.
+
+
+
+
+[kaldi-notes]: http://jrmeyer.github.io/kaldi/2016/02/01/Kaldi-notes.html
+[povey-1]: https://groups.google.com/forum/#!topic/kaldi-help/_iyJP-lHkKM
+[povey-2]: https://groups.google.com/forum/#!searchin/kaldi-help/num$20epochs$20nnet3%7Csort:date/kaldi-help/FzKehj795h0/pDf7p61ZBAAJ
