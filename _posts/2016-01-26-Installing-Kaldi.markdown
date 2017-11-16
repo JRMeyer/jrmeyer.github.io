@@ -2,7 +2,7 @@
 layout: post
 title:  "Installing Kaldi"
 date:   2016-01-26
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

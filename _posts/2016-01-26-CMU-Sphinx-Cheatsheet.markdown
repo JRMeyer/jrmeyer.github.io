@@ -2,7 +2,7 @@
 layout: post
 title:  "CMU-Sphinx Cheatsheet"
 date:   2016-01-26 22:03:04 -0700
-categories: cmusphinx
+categories: ASR
 comments: True
 ---
 

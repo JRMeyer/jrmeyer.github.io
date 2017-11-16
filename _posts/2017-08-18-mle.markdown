@@ -2,7 +2,7 @@
 layout: post
 title:  "Maximum Likelihood Estimation of Gaussian Parameters"
 date:   2017-08-18
-categories: mle
+categories: MachineLearning
 comments: True
 ---
 

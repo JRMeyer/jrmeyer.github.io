@@ -2,7 +2,7 @@
 layout: post
 title:  "Some Kaldi Notes"
 date:   2016-02-01
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

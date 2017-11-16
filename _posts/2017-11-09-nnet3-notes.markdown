@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "nnet3 notes"
+title:  "Kaldi nnet3 notes"
 date:   2017-11-09
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

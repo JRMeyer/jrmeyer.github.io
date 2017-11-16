@@ -2,7 +2,7 @@
 layout: post
 title:  "Some SoX(I) Notes"
 date:   2016-08-02
-categories: sox
+categories: misc
 comments: True
 ---
 

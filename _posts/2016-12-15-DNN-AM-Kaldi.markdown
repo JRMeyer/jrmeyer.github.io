@@ -2,7 +2,7 @@
 layout: post
 title:  "How to Train a Deep Neural Net Acoustic Model with Kaldi"
 date:   2016-12-15
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

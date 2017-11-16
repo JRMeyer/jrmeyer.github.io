@@ -2,7 +2,7 @@
 layout: post
 title:  "How to use an Existing GMM Recognizer for Decoding in Kaldi"
 date:   2016-09-12
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

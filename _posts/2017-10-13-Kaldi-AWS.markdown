@@ -2,7 +2,7 @@
 layout: post
 title:  "Kaldi on AWS"
 date:   2017-10-13
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

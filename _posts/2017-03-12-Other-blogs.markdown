@@ -2,7 +2,7 @@
 layout: post
 title:  "A List of Other Blogs"
 date:   2017-02-14
-categories: general
+categories: misc
 comments: True
 ---
 

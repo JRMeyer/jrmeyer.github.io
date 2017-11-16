@@ -2,7 +2,7 @@
 layout: post
 title:  "How to use an Existing DNN Recognizer for Decoding in Kaldi"
 date:   2017-01-10
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

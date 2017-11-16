@@ -2,7 +2,7 @@
 layout: post
 title:  "Seminal Papers in ASR"
 date:   2017-04-05
-categories: asr
+categories: ASR
 comments: True
 published: True
 ---

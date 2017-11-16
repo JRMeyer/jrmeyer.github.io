@@ -2,7 +2,7 @@
 layout: post
 title:  "Josh's Speaker ID Challenge"
 date:   2017-09-29
-categories: tutorial
+categories: ASR
 comments: True
 ---
 

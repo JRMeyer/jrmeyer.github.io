@@ -2,7 +2,7 @@
 layout: post
 title:  "eSpeak NG Notes"
 date:   2016-09-19
-categories: espeak
+categories: TTS
 comments: True
 ---
 

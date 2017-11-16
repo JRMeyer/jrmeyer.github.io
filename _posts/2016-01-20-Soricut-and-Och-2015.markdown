@@ -2,7 +2,7 @@
 layout: post
 title:  "Soricut & Och (2015): Unsupervised Morphology Induction Using Word Embeddings"
 date:   2016-01-20 22:03:04 -0700
-categories: review
+categories: misc
 comments: True
 ---
 

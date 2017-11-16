@@ -2,7 +2,7 @@
 layout: post
 title:  "Installing Praat on Ubuntu - getting sound to work"
 date:   2016-01-19 22:03:04 -0700
-categories: installation
+categories: misc
 comments: True
 ---
 <img src="/misc/praat.png" align="right" alt="logo" style="width: 200px;"/>

@@ -2,7 +2,7 @@
 layout: post
 title:  "Getting started with the Merlin Speech Synthesis Toolkit"
 date:   2017-02-14
-categories: merlin
+categories: TTS
 comments: True
 ---
 

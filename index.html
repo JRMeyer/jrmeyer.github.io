@@ -16,15 +16,28 @@ layout: default
 
 
 <center>
-<img src="misc/josh-pic.jpg" style="margin:30px; padding:30px;" height="400" alt="what a pic!">
+<img src="misc/josh-pic.jpg" style="margin:45px; padding:45px;" height="450" alt="what a pic!">
 </center>
+
+
+
 
 <div class="home">
 
-  <h1 class="page-heading" style="font-size:40px;" >Posts</h1>
+  
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+  
+  <h1 class="page-heading" style="font-size:40px;" >Speech Recognition</h1>
 
+  <center><img src="misc/Lfst-big.png" height="500"></center>
+  
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% for post in site.categories.ASR %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
@@ -35,13 +48,92 @@ layout: default
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+  <h1 class="page-heading" style="font-size:40px;" >Speech Synthesis</h1>
+
+  <center>
+    <img src="misc/spectrogram.png" height="300" style="margin:15px; padding:15px;" >
+  </center>
+
+  <ul class="post-list">
+    {% for post in site.categories.TTS %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+  <h1 class="page-heading" style="font-size:40px;" >Machine Learning</h1>
+
+  <center>
+  <img src="misc/tf-graph.png" height="350" style="margin:35px; padding:15px;" >
+
+  </center>
+  
+  <ul class="post-list">
+    {% for post in site.categories.MachineLearning %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+  <h1 class="page-heading" style="font-size:40px;" >Miscellaneous</h1>
+
+  <ul class="post-list">
+    {% for post in site.categories.misc %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+      
 
 </div>
 
 
 
 
+
+<br/>
 <br/>
 <br/>
 <br/>
@@ -53,7 +145,7 @@ layout: default
 
 You can download an <A HREF="http://www.nvaccess.org/">NVDA</A> installer with Kyrgyz language support <A HREF="http://jrmeyer.github.io/misc/NVDA_with_kyrgyz_11-11-2016.exe">here.</A> You should be able to install the program by double clicking on the file and following the directions. To turn Kyrgyz language support on or off, navigate to "Voices" under "Settings" after you've installed the program. This project was conducted with <A HREF="https://www.facebook.com/EmpowerBlindPeople/">Empower Blind People</A>, a non-profit organization for blind people in Kyrgyzstan. Any feedback on the Kyrgyz support (accent, translation, errors, etc) is gladly welcomed!
 
-
+<br/>
 <br/>
 <br/>
 <br/>
@@ -69,6 +161,8 @@ Here's an interview I did in Paris at France Inter during the Week of Young Inte
 
 <br/>
 <br/>
+<br/>
+<br/>
 
 <iframe src="https://www.franceinter.fr/embed/player/aod/70cc17ef-425c-4cbb-b2d1-b7277fb94590" width="100%" height="64" frameborder="0" scrolling="no"></iframe>
 
@@ -77,9 +171,13 @@ Here's a couple videos below about our speech synthesis project for the Kyrgyz l
 
 <br/>
 <br/>
+<br/>
+<br/>
 
 Here's some news about my project with <A HREF="https://www.facebook.com/EmpowerBlindPeople/">Empower Blind People</A> to create a speech synthesizer for the Kyrgyz language, to be used in the open source project <A HREF="http://www.nvaccess.org/">NVDA</A>.
 
+<br/>
+<br/>
 <br/>
 <br/>
 
@@ -87,6 +185,8 @@ Here's some news about my project with <A HREF="https://www.facebook.com/Empower
 <iframe width="560" height="315" src="https://www.youtube.com/embed/RXamyDte4p0" frameborder="0" allowfullscreen></iframe>
 </center>
   
+<br/>
+<br/>
 <br/>
 <br/>
 

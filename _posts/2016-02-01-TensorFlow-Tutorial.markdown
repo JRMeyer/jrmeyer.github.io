@@ -2,7 +2,7 @@
 layout: post
 title:  "A TensorFlow Tutorial: Email Classification"
 date:   2016-02-01
-categories: tutorial
+categories: MachineLearning
 comments: True
 mermaid: True
 ---

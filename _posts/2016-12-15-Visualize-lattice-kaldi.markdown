@@ -2,7 +2,7 @@
 layout: post
 title:  "How to Visualize a Word Lattice with Kaldi"
 date:   2016-12-15
-categories: kaldi
+categories: ASR
 comments: True
 ---
 

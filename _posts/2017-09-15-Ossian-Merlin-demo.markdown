@@ -2,7 +2,7 @@
 layout: post
 title:  "Create New Voice with Ossian & Merlin"
 date:   2017-09-15
-categories: tutorial
+categories: TTS
 comments: True
 ---
 
