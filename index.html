@@ -32,10 +32,12 @@ layout: default
 <br/>
 <br/>
   
-  <h1 class="page-heading" style="font-size:40px;" >Speech Recognition</h1>
 
   <center><img src="misc/Lfst-big.png" height="500"></center>
-  
+<br/>
+<br/>
+    <h1 class="page-heading" style="font-size:40px;" >Speech Recognition</h1>
+
   <ul class="post-list">
     {% for post in site.categories.ASR %}
       <li>
@@ -56,11 +58,13 @@ layout: default
 <br/>
 <br/>
 
-  <h1 class="page-heading" style="font-size:40px;" >Speech Synthesis</h1>
 
   <center>
     <img src="misc/spectrogram.png" height="300" style="margin:15px; padding:15px;" >
   </center>
+<br/>
+<br/>
+    <h1 class="page-heading" style="font-size:40px;" >Speech Synthesis</h1>
 
   <ul class="post-list">
     {% for post in site.categories.TTS %}
@@ -83,16 +87,18 @@ layout: default
 <br/>
 <br/>
 
-  <h1 class="page-heading" style="font-size:40px;" >Machine Learning</h1>
 
   <center>
   <img src="misc/tf-graph.png" height="350" style="margin:35px; padding:15px;" >
-
   </center>
-  
+
+<br/>
+<br/>
+    <h1 class="page-heading" style="font-size:40px;" >Machine Learning</h1>
+
   <ul class="post-list">
     {% for post in site.categories.MachineLearning %}
-      <li>
+    <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h2>
