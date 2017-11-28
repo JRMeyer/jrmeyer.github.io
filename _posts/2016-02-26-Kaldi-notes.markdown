@@ -241,6 +241,79 @@ We end up with a nice graph in the file `mono-tree.pdf`:
 <img src="/misc/mono-tree.png" style="width: 800px;"/>
 
 
+<br/>
+<br/>
+<br/>
+
+## Working with Alignments (Phone or Word)
+
+{% highlight bash %}
+# convert alignments to ctm
+../../wsj/s5/steps/get_train_ctm.sh data_org/train/ data_org/lang exp_org/monophones_aligned/
+
+# print alignments to human readable format
+../../../../../src/bin/show-alignments ../../data_chv/lang/phones.txt final.mdl ark:"gunzip -c ali.2.gz |" > ali.2.txt
+{% endhighlight %}
+
+
+
+### training fsts graphs
+
+{% highlight bash %}
+# foo here is a file that contains one uttID
+echo "17385-0003"> foo.txt
+
+# compile that one graph
+../../../src/bin/compile-train-graphs exp_chv/monophones/tree exp_chv/monophones/0.mdl data_chv/lang/L.fst 'ark:utils/sym2int.pl --map-oov 267 -f 2- data_chv/lang/words.txt < foo.txt|' 'ark:exp_chv/monophones/test.fst' 
+
+# get rid of its utt id at the beginning of file and print
+sed "s/17385-0003 //g" exp_chv/monophones/test.fst | ../../../tools/openfst-1.6.2/bin/fstprint --osymbols=data_chv/lang/words.txt --isymbols=data_chv/lang/phones.txt
+0	6	а	<eps>	0.693359375
+0	7	б	<eps>	0.693359375
+0	8	в	<eps>	0.693359375
+0	0.693359375
+1	9	д	<eps>
+1	10	е	<eps>
+1	11	ж	<eps>
+2	12	з	<eps>
+2	13	й	<eps>
+2	14	к	<eps>
+3	15	л	<eps>
+3	16	м	<eps>
+3	17	о	<eps>
+4	5	р	<eps>
+5	5	п	<eps>
+5
+6	1	<eps>	<eps>
+6	6	SIL	<eps>
+7	2	<eps>	<eps>
+7	7	SIL	<eps>
+8	3	<eps>	<eps>
+8	8	SIL	<eps>
+9	2	<eps>	<eps>
+9	9	г	<eps>
+10	3	<eps>	<eps>
+10	10	г	<eps>
+11	4	<eps>	<eps>
+11	11	г	<eps>
+12	1	<eps>	<eps>
+12	12	и	<eps>
+13	3	<eps>	<eps>
+13	13	и	<eps>
+14	4	<eps>	<eps>
+14	14	и	<eps>
+15	1	<eps>	<eps>
+15	15	н	<eps>
+16	2	<eps>	<eps>
+16	16	н	<eps>
+17	4	<eps>	<eps>
+17	17	н	<eps>
+{% endhighlight %}
+
+
+
+
+
 ## Other Blogs
 
 Here's "[Kaldi For Dummies][kaldi-for-dummies]".

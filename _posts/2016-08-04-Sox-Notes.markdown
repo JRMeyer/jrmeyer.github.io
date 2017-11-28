@@ -63,6 +63,12 @@ for i in *wav; do play $i; done
 {% endhighlight %}
 
 
+### Trim audio file
+
+{% highlight bash %}
+sox input output trim <start> <duration>
+{% endhighlight %}
+
 ### Downsample (to 16kHz)
 
 {% highlight bash %}
