@@ -8,9 +8,40 @@ comments: True
 
 
 
-## Introduction
+## Logistics
+
+Place: Вышка // Старая Басманная 24/1 // Room 509
+
+Time: 13:00 - 21:00
 
 <br/>
+
+## Must Do Before
+
+0. Register: https://goo.gl/forms/6N4uYpkzd2c2Xz7L2
+1. Bring a computer with you (with Linux if possible).
+2. If you only have Windows, you must email < ftyers AT hse TOCHKA ru > by December 7th.
+
+<br/>
+
+## Recommended Do Before
+
+1. Install Ossian (with Merlin)
+2. Download Data
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+
+
+## Introduction
+
+
 <br/>
 
 ## Dependencies
