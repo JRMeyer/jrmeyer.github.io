@@ -10,23 +10,22 @@ comments: True
 
 ## Logistics
 
-Place: Вышка // Старая Басманная 24/1 // Room 509
+### Time & Place
 
-Time: 13:00 - 21:00
+Вышка // Старая Басманная 24/1 // Room 509
 
-<br/>
+13:00 - 21:00
 
-## Must Do Before
+### Must Do Before
 
 0. Register: https://goo.gl/forms/6N4uYpkzd2c2Xz7L2
 1. Bring a computer with you (with Linux if possible).
 2. If you only have Windows, you must email < ftyers AT hse TOCHKA ru > by December 7th.
 
-<br/>
 
-## Recommended Do Before
+### Recommended Do Before
 
-1. Install Ossian (with Merlin)
+1. Install our version of Ossian / Merlin / Kaldi
 2. Download Data
 
 
@@ -84,14 +83,7 @@ Now we're ready to install Ossian itself! Huzzah! First let's clone Ossian from 
 ### Clone Ossian
 
 {% highlight bash %}
-josh@yoga:~/git$ git clone https://github.com/CSTR-Edinburgh/Ossian.git
-Cloning into 'Ossian'...
-remote: Counting objects: 377, done.
-remote: Compressing objects: 100% (5/5), done.
-remote: Total 377 (delta 0), reused 1 (delta 0), pack-reused 372
-Receiving objects: 100% (377/377), 389.73 KiB | 229.00 KiB/s, done.
-Resolving deltas: 100% (154/154), done.
-Checking connectivity... done.
+git clone https://github.com/CSTR-Edinburgh/Ossian.git
 {% endhighlight %}
 
 
@@ -104,27 +96,7 @@ Our configuration and compiling will be done by the `./tools/setup_tools.sh` scr
 In fact this one script will download and compile both `HTK` and `Merlin` in addition to `Ossian`. 
 
 {% highlight bash %}
-josh@yoga:~/git/Ossian$ ./scripts/setup_tools.sh HTK_USERNAME HTK_PASSWORD 
-Cloning into 'merlin'...
-remote: Counting objects: 2568, done.
-remote: Compressing objects: 100% (75/75), done.
-remote: Total 2568 (delta 27), reused 54 (delta 17), pack-reused 2474
-Receiving objects: 100% (2568/2568), 5.74 MiB | 217.00 KiB/s, done.
-Resolving deltas: 100% (1360/1360), done.
-Checking connectivity... done.
-HEAD is now at 8aed278 Merge pull request #149 from shartoo/master
-mkdir -p ./build/objs
-g++ -O1 -g -Wall -fPIC -Isrc -o "build/objs/cheaptrick.o" -c "src/cheaptrick.cpp"
-                             .
-                             .
-                             .
-make[2]: Entering directory '/home/josh/git/Ossian/tools/downloads/SPTK-3.6'
-make[2]: Nothing to be done for 'install-exec-am'.
-test -z "/home/josh/git/Ossian/scripts/..//tools/include" || /bin/mkdir -p "/home/josh/git/Ossian/scripts/..//tools/include"
- /usr/bin/install -c -m 644 'include/SPTK.h' '/home/josh/git/Ossian/scripts/..//tools/include/SPTK.h'
-make[2]: Leaving directory '/home/josh/git/Ossian/tools/downloads/SPTK-3.6'
-make[1]: Leaving directory '/home/josh/git/Ossian/tools/downloads/SPTK-3.6'
-164
+./scripts/setup_tools.sh
 {% endhighlight %}
 
 
@@ -147,14 +119,14 @@ We got recordings, and even though there's only about an hour, we can still trai
 First let's download the CSTR corpus:
 
 {% highlight bash %}
-josh@yoga:~/git/Ossian$ wget
+wget
 {% endhighlight %}
 
 
 Now we need to unpack the compressed corpus:
 
 {% highlight bash %}
-josh@yoga:~/git/Ossian$ tar xvf
+tar xvf
 {% endhighlight %}
 
 
@@ -162,7 +134,7 @@ josh@yoga:~/git/Ossian$ tar xvf
 Now let's take a look at the file structure of this Romanian corpus. When building your own language, you should have your file structure be exactly the same.
 
 {% highlight bash %}
-josh@yoga:~/git/Ossian$ tree corpus/
+tree corpus/
 corpus/
 └── chv
     ├── speakers
@@ -218,11 +190,11 @@ We're going to train both an `acoustic` and `duration` model here. Since this is
 Just run the following commands:
 
 {% highlight bash %}
-josh@yoga:~/git/Ossian$ export THEANO_FLAGS=""
+export THEANO_FLAGS=""
 # train duration model
-josh@yoga:~/git/Ossian$ python ./tools/merlin/src/run_merlin.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/duration_predictor/config.cfg
+python ./tools/merlin/src/run_merlin.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/duration_predictor/config.cfg
 # train acoustic model
-josh@yoga:~/git/Ossian$ python ./tools/merlin/src/run_merlin.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/acoustic_predictor/config.cfg
+python ./tools/merlin/src/run_merlin.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/acoustic_predictor/config.cfg
 {% endhighlight %}
 
 
@@ -239,9 +211,9 @@ We call the conversion script with:
 
 {% highlight bash %}
 # store duration model
-josh@yoga:~/git/Ossian$ python ./scripts/util/store_merlin_model.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/duration_predictor/config.cfg /home/josh/git/Ossian/voices/rm/rss_toy_demo/naive_01_nn/processors/duration_predictor
+python ./scripts/util/store_merlin_model.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/duration_predictor/config.cfg /home/josh/git/Ossian/voices/rm/rss_toy_demo/naive_01_nn/processors/duration_predictor
 # store acoustic model
-josh@yoga:~/git/Ossian$ python ./scripts/util/store_merlin_model.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/acoustic_predictor/config.cfg /home/josh/git/Ossian/voices/rm/rss_toy_demo/naive_01_nn/processors/acoustic_predictor
+python ./scripts/util/store_merlin_model.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/acoustic_predictor/config.cfg /home/josh/git/Ossian/voices/rm/rss_toy_demo/naive_01_nn/processors/acoustic_predictor
 {% endhighlight %}
 
 
@@ -252,10 +224,10 @@ josh@yoga:~/git/Ossian$ python ./scripts/util/store_merlin_model.py /home/josh/g
 Now you've got everything in place to synthesize some speech with Ossian! We can use a sample Romainian sentence (text) provided by CSTR to make a sample as such:
 
 {% highlight bash %}
-josh@yoga:~/git/Ossian$ mkdir ./test/txt/
-josh@yoga:~/git/Ossian$ echo "SOME CHUVASH HERE" > ./test/txt/chuvash_test.txt
-josh@yoga:~/git/Ossian$ mkdir ./test/wav/
-josh@yoga:~/git/Ossian$ python ./scripts/speak.py -l chv -s news -o ./test/wav/chuvash_test.wav naive_01_nn ./test/txt/chuvash_test.txt
+mkdir ./test/txt/
+echo "SOME CHUVASH HERE" > ./test/txt/chuvash_test.txt
+mkdir ./test/wav/
+python ./scripts/speak.py -l chv -s news -o ./test/wav/chuvash_test.wav naive_01_nn ./test/txt/chuvash_test.txt
 {% endhighlight %}
 
 And there you go! You can listen to your beautiul new Romainian speech in the file `./test/wav/romanian_test.wav`.
