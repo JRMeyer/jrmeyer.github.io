@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Вышка Speech Synthesis Workshop: Let's make a Chuvash voice!"
+title:  "Let's make a Chuvash voice! : Moscow Higher School of Economics Speech Synthesis Workshop"
 date:   2016-12-09
 categories: TTS
 comments: True
@@ -76,31 +76,31 @@ That's it! You should be good to go on dependencies.
 <br/>
 <br/>
 
-## Install Ossian
+## Install Ossian / Merlin / Kaldi
 
 Now we're ready to install Ossian itself! Huzzah! First let's clone Ossian from github, then compile it.
 
-### Clone Ossian
+### Clone Ossian (bundled w/ Merlin and Kaldi)
 
 {% highlight bash %}
-git clone https://github.com/CSTR-Edinburgh/Ossian.git
+git clone 
 {% endhighlight %}
 
 
 <br/>
 
-### Compile Ossian
+### Compile Ossian (bundled w/ Merlin and Kaldi)
 
-Our configuration and compiling will be done by the `./tools/setup_tools.sh` script. This script takes two arguments, `HTK_USERNAME` and `HTK_PASSWORD`.
+Our configuration and compiling will be done by the `./tools/setup_tools.sh` script. 
 
-In fact this one script will download and compile both `HTK` and `Merlin` in addition to `Ossian`. 
+In fact this one script will download and compile both `Kaldi` and `Merlin` in addition to `Ossian`. 
 
 {% highlight bash %}
 ./scripts/setup_tools.sh
 {% endhighlight %}
 
 
-This script has compiled `Ossian`, cloned and compiled `Merlin`, downloaded and compiled `HTK`, and put everything in the `tools` directory. At this point, if you didn't run into any problems, you should have a working installation of Ossian which can call both Merlin and HTK.
+This script has compiled `Ossian`, cloned and compiled `Merlin`, downloaded and compiled `Kaldi`, and put everything in the `tools` directory. At this point, if you didn't run into any problems, you should have a working installation of Ossian which can call both Merlin and Kaldi.
 
 
 <br/>
