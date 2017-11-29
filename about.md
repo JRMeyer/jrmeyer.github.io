@@ -40,19 +40,32 @@ Even though I spend most of the day with my NLP / machine learning hat on, I'm s
 </audio></center>
 
 <br/>
-<br/>
-<br/>
+
+
+<center>
+I also like travelling and Radiohead.
+</center>
+
 <br/>
 
 
-<center>You can find my academic CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">here</a>.</center>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/V6G0tjT6A3I" frameborder="0" allowfullscreen></iframe>
+</center>
 
 <br/>
 <br/>
+
+<center>
+You can find my academic CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">here</a>.
+</center>
+
 <br/>
 <br/>
 
-<center> <strong>joshuameyer</strong> # <strong>email</strong> $ <strong>arizona</strong> $ <strong>edu</strong> {# -> @, $ -> .} </center>
+<center>
+<strong>joshuameyer</strong> # <strong>email</strong> $ <strong>arizona</strong> $ <strong>edu</strong> {# -> @, $ -> .}
+</center>
 
 
 <br/>
