@@ -132,7 +132,9 @@ ubuntu@ip-172-31-35-58:~/kaldi/tools$ extras/install_irstlm.sh
 
 ### Compile Kaldi Source
 {% highlight bash %}
-ubuntu@ip-172-31-35-58:~/kaldi/src$ ./configure
+# use --shared to use shared vs static links... saves a TON of
+# space on disk (thanks to Fran Tyers for pointing this out to me!)
+ubuntu@ip-172-31-35-58:~/kaldi/src$ ./configure --shared
 ubuntu@ip-172-31-35-58:~/kaldi/src$ make depend -j `nproc`
 ubuntu@ip-172-31-35-58:~/kaldi/src$ make -j `nproc`
 {% endhighlight %}
