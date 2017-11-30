@@ -25,7 +25,7 @@ comments: True
 1. Nice [intro to Amazon's EC2][ec2] services
 2. Use `tmux`: nice for running a model in background after exiting `ssh`
 3. Install `emacs` or `vim`: you're going to need some kind of text editor which works well in the terminal.
-4. Installing Kaldi on `t2.micro` will run out of RAM and crash.
+4. Installing Kaldi on `t2.micro` will run out of RAM and crash, so you're going to have to pay.
 
 
 <br/>
@@ -65,12 +65,13 @@ You can only launch instances which you have permissions for, find the list of a
 I've been working on the following set-up, so it should work for you as well.
 
 1. operating system: `Ubuntu Server 16.04 LTS`
-2. instance type: `c4.xlarge`
+2. instance type: `g2.2xlarge`
 
-The instance type I'm using is for CPUs, but you will probably want GPUs... especially if you're using `nnet3`.
+The instance type I'm using is for GPUs, which is probably what you want... especially if you're using `nnet3`. It's more expensive than using a CPU, but if you're running lots of data or experiments, you will want GPUs. Each iteration in DNN training takes a lot less time on a GPU.
 
+If you really want to use a CPU system, I'd recommend `c4.xlarge`. Actually, if you're only running GMMs, then more CPUs is better than a single GPU, since GMMs don't train on GPUs, and it's easier to parallelize GMMs so you get more bang for your buck with a bunch of CPUs.
 
-Don't forget: a standard, compiled Kaldi will take up to `15 gigs` of disk space, so make sure you allocate it on the instance when you're setting it up (on the `Storage` step).
+Don't forget: a standard, compiled Kaldi will take up to `15 gigs` of disk space, so make sure you allocate it on the instance when you're setting it up (on the `Storage` step). This is why you should also really use `./configure --shared` below, it will shave off some gigs.
 
 
 ### Download Key Pair
@@ -93,6 +94,9 @@ ssh -i "your-key-pair.pem" ubuntu@ec2-11-222-33-444.us-west-2.compute.amazonaws.
 {% endhighlight %}
 
 
+<br/>
+<br/>
+
 ### Update and Upgrade Ubuntu
 
 This is necessary to install Kaldi successfully.
@@ -106,7 +110,55 @@ If you've gotten to this point without any hiccups, you should have a working `U
 <br/>
 <br/>
 
-## Install Kaldi on Instance
+### Install Dependencies
+
+{% highlight bash %}
+sudo apt-get install g++ make automake autoconf python zlib1g-dev make automake autoconf libtool subversion libatlas3-base sox bc emacs24 tmux
+{% endhighlight %}
+
+
+<br/>
+<br/>
+
+### Install CUDA
+
+I got these steps from this [good post on askubuntu][install-cuda]. If you have issues, that post is more detailed, check it out. Normally, though, these steps should work.
+
+First download CUDA from NVIDIA. You might need a different link here depending on when you read this.
+
+{% highlight bash %}
+wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
+{% endhighlight %}
+
+Install CUDA:
+
+{% highlight bash %}
+sudo sh cuda_9.0.176_384.81_linux-run --override
+{% endhighlight %}
+
+Add CUDA to your `PATH` variable:
+
+{% highlight bash %}
+echo "export PATH=$PATH:/usr/local/cuda-9.0/bin" >> ~/.profile
+source ~/.profile
+{% endhighlight %}
+
+Take a look at your install:
+
+{% highlight bash %}
+nvcc --version
+{% endhighlight %}
+
+Once you're training, you can look at GPU usage (like `top` for CPUs) like this:
+
+{% highlight bash %}
+watch nvidia-smi
+{% endhighlight %}
+
+<br/>
+<br/>
+
+### Install Kaldi on Instance
 
 The following is a list of commands, assuming you've already had experience installing Kaldi. However, if you're interested, here's a thorough [walk-through on installing Kaldi][install-kaldi].
 
@@ -115,13 +167,6 @@ The following is a list of commands, assuming you've already had experience inst
 {% highlight bash %}
 git clone https://github.com/kaldi-asr/kaldi.git
 {% endhighlight %}
-
-### Install Dependencies
-
-{% highlight bash %}
-sudo apt-get install g++ make automake autoconf python zlib1g-dev make automake autoconf libtool subversion libatlas3-base sox bc emacs24 tmux
-{% endhighlight %}
-
 
 ### Compile 3rd Party Tools
 {% highlight bash %}
@@ -143,7 +188,7 @@ At this point, if you didn't get any `ERROR` messages or major `WARNING`s, you s
 
 To make sure you've go everything working, go ahead and run the simple `yesno` demo:
 
-### Compile Kaldi Source
+### Test it out!
 {% highlight bash %}
 ubuntu@ip-172-31-35-58:~/kaldi/src$ cd ../egs/yesno/s5
 ubuntu@ip-172-31-35-58:~/kaldi/egs/yesno/s5$ ./run.sh
@@ -164,6 +209,26 @@ You can easily transfer data from your local machine to your new `AWS` instance.
 {% highlight bash %}
 scp -i ~/Desktop/your-key-pair.pem ~/Desktop/your-local-data.tar.gz ubuntu@ec2-11-222-33-444.us-west-2.compute.amazonaws.com:~/data/
 {% endhighlight %}
+
+
+### Attach an EBS Volume
+
+This is from what I gather the best way to work with data on AWS for these kinds of applications (machine learning training).
+
+If you have your data on an EBS volume, it is logically separate from your scripts and codebase on EC2 instance. Splitting data and code is good practice, especially if you're using git and GitHub.
+
+My code for speech recognition experiements is in one git repo, and I can easily spin up an EC2 instance, clone my repo, and use symbolic links to my data on EBS after I've mounted it. This way, you can plug and play with different data sets, or code bases.
+
+Also, git will get mad at you iff your files are too big or if your repo is too big. You should really only have text files on git.
+
+1. create EBS Volume in same availability zone (not just region!) as your EC2
+2. put data on EBS Volume
+
+Then you need to:
+
+1. stop EC2 instance
+2. attach EBS to EC2
+3. mount EBS from within a ssh session on EC2
 
 
 
@@ -203,3 +268,4 @@ Happy Kaldi-ing!
 [train-kaldi]: http://jrmeyer.github.io/kaldi/2016/12/15/DNN-AM-Kaldi.html
 [ebs]: https://www.youtube.com/watch?v=DKftR47Ljvw
 [ec2]: https://www.youtube.com/watch?v=Px7ZPLq4AOU
+[install-cuda]: https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04
