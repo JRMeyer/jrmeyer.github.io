@@ -14,7 +14,7 @@ comments: True
 
 Вышка // Старая Басманная 24/1 // Room 509
 
-13:40 - 21:00
+December 9, 2017 // 13:40 - 21:00
 
 ### Must Do Before
 
@@ -39,6 +39,20 @@ comments: True
 
 
 ## Introduction
+
+The general idea of the workshop is twofold, the `first` is to introduce the field of speech
+synthesis and some free/open-source tools based on machine learning with neural networks. The
+`second` is to use newly collected data for Chuvash to make the first Chuvash speech synthesis
+system.
+
+Speech synthesis is the task of taking written text and having the computer pronounce it. It
+is widely used for different applications, such as screenreaders, automatic telephone answering
+systems, virtual assistants etc. While systems are widely available for larger languages
+such as English [1], Russian, and Catalan [2], there has yet to be a system created for Chuvash.
+
+1. http://homepages.inf.ed.ac.uk/jyamagis/demos/page35/page35.html
+2. http://festcat.talp.cat/
+
 
 
 <br/>
