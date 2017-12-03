@@ -4,6 +4,7 @@ title:  "How to use an Existing GMM Recognizer for Decoding in Kaldi"
 date:   2016-09-12
 categories: ASR
 comments: True
+redirect_from: "/kaldi/2016/09/12/Using-built-GMM-model-Kaldi.html"
 ---
 
 <img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>

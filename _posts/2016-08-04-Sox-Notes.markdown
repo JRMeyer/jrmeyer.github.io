@@ -4,6 +4,7 @@ title:  "Some SoX(I) Notes"
 date:   2016-08-02
 categories: misc
 comments: True
+redirect_from: "/sox/2016/08/02/Sox-Notes.html"
 ---
 
 [Here's another blog.][blog1]

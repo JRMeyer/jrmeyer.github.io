@@ -4,6 +4,7 @@ title:  "Soricut & Och (2015): Unsupervised Morphology Induction Using Word Embe
 date:   2016-01-20 22:03:04 -0700
 categories: misc
 comments: True
+redirect_from: "/review/2016/01/20/Soricut-and-Och-2015.html"
 ---
 
 

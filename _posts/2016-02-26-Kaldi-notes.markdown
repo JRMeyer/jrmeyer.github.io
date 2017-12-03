@@ -4,6 +4,7 @@ title:  "Some Kaldi Notes"
 date:   2016-02-01
 categories: ASR
 comments: True
+redirect_from: "/kaldi/2016/02/01/Kaldi-notes.html"
 ---
 
 <img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>

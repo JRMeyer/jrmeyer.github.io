@@ -5,6 +5,7 @@ date:   2016-07-03
 categories: TTS
 comments: True
 mermaid: True
+redirect_from: "/espeak/2016/07/03/How-to-Add-a-Language-to-eSpeak-NG.html"
 ---
 
 ## Introduction

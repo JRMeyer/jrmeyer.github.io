@@ -4,6 +4,7 @@ title:  "CMU-Sphinx Cheatsheet"
 date:   2016-01-26 22:03:04 -0700
 categories: ASR
 comments: True
+redirect_from: "/cmusphinx/2016/01/26/CMU-Sphinx-Cheatsheet.html"
 ---
 
 <img src="/misc/sphinx.jpg" align="right" alt="logo" style="width: 300px;"/>
