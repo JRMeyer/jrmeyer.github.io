@@ -4,6 +4,7 @@ title:  "eSpeak NG Notes"
 date:   2016-09-19
 categories: TTS
 comments: True
+redirect_from: "/espeak/2016/09/19/eSpeak-NG-Notes.html"
 ---
 
 ## Introduction

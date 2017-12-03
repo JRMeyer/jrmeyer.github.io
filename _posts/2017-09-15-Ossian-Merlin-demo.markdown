@@ -4,6 +4,7 @@ title:  "Create New Voice with Ossian & Merlin"
 date:   2017-09-15
 categories: TTS
 comments: True
+redirect_from: "/tutorial/2017/09/15/Ossian-Merlin-demo.html"
 ---
 
 

@@ -4,6 +4,7 @@ title:  "Kaldi on AWS"
 date:   2017-10-13
 categories: ASR
 comments: True
+redirect_from: /kaldi/2017/10/13/Kaldi-AWS.html
 ---
 
 <br/>

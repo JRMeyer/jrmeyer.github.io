@@ -5,6 +5,7 @@ date:   2017-04-05
 categories: ASR
 comments: True
 published: True
+redirect_from: "/asr/2017/04/05/seminal-asr-papers.html"
 ---
 
 <br/>

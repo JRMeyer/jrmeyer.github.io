@@ -4,6 +4,7 @@ title:  "Maximum Likelihood Estimation of Gaussian Parameters"
 date:   2017-08-18
 categories: MachineLearning
 comments: True
+redirect_from: "/mle/2017/08/18/mle.html"
 ---
 
 <br><br>

@@ -4,6 +4,7 @@ title:  "Josh's Speaker ID Challenge"
 date:   2017-09-29
 categories: ASR
 comments: True
+redirect_from: "/tutorial/2017/09/29/challenge.html"
 ---
 
 

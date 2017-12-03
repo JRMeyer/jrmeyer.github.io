@@ -4,6 +4,7 @@ title:  "How to Train a Deep Neural Net Acoustic Model with Kaldi"
 date:   2016-12-15
 categories: ASR
 comments: True
+redirect_from: "/kaldi/2016/12/15/DNN-AM-Kaldi.html"
 ---
 
 <img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>

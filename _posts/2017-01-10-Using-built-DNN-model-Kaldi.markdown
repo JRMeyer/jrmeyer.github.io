@@ -4,6 +4,7 @@ title:  "How to use an Existing DNN Recognizer for Decoding in Kaldi"
 date:   2017-01-10
 categories: ASR
 comments: True
+redirect_from: "/kaldi/2017/01/10/Using-built-DNN-model-Kaldi.html"
 ---
 
 <img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>

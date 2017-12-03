@@ -4,6 +4,7 @@ title:  "Getting started with the Merlin Speech Synthesis Toolkit"
 date:   2017-02-14
 categories: TTS
 comments: True
+redirect_from: "/merlin/2017/02/14/Installing-Merlin.html"
 ---
 
 

@@ -4,6 +4,7 @@ title:  "A List of Other Blogs"
 date:   2017-02-14
 categories: misc
 comments: True
+redirect_from: "/general/2017/02/14/Other-blogs.html"
 ---
 
 
