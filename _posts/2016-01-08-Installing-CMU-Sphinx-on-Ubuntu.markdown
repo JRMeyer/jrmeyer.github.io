@@ -4,7 +4,7 @@ title:  "Installing CMU-Sphinx on Ubuntu"
 date:   2016-01-08 22:03:04 -0700
 categories: ASR
 comments: True
-redirect_from: "/cmusphinx/2016/01/08/Installing-CMU-Sphinx-on-Ubuntu.html"
+redirect_from: "/installation/2016/01/09/Installing-CMU-Sphinx-on-Ubuntu.html"
 ---
 
 <img src="/misc/sphinx.jpg" align="right" alt="logo" style="width: 300px;"/>
