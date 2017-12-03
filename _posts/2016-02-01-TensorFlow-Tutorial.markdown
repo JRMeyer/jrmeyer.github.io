@@ -5,6 +5,7 @@ date:   2016-02-01
 categories: MachineLearning
 comments: True
 mermaid: True
+redirect_from: "/tutorial/2016/02/01/TensorFlow-Tutorial.html"
 ---
 
 <img src="/misc/tf-logo.png" align="right" alt="logo" style="width: 225px;"/>

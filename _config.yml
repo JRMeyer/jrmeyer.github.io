@@ -20,3 +20,7 @@ highlighter: rouge
 
 # Google services
 google_analytics: UA-90329904-1
+
+
+plugins:
+  - jekyll-redirect-from
