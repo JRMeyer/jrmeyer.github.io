@@ -25,7 +25,7 @@ December 9, 2017 // 13:40 - 21:00
 
 ### Recommended Do Before
 
-1. Install our version of Ossian / Merlin / Kaldi
+1. Install official version of Ossian 
 2. Download Data
 
 
@@ -62,12 +62,56 @@ such as English [1], Russian, and Catalan [2], there has yet to be a system crea
 Before we can get started with Ossian, let's download and install its dependencies. Thankfully, there aren't too many, and they're all very easy to get working fast.
 
 
+### HTK
+
+Ossian requires HTK to generate the alignments for training your DNN in Merlin. To get access to HTK, you need to register an account with the University of Cambridge. Thankfully, registration is really easy! Just go to this link:
+
+```
+http://htk.eng.cam.ac.uk/register.shtml
+```
+{: style="text-align: center;"}
+
+<br/>
+
+
+Fill out some information:
+
+<div style="display: flex; justify-content: center;">
+<img src="/misc/htk-register-1.png" style="width: 400px;"/>  
+</div>
+<br/>
+
+And accept the terms of the license:
+
+<div style="display: flex; justify-content: center;">
+<img src="/misc/htk-register-2.png" style="width: 500px;"/>  
+</div>
+<br/>
+
+
+You will receive your password in a very short email from `htk-mgr@eng.cam.ac.uk` that looks something like this:
+
+<div style="display: flex; justify-content: center;">
+<img src="/misc/htk-register-3.png" style="width: 800px;"/>  
+</div>
+<br/>
+
+The password you receive will be some random string, so if you prefer a password that isn't gibberish, you can easily change it here: ```http://htk.eng.cam.ac.uk/change_pass.shtml```.
+
+At this point, don't worry about downloading HTK yourself. Soon, we will take your beautiful new username and password and feed them into Ossian's installation script. The installation script is designed to take care of all the downloading, compilation and formatting for HTK, so you don't have to! This means less time worrying about file structure and more time working on speech synthesis!
+
+<br/>
+
+
 ### Compilation Dependencies
 
 These are some dependencies you may need for compiling Ossian on Linux:
 
 {% highlight bash %}
-sudo apt-get install clang libsndfile1-dev gsl-bin libgsl0-dev libconfig-dev
+sudo apt-get install software-properties-common
+sudo apt-add-repository universe
+sudo apt-get update
+sudo apt-get install python-pip clang libsndfile1-dev gsl-bin libgsl0-dev libconfig-dev
 {% endhighlight %}
 
 
@@ -90,31 +134,33 @@ That's it! You should be good to go on dependencies.
 <br/>
 <br/>
 
-## Install Ossian / Merlin / Kaldi
+## Install Ossian / Merlin / HTK
 
 Now we're ready to install Ossian itself! Huzzah! First let's clone Ossian from github, then compile it.
 
-### Clone Ossian (bundled w/ Merlin and Kaldi)
+### Clone Ossian (bundled w/ Merlin and HTK)
 
 {% highlight bash %}
-git clone 
+git clone https://github.com/CSTR-Edinburgh/Ossian.git
 {% endhighlight %}
 
 
 <br/>
 
-### Compile Ossian (bundled w/ Merlin and Kaldi)
+### Compile Ossian (bundled w/ Merlin and HTK)
 
 Our configuration and compiling will be done by the `./tools/setup_tools.sh` script. 
 
-In fact this one script will download and compile both `Kaldi` and `Merlin` in addition to `Ossian`. 
+In fact this one script will download and compile both `HTK` and `Merlin` in addition to `Ossian`. 
+
+This script takes two arguments, `HTK_USERNAME` and `HTK_PASSWORD`.
 
 {% highlight bash %}
-./scripts/setup_tools.sh
+./scripts/setup_tools.sh $HTK_USERNAME $HTK_PASSWORD
 {% endhighlight %}
 
 
-This script has compiled `Ossian`, cloned and compiled `Merlin`, downloaded and compiled `Kaldi`, and put everything in the `tools` directory. At this point, if you didn't run into any problems, you should have a working installation of Ossian which can call both Merlin and Kaldi.
+This script has compiled `Ossian`, cloned and compiled `Merlin`, downloaded and compiled `HTK`, and put everything in the `tools` directory. At this point, if you didn't run into any problems, you should have a working installation of Ossian which can call both Merlin and HTK.
 
 
 <br/>
@@ -133,14 +179,7 @@ We got recordings, and even though there's only about an hour, we can still trai
 First let's download the CSTR corpus:
 
 {% highlight bash %}
-wget
-{% endhighlight %}
-
-
-Now we need to unpack the compressed corpus:
-
-{% highlight bash %}
-tar xvf
+git clone https://github.com/ftyers/Turkic_TTS.git
 {% endhighlight %}
 
 
@@ -170,9 +209,9 @@ corpus/
 
 I'm only showing a few audio (`*.wav`) and text (`*.txt`) files here, but you get the idea. The filenames for each utterance and its transcript are the same. You see we have a `adr_diph1_001.wav` as well as a `adr_diph1_001.txt`. If you have mismatches or missing files, you will have issues later on in training.
 
-For this demo, remember that we're working with the Romainian language, hence the main directory label `rm` for "Romainian". One level down we have a `speakers` directory and a `text_corpora` directory. We can have multiple speakers (i.e. voices) per language, so you can imagine having multiple subdirs under `speakers/*`, one for each voice or corpus. Here the speaker dir we're working with is labeled `rss_toy_demo`, but it could easily be called `mary` or `john` for the actual speaker's name.
+For this demo, remember that we're working with the Chuvash language, hence the main directory label `chv` for "Chuvash". One level down we have a `speakers` directory and a `text_corpora` directory. We can have multiple speakers (i.e. voices) per language, so you can imagine having multiple subdirs under `speakers/*`, one for each voice or corpus. Here the speaker dir we're working with is labeled `chuvash_news`, but it could easily be the actual speaker's name.
 
-Next, we have a text corpus directory called `text_corpora`. We could have multiple text corpora (just like we could have multiple speakers), but in our case we're just working with a sample of Romainian Wikipedia, hence the filename `wikipedia_10k_words`.
+Next, we have a text corpus directory called `text_corpora`. We could have multiple text corpora (just like we could have multiple speakers).
 
 So, now that we've downloaded our data and taken a look, let's use it to make a speech synthesizer!
 
