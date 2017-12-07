@@ -245,9 +245,9 @@ Just run the following commands:
 {% highlight bash %}
 export THEANO_FLAGS=""
 # train duration model
-python ./tools/merlin/src/run_merlin.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/duration_predictor/config.cfg
+python ./tools/merlin/src/run_merlin.py ~/Ossian/train/chv/speakers/news/naive_01_nn/processors/duration_predictor/config.cfg
 # train acoustic model
-python ./tools/merlin/src/run_merlin.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/acoustic_predictor/config.cfg
+python ./tools/merlin/src/run_merlin.py ~/Ossian/train/chv/speakers/news/naive_01_nn/processors/acoustic_predictor/config.cfg
 {% endhighlight %}
 
 
@@ -264,9 +264,9 @@ We call the conversion script with:
 
 {% highlight bash %}
 # store duration model
-python ./scripts/util/store_merlin_model.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/duration_predictor/config.cfg /home/josh/git/Ossian/voices/rm/rss_toy_demo/naive_01_nn/processors/duration_predictor
+python ./scripts/util/store_merlin_model.py ~/Ossian/train/chv/speakers/news/naive_01_nn/processors/duration_predictor/config.cfg ~/Ossian/voices/chv/news/naive_01_nn/processors/duration_predictor
 # store acoustic model
-python ./scripts/util/store_merlin_model.py /home/josh/git/Ossian/train/rm/speakers/rss_toy_demo/naive_01_nn/processors/acoustic_predictor/config.cfg /home/josh/git/Ossian/voices/rm/rss_toy_demo/naive_01_nn/processors/acoustic_predictor
+python ./scripts/util/store_merlin_model.py ~/Ossian/train/chv/speakers/news/naive_01_nn/processors/acoustic_predictor/config.cfg ~/Ossian/voices/chv/news/naive_01_nn/processors/acoustic_predictor
 {% endhighlight %}
 
 
