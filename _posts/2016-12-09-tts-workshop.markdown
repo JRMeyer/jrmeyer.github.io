@@ -117,7 +117,7 @@ These are some dependencies you may need for compiling Ossian on Linux:
 sudo apt-get install software-properties-common
 sudo apt-add-repository universe
 sudo apt-get update
-sudo apt-get install python-pip clang libsndfile1-dev gsl-bin libgsl0-dev libconfig-dev
+sudo apt-get install python3-pip clang libsndfile1-dev gsl-bin libgsl0-dev libconfig-dev
 {% endhighlight %}
 
 
@@ -125,14 +125,14 @@ sudo apt-get install python-pip clang libsndfile1-dev gsl-bin libgsl0-dev libcon
 
 ### Python Dependencies
 
-Next we will install some Python dependencies:
+Next we will install some Python dependencies. The tools should work with both `Python2` and `Python3`.
 
 {% highlight bash %}
 # for Ossian
-sudo pip install numpy scipy regex argparse lxml scikit-learn regex configobj
+sudo pip3 install numpy scipy regex argparse lxml scikit-learn regex configobj
 
 # for Merlin
-sudo pip install bandmat theano matplotlib
+sudo pip3 install bandmat theano matplotlib
 {% endhighlight %}
 
 That's it! You should be good to go on dependencies.
