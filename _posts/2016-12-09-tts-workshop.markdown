@@ -190,7 +190,7 @@ git clone https://github.com/ftyers/Turkic_TTS.git
 
 
 
-Now let's take a look at the file structure of this Romanian corpus. When building your own language, you should have your file structure be exactly the same.
+Now let's take a look at the file structure of this Chuvash corpus. When building your own language, you should have your file structure be exactly the same.
 
 {% highlight bash %}
 tree corpus/
@@ -289,7 +289,7 @@ mkdir ./test/wav/
 python ./scripts/speak.py -l chv -s news -o ./test/wav/chuvash_test.wav naive_01_nn ./test/txt/chuvash_test.txt
 {% endhighlight %}
 
-And there you go! You can listen to your beautiul new Romainian speech in the file `./test/wav/romanian_test.wav`.
+And there you go! You can listen to your beautiul new Romainian speech in the file `./test/wav/chuvash_test.wav`.
 
 
 
