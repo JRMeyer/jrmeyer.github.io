@@ -10,6 +10,12 @@ comments: True
 
 ## Logistics
 
+
+### Slides
+
+`http://jrmeyer.github.io/misc/tts-vishka.pdf`
+
+
 ### Time & Place
 
 Вышка // Старая Басманная 24/1 // Room 509
