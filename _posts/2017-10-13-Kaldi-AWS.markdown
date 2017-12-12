@@ -128,7 +128,7 @@ I got these steps from this [good post on askubuntu][install-cuda]. If you have 
 First download CUDA from NVIDIA. You might need a different link here depending on when you read this.
 
 {% highlight bash %}
-wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
+sudo wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda_9.0.176_384.81_linux-run
 {% endhighlight %}
 
 Install CUDA:
