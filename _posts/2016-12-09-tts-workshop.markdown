@@ -188,9 +188,14 @@ First let's download the CSTR corpus:
 git clone https://github.com/ftyers/Turkic_TTS.git
 {% endhighlight %}
 
+Make the right directory structure in Ossian home dir:
+
+{% highlight bash %}
+OSSIAN$ mkdir -p corpus/chv/speakers/news/wav corpus/chv/speakers/news/txt
+{% endhighlight %}
 
 
-Now let's take a look at the file structure of this Chuvash corpus. When building your own language, you should have your file structure be exactly the same.
+Now let's take a look at the file structure of the Chuvash corpus we need. When building your own language, you should have your file structure be exactly the same.
 
 {% highlight bash %}
 tree corpus/
