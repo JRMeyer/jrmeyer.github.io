@@ -9,7 +9,7 @@ permalink: /about/
 <br/>
 <br/>
 
-My name's Josh and I'm an NSF Graduate Research Fellow and PhD student at the University of Arizona. My research is mainly on automatic speech recognition, but I do some Natural Language Processing and general Machine Learning as well. I also have a close eye on Artificial Intelligence. This blog is some of what I'm learning along the way.
+My name's Josh and I'm an NSF Graduate Research Fellow and PhD candidate at the University of Arizona. My research is on automatic speech recognition, but I do some Natural Language Processing and general Machine Learning as well. I also keep a close eye on Artificial Intelligence. This blog is some of what I'm learning along the way.
 
 <br/>
 <br/>
