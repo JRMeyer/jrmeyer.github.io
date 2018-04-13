@@ -315,6 +315,95 @@ sed "s/17385-0003 //g" exp_chv/monophones/test.fst | ../../../tools/openfst-1.6.
 
 
 
+### Choose one training utt
+
+{% highlight bash %}
+
+# working with a reletively short utterance, look at its transcription
+$ grep atai_354 input_org/transcripts 
+atai_354 сокого таар жаап койчу
+
+{% endhighlight %}
+
+
+### Word Level alignment
+
+{% highlight bash %}
+
+# this creates the ctm file
+$ steps/get_train_ctm.sh data_org/train/ data_org/lang exp_org/monophones_aligned/
+
+# pull out one utt from ctm file
+$ grep atai_354 exp_org/monophones_aligned/ctm 
+atai_354 1 0.270 0.450 сокого 
+atai_354 1 0.720 0.420 таар 
+atai_354 1 1.140 0.330 жаап 
+atai_354 1 1.470 0.510 койчу 
+{% endhighlight %}
+
+
+
+### Phone level alignments ( CTM style )
+
+{% highlight bash %}
+
+$ ali-to-phones --ctm-output exp_org/monophones_aligned/final.mdl ark:"gunzip -c exp_org/monophones_aligned/ali.2.gz |"  -> ali.2.ctm ; grep "atai_354" ali.2.ctm
+atai_354 1 0.000 0.270 1
+atai_354 1 0.270 0.100 22
+atai_354 1 0.370 0.090 18
+atai_354 1 0.460 0.060 13
+atai_354 1 0.520 0.100 18
+atai_354 1 0.620 0.050 8
+atai_354 1 0.670 0.050 18
+atai_354 1 0.720 0.150 24
+atai_354 1 0.870 0.070 3
+atai_354 1 0.940 0.140 3
+atai_354 1 1.080 0.060 21
+atai_354 1 1.140 0.110 29
+atai_354 1 1.250 0.050 3
+atai_354 1 1.300 0.060 3
+atai_354 1 1.360 0.110 20
+atai_354 1 1.470 0.050 13
+atai_354 1 1.520 0.050 18
+atai_354 1 1.570 0.040 12
+atai_354 1 1.610 0.180 5
+atai_354 1 1.790 0.190 25
+atai_354 1 1.980 0.420 1
+
+{% endhighlight %}
+
+
+
+### Pretty phone alignments
+
+{% highlight bash %}
+
+$ show-alignments data_org/lang/phones.txt exp_org/monophones_aligned/final.mdl ark:"gunzip -c ali.1.gz |" | grep "atai_354"
+
+atai_354  [ 3 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 12 18 17 17 17 ] [ 140 139 139 142 141 144 143 143 143 143 ] [ 116 115 118 117 120 119 119 119 119 ] [ 86 85 85 88 90 89 ] [ 116 115 115 118 117 117 117 117 120 119 ] [ 56 58 60 59 59 ] [ 116 118 117 117 120 ] [ 152 151 151 151 151 151 151 151 154 153 156 155 155 155 155 ] [ 26 28 27 27 27 27 30 ] [ 26 28 27 27 27 27 27 27 27 27 27 27 27 30 ] [ 134 133 133 133 136 138 ] [ 182 184 183 183 183 183 186 185 185 185 185 ] [ 26 25 28 27 30 ] [ 26 28 27 27 30 29 ] [ 128 127 127 127 127 130 129 129 132 131 131 ] [ 86 85 88 90 89 ] [ 116 115 118 120 119 ] [ 80 79 82 84 ] [ 38 37 37 37 37 37 37 40 39 39 39 39 39 39 42 41 41 41 ] [ 158 157 157 157 157 160 162 161 161 161 161 161 161 161 161 161 161 161 161 ] [ 4 1 1 1 1 1 1 1 16 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 18 ] 
+atai_354  SIL                                                            s                                           o                                       k                     o                                           g                  o                       t                                                               a                        a                                             r                           zh                                              a                  a                     p                                               k                  o                       j               ch                                                        u                                                                               SIL                                                                                                                       
+
+{% endhighlight %}
+
+
+## Print the Training graph for one utterance
+
+{% highlight bash %}
+
+# make a file that contains one uttID
+echo "atai_354"> utt.id
+
+# compile that one graph
+$ compile-train-graphs exp_org/monophones/tree exp_org/monophones/0.mdl data_org/lang/L.fst 'ark:utils/sym2int.pl --map-oov 267 -f 2- data_org/lang/words.txt < utt.id|' 'ark:mynew.fst' 
+
+# get rid of its utt id at the beginning of file and print
+sed "s/atai_354 //g" mynew.fst | fstprint --isymbols=data_org/lang/phones.txt --osymbols=data_org/lang/words.txt 
+{% endhighlight %}
+
+
+
+
+
 ## Other Blogs
 
 Here's "[Kaldi For Dummies][kaldi-for-dummies]".
