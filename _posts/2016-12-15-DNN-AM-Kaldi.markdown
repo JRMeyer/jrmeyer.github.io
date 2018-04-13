@@ -17,7 +17,12 @@ redirect_from: "/kaldi/2016/12/15/DNN-AM-Kaldi.html"
 
 If you want to take a step back and learn about Kaldi in general, I have posts on [how to install Kaldi][kaldi-install] or some [miscellaneous Kaldi notes][kaldi-notes] which contain some documentation.
 
-All the scripts presented in this post or required for training can be downloaded [here]({{ site.url }}/misc/nnet2_simple.tar.gz).
+All the scripts presented in this post or required for training can be downloaded [here]({{ site.url }}/misc/nnet2_simple.tar.gz) or cloned from here:
+
+{% highlight bash %}
+git clone https://github.com/JRMeyer/nnet2-simple.git
+{% endhighlight %}
+
 
 Much of the information in this post comes directly from the [official `nnet2` documentation][nnet2-docs]. 
 
