@@ -25,6 +25,7 @@ You're not going to find any tricks or hacks here. The title to this blog post i
 <br/>
 
 
+
 ## Pre-requisites
 
 1. A working, new version of TensorFlow installed.
@@ -32,6 +33,7 @@ You're not going to find any tricks or hacks here. The title to this blog post i
 
 <br/>
 <br/>
+
 
 
 ## Data in CSV
@@ -49,6 +51,11 @@ Here's what my data CSV file looks like (where the delimiter is a single space):
 
 <br/>
 <br/>
+
+## Converting CSV to TFRecords
+
+`TFRecords` is the preferred file format for TensorFlow. These tfrecords files take up a lot of space on disk, but they can be easily sharded across machines, and the entire TensorFlow pipeline is optimized with tfrecords in mind.
+
 
 
 ## Datasets and Estimators
