@@ -21,11 +21,34 @@ This post will guide you on how to take your data (in a CSV file) to a trained T
 
 You're not going to find any tricks or hacks here. The title to this blog post is so general because the TensorFlow developers have done all the work and created a very general API for importing data and training standard models. If you follow all the suggestions of the official TensorFlow docs, you should come to the same conclusions I did. However, it's tempting to write code that quickly works for only your own data. If you take a little extra time to study the API and write something generalizable, you will save yourself headaches in the future. If you follow the instructions I show here, you will be able to easily train one model architecture on different datasets, or you can train multiple models with your one dataset.
 
+<br/>
+<br/>
+
+
 ## Pre-requisites
 
 1. A working, new version of TensorFlow installed.
 2. Your data in CSV format. The reason I choose CSV data as the starting point is that most any data can be formatted as a CSV file. Getting from your raw data to a CSV file is on you, but once you get there, the rest is smooth sailing:) From CSV data, I show you how to get your data into `tfrecords` format, which is the prefered TF data format. So, if your data is already in tfrecords, you're already ahead of the curve!
 
+<br/>
+<br/>
+
+
+## Data in CSV
+
+For this post, I'm going to be working with my own labeled data. Each training data example is represented as a single row in the CSV file, where the first column represents the label (an integer), all the following columns represent the features for that example (floating point numbers). I'm working with audio (speech) data, and the features are something like amplitudes at various frequency ranges - not important to your task, but it may help to ground the example more. The labels (the first column) represent categories of speech sounds, for example, label 45 might be the vowel "oh" and label 7 might be the consonant "k".
+
+Here's what my data CSV file looks like (where the delimiter is a single space):
+
+```
+95 21.50192 -2.16182 -1.591426 0.06965831 0.6690025  ...  -0.7368361 -1.385849 0.7551874 -0.8878949 -0.4799456 
+7 22.23698 -1.177924 -1.368747 -0.6289141 0.009075502  ... -0.9235415 -1.74792 0.2629939 -2.119366 -0.539937
+45 22.83421 -0.9043457 -1.591426 -0.816999 -0.3035215  ...  -0.5301266 -1.456303 -0.1479924 -1.641482 -0.04098308 
+27 -0.9376022 -0.05841255 0.3308391 -0.7141842 -0.3867566  ...  -1.263647 23.4316 -0.0009118451 -1.035212 -1.635385
+```
+
+<br/>
+<br/>
 
 
 ## Datasets and Estimators
