@@ -119,7 +119,7 @@ You will probably agree that each of these three arguments is very clear expect 
 
 
 
-[parser-fn]
+[parser-fn]: https://www.tensorflow.org/programmers_guide/datasets#preprocessing_data_with_datasetmap
 [tf-numeric_column]: https://www.tensorflow.org/api_docs/python/tf/feature_column/numeric_column
 [tf-one_hot]: https://www.tensorflow.org/api_docs/python/tf/feature_column/categorical_column_with_vocabulary_list
 [tf-embedding_column]: https://www.tensorflow.org/api_docs/python/tf/feature_column/embedding_column
