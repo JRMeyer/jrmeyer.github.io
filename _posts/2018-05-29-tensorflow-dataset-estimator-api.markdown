@@ -12,7 +12,15 @@ comments: True
 
 <br/>
 <br/>
+<br/>
+<br/>
 
+THIS POST IS IN PROGRESS
+
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 ## Objectives
@@ -55,6 +63,50 @@ Here's what my data CSV file looks like (where the delimiter is a single space):
 ## Converting CSV to TFRecords
 
 `TFRecords` is the preferred file format for TensorFlow. These tfrecords files take up a lot of space on disk, but they can be easily sharded across machines, and the entire TensorFlow pipeline is optimized with tfrecords in mind.
+
+
+```
+import sys
+import pandas
+import tensorflow as tf
+import numpy as np
+
+# 
+# USAGE: $ python3 csv-to-tfrecords.py data.csv data.tfrecords
+#
+#
+
+infile=sys.argv[1]
+outfile=sys.argv[2]
+
+csv = pandas.read_csv(infile, header=None).values
+
+
+with tf.python_io.TFRecordWriter(outfile) as writer:
+    for row in csv:
+        
+        ## READ FROM CSV ##
+        
+        # row is read as a single char string of the label and all my floats, so remove trailing whitespace and split
+        row = row[0].rstrip().split(' ')
+        # the first col is label, all rest are feats
+        label = int(row[0])
+        # convert each floating point feature from char to float to bytes
+        feats = np.array([ float(feat) for feat in row[1:] ]).tostring()
+
+        ## SAVE TO TFRECORDS ##
+
+        # A tfrecords file is made up of tf.train.Example objects, and each of these
+        # tf.train.Examples contains one or more "features"
+        # use SequenceExample if you've got sequential data
+        
+        example = tf.train.Example()
+        example.features.feature["feats"].bytes_list.value.append(feats)
+        example.features.feature["label"].int64_list.value.append(label)
+        writer.write(example.SerializeToString())
+```
+
+
 
 
 
