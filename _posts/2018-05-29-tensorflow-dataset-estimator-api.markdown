@@ -111,10 +111,24 @@ with tf.python_io.TFRecordWriter(outfile) as writer:
 
 There's a good amount of resources on tfrecords out there, so if you have more questions you should check out the official TF docs on [reading data][reading-data], [Python-IO][python-io], and [importing data][importing-data].
 
+<br/>
+<br/>
+
+
+## Pause
+
+If you've gotten to this point, you should have successfully converted your data and saved it in `TFRecords` format. Take a pause and pat yourself on the back, because you've accomplished the most time-consuming and boring part of machine learning: data formatting.
+
+Now that you have your data in a format TensorFlow likes, we need to read that data in and train some models. Before we jump into training code, you'll want a little background on TensorFlow's awesome APIs for working with data and models: `tf.data` and `tf.estimator`.
+
+
+<br/>
+<br/>
 
 ## Datasets and Estimators
 
-The official TensorFlow docs push hard for you to use their [Dataset][tf-dataset] and [Estimator][tf-estimator] APIs. In general, if the docs explicitly tell you there is a preferred way to do something, you should do that!
+The official TensorFlow docs push hard for you to use their [Dataset][tf-dataset] and [Estimator][tf-estimator] APIs. In general, if the docs explicitly tell you there is a preferred way to do something, you should do that because all the newest features will surely work for this format but maybe not others.
+
 
 <br/>
 
@@ -132,7 +146,10 @@ dataset = (
 )
 ```
 
-In the above definition of `dataset`, you can see there's a line where you point TensorFlow to your data on disc, and read the data via `tf.data.TFRecordDataset`. The `.shuffle()` and `.batch()` functions are optional, but you really need the `.map()` function. The `.map()` function provides the methods for not just reading your data, but parsing it into meaningful pieces like "label" and "features". However, `.map()` is a super general function, and it doesn't know anything about your data, so we have to pass a special parsing function which `.map()` then applies to the data. This `parser` function is probably the main thing you have to adjust for your own data.
+In the above definition of `dataset`, you can see there's a line where you point TensorFlow to your data on disc, and read the data via `tf.data.TFRecordDataset`. The `.shuffle()` and `.batch()` functions are optional, but you will need the `.map()` function.
+
+The `.map()` function provides the methods for parsing your data into meaningful pieces like "labels" and "features". However, `.map()` is a super general function, and it doesn't know anything about your data, so we have to pass a special parsing function which `.map()` then applies to the data. This `parser` function is probably the main thing you have to create for your own dataset, and it should exactly mirror the way you saved your data to TFRecords above with the `tf.Example` object (in the CSV to TFRecords section).
+
 
 Here's an example of such a `parser` function:
 
@@ -144,21 +161,26 @@ def parser(record):
     this function defines what the labels and data look like
     for your labeled data. 
     '''
-  
+
+    # the 'features' here include your normal data feats along
+    # with the label for that data
     features={
       'feats': tf.FixedLenFeature([], tf.string),
       'label': tf.FixedLenFeature([], tf.int64),
     }
-  
+
     parsed = tf.parse_single_example(record, features)
-  
+
+    # some conversion and casting to get from bytes to floats and ints
     feats= tf.convert_to_tensor(tf.decode_raw(parsed['feats'], tf.float64))
     label= tf.cast(parsed['label'], tf.int32)
 
+    # since you can have multiple kinds of feats, you return a dictionary for feats
+    # but only an int for the label
     return {'feats': feats}, label
 ```
 
-To get into the details of this function and how you can define one for your data, take a look at the [official docs][parse-fn]. Remember that if you have labeled training data, the `features` definition above includes the data features (`feats`) as well as the labels (`label`).
+To get into the details of this function and how you can define one for your data, take a look at the [official parse function docs][parse-fn]. Remember that if you have labeled training data, the `features` definition above includes the data features (`feats`) as well as the labels (`label`). If you're doing something like k-means clustering (where labels aren't used), you won't return a label.
 
 
 
@@ -177,13 +199,20 @@ You can instantiate an `Estimator` object with minimal, readable code. If you de
 
 ```
 DNNClassifier = tf.estimator.DNNClassifier(
-   feature_columns = [tf.feature_column.numeric_column(key='mfccs',
+
+   # for a DNN, this feature_columns object is really just a definition
+   # of the input layer
+   feature_columns = [tf.feature_column.numeric_column(key='feats',
                                                        shape=(377,),
                                                        dtype=tf.float64)],
-   hidden_units = [256, 256, 256, 256],
-   n_classes = 96,
-)
 
+   # four hidden layers with 256 nodes in each layer
+   hidden_units = [256, 256, 256, 256],
+   
+   # number of classes (aka number of nodes on the output layer)
+   n_classes = 96,
+
+)
 ```
 
 We've just defined a new DNN Classifier with an input layer (`feature_columns`), four hidden layers (`hidden_units`), and an output layer (`n_classes`). Pretty easy, yeah?
@@ -191,7 +220,8 @@ We've just defined a new DNN Classifier with an input layer (`feature_columns`),
 
 You will probably agree that each of these three arguments is very clear expect for maybe the `feature_columns` argument. You can think of "feature_columns" as being identical to "input_layer". However, `feature_columns` allows you to do a whole lot of pre-processing that a traditional input layer would never allow. The [official documentation on `feature_columns`][tf-feature_columns] is really good, and you should take a look. In a nutshell, think of these `feature_columns` as a set of instructions for how to squeeze your raw data into the right shape for a neural net (or whatever model you're training). Neural nets cannot take as input words, intergers, or anything else that isn't a floating point number.
 
-The `feature_columns` API helps you not only get your data into floats, but it helps you find floats that actually make sense for your problem at hand. You can easily encode words or categories as one-hot vectors, but one-hot vectors are not practical if you have a billion different words in your data. Instead of using [one-hot vector `feature_columns`][tf-one_hot], you can use the `feature_column` type [`embedding_column`][tf-embedding_column] to find a lower-dimensional representation of your data which makes sense. In the example above, I use the [`feature_column.numeric_column`][tf-numeric_column] because my input data is already encoded as floating point numbers.
+The `feature_columns` API helps you not only get your data into floats, but it helps you find floats that actually make sense for your task at hand. You can easily encode words or categories as one-hot vectors, but one-hot vectors are not practical if you have a billion different words in your data. Instead of using [one-hot vector `feature_columns`][tf-one_hot], you can use the `feature_column` type [`embedding_column`][tf-embedding_column] to find a lower-dimensional representation of your data. In the example above, I use the [`feature_column.numeric_column`][tf-numeric_column] because my input data is already encoded as floating point numbers.
+
 
 
 
