@@ -224,11 +224,73 @@ The `feature_columns` API helps you not only get your data into floats, but it h
 
 
 
+<br/>
+<br/>
 
+## Putting it All Together
 
+### parser_fn
 
+```
+def parser(record):
 
+  features={
+    'mfccs': tf.FixedLenFeature([], tf.string),
+    'label': tf.FixedLenFeature([], tf.int64),
+  }
+  
+  parsed = tf.parse_single_example(record, features)
+  mfccs = tf.convert_to_tensor(tf.decode_raw(parsed['mfccs'], tf.float64))
+  label = tf.cast(parsed['label'], tf.int32)
 
+  return {'mfccs': mfccs}, label
+```
+
+### input_fn
+
+This is an Estimator input function. It defines things like datasets and batches, and can perform operations such as shuffling. Both the dataset and dataset iterator are defined here.
+  
+```
+def my_input_fn(tfrecords_path):
+
+  dataset = (
+    tf.data.TFRecordDataset(tfrecords_path)
+    .map(parser)
+    .batch(1024)
+  )
+  
+  iterator = dataset.make_one_shot_iterator()
+
+  batch_mfccs, batch_labels = iterator.get_next()
+
+  return batch_mfccs, batch_labels
+```
+
+### Estimator
+
+```
+DNNClassifier = tf.estimator.DNNClassifier(
+  feature_columns = [tf.feature_column.numeric_column(key='mfccs', dtype=tf.float64, shape=(377,))],
+  hidden_units = [256, 256, 256, 256],
+  n_classes = 96,
+  model_dir = '/tmp/tf')
+```
+
+### Specs
+```
+train_spec_dnn = tf.estimator.TrainSpec(input_fn = lambda: my_input_fn('/home/ubuntu/train.tfrecords') , max_steps=1000)
+eval_spec_dnn = tf.estimator.EvalSpec(input_fn = lambda: my_input_fn('/home/ubuntu/eval.tfrecords') )
+```
+
+### Train & Eval
+```
+tf.estimator.train_and_evaluate(DNNClassifier, train_spec_dnn, eval_spec_dnn)
+```
+
+### Inference
+```
+predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/ubuntu/test.tfrecords')))
+```
 
 
 
@@ -250,3 +312,4 @@ The `feature_columns` API helps you not only get your data into floats, but it h
 [reading-data]: https://www.tensorflow.org/versions/r1.0/programmers_guide/reading_data#file_formats
 [python-io]: https://www.tensorflow.org/versions/r1.0/api_guides/python/python_io#tfrecords_format_details
 [importing-data]: https://www.tensorflow.org/programmers_guide/datasets#consuming_tfrecord_data
+[input-fn]: https://www.tensorflow.org/versions/r1.3/get_started/input_fn
