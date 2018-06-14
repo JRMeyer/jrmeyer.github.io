@@ -235,15 +235,15 @@ The `feature_columns` API helps you not only get your data into floats, but it h
 def parser(record):
 
   features={
-    'mfccs': tf.FixedLenFeature([], tf.string),
+    'feats': tf.FixedLenFeature([], tf.string),
     'label': tf.FixedLenFeature([], tf.int64),
   }
   
   parsed = tf.parse_single_example(record, features)
-  mfccs = tf.convert_to_tensor(tf.decode_raw(parsed['mfccs'], tf.float64))
+  feats = tf.convert_to_tensor(tf.decode_raw(parsed['feats'], tf.float64))
   label = tf.cast(parsed['label'], tf.int32)
 
-  return {'mfccs': mfccs}, label
+  return {'feats': feats}, label
 ```
 
 ### input_fn
@@ -261,16 +261,16 @@ def my_input_fn(tfrecords_path):
   
   iterator = dataset.make_one_shot_iterator()
 
-  batch_mfccs, batch_labels = iterator.get_next()
+  batch_feats, batch_labels = iterator.get_next()
 
-  return batch_mfccs, batch_labels
+  return batch_feats, batch_labels
 ```
 
 ### Estimator
 
 ```
 DNNClassifier = tf.estimator.DNNClassifier(
-  feature_columns = [tf.feature_column.numeric_column(key='mfccs', dtype=tf.float64, shape=(377,))],
+  feature_columns = [tf.feature_column.numeric_column(key='feats', dtype=tf.float64, shape=(377,))],
   hidden_units = [256, 256, 256, 256],
   n_classes = 96,
   model_dir = '/tmp/tf')
