@@ -48,7 +48,7 @@ You're not going to find any tricks or hacks here. The title to this blog post i
 
 For this post, I'm going to be working with my own labeled data. Each training data example is represented as a single row in the CSV file, where the first column represents the label (an integer), all the following columns represent the features for that example (floating point numbers). I'm working with audio (speech) data, and the features are something like amplitudes at various frequency ranges - not important to your task, but it may help to ground the example more. The labels (the first column) represent categories of speech sounds, for example, label 45 might be the vowel "oh" and label 7 might be the consonant "k".
 
-Here's what my data CSV file looks like (where the delimiter is a single space):
+Here's what four lines of my data CSV file look like (where the delimiter is a single space):
 
 ```
 95 21.50192 -2.16182 -1.591426 0.06965831 0.6690025  ...  -0.7368361 -1.385849 0.7551874 -0.8878949 -0.4799456 
@@ -60,21 +60,23 @@ Here's what my data CSV file looks like (where the delimiter is a single space):
 <br/>
 <br/>
 
-## Converting CSV to TFRecords
+## Convert CSV to TFRecords
 
-`TFRecords` is the preferred file format for TensorFlow. These tfrecords files take up a lot of space on disk, but they can be easily sharded across machines, and the entire TensorFlow pipeline is optimized with tfrecords in mind.
+`TFRecords` is the preferred file format for TensorFlow. These tfrecords files take up a lot of space on disk, but they can be easily sharded across machines, and the entire TensorFlow pipeline is optimized with tfrecords in mind. There are ways to read CSV files directly into Tensorflow, but having a tfrecords file on disk is better for reuse. Here I show you an example Python script to read in a `.csv` data file (as described above) and save to a `.tfrecords` file.
 
+You can find the original version of the following `csv-to-records.py` on my GitHub [here][csv-to-tfrecords].
 
 ```
-import sys
-import pandas
 import tensorflow as tf
 import numpy as np
+import pandas
+import sys
+
 
 # 
 # USAGE: $ python3 csv-to-tfrecords.py data.csv data.tfrecords
 #
-#
+
 
 infile=sys.argv[1]
 outfile=sys.argv[2]
@@ -107,7 +109,7 @@ with tf.python_io.TFRecordWriter(outfile) as writer:
 ```
 
 
-
+There's a good amount of resources on tfrecords out there, so if you have more questions you should check out the official TF docs on [reading data][reading-data], [Python-IO][python-io], and [importing data][importing-data].
 
 
 ## Datasets and Estimators
@@ -214,3 +216,7 @@ The `feature_columns` API helps you not only get your data into floats, but it h
 [tf-estimator]: https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator
 [tf-dataset]: https://www.tensorflow.org/api_docs/python/tf/data/Dataset
 [tf-docs]: https://www.tensorflow.org/versions/r0.7/get_started/basic_usage.html
+[csv-to-tfrecords]: https://github.com/JRMeyer/kaldi-tf/blob/master/csv-to-tfrecords.py
+[reading-data]: https://www.tensorflow.org/versions/r1.0/programmers_guide/reading_data#file_formats
+[python-io]: https://www.tensorflow.org/versions/r1.0/api_guides/python/python_io#tfrecords_format_details
+[importing-data]: https://www.tensorflow.org/programmers_guide/datasets#consuming_tfrecord_data
