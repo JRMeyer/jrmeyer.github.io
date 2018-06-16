@@ -193,7 +193,7 @@ To get into the details of this function and how you can define one for your dat
 
 ### [`tf.estimator.Estimator`][tf-estimator]
 
-The `Estimator` class gives you an API for interaction with your model. It's like a wrapper for a model which allows you to train, evaluate, and export the model as well as make inferences on new data. Usually you won't be interacting directly with the base class `tf.estimator.Estimator`, but rather with the `Estimator` Classes which directly inherit from it, such as the [`DNNClassifier`][tf-dnnclassifier] Class. There are a whole set of pre-defined, easy to use `Estimator`s which you can start working with out of the box, such as [`LinearRegressor`][tf-linearregressor] or [`BoostedTreesClassifier`][tf-boostedtreesclassifier]
+The `Estimator` class gives you an API for interaction with your model. Here's a good overview from [the official docs][more-estimator-docs]. It's like a wrapper for a model which allows you to train, evaluate, and export the model as well as make inferences on new data. Usually you won't be interacting directly with the base class `tf.estimator.Estimator`, but rather with the `Estimator` Classes which directly inherit from it, such as the [`DNNClassifier`][tf-dnnclassifier] Class. There are a whole set of pre-defined, easy to use `Estimator`s which you can start working with out of the box, such as [`LinearRegressor`][tf-linearregressor] or [`BoostedTreesClassifier`][tf-boostedtreesclassifier]
 
 You can instantiate an `Estimator` object with minimal, readable code. If you decide to use the pre-existing `Estimator`s from TensorFlow (i.e. "pre-canned" models), you can get started without digging any deeper than the `__init__()` function! I've defined a 4-layer Deep Neural Network which accepts as input my input data (377-dimensional feature vectors) and predicts one of my 96 classes as such:
 
@@ -313,3 +313,4 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [python-io]: https://www.tensorflow.org/versions/r1.0/api_guides/python/python_io#tfrecords_format_details
 [importing-data]: https://www.tensorflow.org/programmers_guide/datasets#consuming_tfrecord_data
 [input-fn]: https://www.tensorflow.org/versions/r1.3/get_started/input_fn
+[more-estimator-docs]: https://www.tensorflow.org/programmers_guide/estimators
