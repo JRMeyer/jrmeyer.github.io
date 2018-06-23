@@ -8,7 +8,9 @@ permalink: /about/
 
 <br/>
 <br/>
-I'm currently job-hunting... shoot me an email:)
+<center>
+<strong>I'm currently job-hunting... shoot me an email:)</strong>
+</center>
 <br/>
 <br/>
 
