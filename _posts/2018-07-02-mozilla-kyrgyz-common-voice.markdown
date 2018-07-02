@@ -16,7 +16,7 @@ comments: True
 
 ## Introduction
 
-Mozilla is helping build Kyrgyz voice technology (for free) via its Common Voice project. Anyone can go to the Common Voice website and record sentences for the project. We need as many speakers and accents as possible in order to create robust technologies. [Donate your voice now.][kyrgyz-common]
+Mozilla is helping build Kyrgyz voice technology (for free) via its Common Voice project. Anyone can go to the [Common Voice website][en-common] and record sentences for the project. We need as many speakers and accents as possible in order to create robust technologies. [Donate your voice now.][kyrgyz-common]
 
 <br/>
 
@@ -97,3 +97,4 @@ Anyone can record and donate sentences for the Common Voice project, and the mor
 [davis]: https://video.golem.de/internet/20161/mozilla-deep-speech-interview-englisch.html
 [tyers]: https://www.hse.ru/en/news/campus/208242212.html
 [kyrgyz-common]: https://voice.mozilla.org/ky
+[en-common]: https://voice.mozilla.org/en
