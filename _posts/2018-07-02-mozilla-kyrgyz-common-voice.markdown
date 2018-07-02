@@ -8,11 +8,9 @@ comments: True
 
 <br/>
 
-<img src="/misc/robot-greetings.png" align="left" style="height: 100px"/>
-<img src="/misc/common-voice-logo.png" align="right" style="height: 80px"/>
+<img src="/misc/robot-greetings.png" align="right" style="width: 225px;"/>
+<img src="/misc/common-voice-logo.png" align="right" style="width: 225px;"/>
 
-<br/>
-<br/>
 <br/>
 <br/>
 
@@ -49,8 +47,8 @@ However, the time and money required to create one of these datasets is a major 
 
 We took two main steps to add Kyrgyz to the Common Voice project:
 
-1) translate the user interface and information into Kyrgyz
-2) collect text sentences which users will read out-loud
+1. Translate the user interface and information into Kyrgyz
+2. Collect text sentences which users will read out-loud
 
 ### Translation
 
