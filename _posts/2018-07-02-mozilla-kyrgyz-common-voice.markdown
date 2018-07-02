@@ -1,4 +1,4 @@
----
+https://www.auca.kg/---
 layout: post
 title:  "How we added Kyrgyz to Mozilla's Common Voice project"
 date:   2019-05-29
@@ -48,6 +48,9 @@ We took two main steps to add Kyrgyz to the Common Voice project:
 1. Translate the user interface and information into Kyrgyz
 2. Collect text sentences which users will read out-loud
 
+The Common Voice team itself, lead by [Michael Henretty][henretty] and [Kelly Davis][davis] pushed the Kyrgyz language version into production. In addition, [Francis Tyers][tyers] (computational linguist and language activist) aided in team coordination and translation oversight. [Josh Meyer][meyer] processed the text from Kloop.kg and helped coordinate the various teams.
+
+
 ### Translation
 
 In order to translate the user interface into Kyrgyz, a team of contributors worked together to ensure that the translations are natural-sounding and accurate. This team includes [Chorobek Saandanbek][chorobek] (director of the [Bizdin Muras Foundation][bizdin]), [Saikal Maatkerimova][saikal] (Kyrgyz language instructor at [Lingua Yurt][lingua-yurt]), and [Talgat Subanaliev][talgat] (recent [AUCA][auca] graduate). As the interface evolves and expands, Saandanbek will lead the team to ensure that the translation is accurate and up-to-date.
@@ -61,8 +64,6 @@ To create a dataset for training speech technologies, collecting voices isn't en
 Currently, all Kyrgyz text sentences used for this project come from the well-known Kyrgyz language news source [Kloop.kg][kloop]. The founder of Kloop.kg, [Bektour Iskender][bektour] - a proponent of an open-internet and the Create Commons - allowed use of Kyrgyz language articles from Kloop to be distributed under CC-0. As such, when the user reads a sentence for Kyrgyz Common Voice, they are actually reading news from Kloop.kg. This is a major win for the Kyrgyz language and the open internet, because finding CC-0 text for Common Voice is typically the most difficult task in adding a new language. At least 5,000 different sentences should be initially recorded, and most books and online news (such as [BBC Kyrgyz][bbc]) are not available under CC-0.
 
 After the text was automatically downloaded from Kloop (via [this Python script][scrape]), the text was cleaned (all foreign words, numbers, abbreviations were removed) and sentences of an appropriate length were selected. Ideally each recording should be about 5 seconds long. More text can be added later, such that there is more diversity in the kinds of sentences read. Diversity is important for Common Voice, because good speech technologies should recognize the speech of people speaking with different accents about different topics.
-
-The Common Voice team itself, lead by [Michael Henretty][henretty] and [Kelly Davis][davis] personally helped push the Kyrgyz language version into production. In addition, [Francis Tyers][tyers] (computational linguist and Turkic language activist) helped in team coordination and translation overview. Josh Meyer processed the text from Kloop.kg and helped coordinate the various teams (i.e. Mozilla folks, translation team, Kloop.kg, and Tyers).
 
 <br/>
 
@@ -98,3 +99,4 @@ Anyone can record and donate sentences for the Common Voice project, and the mor
 [tyers]: https://www.hse.ru/en/news/campus/208242212.html
 [kyrgyz-common]: https://voice.mozilla.org/ky
 [en-common]: https://voice.mozilla.org/en
+[meyer]: http://jrmeyer.github.io/about/
