@@ -86,7 +86,7 @@ Anyone can record and donate sentences for the Common Voice project, and the mor
 [saikal]: https://www.facebook.com/saykal.maatkerimova
 [lingua-yurt]: https://www.facebook.com/lingua.yurt
 [talgat]: https://www.facebook.com/subanaliev
-[auca]: https://www.facebook.com/MyAUCA/
+[auca]: https://www.auca.kg/
 [pontoon]: https://pontoon.mozilla.org/ky/common-voice/
 [cc0]: https://creativecommons.org/publicdomain/zero/1.0/deed
 [kloop]: http://ky.kloop.asia/
