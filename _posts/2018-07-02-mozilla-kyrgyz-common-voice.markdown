@@ -8,7 +8,7 @@ comments: True
 
 <br/>
 
-<img src="/misc/robot-greetings.png" align="right" style="width: 250px;"/>
+<img src="/misc/robot-greetings.png" align="right" style="width: 300px;"/>
 
 <br/>
 <br/>
