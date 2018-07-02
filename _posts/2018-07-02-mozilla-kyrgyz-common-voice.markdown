@@ -35,7 +35,7 @@ Mozilla is crowd-sourcing this data collection with the Common Voice project, wh
 
 Enabling Kyrgyz data collection to Mozilla's Common Voice project is important because it will spur innovation in the Kyrgyz technology sector. Voice technologies are often more comfortable to use than typing, and for many people (such as people who are blind or handicapped) these technologies are essential to normal living. Voice technologies are widely used already for European languages such as English, French and Spanish because the appropriate datasets (i.e. large collections of voice recordings) already exist.
 
-However, the time and money required to create one of these datasets is a major hinderance for a new language, and Mozilla has developed a method of crowd-sourcing data collection which makes data collection much faster and free. Mozilla provides all the recordings under the Creative Commons CC-0 license, so the data is free to use for any purpose. This open license ensures that small companies have access to the same cutting-edge technologies as technology giants like Google.
+However, the time and money required to create one of these datasets is a major hindrance for a new language, and Mozilla has developed a method of crowd-sourcing data collection which makes data collection much faster and free. Mozilla provides all the recordings under the Creative Commons CC-0 license, so the data is free to use for any purpose. This open license ensures that small companies have access to the same cutting-edge technologies as technology giants like Google.
 
 <br/>
 
