@@ -1,4 +1,4 @@
-https://www.auca.kg/---
+---
 layout: post
 title:  "How we added Kyrgyz to Mozilla's Common Voice project"
 date:   2019-05-29
