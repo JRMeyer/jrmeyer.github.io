@@ -8,8 +8,7 @@ comments: True
 
 <br/>
 
-<img src="/misc/robot-greetings.png" align="right" style="width: 225px;"/>
-<img src="/misc/common-voice-logo.png" align="right" style="width: 225px;"/>
+<img src="/misc/robot-greetings.png" align="right" style="width: 250px;"/>
 
 <br/>
 <br/>
@@ -19,6 +18,7 @@ comments: True
 
 Mozilla is helping build Kyrgyz voice technology (for free) via its Common Voice project. Anyone can go to the Common Voice website and record sentences for the project. We need as many speakers and accents as possible in order to create robust technologies. [Donate your voice now.][kyrgyz-common]
 
+<br/>
 
 ## What is Common Voice?
 
@@ -27,7 +27,6 @@ Common Voice is a data collection project from Mozilla, focused on collecting fr
 Mozilla is crowd-sourcing this data collection with the Common Voice project, which allows anyone to record their voice and upload it to the cloud. At any time, developers can download these collections of recordings and train their own speech technologies for any kind of application. For instance, Google could use this data to create a Kyrgyz-language voice assistant for Android phones, or Namba taxi could use this data to make a voice-powered iPhone app for Kyrgyz speakers. Anyone can download the data and use it for whatever project they wish!
 
 
-<br/>
 <br/>
 
 
@@ -38,7 +37,6 @@ Enabling Kyrgyz data collection to Mozilla's Common Voice project is important b
 
 However, the time and money required to create one of these datasets is a major hinderance for a new language, and Mozilla has developed a method of crowd-sourcing data collection which makes data collection much faster and free. Mozilla provides all the recordings under the Creative Commons CC-0 license, so the data is free to use for any purpose. This open license ensures that small companies have access to the same cutting-edge technologies as technology giants like Google.
 
-<br/>
 <br/>
 
 
@@ -66,7 +64,7 @@ After the text was automatically downloaded from Kloop (via [this Python script]
 
 The Common Voice team itself, lead by [Michael Henretty][henretty] and [Kelly Davis][davis] personally helped push the Kyrgyz language version into production. In addition, [Francis Tyers][tyers] (computational linguist and Turkic language activist) helped in team coordination and translation overview. Josh Meyer processed the text from Kloop.kg and helped coordinate the various teams (i.e. Mozilla folks, translation team, Kloop.kg, and Tyers).
 
-
+<br/>
 
 ## Donate Your Voice!
 
