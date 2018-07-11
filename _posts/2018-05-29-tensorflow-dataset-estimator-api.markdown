@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to Train <i>practically</i> any Model from <i>practically</i> any Data with TensorFlow"
+title:  "How to Train <small><i>practically</i><\small> any Model from  <small><i>practically</i><\small> any Data with TensorFlow"
 date:   2019-05-29
 categories: MachineLearning
 comments: True
@@ -10,8 +10,6 @@ comments: True
 
 <img src="/misc/tf-logo.png" align="right" alt="logo" style="width: 225px;"/>
 
-<br/>
-<br/>
 <br/>
 <br/>
 
