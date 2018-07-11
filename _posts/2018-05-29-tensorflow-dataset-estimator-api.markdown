@@ -149,7 +149,7 @@ dataset = (
 
 In the above definition of `dataset`, you can see there's a line where you point TensorFlow to your data on disc, and read the data via `tf.data.TFRecordDataset`. The `.shuffle()` and `.batch()` functions are optional, but you will need the `.map()` function.
 
-The `.map()` function provides the methods for parsing your data into meaningful pieces like "labels" and "features". However, `.map()` is a super general function, and it doesn't know anything about your data, so we have to pass a special parsing function which `.map()` then applies to the data. This `parser` function is probably the main thing you have to create for your own dataset, and it should exactly mirror the way you saved your data to TFRecords above with the `tf.Example` object (in the [data formatting section](#get-data-in-csv) above).
+The `.map()` function provides the methods for parsing your data into meaningful pieces like "labels" and "features". However, `.map()` is a super general function, and it doesn't know anything about your data, so we have to pass a special parsing function which `.map()` then applies to the data. This `parser` function is probably the main thing you have to create for your own dataset, and it should exactly mirror the way you saved your data to TFRecords above with the `tf.Example` object (in the [data formatting section](#get-data-in-csv) above). Read more about parser functions in [the official docs][parser-fn].
 
 The above is one of the simplest ways to load, shuffle, and batch your data, but it is not the fastest way. For tips on speeding this stage up, take a look [here][stackoverflow] and [here][faster-tf].
 
@@ -238,6 +238,8 @@ Below is an example of minimal code you need for importing a `tfrecords` file, t
 
 
 ### parser_fn
+
+The `parser` function will be the most data-specific part of your code. Learn about how to make a good function [here][parser-fn].
 
 {% highlight python %}
 
