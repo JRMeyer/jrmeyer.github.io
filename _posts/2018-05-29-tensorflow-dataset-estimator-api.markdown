@@ -11,7 +11,6 @@ comments: True
 <img src="/misc/tf-logo.png" align="right" alt="logo" style="width: 225px;"/>
 
 <br/>
-<br/>
 
 
 ## Objectives
@@ -44,7 +43,7 @@ Just follow the official [installation instructions][tf-install]!
 
 To ground this post in a concrete example, below is my own labeled data in CSV. Each training data example is represented as a single row in the CSV file, where the first column represents the label (an integer), and all the following columns contain the features for that example (floating point numbers).
 
-I'm working with audio data, and the features (i.e. columns two onward) correspond to amplitudes at different frequency ranges. The labels in the first column represent categories of speech sounds, for example, label `45` might be the vowel `[oh]` and label `7` might be the consonant [k].
+The labels in the first column represent categories of speech sounds, for example, label `45` might be the vowel `[oh]` and label `7` might be the consonant `[k]`. The features shown in column-two onward correspond to amplitudes at different frequency ranges. In a nutshell, this is speech data, where a snippet of audio (features) has been labeled with a language sound (labels).
 
 Here's what four lines of my data CSV file look like (where the delimiter is a single space):
 
