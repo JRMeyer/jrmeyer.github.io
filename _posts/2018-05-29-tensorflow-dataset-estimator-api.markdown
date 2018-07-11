@@ -128,6 +128,8 @@ The official TensorFlow docs push hard for you to use their [Dataset][tf-dataset
 
 
 
+### Dataset API
+
 ### [`tf.data.Dataset`][tf-dataset]
 
 The `Dataset` Class allows you to easily import, shuffle, transform, and batch your data. The `Dataset` API makes any pre-processing operation on your data just another part of the pipeline, and it's optimized for large, distributed datasets. Your entire pre-processing pipeline can be as simple as this:
@@ -189,6 +191,8 @@ def parser(record):
 To get into the details of this function and how you can define one for your data, take a look at the [official parse function docs][parse-fn]. Remember that if you have labeled training data, the `features` definition above includes the data features (`feats`) as well as the labels (`label`). If you're doing something like k-means clustering (where labels aren't used), you won't return a label.
 
 
+
+### Estimator API
 
 ### [`tf.estimator.Estimator`][tf-estimator]
 
