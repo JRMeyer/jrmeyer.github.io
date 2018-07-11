@@ -329,7 +329,7 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [tf-numeric_column]: https://www.tensorflow.org/api_docs/python/tf/feature_column/numeric_column
 [tf-one_hot]: https://www.tensorflow.org/api_docs/python/tf/feature_column/categorical_column_with_vocabulary_list
 [tf-embedding_column]: https://www.tensorflow.org/api_docs/python/tf/feature_column/embedding_column
-[tf-feature_columns]: https://www.tensorflow.org/get_started/feature_columns
+[tf-feature_columns]: https://www.tensorflow.org/guide/feature_columns
 [tf-boostedtreesclassifier]: https://www.tensorflow.org/api_docs/python/tf/estimator/BoostedTreesClassifier
 [tf-linearregressor]: https://www.tensorflow.org/api_docs/python/tf/estimator/LinearRegressor
 [tf-dnnclassifier]: https://www.tensorflow.org/api_docs/python/tf/estimator/DNNClassifier
