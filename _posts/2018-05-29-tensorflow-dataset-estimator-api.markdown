@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to Train (practically) any Model from (practically) any Data with TensorFlow"
+title:  "How to Train *practically* any Model from *practically* any Data with TensorFlow"
 date:   2019-05-29
 categories: MachineLearning
 comments: True
@@ -9,13 +9,6 @@ comments: True
 <br/>
 
 <img src="/misc/tf-logo.png" align="right" alt="logo" style="width: 225px;"/>
-
-<br/>
-<br/>
-<br/>
-<br/>
-
-THIS POST IS IN PROGRESS
 
 <br/>
 <br/>
@@ -149,6 +142,8 @@ dataset = (
 In the above definition of `dataset`, you can see there's a line where you point TensorFlow to your data on disc, and read the data via `tf.data.TFRecordDataset`. The `.shuffle()` and `.batch()` functions are optional, but you will need the `.map()` function.
 
 The `.map()` function provides the methods for parsing your data into meaningful pieces like "labels" and "features". However, `.map()` is a super general function, and it doesn't know anything about your data, so we have to pass a special parsing function which `.map()` then applies to the data. This `parser` function is probably the main thing you have to create for your own dataset, and it should exactly mirror the way you saved your data to TFRecords above with the `tf.Example` object (in the CSV to TFRecords section).
+
+The above is one of the simplest ways to load, shuffle, and batch your data, but it is not the fastest way. For tips on speeding this stage up, take a look [here][stackoverflow] and [here][faster-tf].
 
 
 Here's an example of such a `parser` function:
@@ -314,3 +309,5 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [importing-data]: https://www.tensorflow.org/programmers_guide/datasets#consuming_tfrecord_data
 [input-fn]: https://www.tensorflow.org/versions/r1.3/get_started/input_fn
 [more-estimator-docs]: https://www.tensorflow.org/programmers_guide/estimators
+[stackoverflow]: https://stackoverflow.com/questions/50927298/faster-k-means-clustering-in-tensorflow/51030160#51030160
+[faster-tf]: https://www.tensorflow.org/performance/datasets_performance
