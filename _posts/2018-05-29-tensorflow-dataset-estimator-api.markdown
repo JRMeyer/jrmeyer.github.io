@@ -16,9 +16,12 @@ comments: True
 
 ## Objectives
 
-This post will guide you on how to take your data (in a CSV file) to a trained TensorFlow model of your choosing. I've decided to write this post because after spending many hours searching for this simple answer, I found that every post I found was too specific to one dataset to be usefully portable to my data.
+This post will guide you on how to take your data (in a CSV file) to a trained TensorFlow model of your choosing.
 
-You're not going to find any tricks or hacks here. The title to this blog post is so general because the TensorFlow developers have done all the work and created a very general API for importing data and training standard models. If you follow all the suggestions of the official TensorFlow docs, you should come to the same conclusions I did. However, it's tempting to write code that quickly works for only your own data. If you take a little extra time to study the API and write something generalizable, you will save yourself headaches in the future. If you follow the instructions I show here, you will be able to easily train one model architecture on different datasets, or you can train multiple models with your one dataset.
+You're not going to find any tricks or hacks here. The title to this blog post is general because the TensorFlow developers have created a very general API for importing data and training standard models. If you follow all the suggestions of the official TensorFlow docs, you should come to the same conclusions I did.
+
+It may tempting to quickly write a script that works for your current data and current task, but if you take a little extra time and write generalizable code, you will save yourself headaches in the future. The instructions here will help you easily scale to different datasets and different model architectures.
+
 
 <br/>
 <br/>
@@ -28,16 +31,20 @@ You're not going to find any tricks or hacks here. The title to this blog post i
 ## Pre-requisites
 
 1. A working, new version of TensorFlow installed.
-2. Your data in CSV format. The reason I choose CSV data as the starting point is that most any data can be formatted as a CSV file. Getting from your raw data to a CSV file is on you, but once you get there, the rest is smooth sailing:) From CSV data, I show you how to get your data into `tfrecords` format, which is the prefered TF data format. So, if your data is already in tfrecords, you're already ahead of the curve!
+2. Your data in CSV format. The reason I choose CSV data as the starting point is that almost any data can be formatted as a CSV file. Getting your raw data to a CSV file is on you, but once you get there, the rest is smooth sailing:) From CSV data, I show you how to get your data into `tfrecords` format, which is the prefered TF data format. So, if your data is already in `tfrecords`, you're already ahead of the curve!
 
 <br/>
+
+### Install TensorFlow
+Just follow the official [installation instructions][tf-install]!
+
 <br/>
 
+### Get Data in CSV
 
+To ground this post in a concrete example, below is my own labeled data in CSV. Each training data example is represented as a single row in the CSV file, where the first column represents the label (an integer), and all the following columns contain the features for that example (floating point numbers).
 
-## Data in CSV
-
-For this post, I'm going to be working with my own labeled data. Each training data example is represented as a single row in the CSV file, where the first column represents the label (an integer), all the following columns represent the features for that example (floating point numbers). I'm working with audio (speech) data, and the features are something like amplitudes at various frequency ranges - not important to your task, but it may help to ground the example more. The labels (the first column) represent categories of speech sounds, for example, label 45 might be the vowel "oh" and label 7 might be the consonant "k".
+I'm working with audio data, and the features (i.e. columns two onward) correspond to amplitudes at different frequency ranges. The labels in the first column represent categories of speech sounds, for example, label `45` might be the vowel `[oh]` and label `7` might be the consonant [k].
 
 Here's what four lines of my data CSV file look like (where the delimiter is a single space):
 
@@ -48,14 +55,18 @@ Here's what four lines of my data CSV file look like (where the delimiter is a s
 27 -0.9376022 -0.05841255 0.3308391 -0.7141842 -0.3867566  ...  -1.263647 23.4316 -0.0009118451 -1.035212 -1.635385
 ```
 
+Pretty simple, right? One training example is one line in the CSV file.
+
 <br/>
 <br/>
 
 ## Convert CSV to TFRecords
 
-`TFRecords` is the preferred file format for TensorFlow. These tfrecords files take up a lot of space on disk, but they can be easily sharded across machines, and the entire TensorFlow pipeline is optimized with tfrecords in mind. There are ways to read CSV files directly into Tensorflow, but having a tfrecords file on disk is better for reuse. Here I show you an example Python script to read in a `.csv` data file (as described above) and save to a `.tfrecords` file.
+`TFRecords` is the preferred file format for TensorFlow. These `tfrecords` files take up a lot of space on disk, but they can be easily sharded and processed across machines, and the entire TensorFlow pipeline is optimized with `tfrecords` in mind. There are ways to read CSV files directly into Tensorflow, but having a `tfrecords` file on disk is better for reuse.
 
-You can find the original version of the following `csv-to-records.py` on my GitHub [here][csv-to-tfrecords].
+To work with `tfrecords` data, you have to first convert your CSV data into the right format, using TensorFlow itself. In a nutshell, we have to read in the CSV file one example at a time, and format it as a `tf.train.Example` example, and then print that example to a file on disk. Each `tf.train.Example` stores information about the example via so-called `features`, where these `features` can be anything (including the target label!). You will store each `Example`'s `features` in a dictionary, where the key should be descriptive as you can see in the following example with the keys `"label"` and `"feats"`.
+
+Below is an example Python script to read in a `.csv` data file and save to a `.tfrecords` file. You can find the original version of the following `csv-to-records.py` [here][csv-to-tfrecords].
 
 ```
 import tensorflow as tf
@@ -100,7 +111,7 @@ with tf.python_io.TFRecordWriter(outfile) as writer:
 ```
 
 
-There's a good amount of resources on tfrecords out there, so if you have more questions you should check out the official TF docs on [reading data][reading-data], [Python-IO][python-io], and [importing data][importing-data].
+There's a good amount of resources on `tfrecords` out there, check out the official docs on [reading data][reading-data], [Python-IO][python-io], and [importing data][importing-data].
 
 <br/>
 <br/>
@@ -309,3 +320,4 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [more-estimator-docs]: https://www.tensorflow.org/programmers_guide/estimators
 [stackoverflow]: https://stackoverflow.com/questions/50927298/faster-k-means-clustering-in-tensorflow/51030160#51030160
 [faster-tf]: https://www.tensorflow.org/performance/datasets_performance
+[tf-install]: https://www.tensorflow.org/install/
