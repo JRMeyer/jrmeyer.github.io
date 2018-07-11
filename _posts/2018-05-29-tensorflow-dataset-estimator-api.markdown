@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "How to Train *practically* any Model from *practically* any Data with TensorFlow"
+title:  "How to Train <i>practically</i> any Model from <i>practically</i> any Data with TensorFlow"
 date:   2019-05-29
 categories: MachineLearning
 comments: True
