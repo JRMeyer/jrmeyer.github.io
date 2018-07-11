@@ -67,7 +67,7 @@ To work with `tfrecords` data, you have to first format your CSV data using Tens
 
 Below is an example Python script to read in a `.csv` data file and save to a `.tfrecords` file. You can find the original version of the following `csv-to-records.py` [here][csv-to-tfrecords]. There are faster ways to do this (i.e. via parallelization), but I want to give you working code which is as readable as possible.
 
-```
+{% highlight python %}
 import tensorflow as tf
 import numpy as np
 import pandas
@@ -107,7 +107,8 @@ with tf.python_io.TFRecordWriter(outfile) as writer:
         example.features.feature["feats"].bytes_list.value.append(feats)
         example.features.feature["label"].int64_list.value.append(label)
         writer.write(example.SerializeToString())
-```
+        
+{% endhighlight %}
 
 
 There's a good amount of resources on `tfrecords` out there, check out the official docs on [reading data][reading-data], [Python-IO][python-io], and [importing data][importing-data].
@@ -138,14 +139,17 @@ The official TensorFlow docs push hard for you to use their [Dataset][tf-dataset
 The `Dataset` Class allows you to easily import, shuffle, transform, and batch your data. The `Dataset` API makes any pre-processing operation on your data just another part of the pipeline, and it's optimized for large, distributed datasets. Your entire pre-processing pipeline can be as simple as this:
 
 
-```
+{% highlight python %}
+
 dataset = (
     tf.data.TFRecordDataset('/your/path/to/data/my-data.tfrecords')
     .map(parser)
     .shuffle(buffer=1024)
     .batch(32)
 )
-```
+
+{% endhighlight %}
+
 
 In the above definition of `dataset`, you can see there's a line where you point TensorFlow to your data on disc, and read the data via `tf.data.TFRecordDataset`. The `.shuffle()` and `.batch()` functions are optional, but you will need the `.map()` function.
 
@@ -156,7 +160,9 @@ The above is one of the simplest ways to load, shuffle, and batch your data, but
 
 Here's an example of such a `parser` function:
 
-```
+
+{% highlight python %}
+
 def parser(record):
     '''
     This is a parser function. It defines the template for
@@ -181,7 +187,10 @@ def parser(record):
     # since you can have multiple kinds of feats, you return a dictionary for feats
     # but only an int for the label
     return {'feats': feats}, label
-```
+
+{% endhighlight %}
+
+
 
 To get into the details of this function and how you can define one for your data, take a look at the [official parse function docs][parse-fn]. Remember that if you have labeled training data, the `features` definition above includes the data features (`feats`) as well as the labels (`label`). If you're doing something like k-means clustering (where labels aren't used), you won't return a label.
 
@@ -200,7 +209,8 @@ The `Estimator` class gives you an API for interaction with your model. Here's a
 
 You can instantiate an `Estimator` object with minimal, readable code. If you decide to use the pre-existing `Estimator`s from TensorFlow (i.e. "pre-canned" models), you can get started without digging any deeper than the `__init__()` function! I've defined a 4-layer Deep Neural Network which accepts as input my input data (377-dimensional feature vectors) and predicts one of my 96 classes as such:
 
-```
+{% highlight python %}
+
 DNNClassifier = tf.estimator.DNNClassifier(
 
    # for a DNN, this feature_columns object is really just a definition
@@ -216,7 +226,9 @@ DNNClassifier = tf.estimator.DNNClassifier(
    n_classes = 96,
 
 )
-```
+
+{% endhighlight %}
+
 
 We've just defined a new DNN Classifier with an input layer (`feature_columns`), four hidden layers (`hidden_units`), and an output layer (`n_classes`). Pretty easy, yeah?
 
@@ -234,7 +246,8 @@ The `feature_columns` API helps you not only get your data into floats, but it h
 
 ### parser_fn
 
-```
+{% highlight python %}
+
 def parser(record):
 
   features={
@@ -247,13 +260,17 @@ def parser(record):
   label = tf.cast(parsed['label'], tf.int32)
 
   return {'feats': feats}, label
-```
+
+{% endhighlight %}
+
 
 ### input_fn
 
 This is an Estimator input function. It defines things like datasets and batches, and can perform operations such as shuffling. Both the dataset and dataset iterator are defined here.
   
-```
+
+{% highlight python %}
+
 def my_input_fn(tfrecords_path):
 
   dataset = (
@@ -267,33 +284,48 @@ def my_input_fn(tfrecords_path):
   batch_feats, batch_labels = iterator.get_next()
 
   return batch_feats, batch_labels
-```
+
+{% endhighlight %}
+
 
 ### Estimator
 
-```
+{% highlight python %}
+
 DNNClassifier = tf.estimator.DNNClassifier(
   feature_columns = [tf.feature_column.numeric_column(key='feats', dtype=tf.float64, shape=(377,))],
   hidden_units = [256, 256, 256, 256],
   n_classes = 96,
   model_dir = '/tmp/tf')
-```
+
+{% endhighlight %}
+
 
 ### Specs
-```
+
+{% highlight python %}
+
 train_spec_dnn = tf.estimator.TrainSpec(input_fn = lambda: my_input_fn('/home/ubuntu/train.tfrecords') , max_steps=1000)
 eval_spec_dnn = tf.estimator.EvalSpec(input_fn = lambda: my_input_fn('/home/ubuntu/eval.tfrecords') )
-```
+
+{% endhighlight %}
 
 ### Train & Eval
-```
+
+{% highlight python %}
+
 tf.estimator.train_and_evaluate(DNNClassifier, train_spec_dnn, eval_spec_dnn)
-```
+
+{% endhighlight %}
 
 ### Inference
-```
+
+{% highlight python %}
+
 predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/ubuntu/test.tfrecords')))
-```
+
+{% endhighlight %}
+
 
 
 
