@@ -61,11 +61,11 @@ Pretty simple, right? One training example is one line in the CSV file.
 
 ## Convert CSV to TFRecords
 
-`TFRecords` is the preferred file format for TensorFlow. These `tfrecords` files take up a lot of space on disk, but they can be easily sharded and processed across machines, and the entire TensorFlow pipeline is optimized with `tfrecords` in mind. There are ways to read CSV files directly into Tensorflow, but having a `tfrecords` file on disk is better for reuse.
+`TFRecords` is the preferred file format for TensorFlow. These `tfrecords` files take up a lot of space on disk, but they can be easily sharded and processed across machines, and the entire TensorFlow pipeline is optimized with `tfrecords` in mind.
 
-To work with `tfrecords` data, you have to first convert your CSV data into the right format, using TensorFlow itself. In a nutshell, we have to read in the CSV file one example at a time, and format it as a `tf.train.Example` example, and then print that example to a file on disk. Each `tf.train.Example` stores information about the example via so-called `features`, where these `features` can be anything (including the target label!). You will store each `Example`'s `features` in a dictionary, where the key should be descriptive as you can see in the following example with the keys `"label"` and `"feats"`.
+To work with `tfrecords` data, you have to first format your CSV data using TensorFlow itself. We have to read in the CSV file one example at a time, and format it as a `tf.train.Example` example, and then print that example to a file on disk. Each `tf.train.Example` stores information about that particular example via so-called `features`, where these `features` can be anything (including the target label!). You will store each `Example`'s `feature` as an item in a dictionary, where the key should be descriptive. You can see in the following example I have chosen the keys `"label"` and `"feats"` to be make sure I won't mix them up.
 
-Below is an example Python script to read in a `.csv` data file and save to a `.tfrecords` file. You can find the original version of the following `csv-to-records.py` [here][csv-to-tfrecords].
+Below is an example Python script to read in a `.csv` data file and save to a `.tfrecords` file. You can find the original version of the following `csv-to-records.py` [here][csv-to-tfrecords]. There are faster ways to do this (i.e. via parallelization), but I want to give you working code which is as readable as possible.
 
 ```
 import tensorflow as tf
