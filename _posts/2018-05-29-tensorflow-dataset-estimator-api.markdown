@@ -111,17 +111,15 @@ with tf.python_io.TFRecordWriter(outfile) as writer:
 There's a good amount of resources on `tfrecords` out there, check out the official docs on [reading data][reading-data], [Python-IO][python-io], and [importing data][importing-data].
 
 <br/>
-<br/>
 
 
-## Pause
+## Pat on the Back
 
-If you've gotten to this point, you should have successfully converted your data and saved it in `TFRecords` format. Take a pause and pat yourself on the back, because you've accomplished the most time-consuming and boring part of machine learning: data formatting.
+If you've gotten to this point, you have successfully converted your data and saved it as `TFRecords` format. Take a pause and pat yourself on the back, because you've accomplished the most time-consuming and boring part of machine learning: data formatting.
 
-Now that you have your data in a format TensorFlow likes, we need to read that data in and train some models. Before we jump into training code, you'll want a little background on TensorFlow's awesome APIs for working with data and models: `tf.data` and `tf.estimator`.
+Now that you have your data in a format TensorFlow likes, we can import that data and train some models. Before we jump straight into training code, you'll want a little background on TensorFlow's awesome APIs for working with data and models: `tf.data` and `tf.estimator`.
 
 
-<br/>
 <br/>
 
 ## Datasets and Estimators
@@ -129,7 +127,6 @@ Now that you have your data in a format TensorFlow likes, we need to read that d
 The official TensorFlow docs push hard for you to use their [Dataset][tf-dataset] and [Estimator][tf-estimator] APIs. In general, if the docs explicitly tell you there is a preferred way to do something, you should do that because all the newest features will surely work for this format but maybe not others.
 
 
-<br/>
 
 ### [`tf.data.Dataset`][tf-dataset]
 
@@ -193,13 +190,6 @@ To get into the details of this function and how you can define one for your dat
 
 
 
-
-
-
-<br/>
-
-
-
 ### [`tf.estimator.Estimator`][tf-estimator]
 
 The `Estimator` class gives you an API for interaction with your model. Here's a good overview from [the official docs][more-estimator-docs]. It's like a wrapper for a model which allows you to train, evaluate, and export the model as well as make inferences on new data. Usually you won't be interacting directly with the base class `tf.estimator.Estimator`, but rather with the `Estimator` Classes which directly inherit from it, such as the [`DNNClassifier`][tf-dnnclassifier] Class. There are a whole set of pre-defined, easy to use `Estimator`s which you can start working with out of the box, such as [`LinearRegressor`][tf-linearregressor] or [`BoostedTreesClassifier`][tf-boostedtreesclassifier]
@@ -237,9 +227,11 @@ The `feature_columns` API helps you not only get your data into floats, but it h
 
 
 <br/>
-<br/>
 
 ## Putting it All Together
+
+Below is an example of minimal code you need for importing a `tfrecords` file, training a model, and making predictions on new data.
+
 
 ### parser_fn
 
