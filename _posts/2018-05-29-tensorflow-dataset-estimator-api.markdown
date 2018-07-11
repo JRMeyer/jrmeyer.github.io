@@ -285,6 +285,8 @@ def my_input_fn(tfrecords_path):
 
 ### Estimator
 
+Choose the model of your liking with a [pre-made `Estimator`][estimator-list]:)
+
 {% highlight python %}
 
 DNNClassifier = tf.estimator.DNNClassifier(
@@ -347,3 +349,4 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [stackoverflow]: https://stackoverflow.com/questions/50927298/faster-k-means-clustering-in-tensorflow/51030160#51030160
 [faster-tf]: https://www.tensorflow.org/performance/datasets_performance
 [tf-install]: https://www.tensorflow.org/install/
+[estimator-list]: https://www.tensorflow.org/api_docs/python/tf/estimator
