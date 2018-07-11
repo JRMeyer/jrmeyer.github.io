@@ -32,12 +32,9 @@ It may tempting to quickly write a script that works for your current data and c
 1. A working, new version of TensorFlow installed.
 2. Your data in CSV format. The reason I choose CSV data as the starting point is that almost any data can be formatted as a CSV file. Getting your raw data to a CSV file is on you, but once you get there, the rest is smooth sailing:) From CSV data, I show you how to get your data into `tfrecords` format, which is the prefered TF data format. So, if your data is already in `tfrecords`, you're already ahead of the curve!
 
-<br/>
-
 ### Install TensorFlow
 Just follow the official [installation instructions][tf-install]!
 
-<br/>
 
 ### Get Data in CSV
 
