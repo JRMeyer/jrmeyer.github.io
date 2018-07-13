@@ -53,6 +53,14 @@ Here's what four lines of my data CSV file look like (where the delimiter is a s
 
 Pretty simple, right? One training example is one line in the CSV file.
 
+If your data isn't in this kind of CSV format, you're going to have to spend a little time to get it here. The most important point is that you need one training example per line, and you should know exactly where each part of the example is located. For my example, I know that the label is the first column, and all the following columns are my features. You also must know how each label/feature is represented. For my case, all the labels are integers, and all the features are floating point numbers. You might have text-based labels or features (e.g. words from text), or you could have categorical features (e.g. you have a feature for `"color"` that you've coded as integers `1` through `5`). Whatever the case, you need to know exactly:
+
+1. Where your data is (i.e. which column)
+2. How your data is coded (e.g. float vs. integer vs. text)
+3. What your data means (e.g. the integer entry `43` in column 5 corresponds to the color `blue`)
+
+The last point is very important, because you have have integers whose numerical value doesn't mean anything meaningful (e.g. different colors) and you might have integers whose values are in fact meaningful (e.g. score on a test from `0` to `100`). The distance between test grades is meaningful, but the distance between colors is not. In what follows, you have to decide how to represent these values, and whether their distances matter.
+
 <br/>
 <br/>
 
@@ -188,7 +196,7 @@ def parser(record):
 
 
 
-To get into the details of this function and how you can define one for your data, take a look at the [official parse function docs][parse-fn]. Remember that if you have labeled training data, the `features` definition above includes the data features (`feats`) as well as the labels (`label`). If you're doing something like k-means clustering (where labels aren't used), you won't return a label.
+To get into the details of this function and how you can define one for your data, take a look at the [official parse function docs][parser-fn]. Remember that if you have labeled training data, the `features` definition above includes the data features (`feats`) as well as the labels (`label`). If you're doing something like k-means clustering (where labels aren't used), you won't return a label.
 
 
 
