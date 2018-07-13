@@ -61,7 +61,7 @@ Whatever the case, you need to know exactly:
 2. How your data is coded (e.g. float vs. integer vs. text)
 3. What your data means (e.g. the integer entry `43` in column 5 corresponds to the color `blue`)
 
-The last point is very important, because you have have integers whose numerical value doesn't mean anything meaningful (e.g. different colors) and you might have integers whose values are in fact meaningful (e.g. score on a test from `0` to `100`). The distance between test grades is meaningful, but the distance between colors is not. In what follows, you have to decide how to represent these values, and whether their distances matter.
+The last point is very important, because you might have integers whose numerical value doesn't mean anything meaningful (e.g. different colors) and you might have integers whose values are in fact meaningful (e.g. score on a test from `0` to `100`). The distance between test grades is meaningful, but the distance between colors is not. In what follows, you have to decide how to represent these values, and whether their distances matter.
 
 <br/>
 <br/>
