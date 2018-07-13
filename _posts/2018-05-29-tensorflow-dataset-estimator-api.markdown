@@ -53,7 +53,9 @@ Here's what four lines of my data CSV file look like (where the delimiter is a s
 
 Pretty simple, right? One training example is one line in the CSV file.
 
-If your data isn't in this kind of CSV format, you're going to have to spend a little time to get it here. The most important point is that you need one training example per line, and you should know exactly where each part of the example is located. For my example, I know that the label is the first column, and all the following columns are my features. You also must know how each label/feature is represented. For my case, all the labels are integers, and all the features are floating point numbers. You might have text-based labels or features (e.g. words from text), or you could have categorical features (e.g. you have a feature for `"color"` that you've coded as integers `1` through `5`). Whatever the case, you need to know exactly:
+If your data isn't in this kind of CSV format, you're going to have to spend a little time to get it here. The most important point is that you need one training example per line, and you should know exactly where each part of the example is located. For my example, I know that the label is the first column, and all the following columns are my features. You also must know how each label/feature is represented. For my case, all the labels are integers, and all the features are floating point numbers. You might have text-based labels or features (e.g. words from text), or you could have categorical features (e.g. you have a feature for `"color"` that you've coded as integers `1` through `5`).
+
+Whatever the case, you need to know exactly:
 
 1. Where your data is (i.e. which column)
 2. How your data is coded (e.g. float vs. integer vs. text)
