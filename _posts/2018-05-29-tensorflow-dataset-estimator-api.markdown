@@ -330,11 +330,23 @@ tf.estimator.train_and_evaluate(DNNClassifier, train_spec_dnn, eval_spec_dnn)
 
 ### Inference
 
+Finally, to make predictions on new data, just use the [`.predict()`][predict] method which is available to all `Estimators`.
+
+
 {% highlight python %}
 
 predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/ubuntu/test.tfrecords')))
 
 {% endhighlight %}
+
+
+
+## Conclusions
+
+I hope you've found this post helpful!
+
+Feel free to leave questions and comments below!
+
 
 
 
@@ -368,3 +380,4 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [specs-cloud-blog]: https://cloud.google.com/blog/big-data/2018/02/easy-distributed-training-with-tensorflow-using-tfestimatortrain-and-evaluate-on-cloud-ml-engine
 [train-spec]: https://www.tensorflow.org/api_docs/python/tf/estimator/TrainSpec
 [eval-spec]: https://www.tensorflow.org/api_docs/python/tf/estimator/EvalSpec
+[predict]: https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator#predict
