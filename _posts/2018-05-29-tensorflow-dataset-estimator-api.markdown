@@ -312,21 +312,17 @@ DNNClassifier = tf.estimator.DNNClassifier(
 {% endhighlight %}
 
 
-### Specs
+### Train & Eval Specs
 
 Defining the training and evaluation routine for your model is easy with [`TrainSpec`][train-spec] and [`EvalSpec`][eval-spec]. These two classes allow you to combine your model with your data along with instructions on how to combine them.
+
+After you've defined the specs, you feed them to the specialized function `tf.estimator.train_and_evaluate` which nicely handles all the heavy lifting. The Google Cloud folks wrote [a very nice blog post][specs-cloud-blog] on how to get best use of this function as well as your specs.
 
 
 {% highlight python %}
 
 train_spec_dnn = tf.estimator.TrainSpec(input_fn = lambda: my_input_fn('/home/ubuntu/train.tfrecords') , max_steps=1000)
 eval_spec_dnn = tf.estimator.EvalSpec(input_fn = lambda: my_input_fn('/home/ubuntu/eval.tfrecords') )
-
-{% endhighlight %}
-
-### Train & Eval
-
-{% highlight python %}
 
 tf.estimator.train_and_evaluate(DNNClassifier, train_spec_dnn, eval_spec_dnn)
 
