@@ -340,6 +340,7 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 {% endhighlight %}
 
 
+<br/>
 
 ## Conclusions
 
