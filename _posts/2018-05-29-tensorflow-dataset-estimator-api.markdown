@@ -17,7 +17,7 @@ comments: True
 
 This post will guide you on how to take your data (in a CSV file) to a trained TensorFlow model of your choosing.
 
-You're not going to find any tricks or hacks here. The title to this blog post is general because the TensorFlow developers have created a very general API for importing data and training standard models. If you follow all the suggestions of the official TensorFlow docs, you should come to the same conclusions I did.
+You're not going to find any tricks or hacks here. The title to this blog post is so general because the TensorFlow developers have created a great API for [importing data][tf-data-video] and [training standard models][tf-estimator-video]. If you follow all the suggestions of the official TensorFlow docs, you should come to the same conclusions I do here.
 
 It may tempting to quickly write a script that works for your current data and current task, but if you take a little extra time and write generalizable code, you will save yourself headaches in the future. The instructions here will help you easily scale to different datasets and different model architectures.
 
@@ -382,3 +382,5 @@ Feel free to leave questions and comments below!
 [train-spec]: https://www.tensorflow.org/api_docs/python/tf/estimator/TrainSpec
 [eval-spec]: https://www.tensorflow.org/api_docs/python/tf/estimator/EvalSpec
 [predict]: https://www.tensorflow.org/api_docs/python/tf/estimator/Estimator#predict
+[tf-data-video]: https://www.youtube.com/watch?v=uIcqeP7MFH0
+[tf-estimator-video]: https://www.youtube.com/watch?v=G7oolm0jU8I
