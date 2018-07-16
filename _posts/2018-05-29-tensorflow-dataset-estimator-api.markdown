@@ -297,7 +297,9 @@ def my_input_fn(tfrecords_path):
 
 ### Estimator
 
-To get started fast, just choose an `Estimator` from the [available pre-made Estimators][estimator-list]. If you want some other architecture, you can [build your own Estimator][diy-estimator].
+To get started fast, just choose an `Estimator` from the [available pre-made Estimators][estimator-list]. For more detail on how to use pre-made `Estimators` in general, check out [the official docs][pre-made-guide].
+
+If you want a custom architecture which is not pre-made, you can [build your own Estimator][diy-estimator].
 
 {% highlight python %}
 
@@ -363,3 +365,4 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [tf-install]: https://www.tensorflow.org/install/
 [estimator-list]: https://www.tensorflow.org/api_docs/python/tf/estimator
 [diy-estimator]: https://www.tensorflow.org/guide/custom_estimators
+[pre-made-guide]: https://www.tensorflow.org/guide/premade_estimators
