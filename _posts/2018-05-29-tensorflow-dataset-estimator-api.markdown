@@ -273,7 +273,7 @@ def parser(record):
 
 ### input_fn
 
-This is an Estimator input function. It defines things like datasets and batches, and can perform operations such as shuffling. Both the dataset and dataset iterator are defined here.
+This is an Estimator input function. It defines things like datasets and batches, and can perform operations such as shuffling. Both the dataset and dataset iterator are defined here. Read more about how to make a good `input_fn` on [the official docs][input-fn].
   
 
 {% highlight python %}
@@ -297,7 +297,7 @@ def my_input_fn(tfrecords_path):
 
 ### Estimator
 
-Choose the model of your liking with a [pre-made `Estimator`][estimator-list]:)
+To get started fast, just choose an `Estimator` from the [available pre-made Estimators][estimator-list]. If you want some other architecture, you can [build your own Estimator][diy-estimator].
 
 {% highlight python %}
 
@@ -362,3 +362,4 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [faster-tf]: https://www.tensorflow.org/performance/datasets_performance
 [tf-install]: https://www.tensorflow.org/install/
 [estimator-list]: https://www.tensorflow.org/api_docs/python/tf/estimator
+[diy-estimator]: https://www.tensorflow.org/guide/custom_estimators
