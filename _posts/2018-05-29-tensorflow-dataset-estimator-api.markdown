@@ -314,6 +314,9 @@ DNNClassifier = tf.estimator.DNNClassifier(
 
 ### Specs
 
+Defining the training and evaluation routine for your model is easy with [`TrainSpec`][train-spec] and [`EvalSpec`][eval-spec]. These two classes allow you to combine your model with your data along with instructions on how to combine them.
+
+
 {% highlight python %}
 
 train_spec_dnn = tf.estimator.TrainSpec(input_fn = lambda: my_input_fn('/home/ubuntu/train.tfrecords') , max_steps=1000)
@@ -366,3 +369,6 @@ predictions = list(DNNClassifier.predict(input_fn = lambda: my_input_fn('/home/u
 [estimator-list]: https://www.tensorflow.org/api_docs/python/tf/estimator
 [diy-estimator]: https://www.tensorflow.org/guide/custom_estimators
 [pre-made-guide]: https://www.tensorflow.org/guide/premade_estimators
+[specs-cloud-blog]: https://cloud.google.com/blog/big-data/2018/02/easy-distributed-training-with-tensorflow-using-tfestimatortrain-and-evaluate-on-cloud-ml-engine
+[train-spec]: https://www.tensorflow.org/api_docs/python/tf/estimator/TrainSpec
+[eval-spec]: https://www.tensorflow.org/api_docs/python/tf/estimator/EvalSpec
