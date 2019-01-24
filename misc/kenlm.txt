@@ -1,0 +1,30 @@
+NEEDED:
+          (1) words.txt
+          (2) alphabet.txt
+
+
+## First: Train ARPA from text ##
+
+kenlm/build/bin/lmplz \
+           --order 2 \
+           --text words.txt \
+           --arpa lm.arpa \
+           --discount_fallback
+
+
+## Second: Make Binary LM from ARPA ##
+
+kenlm/build/bin/build_binary \
+           -a 255 \
+           -q 8 \
+           trie \
+           lm.arpa \
+           lm.bin
+
+
+## Third: Make Trie from alphabet and Binary LM ##
+
+native_client/generate_trie \
+           alphabet.txt \
+           lm.bin \
+           trie
