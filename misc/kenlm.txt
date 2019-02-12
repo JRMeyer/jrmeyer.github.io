@@ -1,6 +1,15 @@
 NEEDED:
+          (0) installed kenlm
           (1) words.txt
           (2) alphabet.txt
+
+## Install Kenlm ##
+
+wget -O - https://kheafield.com/code/kenlm.tar.gz |tar xz;
+mkdir kenlm/build;
+cd kenlm/build;
+cmake ..;
+make -j `nproc`;
 
 
 ## First: Train ARPA from text ##
