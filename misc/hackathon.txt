@@ -12,6 +12,7 @@ unzip clips.tsv.zip
 wget audio.zip
 unzip audio.zip -d audio
 
+
 # GET DEEPSPEECH + VENV #
 
 git clone https://github.com/mozilla/DeepSpeech
@@ -21,13 +22,19 @@ source ../tmp/venv/bin/activate
 cd ..
 
 
-# GET DEEPSPEECH + FORMAT TSVs #
+# GET CORPORACREATOR + FORMAT TSVs #
 
 git clone https://github.com/mozilla/CorporaCreator
 cd CorporaCreator
 python3 setup.py install
-create-corpora -f clips.tsv -d corpora -l ky -s 10
+create-corpora -f clips.tsv -d corpora -l LANG -s 10
 cd ..
+
+
+# GET ALPHABET #
+python3 DeepSpeech/util/check_characters.py -csv CreateCorpora/corpora/LANG/train.csv,CreateCorpora/corpora/LANG/test.csv,CreateCorpora/corpora/LANG/dev.csv -alpha
+# now, copy-paste output from above command into alphabet.txt
+emacs data/alphabet.txt
 
 
 # TRAIN DEEPSPEECH #
