@@ -3,6 +3,12 @@ NEEDED:
           (1) words.txt
           (2) alphabet.txt
 
+
+## DEPENDENCIES ##
+sudo apt-get update
+sudo apt-get install build-essential cmake libboost-all-dev zlib1g-dev libbz2-dev liblzma-dev libeigen3-dev
+
+
 ## Install Kenlm ##
 
 wget -O - https://kheafield.com/code/kenlm.tar.gz |tar xz;
@@ -33,7 +39,9 @@ kenlm/build/bin/build_binary \
 
 ## Third: Make Trie from alphabet and Binary LM ##
 
-native_client/generate_trie \
+# `generate_trie` is compiled by `DeepSpeech/.install`
+
+tmp/native_client/generate_trie \
            alphabet.txt \
            lm.bin \
            trie
