@@ -59,7 +59,6 @@ create-corpora -f clips.tsv -d corpora -l LANG -s 10
 python3 DeespSpeech/bin/import_cv2.py LANG corpora/LANG
 
 
-
 #################
 ### CREATE LM ###
 #################
@@ -74,23 +73,9 @@ emacs alphabet.txt
 
 cut -d',' -f3 train.csv > text.txt
 
-kenlm/build/bin/lmplz \
-           --order 2 \
-           --text text.txt \
-           --arpa lm.arpa \
-           --discount_fallback
-
-kenlm/build/bin/build_binary \
-           -a 255 \
-           -q 8 \
-           trie \
-           lm.arpa \
-           lm.binary
-
-tmp/native_client/generate_trie \
-           alphabet.txt \
-           lm.binary \
-           trie
+kenlm/build/bin/lmplz --order 2 --text text.txt --arpa lm.arpa --discount_fallback
+kenlm/build/bin/build_binary -a 255 -q 8 trie lm.arpa lm.binary
+tmp/native_client/generate_trie alphabet.txt lm.binary trie
 
 cp trie DeepSpeech/data/lm/trie
 cp lm.binary DeepSpeech/data/lm/lm.binary
