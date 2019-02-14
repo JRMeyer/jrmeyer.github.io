@@ -17,12 +17,13 @@ sudo apt-get install build-essential cmake libboost-all-dev zlib1g-dev libbz2-de
 
 git clone https://github.com/mozilla/DeepSpeech
 cd DeepSpeech
+# if using CPU, make changes to `.install`
 bash .install
 cd ..
 
 # Install CorporaCreator #
 
-source ../tmp/venv/bin/activate
+source tmp/venv/bin/activate
 git clone https://github.com/mozilla/CorporaCreator
 cd CorporaCreator
 python3 setup.py install
@@ -56,6 +57,12 @@ unzip LANG.zip -d LANG
 
 create-corpora -f clips.tsv -d corpora -l LANG -s 10
 python3 DeespSpeech/bin/import_cv2.py LANG corpora/LANG
+
+
+
+#################
+### CREATE LM ###
+#################
 
 # Make alphabet.txt #
 
