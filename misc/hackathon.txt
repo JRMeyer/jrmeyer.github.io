@@ -82,7 +82,6 @@ cp lm.binary DeepSpeech/data/lm/lm.binary
 cp alphabet.txt DeepSpeech/data/alphabet.txt
 
 
-
 ################
 ### TRAINING ###
 ################
