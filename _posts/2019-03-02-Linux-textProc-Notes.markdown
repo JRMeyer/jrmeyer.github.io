@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Some Linux Text Processing Notes"
-date:   2016-08-02
+date:   2019-03-02
 categories: misc
 comments: True
 ---
@@ -24,12 +24,22 @@ paste -d"," <( cut -d"," -f1 FILE ) <( cut -d"," -f2 FILE | sed -e 's/from/to/'g
 sed -e 's/\(.*\)/\L\1/'g
 {% endhighlight %}
 
-### Lowercase
+### Remove punctuation
 
 {% highlight bash %}
 sed -e "s/[[:punct:]]\+//g"
 {% endhighlight %}
 
 
+## [grep][grep]
+
+### Get unique characters in file
+
+{% highlight bash %}
+grep -o "." FILE | sort | uniq
+{% endhighlight %}
+
+
 [cut]: https://linux.die.net/man/1/cut
 [sed]: https://linux.die.net/man/1/sed
+[grep]: https://linux.die.net/man/1/grep

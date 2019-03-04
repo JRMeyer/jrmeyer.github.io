@@ -4,33 +4,32 @@
 ### INSTALL SOFTWARE ###
 ########################
 
-# Install dependencies #
+# General dependencies
+sudo apt-get update -y
 
-sudo apt-get update
 # DeepSpeech Dependencies
-sudo apt-get install git gcc unzip sox libsox-fmt-mp3
-sudo apt-get install python3-dev virtualenv
+sudo apt-get install -y git gcc unzip sox libsox-fmt-mp3
+sudo apt-get install -y python3-dev virtualenv
+
 # kenlm Dependencies
-sudo apt-get install build-essential cmake libboost-all-dev zlib1g-dev libbz2-dev liblzma-dev libeigen3-dev
+sudo apt-get install -y build-essential cmake libboost-all-dev zlib1g-dev libbz2-dev liblzma-dev libeigen3-dev
 
-# Install DeepSpeech #
+# Setup venv
+apt-get install -y python3-venv
+python3 -m venv /tmp/venv
+source /tmp/venv/bin/activate
 
+# Clone DeepSpeech
 git clone https://github.com/mozilla/DeepSpeech
-cd DeepSpeech
-# if using CPU, make changes to `.install`
-bash .install
-cd ..
+pip install -r <(grep -v tensorflow requirements.txt)
+pip install -y tensorflow-gpu==1.13.0-rc2
 
-# Install CorporaCreator #
+# Install ds_ctcdecoder package from TaskCluster
+pip install $(python3 util/taskcluster.py --decoder)
+# Get generate_trie
+python3 DeepSpeech/util/taskcluster.py --target DeepSpeech/tmp/native_client
 
-source tmp/venv/bin/activate
-git clone https://github.com/mozilla/CorporaCreator
-cd CorporaCreator
-python3 setup.py install
-cd ..
-
-# Install Kenlm #
-
+# Install Kenlm
 wget -O - https://kheafield.com/code/kenlm.tar.gz | tar xz
 mkdir kenlm/build
 cd kenlm/build
@@ -43,40 +42,29 @@ cd ../..
 ### GET DATA ###
 ################
 
-wget clips.tsv.zip
-unzip clips.tsv.zip
-wget LANG.zip
-unzip LANG.zip -d LANG
+# Download from Common Voice
+wget https://voice-prod-bundler-ee1969a6ce8178826482b88e843c335139bd3fb4.s3.amazonaws.com/cv-corpus-1/ky.tar.gz
+mkdir ky
+tar -xvzf ky.tar.gz -C ky
 
-
-###################
-### FORMAT DATA ###
-###################
-
-# Make {train,dev,test}.csv #
-
-create-corpora -f clips.tsv -d corpora -l LANG -s 10
-python3 DeespSpeech/bin/import_cv2.py LANG corpora/LANG
+# Format Data
+python3 DeepSpeech/bin/import_cv2.py ky/clips ky
 
 
 #################
 ### CREATE LM ###
 #################
 
-# Make alphabet.txt #
+# Make alphabet.txt
+python3 DeepSpeech/util/check_characters.py -csv ky/clips/train.csv,ky/clips/test.csv,ky/clips/dev.csv -alpha > alphabet.txt
 
-python3 DeepSpeech/util/check_characters.py -csv LANG/train.csv,LANG/test.csv,LANG/dev.csv -alpha
-# now, copy-paste output from above command into alphabet.txt
-emacs alphabet.txt
+# Get text to train LM
+cut -d',' -f3 ky/clips/train.csv > text.txt
 
-# Make lm.binary and trie #
-
-cut -d',' -f3 train.csv > text.txt
-
+# Make lm.binary and trie
 kenlm/build/bin/lmplz --order 2 --text text.txt --arpa lm.arpa --discount_fallback
 kenlm/build/bin/build_binary -a 255 -q 8 trie lm.arpa lm.binary
-tmp/native_client/generate_trie alphabet.txt lm.binary trie
-
+DeepSpeech/tmp/native_client/generate_trie alphabet.txt lm.binary trie
 cp trie DeepSpeech/data/lm/trie
 cp lm.binary DeepSpeech/data/lm/lm.binary
 cp alphabet.txt DeepSpeech/data/alphabet.txt
