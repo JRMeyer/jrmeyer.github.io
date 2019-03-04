@@ -13,7 +13,7 @@ comments: True
 {% highlight bash %}
 # the following takes the first two columns of a CSV file (FILE), and performs a sed cleaning on the second
 
-paste -d"," <( cut -d"," -f1 FILE ) <( cut -d"," -f2 FILE | sed -e 's/from/to/'g ) >OUTPUT
+paste -d"," <( cut -d"," -f1 FILE ) <( cut -d"," -f2 FILE | sed -e 's/from/to/g' ) >OUTPUT
 {% endhighlight %}
 
 ## [sed][sed]
@@ -21,13 +21,13 @@ paste -d"," <( cut -d"," -f1 FILE ) <( cut -d"," -f2 FILE | sed -e 's/from/to/'g
 ### Lowercase
 
 {% highlight bash %}
-sed -e 's/\(.*\)/\L\1/'g
+sed -e 's/\(.*\)/\L\1/g'
 {% endhighlight %}
 
 ### Remove punctuation
 
 {% highlight bash %}
-sed -e "s/[[:punct:]]\+//g"
+sed -e 's/[[:punct:]]\+//g'
 {% endhighlight %}
 
 
