@@ -22,12 +22,12 @@ source /tmp/venv/bin/activate
 # Clone DeepSpeech
 git clone https://github.com/mozilla/DeepSpeech
 pip install -r <(grep -v tensorflow requirements.txt)
-pip install -y tensorflow-gpu==1.13.0-rc2
+pip install tensorflow-gpu==1.13.0-rc2
 
 # Install ds_ctcdecoder package from TaskCluster
 pip install $(python3 util/taskcluster.py --decoder)
 # Get generate_trie
-python3 DeepSpeech/util/taskcluster.py --target DeepSpeech/tmp/native_client
+python DeepSpeech/util/taskcluster.py --target DeepSpeech/tmp/native_client
 
 # Install Kenlm
 wget -O - https://kheafield.com/code/kenlm.tar.gz | tar xz
@@ -48,7 +48,7 @@ mkdir ky
 tar -xvzf ky.tar.gz -C ky
 
 # Format Data
-python3 DeepSpeech/bin/import_cv2.py ky/clips ky
+python DeepSpeech/bin/import_cv2.py ky/clips ky
 
 
 #################
@@ -56,7 +56,7 @@ python3 DeepSpeech/bin/import_cv2.py ky/clips ky
 #################
 
 # Make alphabet.txt
-python3 DeepSpeech/util/check_characters.py -csv ky/clips/train.csv,ky/clips/test.csv,ky/clips/dev.csv -alpha > alphabet.txt
+python DeepSpeech/util/check_characters.py -csv ky/clips/train.csv,ky/clips/test.csv,ky/clips/dev.csv -alpha > alphabet.txt
 
 # Get text to train LM
 cut -d',' -f3 ky/clips/train.csv > text.txt
