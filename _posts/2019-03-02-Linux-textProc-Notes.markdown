@@ -16,6 +16,18 @@ comments: True
 paste -d"," <( cut -d"," -f1 FILE ) <( cut -d"," -f2 FILE | sed -e 's/from/to/g' ) >OUTPUT
 {% endhighlight %}
 
+### Edit column of single file, skipping header
+
+{% highlight bash %}
+paste -d"," <( cut -d"," -f1,2 $INFILE ) \
+<( \
+   cat <( head -1 $INFILE | cut -d"," -f3- ) \
+   <(tail +2 $INFILE | cut -d"," -f3- | ./replace-bytes.sh $NUM_BYTES) \
+   ) \
+>$OUTFILE
+{% endhighlight %}
+
+
 ## [sed][sed]
 
 ### Lowercase
@@ -38,6 +50,7 @@ sed -e 's/[[:punct:]]\+//g'
 {% highlight bash %}
 grep -o "." FILE | sort | uniq
 {% endhighlight %}
+
 
 
 [cut]: https://linux.die.net/man/1/cut
