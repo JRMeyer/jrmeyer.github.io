@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Installing CMU-Sphinx on Ubuntu"
+title:  "The CMU-Sphinx Speech Recognition Toolkit: First Steps"
 date:   2016-01-08 22:03:04 -0700
 categories: ASR
 comments: True
