@@ -9,12 +9,16 @@ permalink: /about/
 <br/>
 <br/>
 <center>
-<strong>I'm currently job-hunting... shoot me an email:)</strong>
+You can find my CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">here</a>.
+</center>
+<br/>
+<center>
+<strong>joshua</strong> # <strong>richard</strong> # <strong>meyer</strong>  $ <strong>gmail</strong> # <strong>com</strong> {# -> ., $ -> @}
 </center>
 <br/>
 <br/>
 
-My name's Josh and I'm an NSF Graduate Research Fellow and PhD candidate at the University of Arizona. My research is on automatic speech recognition, but I do some Natural Language Processing and general Machine Learning as well. I also keep a close eye on Artificial Intelligence. This blog is some of what I'm learning along the way.
+My name's Josh and I'm an NSF Graduate Research Fellow and PhD candidate at the University of Arizona. My expertise is in Automatic Speech Recognition and Synthesis, Natural Language Processing, and general Machine Learning. This blog is some of what I'm learning along the way.
 
 <br/>
 <br/>
@@ -56,20 +60,6 @@ I also like travelling and Radiohead.
 
 <center>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/V6G0tjT6A3I" frameborder="0" allowfullscreen></iframe>
-</center>
-
-<br/>
-<br/>
-
-<center>
-You can find my academic CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">here</a>.
-</center>
-
-<br/>
-<br/>
-
-<center>
-<strong>joshuameyer</strong> # <strong>email</strong> $ <strong>arizona</strong> $ <strong>edu</strong> {# -> @, $ -> .}
 </center>
 
 
