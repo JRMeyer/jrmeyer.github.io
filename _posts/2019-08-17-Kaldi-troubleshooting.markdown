@@ -22,7 +22,7 @@ comments: True
 
 The typical Kaldi training pipeline consists of the following four steps:
 
-<br>
+<br/>
 | <span style="font-weight:normal"><font size="6"><b>Four Main Kaldi Training Steps</b></font> <td colspan=2></span> |
 | <span style="font-weight:normal"><font size="4"><b>Step</b></font></span> | <span style="font-weight:normal"><font size="4"><i>Dependencies</i></font></span> |
 |--------|---------|
@@ -32,7 +32,7 @@ The typical Kaldi training pipeline consists of the following four steps:
 | **Train Deep Neural Network**  | *from Triphone + Speaker Adaptation alignments*  |
 |---------|--------|
 {: align="center"}
-<br>
+<br/>
 
 
 The first three steps all involve Gaussian Mixture Models and Hidden Markov Models (GMM-HMMs). So, even if you only care about the Deep Neural Network (DNN), you can’t avoid GMMs.
@@ -145,7 +145,7 @@ In what follows we’re going to talk about troubleshooting the GMMs systems you
 Now that we know why GMMs are so important, let’s find out if they’re working correctly. There’s a few important metrics and datapoints to help you gauge how well your GMMs are performing:
 
 
-<br>
+<br/>
 | <span style="font-weight:normal"><font size="6"><b>Where to Gauge GMM-HMM Performance</b></font></span> |
 | <span style="font-weight:normal"><font size="4"><b>Data</b></font></span> | <span style="font-weight:normal"><font size="4"><i>From where?</i></font></span> |
 |:-
@@ -154,13 +154,13 @@ Now that we know why GMMs are so important, let’s find out if they’re workin
 | **`WER`s** | *decoded test data*  |
 |---------+---------|
 {: align="center"}
-<br>
+<br/>
 
 These three sources of information all tell us how a given GMM model is performing, and it’s important to know where each piece comes from. The alignments, transcripts, and `WER`s all are generated as outputs from the GMM-HMM training pipeline. Whether you’re training monophones or triphones with Speaker Adaptive Training (SAT), you will have to go through these same three steps, and as a result you will produce outputs which can be inspected.
 
 Where these GMM-HMM performance metrics come from
 
-<br>
+<br/>
 | <span style="font-weight:normal"><font size="6"><b>Where to Gauge GMM-HMM Performance</b></font></span> |
 | <span style="font-weight:normal"><font size="4"><b>Step</b></font></span> | <span style="font-weight:normal"><font size="4"><i>Outputs</i></font></span> |
 |:-
@@ -169,7 +169,7 @@ Where these GMM-HMM performance metrics come from
 | **Decoding** | *`WER`s + Transcripts*  |
 |---------+---------|
 {: align="center"}
-<br>
+<br/>
 
 
 
@@ -237,7 +237,7 @@ N.B. there is no explicit alignment of the tri + LDA+MLLT + SAT model in wsj/s5/
 The decoding phase produces `WER`s, which help you quickly gauge the performance of your model. For example, you might see something like the following:
 
 
-<br>
+<br/>
 | <span style="font-weight:normal"><font size="6"><bExample of `WER`s</b></font></span> |
 | <span style="font-weight:normal"><font size="4"><b>Step</b></font></span> | <span style="font-weight:normal"><font size="4"><i>`WER`</i></font></span> |
 |:-
@@ -248,7 +248,7 @@ The decoding phase produces `WER`s, which help you quickly gauge the performance
 | **Train Deep Neural Network**  | *80%*  |
 |---------+---------|
 {: align="center"}
-<br>
+<br/>
 
 In this case, you know that something went wrong between stage `triphones + LDA + MLLT` and stage `triphones + LDA + MLLT + SAT`, because all previous models were doing just fine. We don’t have to worry about trying to debug those previous models, because errors are propagated only from the most recent model. In the example shown above, you don’t have to waste time looking at your `monophones` or vanilla `triphones` (i.e. delta+delta triphones in Kaldi-speak), because they couldn’t have been responsible.
 
