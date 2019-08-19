@@ -20,7 +20,9 @@ comments: True
 
 The following is a cheatsheet for common hyperparameters in Kaldi.
 
-If you're looking to get started with Kaldi, here's an [installation guide][install-kaldi] and [DNN training guide][train-kaldi]. If you'd like a simple, easy to understand Kaldi recipe, you can check out my [`easy-kaldi` GitHub repo][easy-kaldi]. You probably won't get state-of-the-art results with `easy-kaldi`, but you will hopefully be able to understand the pipeline.
+If you're looking to get started with Kaldi, here's an [installation guide][install-kaldi] and [DNN training guide][train-kaldi]. If you'd like a simple, easy to understand Kaldi recipe, you can check out the [`easy-kaldi` GitHub repo][easy-kaldi]. You probably won't get state-of-the-art results with `easy-kaldi`, but you will hopefully be able to understand the pipeline.
+
+If you're looking for more in-depth troubleshooting, check out [Kaldi Troubleshooting from Head-to-Toe][troubleshooting].
 
 <br/>
 <br/>
@@ -113,3 +115,4 @@ Let me know if you have comments or suggestions and you can always leave a comme
 [easy-kaldi]: https://github.com/JRMeyer/easy-kaldi
 [wsj]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/run.sh
 [ctm]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/steps/get_train_ctm.sh
+[troubleshooting]: http://jrmeyer.github.io/asr/2019/08/17/Kaldi-troubleshooting.html
