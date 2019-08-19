@@ -63,6 +63,9 @@ Word Error Rates (`WER`s) are the metric we most often use when evaluating a sys
 
 `WER` is the most important metric to optimize, but in the following we will focus on other metrics and data which represent only the Acoustic Model. We will troubleshoot starting from the last step of Kaldi training (i.e. the DNN), and work our way backwards to the first step (i.e. the Monophones).
 
+<br/>
+<br/>
+
 ## Troubleshooting the Neural Network Acoustic Model
 
 The first thing we need to do is identify the source of the problem: the Acoustic Model or the Language Model. It’s hard to troubleshoot the Language Model on it’s own, so we will start with the neural Acoustic Model. If after following this guide you conclude that the Acoustic Model is performing fine, then you should spend time on the Language Model (i.e. try training on new text data, train larger order N-grams, etc).
