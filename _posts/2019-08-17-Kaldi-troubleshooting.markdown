@@ -322,7 +322,7 @@ The alignment logs are found in `exp/*_ali/log/ali.*.gz`
 
 After `WER`, the second place we can troubleshoot a model is by looking at the alignments that were used to train that model. If the alignments are bad, then the resulting model will perform poorly.
 
-As we saw in the `Four Main Kaldi Train Steps`, at each step information from the previous model (e.g. monophones) is passed to the next model (e.g. triphones) via alignments. As such, it’s important that you’re sure that at each step the information passed downstream is accurate. Before we jump into the alignment files, let’s talk a little about what alignments are in the first place. 
+As we saw in the [`Big Picture`](#big-picture), at each step information from the previous model (e.g. monophones) is passed to the next model (e.g. triphones) via alignments. As such, it’s important that you’re sure that at each step the information passed downstream is accurate. Before we jump into the alignment files, let’s talk a little about what alignments are in the first place. 
 
 You can think of alignments as audio with time-stamps, where the time-stamps correspond to the sounds that were spoken in that audio (i.e. phonemes – sometimes called senomes, which may also be graphemes or just characters).
 
