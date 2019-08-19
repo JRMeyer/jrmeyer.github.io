@@ -511,13 +511,13 @@ The following parameter ranges are what I would recommend as a good starting pla
 
 Each of these following steps depends on the previous step. If you have bad monophone alignments, you will have bad triphone alignments. If you have bad triphone alignments, then you will train a bad neural net. As such, you should take some time to tweak parameters on each stage, to make sure your model and alignments are good to pass on to the next stage.
 
-The parameters listed here have two values associated with them, `N → M`. Good model parameters for your data should be somewhere in between the extremes of `N` and `M`, so I’d advise some binary search to find good settings for you. Optimize for number of training iterations only after you’ve gotten good numbers for `numleaves` and `totgauss.
+The parameters listed here have two values associated with them, `N → M`. Good model parameters for your data should be somewhere in between the extremes of `N` and `M`, so I’d advise some binary search to find good settings for you. Optimize for number of training iterations only after you’ve gotten good numbers for `numleaves` and `totgauss`.
 
 {% highlight bash %}
 Monophones (steps/train_mono.sh)
 boost_silence=1.25
 num_iters= 20 → 40
-totgauss=n1000 → 2000
+totgauss= 1000 → 2000
 
 Triphones (steps/train_deltas.sh)
 boost_silence= 1.25
@@ -528,12 +528,12 @@ totgauss= 10000 → 50000
 # Triphones + LDA + MLLT (steps/train_lda_mllt.sh)
 --left-context= 2 → 10
 --right-context= 2 → 10
-num iters= 20 → 40
+num_iters= 20 → 40
 numleaves= 2500 → 7500
 totgauss= 15000 → 75000
 
 # Triphones + LDA + MLLT + SAT (steps/train_sat.sh)
-num iters= 20 → 40
+num_iters= 20 → 40
 numleaves= 2500 → 10000
 totgauss= 15000 → 200000
 {% endhighlight %}
@@ -542,7 +542,9 @@ totgauss= 15000 → 200000
 
 ### DNN Training
 
-You should ideally be using `nnet3` instead of nnet2. The newer code is tried and tested more, and will have better support. In general, long-skinny nets are better than short fat ones. Monitor your training progress with information from `compute_prob_train.*.log` and `compute_prob_valid.*.log`.
+You should ideally be using `nnet3` instead of `nnet2`. At this point, `nnet3` is tried and tested more, and will have better support moving forward.
+
+Long-skinny nets are better than short fat ones. Monitor your training progress with information from `compute_prob_train.*.log` and `compute_prob_valid.*.log`.
 
 {% highlight bash %}
 Number of epochs: 1 → 20
