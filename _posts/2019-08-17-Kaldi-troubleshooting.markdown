@@ -22,8 +22,6 @@ comments: True
 
 The typical Kaldi training pipeline consists of the following four steps:
 
-Four Main Kaldi Training Steps:
-
 <br/>
 
 | **Step** | *Dependencies* |
