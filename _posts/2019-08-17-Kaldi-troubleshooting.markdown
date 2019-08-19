@@ -59,7 +59,7 @@ The following document is a walk-through and troubleshooting guide for the entir
 
 Once you have a working Automatic Speech Recognition (ASR) system built on Kaldi, your next step will be to improve that system’s performance. To be clear, by “ASR system”, I’m referring to the combination of the Acoustic Model and the Language Model. 
 
-Word Error Rates (`WER`s) are the metric we most often use when evaluating a system’s performance, and `WER`s must be interpreted as the combined performance of the two parts: (Acoustic Model and Language Model) -- remember that. To improve `WER` as much as possible, you may need to address issues in *both* models. Nevertheless, isolated improvements to either model should lead to improvements in overall `WER`.
+Word Error Rates (`WER`) are the metric we most often use when evaluating a system’s performance, and `WER` must be interpreted as the combined performance of the two parts: (Acoustic Model and Language Model) -- remember that. To improve `WER` as much as possible, you may need to address issues in *both* models. Nevertheless, isolated improvements to either model should lead to improvements in overall `WER`.
 
 `WER` is the most important metric to optimize, but in the following we will focus on other metrics and data which represent only the Acoustic Model. We will troubleshoot starting from the last step of Kaldi training (i.e. the DNN), and work our way backwards to the first step (i.e. the Monophones).
 
@@ -170,13 +170,13 @@ Now that we know why GMMs are so important, let’s find out if they’re workin
 |----------|------------|
 | **Alignments**  | *training data* |
 | **Transcripts** | *decoded test data* |
-| **`WER`s** | *decoded test data*  |
+| **`WER`** | *decoded test data*  |
 |---------|---------|
 {: align="center"}
 
 <br/>
 
-These three sources of information all tell us how a given GMM model is performing, and it’s important to know where each piece comes from. The alignments, transcripts, and `WER`s all are generated as outputs from the GMM-HMM training pipeline. Whether you’re training monophones or triphones with Speaker Adaptive Training (SAT), you will have to go through these same three steps, and as a result you will produce outputs which can be inspected.
+These three sources of information all tell us how a given GMM model is performing, and it’s important to know where each piece comes from. The alignments, transcripts, and `WER` all are generated as outputs from the GMM-HMM training pipeline. Whether you’re training monophones or triphones with Speaker Adaptive Training (SAT), you will have to go through these same three steps, and as a result you will produce outputs which can be inspected.
 
 Where these GMM-HMM performance metrics come from:
 
@@ -186,14 +186,14 @@ Where these GMM-HMM performance metrics come from:
 |-------|-----------|
 | **Alignment**  | *Alignments* |
 | **Training** | *GMM-HMMs* |
-| **Decoding** | *`WER`s + Transcripts*  |
+| **Decoding** | *`WER` + Transcripts*  |
 |---------|---------|
 
 <br/>
 
 
 
-It’s hard to directly inspect GMM-HMMs, which is why we make use of the outputs of the training and testing phases (`WER`s / transcripts / alignments). The outputs listed above will be produced individually for each model you train, so you can see how the models (e.g. monophones vs. triphones) compare to each other. You can find the code corresponding to each of these three steps in the wsj/s5/run.sh file at the following locations.
+It’s hard to directly inspect GMM-HMMs, which is why we make use of the outputs of the training and testing phases (`WER` / transcripts / alignments). The outputs listed above will be produced individually for each model you train, so you can see how the models (e.g. monophones vs. triphones) compare to each other. You can find the code corresponding to each of these three steps in the wsj/s5/run.sh file at the following locations.
 
 <br/>
 
@@ -253,11 +253,11 @@ N.B. there is no explicit alignment of the tri + LDA+MLLT + SAT model in wsj/s5/
 <br/>
 <br/>
 
-## Interpreting `WER`s
+## Interpreting `WER`
 
-`WER`s are a measure of the combined performance of the Acoustic Model + Language Model, so we have to take them with a grain of salt when we use them to talk about the Acoustic Model alone. If the Acoustic Model is performing badly, but your Language Model is well suited to your data, you may still get good `WER`s.
+`WER` are a measure of the combined performance of the Acoustic Model + Language Model, so we have to take them with a grain of salt when we use them to talk about the Acoustic Model alone. If the Acoustic Model is performing badly, but your Language Model is well suited to your data, you may still get good `WER`.
 
-The decoding phase produces `WER`s, which help you quickly gauge the performance of your model. For example, you might see something like the following:
+The decoding phase produces `WER`, which help you quickly gauge the performance of your model. For example, you might see something like the following:
 
 
 <br/>
@@ -277,7 +277,7 @@ The decoding phase produces `WER`s, which help you quickly gauge the performance
 In this case, you know that something went wrong between stage `triphones + LDA + MLLT` and stage `triphones + LDA + MLLT + SAT`, because all previous models were doing just fine. We don’t have to worry about trying to debug those previous models, because errors are propagated only from the most recent model. In the example shown above, you don’t have to waste time looking at your `monophones` or vanilla `triphones` (i.e. delta+delta triphones in Kaldi-speak), because they couldn’t have been responsible.
 
 
-The `WER`s for your models can be found in the following locations within your experiment directory (i.e. `exp`):
+The `WER` for your models can be found in the following locations within your experiment directory (i.e. `exp`):
 
 {% highlight bash %}
 exp/mono0a/decode_*/wer_*        <-- monophones
@@ -291,7 +291,7 @@ exp/tri3b/decode_*/wer_*         <--  triphones + LDA + MLLT + SAT
 
 
 
-Here’s an example of how `WER`s are reported:
+Here’s an example of how `WER` are reported:
 
 
 {% highlight bash %}
@@ -315,7 +315,7 @@ We also get information on how many times the system failed during decoding: `0 
 
 The alignment logs are found in `exp/*_ali/log/ali.*.gz`
 
-After `WER`s, the second place we can troubleshoot a model is by looking at the alignments that were used to train that model. If the alignments are bad, then the resulting model will perform poorly.
+After `WER`, the second place we can troubleshoot a model is by looking at the alignments that were used to train that model. If the alignments are bad, then the resulting model will perform poorly.
 
 As we saw in the `Four Main Kaldi Train Steps`, at each step information from the previous model (e.g. monophones) is passed to the next model (e.g. triphones) via alignments. As such, it’s important that you’re sure that at each step the information passed downstream is accurate. Before we jump into the alignment files, let’s talk a little about what alignments are in the first place. 
 
