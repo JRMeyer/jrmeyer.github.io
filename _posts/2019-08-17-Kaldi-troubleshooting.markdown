@@ -20,16 +20,23 @@ comments: True
 
 ## Introduction
 
+The following guide is for those who have already [installed Kaldi][install-kaldi], trained a GMM model, and [trained a DNN model][train-kaldi], but the final system isn't performing well.
+
+If you haven't done those steps yet, this troubleshooting guide might not be what you're looking for. If you're looking to get started with Kaldi, feel free to click on any of the above links and then come back to this guide as needed. If you'd like a simple, easy to understand Kaldi recipe, you can check out my [`easy-kaldi` GitHub repo][easy-kaldi]. You probably won't get state-of-the-art results with `easy-kaldi`, but you will hopefully be able to understand the pipeline.
+
+
+## Big Picture
+
 The typical Kaldi training pipeline consists of the following four steps:
 
 <br/>
 
 | **Step** | *Dependencies* |
 |--------|---------|
-| **Train Monophones**  | *from a Flat Start*  |
-| **Train Triphones**  | *from Monophone alignments*  |
-| **Train Speaker Adaptations**  | *from Triphone alignments*  |
-| **Train Deep Neural Network**  | *from Triphone + Speaker Adaptation alignments*  |
+| **Train Monophones**  | pairs of *<utterance, transcript>* training data  |
+| **Train Triphones**  | *Monophone alignments*  |
+| **Train Speaker Adaptations**  | *Triphone alignments*  |
+| **Train Deep Neural Network**  | *Triphone + Speaker Adaptation alignments*  |
 |---------|--------|
 {: align="center"}
 
@@ -533,3 +540,4 @@ lattice_beam= 1.0 → 8.0
 [nnet2]: https://github.com/kaldi-asr/kaldi/blob/3f95ed9185d8f8f76f9fb71c915119bf8b945a66/egs/wsj/s5/steps/nnet2/train_pnorm.sh#L92
 [nnet3]: https://github.com/kaldi-asr/kaldi/blob/3f95ed9185d8f8f76f9fb71c915119bf8b945a66/egs/wsj/s5/steps/nnet3/train_tdnn.sh#L92
 [show-alignments]: https://github.com/kaldi-asr/kaldi/blob/master/src/bin/show-alignments.cc
+[easy-kaldi]: https://github.com/JRMeyer/easy-kaldi
