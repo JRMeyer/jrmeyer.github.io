@@ -373,9 +373,9 @@ exp/tri3b_ali/ali.*.gz           <--  triphones + LDA + MLLT + SAT
 
 We can directly inspect these alignments with Kaldi tools. 
 
-What we would like to see from these tools are the following: (1) all the words spoken in the utterance are found in the alignment. (2) The words and phonemes are appropriately spaced in time. For both of these, the file steps/get_train_ctm.sh <https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/steps/get_train_ctm.sh> will be particularly helpful because it shows the words in the utterance along with their time-stamps. 
+What we would like to see from these tools are the following: (1) all the words spoken in the utterance are found in the alignment, and (2) the words and phonemes are appropriately spaced in time. For both of these, the file [`get_train_ctm.sh`][ctm] will be particularly helpful because it shows the words in the utterance along with their time-stamps. 
 
-You should be able to see if the transcript contains missing words, extra words, or if the timing is off. I’d suggest you look at an utterance from the ctm file and listen to the audio at the same time. This way you can compare what you hear to what the system is producing.
+You should be able to see if the transcript contains missing words, extra words, or if the timing is off. I’d suggest you look at an utterance from the `ctm` file and listen to the audio at the same time. This way you can compare what you hear to what the system is producing.
 
 Here’s how you can pull out the word-level alignments from one file (e.g. `ID_354.wav`):
 
@@ -576,3 +576,4 @@ lattice_beam= 1.0 → 8.0
 [show-alignments]: https://github.com/kaldi-asr/kaldi/blob/master/src/bin/show-alignments.cc
 [easy-kaldi]: https://github.com/JRMeyer/easy-kaldi
 [wsj]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/run.sh
+[ctm]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/steps/get_train_ctm.sh
