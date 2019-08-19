@@ -25,6 +25,7 @@ The typical Kaldi training pipeline consists of the following four steps:
 Four Main Kaldi Training Steps:
 
 <br/>
+
 | **Step** | *Dependencies* |
 |--------|---------|
 | **Train Monophones**  | *from a Flat Start*  |
@@ -32,6 +33,7 @@ Four Main Kaldi Training Steps:
 | **Train Speaker Adaptations**  | *from Triphone alignments*  |
 | **Train Deep Neural Network**  | *from Triphone + Speaker Adaptation alignments*  |
 |---------|--------|
+
 <br/>
 
 
@@ -92,7 +94,7 @@ These two accuracies give you very important information. Here is an example gra
 
 
 <br/>
-<img src="/misc/figs/frame-classification-accuracy.png" align="center" style="height: 95px"/>
+<img src="/misc/figs/frame-classification-accuracy.png" align="center" style="height: 400px"/>
 <br/>
 
 
@@ -146,6 +148,7 @@ Now that we know why GMMs are so important, let’s find out if they’re workin
 
 
 <br/>
+
 | <span style="font-weight:normal"><font size="6"><b>Where to Gauge GMM-HMM Performance</b></font></span> |
 | <span style="font-weight:normal"><font size="4"><b>Data</b></font></span> | <span style="font-weight:normal"><font size="4"><i>From where?</i></font></span> |
 |:-
@@ -154,6 +157,7 @@ Now that we know why GMMs are so important, let’s find out if they’re workin
 | **`WER`s** | *decoded test data*  |
 |---------+---------|
 {: align="center"}
+
 <br/>
 
 These three sources of information all tell us how a given GMM model is performing, and it’s important to know where each piece comes from. The alignments, transcripts, and `WER`s all are generated as outputs from the GMM-HMM training pipeline. Whether you’re training monophones or triphones with Speaker Adaptive Training (SAT), you will have to go through these same three steps, and as a result you will produce outputs which can be inspected.
@@ -161,6 +165,7 @@ These three sources of information all tell us how a given GMM model is performi
 Where these GMM-HMM performance metrics come from
 
 <br/>
+
 | <span style="font-weight:normal"><font size="6"><b>Where to Gauge GMM-HMM Performance</b></font></span> |
 | <span style="font-weight:normal"><font size="4"><b>Step</b></font></span> | <span style="font-weight:normal"><font size="4"><i>Outputs</i></font></span> |
 |:-
@@ -168,6 +173,7 @@ Where these GMM-HMM performance metrics come from
 | **Training** | *GMM-HMMs* |
 | **Decoding** | *`WER`s + Transcripts*  |
 |---------+---------|
+
 <br/>
 
 
