@@ -54,30 +54,28 @@ The following document is a walk-through and troubleshooting guide for the entir
 
 ## Problem Statement
 
-*Problem: You have a trained Kaldi system, but it performs poorly*
+*Problem: You have a trained Kaldi system, but it performs poorly.*
 
 
 Once you have a working Automatic Speech Recognition (ASR) system built on Kaldi, your next step will be to improve that system’s performance. To be clear, by “ASR system”, I’m referring to the combination of the Acoustic Model and the Language Model. 
 
-Word Error Rates (`WER`s) are the metric we most often use when evaluating a system’s performance, and `WER`s must be interpreted as the combined performance of the two parts: (Acoustic Model and Language Model) -- remember that. To improve `WER` as much as possible, you may need to address issues in *both* models. Nevertheless, isolated improvements to either model should lead to improvements in `WER`. `WER` is the most important metric to optimize, but in the following we will focus on other metrics and data which represent only the acoustic model.
+Word Error Rates (`WER`s) are the metric we most often use when evaluating a system’s performance, and `WER`s must be interpreted as the combined performance of the two parts: (Acoustic Model and Language Model) -- remember that. To improve `WER` as much as possible, you may need to address issues in *both* models. Nevertheless, isolated improvements to either model should lead to improvements in overall `WER`.
 
-We will troubleshoot starting from the last step of Kaldi training (i.e. the DNN), and work our way backwards to the first step (i.e. the Monophones).
+`WER` is the most important metric to optimize, but in the following we will focus on other metrics and data which represent only the Acoustic Model. We will troubleshoot starting from the last step of Kaldi training (i.e. the DNN), and work our way backwards to the first step (i.e. the Monophones).
 
 ## Troubleshooting the Neural Network Acoustic Model
 
-You have a Kaldi model that has a higher `WER` than you'd like. Where to start?
+The first thing we need to do is identify the source of the problem: the Acoustic Model or the Language Model. It’s hard to troubleshoot the Language Model on it’s own, so we will start with the neural Acoustic Model. If after following this guide you conclude that the Acoustic Model is performing fine, then you should spend time on the Language Model (i.e. try training on new text data, train larger order N-grams, etc).
 
-The first thing we need to do is identify the source of the problem: the Acoustic model or the Language model. It’s hard to troubleshoot the language model on it’s own, so we will start with the neural acoustic model. If after following the suggestions below you conclude that the acoustic model is performing fine, then you should spend time on the language model (i.e. try training on new text data, train larger order N-grams, etc). In the following, I’m going to focus on troubleshooting the acoustic model, which usually has more issues than the language model.
-
-The acoustic model sends its results (i.e. phoneme predictions) to the language model, and then the language model tries to translate those predictions into words. A junk acoustic model will send junk predictions down the pipeline to the language model, and in the end you’ll get junk output from the language model.
+The Acoustic Model sends its output (i.e. phoneme predictions) to the Language Model, and then the Language Model tries to translate those predictions into words. A junk Acoustic Model will send junk predictions down the pipeline to the Language Model, and in the end you’ll get junk output from the Language Model.
 
 ### Frame-Classification Accuracy
 
-As mentioned above, `WER` is the most important metric for system performance. However, with regards to the neural net acoustic model, **frame-classification accuracy** is the most relevant metric you can optimize. This metric tells you how well the acoustic model is able to assign a class label (i.e. phoneme ID) to a new slice of audio (i.e. audio frame). The acoustic model exists solely to perform this one task, and if the acoustic model is performing this task poorly the overall `WER` will be high.
+As mentioned above, `WER` is the most important metric for overall system performance. However, with regards to the neural Acoustic Model, **frame-classification accuracy** is the most relevant metric you can optimize. This metric tells you how well the Acoustic Model is able to assign a class label (i.e. phoneme ID) to a new slice of audio (i.e. audio frame). The Acoustic Model exists solely to perform this one task, and if the Acoustic Model is performing this task poorly the overall `WER` will be high.
 
 To find data on frame-classification accuracy, we need to look at the relevant Kaldi log files: (1) `compute_prob_train.*.log` and (2) `compute_prob_valid.*.log`.
 
-Here’s an example of what the contents of one of these log files could look like from an `nnet2` model, using the Linux tool `cat`:
+Here’s an example of what the contents of one of these log files could look like from an `nnet2` model, using the Unix program `cat`:
 
 {% highlight bash %}
 $ cat log/compute_prob_valid.10.log
@@ -93,7 +91,7 @@ LOG (nnet-compute-prob[5.2.110~1-1d137]:main():nnet-compute-prob.cc:91) Saw 4000
 
 These log files contain lines of the form `accuracy is X`, where `X` is the percent frame-classification error. The log file name contains the iteration number in training the neural net (e.g. `compute_prob_train.10.log` contains accuracy on the training data for the `10`th iteration). 
 
-There are two important kinds of frame-classification accuracy: (1) the accuracy on the `train`ing set, and (2) the accuracy on a held-out `valid`ation set. The filename of the log contains information as to whether the statistics pertain to the training set or the validation set (i.e. `compute_prob_train.*.log` is the accuracy on the `train`ing set, and `compute_prob_valid.*.log` is the accuracy on the `valid`ation set).
+There are two important kinds of frame-classification accuracy: (1) the accuracy on the `training` set, and (2) the accuracy on a held-out `validation` set. The filename of the log contains information as to whether the statistics pertain to the training set or the validation set (i.e. `compute_prob_train.*.log` is the accuracy on the `training` set, and `compute_prob_valid.*.log` is the accuracy on the `validation` set).
 
 These two accuracies give you very important information. Here is an example graph of these two metrics over time, where time is measured in iterations of backpropagation during training. We can see that on the training data, accuracy is reaching over 80%, but on the held-out validation data, the performance is actually getting worse over time, sinking towards 20% accuracy. This model has overfit the training data.
 
@@ -122,9 +120,9 @@ $ python3 plot_accuracy.py -n 1 -t “MY_TITLE” -i output_file.txt
 There will be two lines plotted, one for the `validation` data and one for the `training` data. The flag `-n` is for number of tasks (because I used the script for multi-task research). You just set number of tasks to one.
 
 
-### How to interpret frame-classification accuracy on the training set ?
+### How to interpret frame-classification accuracy on training data?
 
-Frame-classification accuracy on the training set (i.e. data from compute_prob_train.*.log) tells you how well your net is performing on the data it sees during training. If you make your neural net big enough and run enough training iterations (i.e. epochs), then you will get 100% accuracy on this data. This is a bad thing. When you get really high classification accuracy on the training set, this is typically a sign of overfitting. Your acoustic model has stopped “learning” patterns in speech, and started “memorizing” your data. Once you’ve overfit, your model is doing more table look-up than pattern recognition. So, getting 100% frame classification accuracy on your training data is a bad thing.
+Frame-classification accuracy on the training set (i.e. data from `compute_prob_train.*.log`) tells you how well your net is performing on the data it sees during training. If you make your neural net big enough and run enough training iterations (i.e. epochs), then you will get 100% accuracy on this data. This is a bad thing. When you get really high classification accuracy on the training set, this is typically a sign of overfitting. Your Acoustic Model has stopped “learning” patterns in speech, and started “memorizing” your data. Once you’ve overfit, your model is doing more table look-up than pattern recognition. So, getting 100% frame classification accuracy on your training data is a bad thing.
 
 
 
@@ -136,9 +134,9 @@ When changing the size and architecture of the model, I’d suggest to first exp
 
 ### How to interpret frame-classification accuracy on the validation set?
 
-The second metric from acoustic model training is frame-classification accuracy on a held-out validation set. You will find this information in the log files of the type: `compute_prob_valid.*.log` (same files as mentioned above.)
+The second metric from Acoustic Model training is frame-classification accuracy on a held-out validation set. You will find this information in the log files of the type: `compute_prob_valid.*.log` (same files as mentioned above.)
 
-**Frame-classification accuracy on the held-out validation set is the metric you want to optimize in DNN acoustic model training.** It represents how well your acoustic model is able to classify data that it never saw before. There is no chance that the model “memorized” this data.
+**Frame-classification accuracy on the held-out validation set is the metric you want to optimize in DNN Acoustic Model training.** It represents how well your Acoustic Model is able to classify data that it never saw before. There is no chance that the model “memorized” this data.
 
 Getting bad accuracy on validation data can mean two things: (1) there’s a problem with your data, and/or (2) there’s a problem with your model. If you’re using off-the-shelf code from Kaldi, you probably don’t have issues in your model. You might have to change the size of the model, but that’s all. What’s more often the issue is the data. You might have too little data, too noisy of data, or you might have mis-labeled data. Your mis-labeled data could mean that (1) the human transcriber did a bad job writing down all the correct words spoken in the audio, (2) the phonetic dictionary has incorrect pronunciations for words, or (3) the GMM-HMM system did a bad job aligning data to monophones or triphones.
 
@@ -241,7 +239,7 @@ N.B. there is no explicit alignment of the tri + LDA+MLLT + SAT model in wsj/s5/
 
 ## Interpreting `WER`s
 
-`WER`s are a measure of the combined performance of the acoustic model + language model, so we have to take them with a grain of salt when we use them to talk about the acoustic model alone. If the acoustic model is performing badly, but your language model is well suited to your data, you may still get good `WER`s.
+`WER`s are a measure of the combined performance of the Acoustic Model + Language Model, so we have to take them with a grain of salt when we use them to talk about the Acoustic Model alone. If the Acoustic Model is performing badly, but your Language Model is well suited to your data, you may still get good `WER`s.
 
 The decoding phase produces `WER`s, which help you quickly gauge the performance of your model. For example, you might see something like the following:
 
@@ -384,7 +382,7 @@ I just made up the alignment above to fit nicely in this guide, but the structur
 
 As you can see in the output from show-alignments.cc, silence (i.e. SIL) is made explicit at the beginning and end of each utterance. The alignment procedure assumes that there is some silence at the beginning and end of the audio file. If you don’t have silence in the audio, your alignment procedure will still proceed as if there really is silence in the audio. As such, your GMM-HMM model will ``find'' silence in the audio, even if it isn’t there, and estimate the acoustic properties of silence based on speech instead -- this is bad. You should try to have silence at the beginning and end of your audio files.
 
-A very nice thing about inspecting alignments is that they are independent of the language model. That is, only the phonetic dictionary and the training transcripts are used to generate the alignments.
+A very nice thing about inspecting alignments is that they are independent of the Language Model. That is, only the phonetic dictionary and the training transcripts are used to generate the alignments.
  
 You can get an idea of which words are causing alignment issues by looking into the log flies from alignment (i.e. the `acc.*.log` files, which accumulate stats from alignments) as such. When an alignment fails, you will find “No alignment for utterance” and then the utterance ID in these `acc.*.log` files. To find all issues in your triphones, simply grep as such:
 
@@ -404,7 +402,7 @@ For statistics on the phonemes you trained and where they’re located, take a l
 
 ### Interpreting the Decoding Transcripts from Test Data
 
-Another place that we can evaluate the performance of a GMM-HMM model is by inspecting the transcripts that it produced at decoding time on the test data. These results reflect both the acoustic model, the language model, and the decoding time parameters.
+Another place that we can evaluate the performance of a GMM-HMM model is by inspecting the transcripts that it produced at decoding time on the test data. These results reflect both the Acoustic Model, the Language Model, and the decoding time parameters.
 
 You can find the decoding output in the following log files:
 
@@ -437,33 +435,33 @@ The `best_path` in the filename `best_path.10.0.0.log` means that the output rep
 
 The bolded lines are the most important. The first few lines are logging data, but the bolded lines are the model’s prediction on some testing data. The bolded lines show (1) the utterance ID  (e.g. `ID-0007`), and (2) the prediction of the model for that utterance (e.g. `A COLD LUCID IN DIFFERENCE OR REINED IN HIS SOUL`). It is good to listen to the audio file and look at the corresponding output to identify errors.
 
-Sometimes you can even see if the errors stem from the acoustic model or from the language model (e.g. the model predicted `IN DIFFERENCE` instead of `INDIFFERENCE`, which is a language model problem given that both options are acoustically identical.)
+Sometimes you can even see if the errors stem from the Acoustic Model or from the Language Model (e.g. the model predicted `IN DIFFERENCE` instead of `INDIFFERENCE`, which is a Language Model problem given that both options are acoustically identical.)
 
 
-### What next for acoustic model troubleshooting?
+### What next for Acoustic Model troubleshooting?
 
 If at this point you’ve run all the inspections above, your GMM-HMM model should perform well and your alignments should look good. What to do if you’re still having issues in training a good neural net? 
 
-Well, as mentioned above, if you’re overfitting your training data, then try to reduce the size of the model as well as the number of epochs you run. At this point you might need to do some hyper-parameter searching within the suggestions I provide below as a cheat-sheet. Try to identify consistent problems in the output of the combined model (language model + acoustic model).
+Well, as mentioned above, if you’re overfitting your training data, then try to reduce the size of the model as well as the number of epochs you run. At this point you might need to do some hyper-parameter searching within the suggestions I provide below as a cheat-sheet. Try to identify consistent problems in the output of the combined model (Language Model + Acoustic Model).
 
 
 ## Language Model
 
-The language model is indeed very important for `WER`, because it encodes a strong bias as to what words are (a) which words are possible, (b) which words are impossible, and (c) how probable each possible word is.  A word is only possible to be decoded if it occurs in the vocabulary of the language model. Any word that does not occur in the vocabulary is impossible. The language model contains an explicit probability for each word and word sequence. 
+The Language Model is indeed very important for `WER`, because it encodes a strong bias as to what words are (a) which words are possible, (b) which words are impossible, and (c) how probable each possible word is.  A word is only possible to be decoded if it occurs in the vocabulary of the Language Model. Any word that does not occur in the vocabulary is impossible. The Language Model contains an explicit probability for each word and word sequence. 
 
-The language model you use at run-time and the language model you use at test time to not need to be the same. As such, if you’re optimizing `WER` at test-time by adjusting language model parameters, but at run-time you use a different language model, none of the improvements at test-time will transfer.
+The Language Model you use at run-time and the Language Model you use at test time to not need to be the same. As such, if you’re optimizing `WER` at test-time by adjusting Language Model parameters, but at run-time you use a different Language Model, none of the improvements at test-time will transfer.
 
 
 ### Notes on the Language Model you use at Test-Time
 
-Improvements in `WER` which come from acoustic model parameter changes should generalize across language models. For example, if you find that for a bi-gram language model a 5-layer neural net acoustic model works better than a 6-layer net, you should expect that (for your data), a 5-layer acoustic model will beat out a 6-layer net, regardless of the n-gram order of the language model.  
+Improvements in `WER` which come from Acoustic Model parameter changes should generalize across Language Models. For example, if you find that for a bi-gram Language Model a 5-layer neural net Acoustic Model works better than a 6-layer net, you should expect that (for your data), a 5-layer Acoustic Model will beat out a 6-layer net, regardless of the n-gram order of the Language Model.  
 
 
 
 
 ## Conclusion
 
-In short, when you’re trouble shooting your Kaldi system, first look at the training statistics for your  Deep Neural Network acoustic model. Then, look at the training, alignment, and decoding stats of your GMM-HMMs. If all those data look good, then try training a language model more suited for your use-case.
+In short, when you’re trouble shooting your Kaldi system, first look at the training statistics for your  Deep Neural Network Acoustic Model. Then, look at the training, alignment, and decoding stats of your GMM-HMMs. If all those data look good, then try training a Language Model more suited for your use-case.
 
 If you still are running into issues, then look on `kaldi-help` to see if someone else has had that problem before (often they have). As far as I know, `kaldi-help` is the only forum for these kinds of questions. Unfortunately, the atmosphere on `kaldi-help` can be unwelcoming to newcomers. If you post a question and get a critical response, don’t let it upset you. The forum has an un-welcoming atmosphere and it has nothing to do with you or your abilities to do good ASR. I was afraid to post on kaldi-help for a long time because of this atmosphere, and indeed my first post was not received kindly. Alternatively, you can post questions here on my blog. However, the community here is not as large as kaldi-help.
 
