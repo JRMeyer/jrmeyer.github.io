@@ -130,7 +130,7 @@ Frame-classification accuracy on the training set (i.e. data from `compute_prob_
 
 Two simple solutions: (1) Make the net smaller, and (2) don’t run so many epochs. There are many other, more complex solutions, but these two are good first steps. 
 
-When changing the size and architecture of the model, I’d suggest to first experiment with adjusting the number of hidden layers, and only afterwards experiment with the number of dimensions in each hidden layer. You should see more granular increases or decreases in performance that way. To get an idea of what the code looks like for these parameters, check out an example of [`nnet3` code here][nnet3] or [`nnet2` code here][nnet2].
+When changing the size and architecture of the model, I’d suggest to first experiment with adjusting the number of hidden layers, and only afterwards experiment with the number of dimensions in each hidden layer. You should see larger increases or decreases in performance that way. To get an idea of what the code looks like for these parameters, check out an example of [`nnet3` code here][nnet3] or [`nnet2` code here][nnet2].
 
 ### How to interpret frame-classification accuracy on the validation set?
 
