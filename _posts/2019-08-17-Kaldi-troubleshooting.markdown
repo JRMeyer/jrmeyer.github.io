@@ -326,7 +326,7 @@ As we saw in the [`Big Picture`](#big-picture), at each step information from th
 
 You can think of alignments as audio with time-stamps, where the time-stamps correspond to the sounds that were spoken in that audio (i.e. phonemes – sometimes called senomes, which may also be graphemes or just characters).
 
-As you can see in the image below, there is some audio utterance (shown on top via spectrogram), and we have some text utterance associated with that audio, and after alignment we end up with the bottom row (alignments of individual phonemes to slices of audio).
+As you can see in the image below, there is some audio utterance (shown on top via waveform), and we have some text utterance associated with that audio, and after alignment we end up with the bottom row (alignments of individual phonemes to slices of audio).
 
 
 
@@ -337,7 +337,7 @@ As you can see in the image below, there is some audio utterance (shown on top v
 
 
 
-This alignment corresponds to a monophone model, because each phoneme (i.e. linguistic speech sound) is modeled by only one unit. For example, you can see that there are multiple instances of the sound “S”, and they are all coded exactly the same (i.e. “S”). Each instance of “S” is actually acoustically different from the others, because each instance has its own neighboring sounds which affect it: this is called the co-articulation affect. 
+This alignment corresponds to a monophone model, because each phoneme (i.e. linguistic speech sound) is modeled by only one unit. For example, you can see that there are multiple instances of the sound `S`, and they are all coded exactly the same (i.e. `S`). Each instance of `S` is actually acoustically different from the others, because each instance has its own neighboring sounds which affect it: this is called the co-articulation affect. 
 
 Triphone models take this co-articulation effect into account by modeling phonemes based on context. The triphone alignment would look something more like this:
 
@@ -349,9 +349,9 @@ Triphone models take this co-articulation effect into account by modeling phonem
 
 
 
-The sounds are now encoded with their surrounding context. For example, “IH-Z-AH” represents the sound “Z” which is preceded by the sound “IH” and followed by the sound “AH”.
+The sounds are now encoded with their surrounding context. For example, `IH-Z-AH` represents the sound `Z` which is preceded by the sound `IH` and followed by the sound `AH`.
 
-Triphone alignments are more complicated than monophones. This extra complication allows for the modeling of more nuanced phonetic details. In the monophone alignments we see that the “S” from ‘this’ and the ‘S’ from ‘is’ are modeled as the same sound. However, in reality these two “S” sounds are acoustically very different, because they have different neighboring phonemes. The monophone alignments lose this distinction, but the triphones capture it. These two ‘S’s are modeled as separate units in the triphone alignments.
+Triphone alignments are more complicated than monophones. This extra complication allows for the modeling of more nuanced phonetic details. In the monophone alignments we see that the `S` from "this" and the ‘S’ from "is" are modeled as the same sound. However, in reality these two `S` sounds are acoustically very different, because they have different neighboring phonemes. The monophone alignments lose this distinction, but the triphones capture it. These two ‘S’s are modeled as separate units in the triphone alignments.
 
 Triphone models take into account (a) the central phoneme of interest, (b) the phoneme to the immediate left, and (c) the phoneme to the immediate right. As such, triphones take into account three phonemes (this is where the word “triphone” comes).
 
