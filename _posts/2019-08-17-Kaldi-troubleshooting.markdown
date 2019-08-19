@@ -419,7 +419,7 @@ This usually means either there’s a mis-match between the audio and the transc
 $ grep -r "gmm-align-compiled.* errors on " exp/tri*_ali/log/align_pass*.log
 {% endhighlight %}
 
-For statistics on the phonemes you trained and where they’re located, take a look the analyze_alignments.log files which you find in your alignment directories (e.g. `exp/tri*_ali/log/analyze_alignments.log`).
+For statistics on the phonemes you trained and where they’re located, take a look the `analyze_alignments.log` files which you find in your alignment directories (e.g. `exp/tri*_ali/log/analyze_alignments.log`).
 
 <br/>
 
