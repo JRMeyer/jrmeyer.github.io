@@ -188,6 +188,7 @@ Where these GMM-HMM performance metrics come from:
 | **Training** | *GMM-HMMs* |
 | **Decoding** | *`WER` + Transcripts*  |
 |---------|---------|
+{: align="center"}
 
 <br/>
 
