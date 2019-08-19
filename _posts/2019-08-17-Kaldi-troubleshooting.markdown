@@ -24,16 +24,14 @@ The typical Kaldi training pipeline consists of the following four steps:
 
 Four Main Kaldi Training Steps:
 
-<br/>
-| Step | Dependencies |
+
+| **Step** | *Dependencies* |
 |--------|---------|
 | **Train Monophones**  | *from a Flat Start*  |
 | **Train Triphones**  | *from Monophone alignments*  |
 | **Train Speaker Adaptations**  | *from Triphone alignments*  |
 | **Train Deep Neural Network**  | *from Triphone + Speaker Adaptation alignments*  |
 |---------|--------|
-{: align="center"}
-<br/>
 
 
 The first three steps all involve Gaussian Mixture Models and Hidden Markov Models (GMM-HMMs). So, even if you only care about the Deep Neural Network (DNN), you can’t avoid GMMs.
