@@ -489,9 +489,9 @@ Improvements in `WER` which come from Acoustic Model parameter changes should ge
 
 ## Conclusion
 
-In short, when you’re trouble shooting your Kaldi system, first look at the training statistics for your  Deep Neural Network Acoustic Model. Then, look at the training, alignment, and decoding stats of your GMM-HMMs. If all those data look good, then try training a Language Model more suited for your use-case.
+In short, when you’re troubleshooting your Kaldi system, first look at the training statistics for your  Deep Neural Network Acoustic Model. Then, look at the training, alignment, and decoding stats of your GMM-HMMs. If all those data look good, then try training a Language Model more suited for your use-case.
 
-If you still are running into issues, then look on `kaldi-help` to see if someone else has had that problem before (often they have). As far as I know, `kaldi-help` is the only forum for these kinds of questions. Unfortunately, the atmosphere on `kaldi-help` can be unwelcoming to newcomers. If you post a question and get a critical response, don’t let it upset you. The forum has an un-welcoming atmosphere and it has nothing to do with you or your abilities to do good ASR. I was afraid to post on kaldi-help for a long time because of this atmosphere, and indeed my first post was not received kindly. Alternatively, you can post questions here on my blog. However, the community here is not as large as kaldi-help.
+If you still are running into issues, look on `kaldi-help` to see if someone else has had your problem (often they have). As far as I know, `kaldi-help` is the only forum for these kinds of questions. Unfortunately, the atmosphere on `kaldi-help` can be unwelcoming to newcomers. If you post a question and get a critical response, don’t let it upset you. The forum can be un-welcoming, and it has nothing to do with you or your abilities to do good ASR! I was afraid to post on `kaldi-help` for a long time because of this atmosphere, and indeed my first post was not received kindly. Alternatively, you can post questions here on my blog. However, the community here is not as large as `kaldi-help`.
 
 I hope this was helpful, and happy Kaldi-ing!
 
