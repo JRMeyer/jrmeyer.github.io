@@ -23,14 +23,14 @@ comments: True
 The typical Kaldi training pipeline consists of the following four steps:
 
 <br>
-| <span style="font-weight:normal"><font size="6"><b>Four Main Kaldi Training Steps</b></font></span> |
+| <span style="font-weight:normal"><font size="6"><b>Four Main Kaldi Training Steps</b></font> <td colspan=2></span> |
 | <span style="font-weight:normal"><font size="4"><b>Step</b></font></span> | <span style="font-weight:normal"><font size="4"><i>Dependencies</i></font></span> |
-|:-
+|--------|---------|
 | **Train Monophones**  | *from a Flat Start*  |
 | **Train Triphones**  | *from Monophone alignments*  |
 | **Train Speaker Adaptations**  | *from Triphone alignments*  |
 | **Train Deep Neural Network**  | *from Triphone + Speaker Adaptation alignments*  |
-|---------+---------|
+|---------|--------|
 {: align="center"}
 <br>
 
