@@ -22,8 +22,9 @@ comments: True
 
 The typical Kaldi training pipeline consists of the following four steps:
 
+Four Main Kaldi Training Steps:
+
 <br/>
-| <span style="font-weight:normal"><font size="6"><b>Four Main Kaldi Training Steps</b></font> <td colspan=2></span> |
 | <span style="font-weight:normal"><font size="4"><b>Step</b></font></span> | <span style="font-weight:normal"><font size="4"><i>Dependencies</i></font></span> |
 |--------|---------|
 | **Train Monophones**  | *from a Flat Start*  |
