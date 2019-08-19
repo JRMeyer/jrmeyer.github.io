@@ -211,11 +211,11 @@ To the left is the line number, in the center is the actual code, and to the rig
 116  steps/train_deltas.sh --boost-silence 1.25 --cmd "$train_cmd" 2000 10000 \             <--  tri
         data/train_si84_half data/lang_nosp exp/mono0a_ali exp/tri1
 
-158  steps/train_lda_mllt.sh --cmd "$train_cmd" \                                <--  tri + LDA+MLLT
+157  steps/train_lda_mllt.sh --cmd "$train_cmd" \                                <--  tri + LDA+MLLT
         --splice-opts "--left-context=3 --right-context=3" 2500 15000 \
         data/train_si84 data/lang_nosp exp/tri1_ali_si84 exp/tri2b
           
-212  steps/train_sat.sh --cmd "$train_cmd" 4200 40000 \                    <--  tri + LDA+MLLT + SAT
+211  steps/train_sat.sh --cmd "$train_cmd" 4200 40000 \                    <--  tri + LDA+MLLT + SAT
         data/train_si284 data/lang_nosp exp/tri2b_ali_si284 exp/tri3b
 {% endhighlight %}
 
@@ -246,10 +246,10 @@ N.B. there is no explicit alignment of the tri + LDA+MLLT + SAT model in wsj/s5/
 126  steps/decode.sh --nj $nspk --cmd "$decode_cmd" exp/tri1/graph_nosp_tgpr \              <--  tri
         data/test_${data} exp/tri1/decode_nosp_tgpr_${data}
 
-168  steps/decode.sh --nj ${nspk} --cmd "$decode_cmd" exp/tri2b/graph_nosp_tgpr \ <-- tri + LDA+MLLT
+167  steps/decode.sh --nj ${nspk} --cmd "$decode_cmd" exp/tri2b/graph_nosp_tgpr \ <-- tri + LDA+MLLT
         data/test_${data} exp/tri2b/decode_nosp_tgpr_${data}
   
-231  steps/decode_fmllr.sh --nj ${nspk} --cmd "$decode_cmd" \              <--  tri + LDA+MLLT + SAT
+230  steps/decode_fmllr.sh --nj ${nspk} --cmd "$decode_cmd" \              <--  tri + LDA+MLLT + SAT
         exp/tri3b/graph_nosp_tgpr data/test_${data} \   
         exp/tri3b/decode_nosp_tgpr_${data}
 {% endhighlight %}
