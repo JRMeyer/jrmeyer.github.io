@@ -194,11 +194,15 @@ Where these GMM-HMM performance metrics come from:
 
 
 
-It’s hard to directly inspect GMM-HMMs, which is why we make use of the outputs of the training and testing phases (`WER` / transcripts / alignments). The outputs listed above will be produced individually for each model you train, so you can see how the models (e.g. monophones vs. triphones) compare to each other. You can find the code corresponding to each of these three steps in the wsj/s5/run.sh file at the following locations.
+It’s hard to directly inspect GMM-HMMs, which is why we make use of the outputs of the training and testing phases (`WER` / transcripts / alignments). The outputs listed above will be produced individually for each model you train, so you can see how the models (e.g. monophones vs. triphones) compare to each other. You can find the code corresponding to each of these three steps in the [`wsj/s5/run.sh`][wsj] file at the following locations.
+
+I chose to reference this [`run.sh`][wsj] from the Wall Street Journal recipe (i.e. called `wsj` in Kaldi) because all other examples in Kaldi link back to `wsj`. This is the root of all Kaldi example recipes (so-called `egs`).
 
 <br/>
 
 ### Training Steps in `wsj/s5/run.sh`
+
+To the left is the line number, in the center is the actual code, and to the right is my comment on what the line refers to.
 
 {% highlight bash %}
 97   steps/train_mono.sh --boost-silence 1.25 --nj 10 --cmd "$train_cmd" \                  <-- mono
@@ -571,3 +575,4 @@ lattice_beam= 1.0 → 8.0
 [nnet3]: https://github.com/kaldi-asr/kaldi/blob/3f95ed9185d8f8f76f9fb71c915119bf8b945a66/egs/wsj/s5/steps/nnet3/train_tdnn.sh#L92
 [show-alignments]: https://github.com/kaldi-asr/kaldi/blob/master/src/bin/show-alignments.cc
 [easy-kaldi]: https://github.com/JRMeyer/easy-kaldi
+[wsj]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/run.sh
