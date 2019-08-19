@@ -108,21 +108,21 @@ These two accuracies give you very important information. Here is an example gra
 
 
 
-The data used to create this graph come from the relevant log files: (`compute_prob_train.*.log` and `compute_prob_valid.*.log`). The visualization scripts used to plot the data can be found here ([format data][format-acc]) and here ([plot data][plot-acc]). Take a quick look into the internals of the scripts, you will have to adjust sections depending on if you’re using `nnet2` or `nnet3`.
+The data used to create this graph come from the relevant log files: (`compute_prob_train.*.log` and `compute_prob_valid.*.log`). The visualization scripts used to plot the data can be found here ([format data][format-acc]) and here ([plot data][plot-acc]).
 
-First, run the formatting script. It takes two args (1) the directory in which the `compute.*.log` files are saved, and (2) filename of an output file which will then be used for plotting.
+First, run the formatting script. It takes three args (1) the directory in which the `compute.*.log` files are saved, and (2) whether you're using `nnet2` vs `nnet3`, and (3) the filename of an output file which will then be used for plotting.
 
 {% highlight bash %}
-$ ./format_accuracy_for_plot.sh /full/path/to/log/ output_file.txt
+$ ./format_accuracy_for_plot.sh "/full/path/to/log/" "nnet3" "output_file.txt"
 {% endhighlight %}
 
 Second, take the newly formatted data and plot it with Python.
 
 {% highlight bash %}
-$ python3 plot_accuracy.py -n 1 -t “MY_TITLE” -i output_file.txt 
+$ python3 plot_accuracy.py -n 1 -t “My Awesome Title” -i "output_file.txt"
 {% endhighlight %}
 
-There will be two lines plotted, one for the `validation` data and one for the `training` data. The flag `-n` is for number of tasks (because I used the script for multi-task research). You just set number of tasks to one.
+There will be two lines plotted, one for the `validation` data and one for the `training` data. The flag `-n` is for number of tasks (because I also use the script for multi-task research). You just set number of tasks to one.
 
 <br/>
 
