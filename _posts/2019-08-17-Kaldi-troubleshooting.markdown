@@ -61,7 +61,7 @@ Once you have a working Automatic Speech Recognition (ASR) system built on Kaldi
 
 Word Error Rates (`WER`) are the metric we most often use when evaluating a system’s performance, and `WER` must be interpreted as the combined performance of the two parts: (Acoustic Model and Language Model) -- remember that. To improve `WER` as much as possible, you may need to address issues in *both* models. Nevertheless, isolated improvements to either model should lead to improvements in overall `WER`.
 
-`WER` is the most important metric to optimize, but in the following we will focus on other metrics and data which represent only the Acoustic Model. We will troubleshoot starting from the last step of Kaldi training (i.e. the DNN), and work our way backwards to the first step (i.e. the Monophones).
+`WER` is the most important metric to optimize  , but in the following we will focus on other metrics and data which represent only the Acoustic Model. We will troubleshoot starting from the last step of Kaldi training (i.e. the DNN), and work our way backwards to the first step (i.e. the Monophones).
 
 <br/>
 <br/>
@@ -456,9 +456,9 @@ LOG (lattice-best-path[5.2.110~1-1d137]:main():lattice-best-path.cc:99) For utte
 
 The `best_path` in the filename `best_path.10.0.0.log` means that the output represents the 1-best path through the decoding lattice for each utterance. This is very useful, because this shows you how the model is performing at test-time, and you can spot errors and biases here more easily. 
 
-The bolded lines are the most important. The first few lines are logging data, but the bolded lines are the model’s prediction on some testing data. The bolded lines show (1) the utterance ID  (e.g. `ID-0007`), and (2) the prediction of the model for that utterance (e.g. `A COLD LUCID IN DIFFERENCE OR REINED IN HIS SOUL`). It is good to listen to the audio file and look at the corresponding output to identify errors.
+The first few lines are logging data, and the lines in all caps are the model’s prediction on some testing data. These lines show (1) the utterance ID  (e.g. `ID-0007`), and (2) the prediction of the model for that utterance (e.g. `A COLD LUCID IN DIFFERENCE OR REINED IN HIS SOUL`). It is good to listen to the audio file and look at the corresponding output to identify errors.
 
-Sometimes you can even see if the errors stem from the Acoustic Model or from the Language Model (e.g. the model predicted `IN DIFFERENCE` instead of `INDIFFERENCE`, which is a Language Model problem given that both options are acoustically identical.)
+Sometimes you can even see if the errors stem from the Acoustic Model or from the Language Model (e.g. the model predicted `IN DIFFERENCE` instead of `INDIFFERENCE`, which is a Language Model problem given that both options are acoustically identical).
 
 <br/>
 
@@ -473,9 +473,9 @@ Well, as mentioned above, if you’re overfitting your training data, then try t
 
 ## Language Model
 
-The Language Model is indeed very important for `WER`, because it encodes a strong bias as to what words are (a) which words are possible, (b) which words are impossible, and (c) how probable each possible word is.  A word is only possible to be decoded if it occurs in the vocabulary of the Language Model. Any word that does not occur in the vocabulary is impossible. The Language Model contains an explicit probability for each word and word sequence. 
+The Language Model (LM) is indeed very important for `WER`. The LM encodes (a) which words are possible, (b) which words are impossible, and (c) how probable each possible word is. A word may only be decoded if it occurs in the vocabulary of the Language Model. Any word that does not occur in the vocabulary is an Out-Of-Vocabulary (OOV) word. The Language Model contains a probability for each word and word sequence. 
 
-The Language Model you use at run-time and the Language Model you use at test time to not need to be the same. As such, if you’re optimizing `WER` at test-time by adjusting Language Model parameters, but at run-time you use a different Language Model, none of the improvements at test-time will transfer.
+The LM you use in your application and the LM you use at test time to not need to be the same. However, if you’re optimizing `WER` at test-time by adjusting Language Model parameters, it isn't guaranteed that improvements will transfer to inference with a new LM.
 
 <br/>
 
