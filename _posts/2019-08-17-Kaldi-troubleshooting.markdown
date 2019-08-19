@@ -16,14 +16,14 @@ comments: True
 <br/>
 <br/>
 
-
-
 ## Introduction
 
 The following guide is for those who have already [installed Kaldi][install-kaldi], trained a GMM model, and [trained a DNN model][train-kaldi], but the final system isn't performing well.
 
 If you haven't done those steps yet, this troubleshooting guide might not be what you're looking for. If you're looking to get started with Kaldi, feel free to click on any of the above links and then come back to this guide as needed. If you'd like a simple, easy to understand Kaldi recipe, you can check out my [`easy-kaldi` GitHub repo][easy-kaldi]. You probably won't get state-of-the-art results with `easy-kaldi`, but you will hopefully be able to understand the pipeline.
 
+<br/>
+<br/>
 
 ## Big Picture
 
@@ -68,6 +68,8 @@ Word Error Rates (`WER`s) are the metric we most often use when evaluating a sys
 The first thing we need to do is identify the source of the problem: the Acoustic Model or the Language Model. It’s hard to troubleshoot the Language Model on it’s own, so we will start with the neural Acoustic Model. If after following this guide you conclude that the Acoustic Model is performing fine, then you should spend time on the Language Model (i.e. try training on new text data, train larger order N-grams, etc).
 
 The Acoustic Model sends its output (i.e. phoneme predictions) to the Language Model, and then the Language Model tries to translate those predictions into words. A junk Acoustic Model will send junk predictions down the pipeline to the Language Model, and in the end you’ll get junk output from the Language Model.
+
+<br/>
 
 ### Frame-Classification Accuracy
 
@@ -119,12 +121,14 @@ $ python3 plot_accuracy.py -n 1 -t “MY_TITLE” -i output_file.txt
 
 There will be two lines plotted, one for the `validation` data and one for the `training` data. The flag `-n` is for number of tasks (because I used the script for multi-task research). You just set number of tasks to one.
 
+<br/>
 
 ### How to interpret frame-classification accuracy on training data?
 
 Frame-classification accuracy on the training set (i.e. data from `compute_prob_train.*.log`) tells you how well your net is performing on the data it sees during training. If you make your neural net big enough and run enough training iterations (i.e. epochs), then you will get 100% accuracy on this data. This is a bad thing. When you get really high classification accuracy on the training set, this is typically a sign of overfitting. Your Acoustic Model has stopped “learning” patterns in speech, and started “memorizing” your data. Once you’ve overfit, your model is doing more table look-up than pattern recognition. So, getting 100% frame classification accuracy on your training data is a bad thing.
 
 
+<br/>
 
 ### What to do about neural net overfitting on training data? 
 
@@ -132,11 +136,15 @@ Two simple solutions: (1) Make the net smaller, and (2) don’t run so many epoc
 
 When changing the size and architecture of the model, I’d suggest to first experiment with adjusting the number of hidden layers, and only afterwards experiment with the number of dimensions in each hidden layer. You should see larger increases or decreases in performance that way. To get an idea of what the code looks like for these parameters, check out an example of [`nnet3` code here][nnet3] or [`nnet2` code here][nnet2].
 
-### How to interpret frame-classification accuracy on the validation set?
+<br/>
 
-The second metric from Acoustic Model training is frame-classification accuracy on a held-out validation set. You will find this information in the log files of the type: `compute_prob_valid.*.log` (same files as mentioned above.)
+### How to interpret frame-classification accuracy on validation data?
 
-**Frame-classification accuracy on the held-out validation set is the metric you want to optimize in DNN Acoustic Model training.** It represents how well your Acoustic Model is able to classify data that it never saw before. There is no chance that the model “memorized” this data.
+The second metric from Acoustic Model training is frame-classification accuracy on a held-out validation set. You will find this information in the log files of the type: `compute_prob_valid.*.log`.
+
+>Frame-classification accuracy on the held-out validation set is the metric you want to optimize in DNN Acoustic Model training.
+
+Frame-classification accuracy on the held-out validation set represents how well your Acoustic Model is able to classify data that it never saw before. There is no chance that the model ``memorized'' this data.
 
 Getting bad accuracy on validation data can mean two things: (1) there’s a problem with your data, and/or (2) there’s a problem with your model. If you’re using off-the-shelf code from Kaldi, you probably don’t have issues in your model. You might have to change the size of the model, but that’s all. What’s more often the issue is the data. You might have too little data, too noisy of data, or you might have mis-labeled data. Your mis-labeled data could mean that (1) the human transcriber did a bad job writing down all the correct words spoken in the audio, (2) the phonetic dictionary has incorrect pronunciations for words, or (3) the GMM-HMM system did a bad job aligning data to monophones or triphones.
 
@@ -144,6 +152,8 @@ If your data and labels are wrong, then your neural model won’t be able to lea
 
 In what follows we’re going to talk about troubleshooting the GMMs systems you use in Kaldi to generate those alignments (i.e. monophones / triphones / LDA + MLLT / SAT).
 
+<br/>
+<br/>
 
 ## Troubleshooting your GMM-HMMs
 
@@ -182,7 +192,7 @@ Where these GMM-HMM performance metrics come from:
 
 It’s hard to directly inspect GMM-HMMs, which is why we make use of the outputs of the training and testing phases (`WER`s / transcripts / alignments). The outputs listed above will be produced individually for each model you train, so you can see how the models (e.g. monophones vs. triphones) compare to each other. You can find the code corresponding to each of these three steps in the wsj/s5/run.sh file at the following locations.
 
-
+<br/>
 
 ### Training Steps in `wsj/s5/run.sh`
 
@@ -201,7 +211,7 @@ It’s hard to directly inspect GMM-HMMs, which is why we make use of the output
         data/train_si284 data/lang_nosp exp/tri2b_ali_si284 exp/tri3b
 {% endhighlight %}
 
-
+<br/>
 
 ### Alignment Steps in `wsj/s5/run.sh`
 
@@ -217,6 +227,7 @@ N.B. there is no explicit alignment of the tri + LDA+MLLT + SAT model in wsj/s5/
 208  steps/align_si.sh --nj 10 --cmd "$train_cmd" \                               <-- tri + LDA+MLLT                                                                                       	  data/train_si284 data/lang_nosp exp/tri2b exp/tri2b_ali_si284
 {% endhighlight %}
 
+<br/>
 
 ### Decoding Steps in `wsj/s5/run.sh`
 
@@ -236,6 +247,8 @@ N.B. there is no explicit alignment of the tri + LDA+MLLT + SAT model in wsj/s5/
 {% endhighlight %}
 
 
+<br/>
+<br/>
 
 ## Interpreting `WER`s
 
@@ -292,7 +305,8 @@ As you can see, we get more info than just the `WER`. We also get the Sentence E
 We also get information on how many times the system failed during decoding: `0 not present in hyp`. `hyp` stands for `hypothesis`, and if that number is greater than `0`, it means that the model was unable to generate a hypothesis transcript for atleast one utterance (i.e. decoding failed). Failed decoding may happen if the decoding beam is too small or if the audio is exceptionally noisy.
 
 
-
+<br/>
+<br/>
 
 ## Interpreting Alignments
 
@@ -345,6 +359,7 @@ exp/tri2b_ali/ali.*.gz           <--  triphones + LDA + MLLT
 exp/tri3b_ali/ali.*.gz           <--  triphones + LDA + MLLT + SAT
 {% endhighlight %}
 
+<br/>
 
 ### Direct inspection of alignments
 
@@ -398,7 +413,7 @@ $ grep -r "gmm-align-compiled.* errors on " exp/tri*_ali/log/align_pass*.log
 
 For statistics on the phonemes you trained and where they’re located, take a look the analyze_alignments.log files which you find in your alignment directories (e.g. `exp/tri*_ali/log/analyze_alignments.log`).
 
-
+<br/>
 
 ### Interpreting the Decoding Transcripts from Test Data
 
@@ -437,6 +452,7 @@ The bolded lines are the most important. The first few lines are logging data, b
 
 Sometimes you can even see if the errors stem from the Acoustic Model or from the Language Model (e.g. the model predicted `IN DIFFERENCE` instead of `INDIFFERENCE`, which is a Language Model problem given that both options are acoustically identical.)
 
+<br/>
 
 ### What next for Acoustic Model troubleshooting?
 
@@ -444,6 +460,8 @@ If at this point you’ve run all the inspections above, your GMM-HMM model shou
 
 Well, as mentioned above, if you’re overfitting your training data, then try to reduce the size of the model as well as the number of epochs you run. At this point you might need to do some hyper-parameter searching within the suggestions I provide below as a cheat-sheet. Try to identify consistent problems in the output of the combined model (Language Model + Acoustic Model).
 
+<br/>
+<br/>
 
 ## Language Model
 
@@ -451,13 +469,15 @@ The Language Model is indeed very important for `WER`, because it encodes a stro
 
 The Language Model you use at run-time and the Language Model you use at test time to not need to be the same. As such, if you’re optimizing `WER` at test-time by adjusting Language Model parameters, but at run-time you use a different Language Model, none of the improvements at test-time will transfer.
 
+<br/>
 
 ### Notes on the Language Model you use at Test-Time
 
 Improvements in `WER` which come from Acoustic Model parameter changes should generalize across Language Models. For example, if you find that for a bi-gram Language Model a 5-layer neural net Acoustic Model works better than a 6-layer net, you should expect that (for your data), a 5-layer Acoustic Model will beat out a 6-layer net, regardless of the n-gram order of the Language Model.  
 
 
-
+<br/>
+<br/>
 
 ## Conclusion
 
@@ -470,10 +490,14 @@ I hope this was helpful, and happy Kaldi-ing!
 Let me know if you have comments or suggestions and you can always leave a comment below. 
 
 
+<br/>
+<br/>
 
 ## Hyperparameter Cheatsheet 
 
 The following parameter ranges are what I would recommend as a good starting place. However, what works for your data and your application may differ.
+
+<br/>
 
 ### GMM-HMM Alignment
 
@@ -506,6 +530,8 @@ numleaves= 2500 → 10000
 totgauss= 15000 → 200000
 {% endhighlight %}
 
+<br/>
+
 ### DNN Training
 
 You should ideally be using `nnet3` instead of nnet2. The newer code is tried and tested more, and will have better support. In general, long-skinny nets are better than short fat ones. Monitor your training progress with information from `compute_prob_train.*.log` and `compute_prob_valid.*.log`.
@@ -517,6 +543,8 @@ Dimension of Hidden Layers: 512 → 1280
 Kind of Neural Network: TDNN or LSTM
 Kind of non-linearity: ReLU or tanh
 {% endhighlight %}
+
+<br/>
 
 ### Decoding
 
