@@ -8,7 +8,7 @@ comments: True
 
 <br/>
 
-<img src="/misc/kaldi_text_and_logo.png" align="right" style="width: 400px;"/>
+<img src="/misc/kaldi-troubleshooting.png" align="right" style="width: 400px;"/>
 
 <br/>
 <br/>
