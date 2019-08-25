@@ -52,7 +52,15 @@ grep -o "." FILE | sort | uniq
 {% endhighlight %}
 
 
+## [awk][awk]
+
+### Sort lines in file by length in characters
+
+{% highlight bash %}
+cat FILE | awk '{ print length, $0 }' | sort -n -s | cut -d" " -f2-
+{% endhighlight %}
 
 [cut]: https://linux.die.net/man/1/cut
 [sed]: https://linux.die.net/man/1/sed
 [grep]: https://linux.die.net/man/1/grep
+[awk]: https://linux.die.net/man/1/awk
