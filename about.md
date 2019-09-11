@@ -18,7 +18,7 @@ You can find my CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">her
 <br/>
 <br/>
 
-My name's Josh and I'm an NSF Graduate Research Fellow and PhD candidate at the University of Arizona. My expertise is in Automatic Speech Recognition and Synthesis, Natural Language Processing, and general Machine Learning. This blog is some of what I'm learning along the way.
+My name's Josh and I'm the Lead Scientist for Speech Technology at <a href="https://www.artie.com/">Artie, Inc</a>. My expertise is in Automatic Speech Recognition and Synthesis, Natural Language Processing, and general Machine Learning. This blog is some of what I'm learning along the way.
 
 <br/>
 <br/>
@@ -31,7 +31,7 @@ My name's Josh and I'm an NSF Graduate Research Fellow and PhD candidate at the 
 <br/>
 <br/>
 
-Even though I spend most of the day with my NLP / machine learning hat on, I'm still very much a linguist in that I love languages. I've spent a good amount of time studying French and Russian, and I've dabbled in a handful of others. [Kyrgyz](https://en.wikipedia.org/wiki/Kyrgyz_language) is the language I often use in my research, because it's pretty cool!
+Even though I spend most of the day with my Speech / NLP / Machine Learning hat on, I'm still very much a linguist in that I love languages. I've spent a good amount of time studying French and Russian, and I've dabbled in a handful of others. [Kyrgyz](https://en.wikipedia.org/wiki/Kyrgyz_language) is a language I often use in my research, because it's pretty cool!
 
 <br/>
 
@@ -41,9 +41,6 @@ Even though I spend most of the day with my NLP / machine learning hat on, I'm s
 <center><audio controls>
  <source src="http://jrmeyer.github.io/misc/piano_6.wav"
          type='audio/wav'>
- <!-- The next two lines are only executed if the browser doesn't support WAV files -->
- <source src="http://media.w3.org/2010/07/bunny/04-Death_Becomes_Fur.oga"
-         type='audio/ogg; codecs=vorbis'>
  <!-- The next line will only be executed if the browser doesn't support the <audio> tag-->
  <p>Your user agent does not support the HTML5 Audio element.</p>
 </audio></center>
