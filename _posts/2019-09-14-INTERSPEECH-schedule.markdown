@@ -6,7 +6,8 @@ categories: ASR
 comments: True
 ---
 
-<br/>
+
+# Sunday
 
 <object data="/misc/1.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="/misc/1.pdf">
@@ -18,35 +19,53 @@ comments: True
 <br/>
 <br/>
 
-<br/>
+# Monday
 
-<object data="{{ misc.2.pdf }}" width="1000" height="1000" type='application/pdf'/>
-
-<br/>
-<br/>
-<br/>
-
-<br/>
-
-<object data="{{ misc.3.pdf }}" width="1000" height="1000" type='application/pdf'/>
+<object data="/misc/2.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/misc/2.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/2.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 <br/>
 <br/>
 <br/>
 
-<br/>
 
-<object data="{{ misc.4.pdf }}" width="1000" height="1000" type='application/pdf'/>
+# Tuesday
 
-<br/>
-<br/>
-<br/>
-
-<br/>
-
-<object data="{{ misc.5.pdf }}" width="1000" height="1000" type='application/pdf'/>
+<object data="/misc/3.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/misc/3.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/3.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
 
 <br/>
+<br/>
+<br/>
+
+
+# Wednesday
+
+<object data="/misc/4.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/misc/4.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/4.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
+<br/>
+<br/>
+<br/>
+
+
+# Thursday
+
+<object data="/misc/5.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="/misc/5.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/5.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 <br/>
 <br/>
 
