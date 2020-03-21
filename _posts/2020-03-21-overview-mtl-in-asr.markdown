@@ -53,7 +53,7 @@ Given this definition of \textit{task} and this definition of \textit{Multi-Task
 <img src="/misc/figs/color-si-mo.png" align="left" style="width: 225px;"/>
 <img src="/misc/figs/color-mi-so.png" align="center" style="width: 225px;"/>
 <img src="/misc/figs/color-mi-mo.png" align="right" style="width: 200px;"/>
-<center>**Figure 1**: Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from heigold2013.</center>
+<center><strong>Figure 1</strong>: Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from heigold2013.</center>
 <br><br>
 
 
@@ -84,5 +84,5 @@ Assuming we don't want to collect more data and we don't want to add a new mappi
 <img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
 <img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
 <img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
-<center>**Figure 2**: Three pictures of dogs from our dataset ($$X_1$$), where each picture has been labeled with separate targets: **dog_breed**, &#x1F534; **dog_size**</center>
+<center><strong>Figure 2</strong>: Three pictures of dogs from our dataset ($$X_1$$), where each picture has been labeled with separate targets: **dog_breed**, &#x1F534; **dog_size**</center>
 <br><br>
