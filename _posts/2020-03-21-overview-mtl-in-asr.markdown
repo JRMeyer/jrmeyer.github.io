@@ -14,7 +14,7 @@ In this overview of Multi-Task Learning in Automatic Speech Recognition (ASR), w
 
 The literature survey focuses on acoustic modeling in particular. Speech Recognition has a long history, but this overview is limited in scope to the Hybrid (i.e. DNN-HMM) and End-to-End approaches. Both approaches involve training Deep Neural Networks, and we will focus on how Multi-Task Learning has been used to train them. We will divide up the literature along monolingual and multilingual models, and then finally we will touch on Multi-Task Learning in other speech technologies such as Speech Synthesis and Speaker Verification.
 
-``Multi-Task Learning'' denotes more than a model which can perform multiple tasks at inference time. Multi-Task Learning can be useful even when there is just **one** target task of interest. Especially with regards to small datasets, a Multi-Task model can beat out a model which was trained to optimize the performance of just one task. Moreover, Multi-Task Learning can be used even when there is one task explicitly labeled in the training data.
+``Multi-Task Learning'' denotes more than a model which can perform multiple tasks at inference time. Multi-Task Learning can be useful even when there is just *one* target task of interest. Especially with regards to small datasets, a Multi-Task model can beat out a model which was trained to optimize the performance of just one task. Moreover, Multi-Task Learning can be used even when there is one task explicitly labeled in the training data.
 
 [^1]: Yes, there will be pictures of dogs!
 [^2]: For a more complete overview of Multi-Task Learning itself: ruder2017overview
@@ -23,7 +23,18 @@ The literature survey focuses on acoustic modeling in particular. Speech Recogni
 
 ## An Introduction to Multi-Task Learning
 
+### Definition
+
+Before we can define *Multi-Task Learning*, we first need to define what counts as a *task*. Some researchers may define a task as a set of data and corresponding target labels (i.e. a task is merely $$(X,Y)$$). Other definitions may focus on the statistical function that performs the mapping of data to targets (i.e. a task is the function $$f: X \rightarrow Y$$). In order to be precise, in this overview a task is defined as the combination of data, targets, and mapping function.
+
 <br><br>
+
+A *task* is the combination of:
+
+1. Data: $$X$$, a sample of data from a certain domain
+2. Targets: $$Y$$, a sample of targets from a certain domain
+3. Mapping Function: $$f: X \rightarrow Y$$, a function which maps data to targets 
+
 <br><br>
 
 
