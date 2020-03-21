@@ -91,6 +91,6 @@ Assuming we don't want to collect more data and we don't want to add a new mappi
   Given this data and our two sets of labels, we can train a Multi-Task neural network to perform classification of both label sets with the vanilla feed-forward architecture shown in Figure (3). This model now has two task-specific output layers and two task-specific penultimate layers. The input layer and following three hidden layers are shared between both tasks. The shared parameters will be updated via the combined error signal of both tasks.
 
 <br><br>
-<img src="/misc/figs/dog-model.jpg" align="center" style="width: 400px;"/>
+<img src="/misc/figs/dog-model.png" align="center" style="width: 400px;"/>
 <center><strong>Figure 3</strong>:<Multi-Task DNN for classifying pictures of dogs according to both &#x2B1B; <strong>dog_breed</strong> and &#x1F7E5; <strong>dog_size</strong>. Any additional task by definition brings along with it additional parameters, because a subset of model parameters must be task-specific. Task-specific parameters for the new task of &#x1F7E5; <strong>dog_size</strong> classification are shown in red.</center>
 <br><br>
