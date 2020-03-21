@@ -64,3 +64,25 @@ With regards to domains in which we have very limited data (i.e. low-resource en
 
 <br><br>
 
+
+## An Example
+
+This section gives an example of a Multi-Task image recognition framework, where we start with a single task, create a second task, and train a model to perform both tasks. Starting with a single task, suppose we have the access to the following:
+
+1. Data: $$X_1$$, a collection of photographs of dogs from one camera
+2. Targets: $$Y_1$$, a finite set of **dog_breed** labels (e.g. terrier, collie, rottweiler)
+3. Mapping Function: $$f_1: X_1 \rightarrow Y_1$$, a vanilla feedforward neural network which returns a set of probabilities over labels of **dog_breed** to a given photograph
+
+
+In order to create a new task, we either need to collect some data ($$X_2$$) from a new domain, create new targets ($$Y_2$$), or define a new mapping function ($$f_2: X_1 \rightarrow Y_1$$). Furthermore, we would like to create a *related task*, with the hopes of improving performance on the original task. There's several ways we can go about making a new task. We could use the same set of labels (**dog_breed**), but a collect new set of pictures from a different camera. We could try classifying each photograph according to the size of the dog, which would mean we created new labels for our existing data. In addition to our vanilla feed-forward network, we could use a convolutional neural network as a mapping function and share some of the hidden layers between the two networks. 
+
+Assuming we don't want to collect more data and we don't want to add a new mapping function, the easiest way to create a new task is to create a new set of target labels. Since we only had a single set of labels available (i.e. **dog_breed**), we can manually add a new label to each photo (i.e. &#x1F534; **dog_size**) by referencing an encyclopedia of dogs[^6]. So, we started with a single dataset of photos of dogs ($$X_1$$) and a single set of classification labels (&#x1F534; $$Y_1$$) for the dog's breed, and now we've added a new set of labels ($$Y_2$$) for a classification task of the dog's size. A few training examples from our training set ($$X_1, Y_1,$$ &#x1F534; $$Y_2$$) may look like what we find in Figure (2).
+  
+[^6]: This is an example of using domain or expert knowledge to create a new task, where the expert knowledge is contained in the encyclopedia. One could also hire a dog expert to label the images manually. Either way, we are exploiting some source of domain-specific knowledge (i.e. knowledge of the physiology of different dog breeds).
+
+<br><br>
+<img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
+<img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
+<img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
+<center>**Figure 2**: Three pictures of dogs from our dataset ($$X_1$$), where each picture has been labeled with separate targets: **dog_breed**, &#x1F534; **dog_size**</center>
+<br><br>
