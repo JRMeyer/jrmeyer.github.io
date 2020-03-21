@@ -14,10 +14,10 @@ In this overview of Multi-Task Learning in Automatic Speech Recognition (ASR), w
 
 The literature survey focuses on acoustic modeling in particular. Speech Recognition has a long history, but this overview is limited in scope to the Hybrid (i.e. DNN-HMM) and End-to-End approaches. Both approaches involve training Deep Neural Networks, and we will focus on how Multi-Task Learning has been used to train them. We will divide up the literature along monolingual and multilingual models, and then finally we will touch on Multi-Task Learning in other speech technologies such as Speech Synthesis and Speaker Verification.
 
-``Multi-Task Learning'' denotes more than a model which can perform multiple tasks at inference time. Multi-Task Learning can be useful even when there is just *one* target task of interest. Especially with regards to small datasets, a Multi-Task model can beat out a model which was trained to optimize the performance of just one task. Moreover, Multi-Task Learning can be used even when there is one task explicitly labeled in the training data.
+"Multi-Task Learning" denotes more than a model which can perform multiple tasks at inference time. Multi-Task Learning can be useful even when there is just *one* target task of interest. Especially with regards to small datasets, a Multi-Task model can beat out a model which was trained to optimize the performance of just one task. Moreover, Multi-Task Learning can be used even when there is one task explicitly labeled in the training data.
 
 [^1]: Yes, there will be pictures of dogs!
-[^2]: For a more complete overview of Multi-Task Learning itself: ruder2017overview
+[^2]: For a more complete overview of Multi-Task Learning itself: [Ruder (2017)](https://ruder.io/multi-task/)
 
 <br><br>
 
@@ -36,5 +36,27 @@ A *task* is the combination of:
 3. Mapping Function: $$f: X \rightarrow Y$$, a function which maps data to targets 
 
 <br><br>
+
+ The *targets* can be distinct label categories represented by one-hot vectors (e.g. classification labels), or they can be $$N$$-dimensional continuous vectors (e.g. a target for regression)[^3].
+
+[^3]: In reality these two kinds of targets are the same with regards to training neural networks via backpropagation. The targets for classification are just a special case of regression targets, where the values in the vector are $$1.0$$ or $$0.0$$.
+  
+Given this definition of *task}, in this overview we define Multi-Task Learning as a training procedure which updates model parameters such that the parameters optimize performance on multiple tasks in parallel[^4]. At its core, Multi-Task Learning is an approach to parameter estimation for statistical models[^5]. Even though we use multiple tasks during training, we will produce only one model. A subset of the model's parameters will be task-specific, and another subset will be shared among all tasks. Shared model parameters are updated according to the error signals of all tasks, whereas task-specific parameters are updated according to the error signal of only one task. It is important to note that a Multi-Task model will have both *task-dependent} and *task-independent} parameters. The main intuition as to why the Multi-Task approach works is the following: if tasks are related, they will rely on a common underlying representation of the data. As such, learning related tasks together will bias the shared parameters to encode robust, task-independent representations of the data. 
+
+[^4]: An exception to this is Multi-Task Adversarial Learning, in which performance on an auxiliary task is encouraged to be as poor as possible. In domain adaptation, an example of this may be forcing a neural net to be blind to the difference between domains. The Adverserial auxiliary task would be classification of **domain-type**, and the weights would be updated in a way to increase error as much as possible.
+
+[^5]: caruana1998multitask, caruana1996algorithms
+
+Given this definition of \textit{task} and this definition of \textit{Multi-Task Learning}, we can start to think about the different ways in which a Multi-Task model can be trained. Probably the most common Multi-Task use-case is the classification of a single dataset $$(X)$$ as multiple sets of target labels $$(Y_{1}, Y_{2} \dots Y_{N})$$. This model will perform mappings from $$(X)$$ into each of the label spaces separately. Another approach is the classification of multiple datasets sampled from various domains $$(X_{1}, X_{2} \dots X_{N})$$ as their own, dataset-specific targets $$(Y_{1}, Y_{2} \dots Y_{N})$$. Less commonly, it is possible to classify multiple datasets using one super-set of labels. These different approaches are represented with regards to vanilla feed-forward neural networks in the following Figure.
+
+<br><br>
+<img src="/misc/figs/color-si-mo.png" align="left" style="width: 350px;"/>
+<img src="/misc/figs/color-mi-so.png" align="center" style="width: 350px;"/>
+<img src="/misc/figs/color-mi-mo.png" align="right" style="width: 350px;"/>
+<center>Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from heigold2013.</center>
+<br><br>
+
+
+
 
 
