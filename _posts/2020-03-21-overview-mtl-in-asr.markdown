@@ -50,9 +50,9 @@ Given this definition of *task}, in this overview we define Multi-Task Learning 
 Given this definition of \textit{task} and this definition of \textit{Multi-Task Learning}, we can start to think about the different ways in which a Multi-Task model can be trained. Probably the most common Multi-Task use-case is the classification of a single dataset $$(X)$$ as multiple sets of target labels $$(Y_{1}, Y_{2} \dots Y_{N})$$. This model will perform mappings from $$(X)$$ into each of the label spaces separately. Another approach is the classification of multiple datasets sampled from various domains $$(X_{1}, X_{2} \dots X_{N})$$ as their own, dataset-specific targets $$(Y_{1}, Y_{2} \dots Y_{N})$$. Less commonly, it is possible to classify multiple datasets using one super-set of labels. These different approaches are represented with regards to vanilla feed-forward neural networks in the following Figure.
 
 <br><br>
-<img src="/misc/figs/color-si-mo.png" align="left" style="width: 350px;"/>
-<img src="/misc/figs/color-mi-so.png" align="center" style="width: 350px;"/>
-<img src="/misc/figs/color-mi-mo.png" align="right" style="width: 350px;"/>
+<img src="/misc/figs/color-si-mo.png" align="left" style="width: 225px;"/>
+<img src="/misc/figs/color-mi-so.png" align="center" style="width: 225px;"/>
+<img src="/misc/figs/color-mi-mo.png" align="right" style="width: 225px;"/>
 <center>Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from heigold2013.</center>
 <br><br>
 
