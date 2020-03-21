@@ -84,5 +84,5 @@ Assuming we don't want to collect more data and we don't want to add a new mappi
 <img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
 <img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
 <img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
-<center><strong>Figure 2</strong>: Three pictures of dogs from our dataset ($$X_1$$), where each picture has been labeled with separate targets: **dog_breed**, &#x1F534; **dog_size**</center>
+<center><strong>Figure 2</strong>: Three pictures of dogs from our dataset (<strong>X_1</strong>), where each picture has been labeled with separate targets: <strong>dog_breed</strong>, &#x1F534; <strong>dog_size</strong></center>
 <br><br>
