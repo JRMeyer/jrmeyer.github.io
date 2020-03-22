@@ -107,7 +107,7 @@ The Multi-Task Learning discussed here deals with either acoustic modeling in Hy
 Past work in Multi-Task acoustic modeling for speech recognition can be split into two broad categories, depending on whether data was used from multiple languages or just one language. In this survey, we will refer to these two branches of research as *monolingual* vs. *multilingual* approaches. Within each of those two branches, we find sub-branches of research, depending on how the auxiliary tasks are crafted. These major trends are shown in Figure (4), and will be discussed more in-depth below.
 
 <br><br>
-<img src="/misc/figs/overview-MTL.png" align="center" style="width: 225px;"/>
+<img src="/misc/figs/overview-MTL.png" align="center" style="width: 700px;"/>
 <center><strong>Figure 4</strong>: Major Trends in the Research on Multi-Task Learning in Automatic Speech Recognition. Here, "Recording Characteristics" refers to general characteristics of the audio file (i.e. the "recording"), not the quality of the "recording" setup or "recording" equipment. </center>
 <br><br>
 
