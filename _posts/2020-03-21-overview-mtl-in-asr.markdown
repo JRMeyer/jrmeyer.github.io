@@ -76,7 +76,7 @@ This section gives an example of a Multi-Task image recognition framework, where
 
 In order to create a new task, we either need to collect some data ($$X_2$$) from a new domain, create new targets ($$Y_2$$), or define a new mapping function ($$f_2: X_1 \rightarrow Y_1$$). Furthermore, we would like to create a *related task*, with the hopes of improving performance on the original task. There's several ways we can go about making a new task. We could use the same set of labels (**dog_breed**), but a collect new set of pictures from a different camera. We could try classifying each photograph according to the size of the dog, which would mean we created new labels for our existing data. In addition to our vanilla feed-forward network, we could use a convolutional neural network as a mapping function and share some of the hidden layers between the two networks. 
 
-Assuming we don't want to collect more data and we don't want to add a new mapping function, the easiest way to create a new task is to create a new set of target labels. Since we only had a single set of labels available (i.e. &#x2B1B; **dog_breed**), we can manually add a new label to each photo (i.e. &#x1F7E5; **dog_size**) by referencing an encyclopedia of dogs[^6]. So, we started with a single dataset of photos of dogs (&#x2B1B; $$X_1$$) and a single set of classification labels (&#x1F7E5; $$Y_1$$) for the dog's breed, and now we've added a new set of labels ($$Y_2$$) for a classification task of the dog's size. A few training examples from our training set (&#x2B1B; $$X_1, &#x2B1B; Y_1,$$ &#x1F7E5; $$Y_2$$) may look like what we find in Figure (2).
+Assuming we don't want to collect more data and we don't want to add a new mapping function, the easiest way to create a new task is to create a new set of target labels. Since we only had a single set of labels available (i.e. &#x2B1B; **dog_breed**), we can manually add a new label to each photo (i.e. &#x1F7E5; **dog_size**) by referencing an encyclopedia of dogs[^6]. So, we started with a single dataset of photos of dogs (&#x2B1B; $$X_1$$) and a single set of classification labels (&#x1F7E5; $$Y_1$$) for the dog's breed, and now we've added a new set of labels ($$Y_2$$) for a classification task of the dog's size. A few training examples from our training set (&#x2B1B; $$X_1$$, &#x2B1B; $$Y_1$$, &#x1F7E5; $$Y_2$$) may look like what we find in Figure (2).
   
 [^6]: This is an example of using domain or expert knowledge to create a new task, where the expert knowledge is contained in the encyclopedia. One could also hire a dog expert to label the images manually. Either way, we are exploiting some source of domain-specific knowledge (i.e. knowledge of the physiology of different dog breeds).
 
@@ -94,3 +94,20 @@ Assuming we don't want to collect more data and we don't want to add a new mappi
 <img src="/misc/figs/dog-model.png" align="center" style="width: 400px;"/>
 <center><strong>Figure 3</strong>:<Multi-Task DNN for classifying pictures of dogs according to both &#x2B1B; <strong>dog_breed</strong> and &#x1F7E5; <strong>dog_size</strong>. Any additional task by definition brings along with it additional parameters, because a subset of model parameters must be task-specific. Task-specific parameters for the new task of &#x1F7E5; <strong>dog_size</strong> classification are shown in red.</center>
 <br><br>
+
+
+This example came from image recognition, but now we will move onto to our overview of Multi-Task Learning in Automatic Speech Recognition. As we will see in what follows, researchers have trained Multi-Task Acoustic Models where the auxiliary tasks involve a new data domain, a new label set, or even a new mapping function.
+
+## Multi-Task Learning in ASR
+
+The Multi-Task Learning discussed here deals with either acoustic modeling in Hybrid (i.e. DNN-HMM) ASR, or it deals with End-to-End ASR[^7]. The Acoustic Model accepts as input a window of audio features ($$X$$) and returns a posterior probability distribution over phonetic targets ($$Y$$). The phonetic targets can be fine-grained context-dependent units (e.g. triphones from a Hybrid model), or these targets may be simply characters (e.g. as in End-to-End approaches). The following survey will focus on how Multi-Task Learning has been used to train these acoustic models, with a focus on the nature of the tasks themselves.
+
+[^7]: In the traditional, Hybrid ASR approach (i.e. DNN Acoustic Model + N-gram language model), there's not a lot of room to use MTL when training the language model or the decoder.
+
+Past work in Multi-Task acoustic modeling for speech recognition can be split into two broad categories, depending on whether data was used from multiple languages or just one language. In this survey, we will refer to these two branches of research as *monolingual* vs. *multilingual* approaches. Within each of those two branches, we find sub-branches of research, depending on how the auxiliary tasks are crafted. These major trends are shown in Figure (4), and will be discussed more in-depth below.
+
+<br><br>
+<img src="/misc/figs/overview-MTL.png" align="center" style="width: 225px;"/>
+<center><strong>Figure 4</strong>: Major Trends in the Research on Multi-Task Learning in Automatic Speech Recognition. Here, "Recording Characteristics" refers to general characteristics of the audio file (i.e. the "recording"), not the quality of the "recording" setup or "recording" equipment. </center>
+<br><br>
+
