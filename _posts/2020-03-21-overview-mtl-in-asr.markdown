@@ -185,3 +185,26 @@ If we think of why this may be the case, we can get a little help from latent va
 
 
 
+
+
+## Multilingual Multi-Task ASR
+
+Multilingual Multi-Task ASR can be split into two main veins, depending on whether (1) the data from a source language is used or (2) a trained model from the source language is used. We find that the first approach is more common, and researchers will train Acoustic Models (or End-to-End models) with multiple, task-dependent output layers (i.e. one output layer for each language), and use the data from all languages in parameter estimation. These models typically share the input layer and all hidden layers among tasks, creating a kind of language-universal feature extractor. This approach has also been extended from multiple languages to multiple accents and dialects. The second vein of multilingual Multi-Task Learning involves using an Acoustic Model from one language as a teacher to train an Acoustic Model from some target language. Most commonly, this source model can be used to generate phoneme-like alignments on the target language data, which are in turn used as targets in an auxiliary task. More often than not, we find multilingual Multi-Task approaches used in a low-resource setting.
+
+
+### Multiple Languages as Multiple Tasks
+
+The earliest examples of Multi-Task Learning with multiple languages can be found in huang2013 and heigold2013 (c.f. Figure (7)). These studies focused on improving performance on all languages found in the training set, not just one target language. Every language was sampled to the same audio features, and as such the neural networks only required one input layer. However, the network was trained to classify each language using language-specific phoneme targets.  Taking this line of research into the world of End-to-End speech recognition, dalmia2018sequence showed that a CTC model trained on multiple languages, and then tuned to one specific language can improve performance over a model trained on that one language in a low-resource setting.
+
+
+<br><br>
+<center><img src="/misc/figs/huang-2013-dnn.png" align="center" style="width: 500px;"/></center>
+<center><strong>Figure 7</strong>: Multilingual Multi-Task Acoustic Model Architecture from Huang et al. (2013)</center>
+<br><br>
+
+
+In a similar vein of work, instead of optimizing performance on all languages present in the training set, researchers have aimed to perform best on one particular target language. See wang2015transfer for a survey of advances in this area.
+
+Addressing the use-case where audio is available for a target language, but native-speaker transcribers are not easy to find, do2017multi employed non-native speakers to transcribe a target language into non-sense words, according to how they perceived the language. Using these non-native transcriptions in addition to a small set of native-speaker transcripts, the authors trained a Multi-Task model to predict phonemes from both native or non-native transcripts. The intuition as to why this approach works is that non-native speakers will perceive sounds from a foreign language using their native phonemic system, and enough overlap should exist between the two languages to help train the acoustic model.
+
+In the relatively new field of spoken language translation, where speech from one language is mapped directly to a text translation in a second language, the researchers in weiss2017sequence, anastasopoulos2018tied created multiple auxiliary tasks by either recognizing the speech of the source language (i.e. standard ASR), or by translating the source language into one or more different languages.
