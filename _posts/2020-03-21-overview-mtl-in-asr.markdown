@@ -111,3 +111,46 @@ Past work in Multi-Task acoustic modeling for speech recognition can be split in
 <center><strong>Figure 4</strong>: Major Trends in the Research on Multi-Task Learning in Automatic Speech Recognition. Here, "Recording Characteristics" refers to general characteristics of the audio file (i.e. the "recording"), not the quality of the "recording" setup or "recording" equipment. </center>
 <br><br>
 
+Within *monolingual* Multi-Task acoustic modeling we can identify two trends in the literature. We find that researchers will either (1) predict some additional linguistic representation of the input speech, or (2) explicitly model utterance-level characteristics of the utterance. When using additional linguistic tasks for a single language, each task is a phonetically relevant classification: predicting triphones vs. predicting monophones vs. predicting graphemes bell2015, seltzer2013, huang2015, chen2014, chen2015, toshniwal2017multitask. When explicitly modeling utterance-specific characteristics, researchers either use adversarial learning to force the model to "forget" channel, noise, and speaker characteristics, or the extra task is a standard regression in order to pay extra attention to these features shinohara2016adversarial, serdyuk2016invariant, tripathi2018adversarial, saon2017english, meng2018speaker, sun2018domain, parveen2003multitask, giri2015improving, chen2015speech, zhang2017attention.
+
+
+Within *multilingual* Multi-Task acoustic modeling we can also identify two main veins of research: (1) using data from some source language(s) or (2) using a pre-trained model from some source language(s). When using data from source languages, most commonly we find researchers training a single neural network with multiple output layers, where each output layer represents phonetic targets from a different language huang2013, heigold2013, tuske2014multilingual, mohan2015multi, grezl2016, matassoni2018non,yang2018joint, rao2017multi, jain2018improved, sun2018domain. As such, these Acoustic Models look like the prototype shown in Figure (1). When using a pre-trained model from some source language(s) we find researchers using the source model as either a teacher or as a feature extractor for the target language dupont2005feature, cui2015multilingual, grezl2014adaptation, knill2013investigation, vu2014multilingual, xu2015comparative, he2018improved. The source model extracts embeddings of the target speech, and then the embedding is either used as the target for an auxiliary task or the embedding is concatenated to the standard input as a kind of feature enhancement.
+
+### Monolingual Multi-Task ASR
+
+With regards to monolingual Multi-Task Learning in ASR, we find two major tracks of research. The first approach is to find tasks (from the same language) which are linguistically relevant to the main task stadermann2005multi, seltzer2013,huang2015, bell2015, arora2017phonological, chen2014, chen2015, chen2015diss, bell2015complementary, swietojanski2015structured, badino2016phonetic, pironkov2016multi. These studies define abstract phonetic categories (e.g. fricatives, liquids, voiced consonants), and use those category labels as auxiliary tasks for frame-level classification.
+
+The second major track of research in monolingual Multi-Task acoustic modeling involves explicit modeling of speaker, channel, or noise characteristics shinohara2016adversarial, serdyuk2016invariant, tripathi2018adversarial, saon2017english, meng2018speaker, sun2018domain, parveen2003multitask, giri2015improving, chen2015speech, zhang2017attention. These studies train the Acoustic Model to identify these characteristics via an additional classification task, or they encourage the model to ignore this information via adversarial learning, or they force the model to map data from the input domain to another domain (e.g. from noisy audio $$\rightarrow$$ clean audio). 
+
+All the studies in this section have in common the following: the model in question learns an additional classification of the audio at the frame-level. That is, every chunk of audio sent to the model will be mapped onto a standard ASR category such as a triphone or a character *in addition to* an auxiliary mapping which has some linguistic relevance. This linguistic mapping will typically be a broad phonetic class (think vowel vs. consonant) of which the typical target (think triphone) is a member.
+
+Good examples of defining additional auxiliary tasks via broad, abstract phonetic categories for English can be found in seltzer2013 and later huang2015. With regards to low-resource languages, some researchers have created extra tasks using graphemes or a universal phoneset as more abstract classes chen2014, chen2015, chen2015diss.
+
+A less linguistic approach, but based on the exact same principle of using more abstract classes as auxiliary targets, bell2015 used monophone alignments as auxiliary targets for DNN-HMM acoustic modeling (in addition to the standard triphone alignments). The authors observed that standard training on context-dependent triphones could easily lead to over-fitting on the training data. When monophones were added as an extra task, they observed $$3-10\%$$ relative improvements over baseline systems. The intuition behind this approach is that two triphones belonging to the same phoneme will be treated as completely unrelated classes in standard training by backpropagation. As such, valuable, exploitable information is lost. In follow up studies, bell2015complementary, swietojanski2015structured, badino2016phonetic made the linguistic similarities among DNN output targets explicit via linguistic phonetic concepts such as place, manner, and voicing as well as phonetic context embeddings.
+
+However, the benefits of using linguistic targets vary from study to study, and in their survey paper, pironkov2016multi concluded that "Using even broader phonetic classes (such as plosive, fricative, nasal, $$\ldots$$) is not efficient for MTL speech recognition". In particular, they were referring to the null findings from stadermann2005multi. 
+
+In a similar vein, Multi-Task Learning has been used in an End-to-End framework, in an effort to encourage explicit learning of hierarchical structure of words and phonemes. Oftentimes these hierarchical phonemic levels (e.g. phonemes vs. words) are trained at different levels of the model itself fernandez2007sequence, sanabria2018hierarchical, krishna2018hierarchical, toshniwal2017multitask, moriya2018multi. Figure (5) displays the approach taken in sanabria2018hierarchical.
+
+
+<br><br>
+<img src="/misc/figs/sanabria-2018.png" align="center" style="width: 225px;"/>
+<center><strong>Figure 5</strong>: Multi-Task Hierarchical Architecture from Sanabria and Metze (2018) </center>
+<br><br>
+
+All of these studies have in common the following: they encourage the model to learn abstract linguistic knowledge which is not explicitly available in the standard targets. Whatever the standard target may be (e.g. triphones, graphemes, etc.) the researchers in this section created abstract groupings of those labels, and used those new groupings as an additional task. These new groupings (e.g. monophones, sub-word units, etc) encourage the model to learn the set of underlying features (e.g. voicing, place of articulation, etc.) which distinguish the main targets.
+
+### Regression on Better Features as a new Task
+
+Class labels are the most common output targets for an auxiliary task, but parveen2003multitask, giri2015improving, chen2015speech, zhang2017attention took an approach where they predicted de-noised versions of the input audio from noisy observations (c.f. Figure (6). The effect of this regression was that the Acoustic Model cleaned and classified each input audio frame in real time.
+
+<br><br>
+<img src="/misc/figs/giri-2015.png" align="center" style="width: 225px;"/>
+<center><strong>Figure 6</strong>: Regression and Classification Neural Network Architecture from Giri et al. (2015)</center>
+<br><br>
+
+
+In a similar vein, das2017deep trained an Acoustic Model to classify standard senomes targets as well as regress an input audio frame to bottleneck features of that same frame. Bottleneck features are a compressed representation of the data which have been trained on some other dataset or task --- as such bottleneck features should contain linguistic information. In a very early study, the authors in lu2004multitask predicted enhanced audio frame features as an auxiliary task (along with the speaker's gender).
+
+
+
