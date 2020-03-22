@@ -134,7 +134,7 @@ In a similar vein, Multi-Task Learning has been used in an End-to-End framework,
 
 
 <br><br>
-<img src="/misc/figs/sanabria-2018.png" align="center" style="width: 225px;"/>
+<center><img src="/misc/figs/sanabria-2018.png" align="center" style="width: 500px;"/><center>
 <center><strong>Figure 5</strong>: Multi-Task Hierarchical Architecture from Sanabria and Metze (2018) </center>
 <br><br>
 
@@ -145,12 +145,43 @@ All of these studies have in common the following: they encourage the model to l
 Class labels are the most common output targets for an auxiliary task, but parveen2003multitask, giri2015improving, chen2015speech, zhang2017attention took an approach where they predicted de-noised versions of the input audio from noisy observations (c.f. Figure (6). The effect of this regression was that the Acoustic Model cleaned and classified each input audio frame in real time.
 
 <br><br>
-<img src="/misc/figs/giri-2015.png" align="center" style="width: 225px;"/>
+<center><img src="/misc/figs/giri-2015.png" align="center" style="width: 500px;"/></center>
 <center><strong>Figure 6</strong>: Regression and Classification Neural Network Architecture from Giri et al. (2015)</center>
 <br><br>
 
 
 In a similar vein, das2017deep trained an Acoustic Model to classify standard senomes targets as well as regress an input audio frame to bottleneck features of that same frame. Bottleneck features are a compressed representation of the data which have been trained on some other dataset or task --- as such bottleneck features should contain linguistic information. In a very early study, the authors in lu2004multitask predicted enhanced audio frame features as an auxiliary task (along with the speaker's gender).
+
+
+
+### Extra Mapping Function as New Task
+
+In End-to-End ASR, kim2017joint created a Multi-Task model by adding a mapping function (CTC) to an attention-based encoder-decoder model. This is an interesting approach because the two mapping functions (CTC vs. attention) carry with them pros and cons, and the authors demonstrate that the alignment power of the CTC approach can be leveraged to help the attention-based model find good alignments faster. Along similar lines, lu2017multitask trained an Acoustic Model to make use of both CTC and Sequential Conditional Random Fields. These works did not create new labels or find new data, but rather, they combined different alignment and classification techniques into one model.
+
+A famous example of monolingual MTL using multiple mapping functions is the most common Kaldi implementation of the so-called "chain" model from povey2016purely. This implementation uses different output layers on a standard feed-forward model, one output layer calculating standard Cross Entropy Loss, and the other calculating a version of the Maximum Mutual Information Criterion.
+
+
+### New Domain as New Task
+
+If we consider the different characteristics of each recording as domain memberships, then any extra information we have access to (e.g. age, gender, location, noise environment), can be framed as domain information, and this information can be explicitly modeled in a Multi-Task model. Using a Multi-Task adversarial framework, shinohara2016adversarial, serdyuk2016invariant, tripathi2018adversarial taught an Acoustic Model to forget the differences between different noise conditions, saon2017english, meng2018speaker taught their model to forget speakers, and sun2018domain taught the model to forget accents.
+
+In low-resource domains, it is often tempting to add data from a large, out-of-domain dataset into the training set. However, if the domains are different enough a mixed training set may hurt performance more than it helps. Multi-Task Learning lends itself well to these multi-domain scenarios, allowing us to regulate how much influence the out-of-domain data has over parameter estimation during training. Usually we will want to down-weight the gradient from a source domain task if the source dataset is large or if the task is only somewhat related.
+
+The researchers in qin2018automatic investigated the low-resource domain of Cantonese aphasic speech. Using a small corpus of aphasic Cantonese speech in addition to two corpora of read Cantonese speech, the researchers simply trained a Multi-Task model with each corpus as its own task (i.e. data from each corpus as classified in its own output layer). Similarly, in an effort to better model child-speech in a low-resource setting, the authors in tong2017multi created separate tasks for classification of child vs. adult speech, in addition to standard phoneme classification.
+
+
+### Discussion of Monolingual Multi-Task Learning
+
+In this section we've covered various examples of how researchers have incorporated Multi-Task Learning into speech recognition using data from a single language. Two major threads of work can be identified: (1) the use of abstract linguistic features as additional tasks, or (2) the use of speaker and other recording information as an extra task.
+
+With regards to the first track of work, researchers have created abstract linguistic target labels by defining linguistic categories by hand, by referring to the traditional phonetic decision tree, or by automatically finding relevant sub-word parts. Performance improvements with this approach have been found to be larger when working with small datasets bell2015complementary, chen2015diss. The intuition behind this line of work is the following: Forcing a model to classify input speech into broad linguistic classes should encourage the model to learn a set of underlying phonetic features which are useful for the main classification task.
+
+A discriminative Acoustic Model trained on standard output targets (e.g. triphones, characters) is trained to learn that each target is maximally different from every other target. The label-space at the output layer is N-dimensional, and every class (i.e. phonetic category) occupies a corner of that N-dimensional space. this means that classes are learned to be *maximally* distinctive. In reality, we know that some of these targets are more similar than others, but the model does not know that. Taking the example of context-dependent triphones, the Acoustic Model does not have access to the knowledge that an **[a]** surrounded by **[t]**'s is the same vowel as an **[a]** surrounded by **[d]**'s. In fact, these two **[a]**'s are treated as if they belong to completely different classes. It is obvious to humans that two flavors of **[a]** are more similar to each other than an **[a]** is similar to an **[f]**. However, the output layer of the neural net does not encode these nuances. Discriminative training on triphone targets will loose the information that some triphones are more similar than others. One way to get that information back is to explicitly teach the model that two **[a]** triphones belong to the same abstract class. This is the general intuition behind this first track of monolingual Multi-Task work in speech recognition.
+
+The second track of monolingual Multi-Task acoustic modeling involves explicit modeling of speaker, noise, and other recording characteristics via an auxiliary task. While all of these variables are extra-linguistic, studies have shown that either paying extra attention to them (via an auxiliary classification task) or completely ignoring them (via adversarial learning) can improve overall model performance in terms of Word Error Rate. This is a somewhat puzzling finding. Learning speaker information lu2004multitask, chen2015multi can be useful, but also forgetting speaker information saon2017english, meng2018speaker can be useful.
+
+If we think of why this may be the case, we can get a little help from latent variable theory. If we think of any recording speech as an observation that has been generated by multiple underlying variables, we can define some variables which generated the audio, such as (1) the words that were said, (2) the speaker, (3) the environmental noise conditions, (4) the acoustics of the recording location, and many, many others. These first four factors are undoubtedly influencers in the acoustic properties of the observed recording. If we know that speaker characteristics and environmental noise had an influence on the audio, then we should either explicitly model them or try to remove them altogether. Both approaches show improvement over a baseline which chooses to not model this extra information at all, but as discovered in adi2018reverse, if the dataset is large enough, the relative improvements are minor.
+
 
 
 
