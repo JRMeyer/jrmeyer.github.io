@@ -84,9 +84,9 @@ We start with a single dataset of photos of dogs (&#x2B1B; $$X_1$$) and a single
 
 <br><br>
 <center>
-<img src="/misc/figs/rotweiler.jpg" align="left" style="width: 250px;"/>
-<img src="/misc/figs/collie.jpg" align="center" style="width: 250px;"/>
-<img src="/misc/figs/terrier.jpg" align="right" style="width: 250px;"/>
+<img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
+<img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
+<img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
 </center>
 <center>rottweiler, large       collie, large       terrier, small</center>
 <center><strong>Figure 2</strong>: Three pictures of dogs from our dataset (&#x2B1B; <strong>X_1</strong>), where each picture has been labeled with separate targets: &#x2B1B; <strong>dog_breed</strong>, &#x1F7E5; <strong>dog_size</strong></center>
