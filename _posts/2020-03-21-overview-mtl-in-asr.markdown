@@ -27,7 +27,7 @@ The literature survey focuses on acoustic modeling in particular. Speech Recogni
 
 Before we can define *Multi-Task Learning*, we first need to define what counts as a *task*. Some researchers may define a task as a set of data and corresponding target labels (i.e. a task is merely $$(X,Y)$$). Other definitions may focus on the statistical function that performs the mapping of data to targets (i.e. a task is the function $$f: X \rightarrow Y$$). In order to be precise, in this overview a task is defined as the combination of data, targets, and mapping function.
 
-<br><br>
+<br>
 
 A *task* is the combination of:
 
@@ -35,7 +35,7 @@ A *task* is the combination of:
 2. Targets: $$Y$$, a sample of targets from a certain domain
 3. Mapping Function: $$f: X \rightarrow Y$$, a function which maps data to targets 
 
-<br><br>
+<br>
 
  The *targets* can be distinct label categories represented by one-hot vectors (e.g. classification labels), or they can be $$N$$-dimensional continuous vectors (e.g. a target for regression)[^3].
 
@@ -64,10 +64,8 @@ Given this definition of \textit{task} and this definition of \textit{Multi-Task
 
 With regards to domains in which we have very limited data (i.e. low-resource environments), Multi-Task parameter estimation promises gains in performance which do not require us to collect more in-domain data, as long as we can create new tasks. In the common scenario where an engineer has access to only a small dataset, the best way she could improve performance would be by collecting more data. However, data collection takes time and money. This is the promise of Multi-Task Learning in low-resource domains: if the engineer can create new tasks, then she does not need to collect more data.
 
-<br><br>
 
-
-## An Example
+### An Example of Multi-Task Learning
 
 This section gives an example of a Multi-Task image recognition framework, where we start with a single task, create a second task, and train a model to perform both tasks. Starting with a single task, suppose we have the access to the following:
 
@@ -78,16 +76,19 @@ This section gives an example of a Multi-Task image recognition framework, where
 
 In order to create a new task, we either need to collect some data ($$X_2$$) from a new domain, create new targets ($$Y_2$$), or define a new mapping function ($$f_2: X_1 \rightarrow Y_1$$). Furthermore, we would like to create a *related task*, with the hopes of improving performance on the original task. There's several ways we can go about making a new task. We could use the same set of labels (**dog_breed**), but a collect new set of pictures from a different camera. We could try classifying each photograph according to the size of the dog, which would mean we created new labels for our existing data. In addition to our vanilla feed-forward network, we could use a convolutional neural network as a mapping function and share some of the hidden layers between the two networks. 
 
-Assuming we don't want to collect more data and we don't want to add a new mapping function, the easiest way to create a new task is to create a new set of target labels. Since we only had a single set of labels available (i.e. &#x2B1B; **dog_breed**), we can manually add a new label to each photo (i.e. &#x1F7E5; **dog_size**) by referencing an encyclopedia of dogs[^6]. So, we started with a single dataset of photos of dogs (&#x2B1B; $$X_1$$) and a single set of classification labels (&#x1F7E5; $$Y_1$$) for the dog's breed, and now we've added a new set of labels ($$Y_2$$) for a classification task of the dog's size. A few training examples from our training set (&#x2B1B; $$X_1$$, &#x2B1B; $$Y_1$$, &#x1F7E5; $$Y_2$$) may look like what we find in Figure (2).
+Assuming we don't want to collect more data and we don't want to add a new mapping function, the easiest way to create a new task is to create a new set of target labels. Since we only had a single set of labels available (i.e. &#x2B1B; **dog_breed**), we can manually add a new label to each photo (i.e. &#x1F7E5; **dog_size**) by referencing an encyclopedia of dogs[^6].
+
+We start with a single dataset of photos of dogs (&#x2B1B; $$X_1$$) and a single set of classification labels (&#x2B1B; $$Y_1$$) for the dog's breed, and now we've added a new set of labels (&#x1F7E5; $$Y_2$$) for a classification task of the dog's size. A few training examples from our training set (&#x2B1B; $$X_1$$, &#x2B1B; $$Y_1$$, &#x1F7E5; $$Y_2$$) may look like what we find in Figure (2).
   
 [^6]: This is an example of using domain or expert knowledge to create a new task, where the expert knowledge is contained in the encyclopedia. One could also hire a dog expert to label the images manually. Either way, we are exploiting some source of domain-specific knowledge (i.e. knowledge of the physiology of different dog breeds).
 
 <br><br>
 <center>
-<img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
-<img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
-<img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
+<img src="/misc/figs/rotweiler.jpg" align="left" style="width: 250px;"/>
+<img src="/misc/figs/collie.jpg" align="center" style="width: 250px;"/>
+<img src="/misc/figs/terrier.jpg" align="right" style="width: 250px;"/>
 </center>
+<center>rottweiler, large       collie, large       terrier, small</center>
 <center><strong>Figure 2</strong>: Three pictures of dogs from our dataset (&#x2B1B; <strong>X_1</strong>), where each picture has been labeled with separate targets: &#x2B1B; <strong>dog_breed</strong>, &#x1F7E5; <strong>dog_size</strong></center>
 <br><br>
 
