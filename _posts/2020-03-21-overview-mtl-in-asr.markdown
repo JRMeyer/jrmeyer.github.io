@@ -14,8 +14,7 @@ The following blog post is a chapter in my [dissertation](http://jrmeyer.github.
 
 Enjoy!
 
-<br><br>
-
+<br>
 ## Roadmap
 
 In this overview of Multi-Task Learning in Automatic Speech Recognition (ASR), we're going to cover a lot of ground quickly. First, we're going to define Multi-Task Learning and walk through a very simple example from image recognition[^1]. Next, once we have an understanding of Multi-Task Learning and we have a definition of "task", we will move into a survey of the speech recognition literature[^2].
@@ -27,8 +26,7 @@ The term "Multi-Task Learning" encompasses more than a single model performing m
 [^1]: Yes, there will be pictures of dogs!
 [^2]: For a more complete overview of Multi-Task Learning itself: [Ruder (2017)](https://ruder.io/multi-task/)
 
-<br><br>
-
+<br>
 ## An Introduction to Multi-Task Learning
 
 ### Definition
@@ -72,7 +70,7 @@ Given this definition of *task* and this definition of *Multi-Task Learning*, we
 
 With regards to domains in which we have very limited data (i.e. low-resource environments), Multi-Task parameter estimation promises gains in performance which do not require us to collect more in-domain data, as long as we can create new tasks. In the common scenario where an engineer has access to only a small dataset, the best way she could improve performance would be by collecting more data. However, data collection takes time and money. This is the promise of Multi-Task Learning in low-resource domains: if the engineer can create new tasks, then she does not need to collect more data.
 
-
+<br>
 ### An Example of Multi-Task Learning
 
 This section gives an example of a Multi-Task image recognition framework, where we start with a single task, create a second task, and train a model to perform both tasks. Starting with a single task, suppose we have the access to the following:
@@ -111,6 +109,7 @@ We start with a single dataset of photos of dogs ($$X_1$$ (&#x2B1B;)) and a sing
 
 This example came from image recognition, but now we will move onto to our overview of Multi-Task Learning in Automatic Speech Recognition. As we will see in what follows, researchers have trained Multi-Task Acoustic Models where the auxiliary tasks involve a new data domain, a new label set, or even a new mapping function.
 
+<br>
 ## Multi-Task Learning in ASR
 
 The Multi-Task Learning discussed here deals with either acoustic modeling in Hybrid (i.e. DNN-HMM) ASR, or it deals with End-to-End ASR[^7]. The Acoustic Model accepts as input a window of audio features ($$X$$) and returns a posterior probability distribution over phonetic targets ($$Y$$). The phonetic targets can be fine-grained context-dependent units (e.g. triphones from a Hybrid model), or these targets may be simply characters (e.g. as in End-to-End approaches). The following survey will focus on how Multi-Task Learning has been used to train these acoustic models, with a focus on the nature of the tasks themselves.
@@ -129,6 +128,7 @@ Within *monolingual* Multi-Task acoustic modeling we can identify two trends in 
 
 Within *multilingual* Multi-Task acoustic modeling we can also identify two main veins of research: (1) using data from some source language(s) or (2) using a pre-trained model from some source language(s). When using data from source languages, most commonly we find researchers training a single neural network with multiple output layers, where each output layer represents phonetic targets from a different language huang2013, heigold2013, tuske2014multilingual, mohan2015multi, grezl2016, matassoni2018non,yang2018joint, rao2017multi, jain2018improved, sun2018domain. As such, these Acoustic Models look like the prototype shown in Figure (1). When using a pre-trained model from some source language(s) we find researchers using the source model as either a teacher or as a feature extractor for the target language dupont2005feature, cui2015multilingual, grezl2014adaptation, knill2013investigation, vu2014multilingual, xu2015comparative, he2018improved. The source model extracts embeddings of the target speech, and then the embedding is either used as the target for an auxiliary task or the embedding is concatenated to the standard input as a kind of feature enhancement.
 
+<br>
 ### Monolingual Multi-Task ASR
 
 With regards to monolingual Multi-Task Learning in ASR, we find two major tracks of research. The first approach is to find tasks (from the same language) which are linguistically relevant to the main task stadermann2005multi, seltzer2013,huang2015, bell2015, arora2017phonological, chen2014, chen2015, chen2015diss, bell2015complementary, swietojanski2015structured, badino2016phonetic, pironkov2016multi. These studies define abstract phonetic categories (e.g. fricatives, liquids, voiced consonants), and use those category labels as auxiliary tasks for frame-level classification.
@@ -153,6 +153,7 @@ In a similar vein, Multi-Task Learning has been used in an End-to-End framework,
 
 All of these studies have in common the following: they encourage the model to learn abstract linguistic knowledge which is not explicitly available in the standard targets. Whatever the standard target may be (e.g. triphones, graphemes, etc.) the researchers in this section created abstract groupings of those labels, and used those new groupings as an additional task. These new groupings (e.g. monophones, sub-word units, etc) encourage the model to learn the set of underlying features (e.g. voicing, place of articulation, etc.) which distinguish the main targets.
 
+<br>
 ### Regression on Better Features as a new Task
 
 Class labels are the most common output targets for an auxiliary task, but parveen2003multitask, giri2015improving, chen2015speech, zhang2017attention took an approach where they predicted de-noised versions of the input audio from noisy observations (c.f. Figure (6). The effect of this regression was that the Acoustic Model cleaned and classified each input audio frame in real time.
@@ -165,15 +166,14 @@ Class labels are the most common output targets for an auxiliary task, but parve
 
 In a similar vein, das2017deep trained an Acoustic Model to classify standard senomes targets as well as regress an input audio frame to bottleneck features of that same frame. Bottleneck features are a compressed representation of the data which have been trained on some other dataset or task --- as such bottleneck features should contain linguistic information. In a very early study, the authors in lu2004multitask predicted enhanced audio frame features as an auxiliary task (along with the speaker's gender).
 
-
-
+<br>
 ### Extra Mapping Function as New Task
 
 In End-to-End ASR, kim2017joint created a Multi-Task model by adding a mapping function (CTC) to an attention-based encoder-decoder model. This is an interesting approach because the two mapping functions (CTC vs. attention) carry with them pros and cons, and the authors demonstrate that the alignment power of the CTC approach can be leveraged to help the attention-based model find good alignments faster. Along similar lines, lu2017multitask trained an Acoustic Model to make use of both CTC and Sequential Conditional Random Fields. These works did not create new labels or find new data, but rather, they combined different alignment and classification techniques into one model.
 
 A famous example of monolingual MTL using multiple mapping functions is the most common Kaldi implementation of the so-called "chain" model from povey2016purely. This implementation uses different output layers on a standard feed-forward model, one output layer calculating standard Cross Entropy Loss, and the other calculating a version of the Maximum Mutual Information Criterion.
 
-
+<br>
 ### New Domain as New Task
 
 If we consider the different characteristics of each recording as domain memberships, then any extra information we have access to (e.g. age, gender, location, noise environment), can be framed as domain information, and this information can be explicitly modeled in a Multi-Task model. Using a Multi-Task adversarial framework, shinohara2016adversarial, serdyuk2016invariant, tripathi2018adversarial taught an Acoustic Model to forget the differences between different noise conditions, saon2017english, meng2018speaker taught their model to forget speakers, and sun2018domain taught the model to forget accents.
@@ -182,7 +182,7 @@ In low-resource domains, it is often tempting to add data from a large, out-of-d
 
 The researchers in qin2018automatic investigated the low-resource domain of Cantonese aphasic speech. Using a small corpus of aphasic Cantonese speech in addition to two corpora of read Cantonese speech, the researchers simply trained a Multi-Task model with each corpus as its own task (i.e. data from each corpus as classified in its own output layer). Similarly, in an effort to better model child-speech in a low-resource setting, the authors in tong2017multi created separate tasks for classification of child vs. adult speech, in addition to standard phoneme classification.
 
-
+<br>
 ### Discussion of Monolingual Multi-Task Learning
 
 In this section we've covered various examples of how researchers have incorporated Multi-Task Learning into speech recognition using data from a single language. Two major threads of work can be identified: (1) the use of abstract linguistic features as additional tasks, or (2) the use of speaker and other recording information as an extra task.
@@ -195,16 +195,12 @@ The second track of monolingual Multi-Task acoustic modeling involves explicit m
 
 If we think of why this may be the case, we can get a little help from latent variable theory. If we think of any recording speech as an observation that has been generated by multiple underlying variables, we can define some variables which generated the audio, such as (1) the words that were said, (2) the speaker, (3) the environmental noise conditions, (4) the acoustics of the recording location, and many, many others. These first four factors are undoubtedly influencers in the acoustic properties of the observed recording. If we know that speaker characteristics and environmental noise had an influence on the audio, then we should either explicitly model them or try to remove them altogether. Both approaches show improvement over a baseline which chooses to not model this extra information at all, but as discovered in adi2018reverse, if the dataset is large enough, the relative improvements are minor.
 
-
-
-
-
-
+<br>
 ## Multilingual Multi-Task ASR
 
 Multilingual Multi-Task ASR can be split into two main veins, depending on whether (1) the data from a source language is used or (2) a trained model from the source language is used. We find that the first approach is more common, and researchers will train Acoustic Models (or End-to-End models) with multiple, task-dependent output layers (i.e. one output layer for each language), and use the data from all languages in parameter estimation. These models typically share the input layer and all hidden layers among tasks, creating a kind of language-universal feature extractor. This approach has also been extended from multiple languages to multiple accents and dialects. The second vein of multilingual Multi-Task Learning involves using an Acoustic Model from one language as a teacher to train an Acoustic Model from some target language. Most commonly, this source model can be used to generate phoneme-like alignments on the target language data, which are in turn used as targets in an auxiliary task. More often than not, we find multilingual Multi-Task approaches used in a low-resource setting.
 
-
+<br>
 ### Multiple Languages as Multiple Tasks
 
 The earliest examples of Multi-Task Learning with multiple languages can be found in huang2013 and heigold2013 (c.f. Figure (7)). These studies focused on improving performance on all languages found in the training set, not just one target language. Every language was sampled to the same audio features, and as such the neural networks only required one input layer. However, the network was trained to classify each language using language-specific phoneme targets.  Taking this line of research into the world of End-to-End speech recognition, dalmia2018sequence showed that a CTC model trained on multiple languages, and then tuned to one specific language can improve performance over a model trained on that one language in a low-resource setting.
@@ -222,10 +218,7 @@ Addressing the use-case where audio is available for a target language, but nati
 
 In the relatively new field of spoken language translation, where speech from one language is mapped directly to a text translation in a second language, the researchers in weiss2017sequence, anastasopoulos2018tied created multiple auxiliary tasks by either recognizing the speech of the source language (i.e. standard ASR), or by translating the source language into one or more different languages.
 
-
-
-
-
+<br>
 ### Multiple Accents as Multiple Tasks
 
 In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in yang2018joint, rao2017multi, jain2018improved, sun2018domain used Multi-Task Learning to perform multi-accent speech recognition. The researchers in yang2018joint trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in rao2017multi recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
@@ -242,13 +235,14 @@ In a vein of research which belongs somewhere between monolingual and multilingu
 
 So-called *bottleneck* features have also been developed to aid in low-resource acoustic modeling, which often incorporate Multi-Task Learning. These bottleneck features are activations from a condensed hidden layer in a multilingual acoustic model. First a multilingual Acoustic Model is trained, and then data from a new language is passed through this DNN, and the bottleneck activations are appended as additional features to the original audio dupont2005feature, cui2015multilingual, grezl2014adaptation, knill2013investigation, vu2014multilingual, xu2015comparative. In this way, a kind of universal feature extractor is trained on a large multilingual dataset. The bottleneck features themselves are the product of Multi-Task Learning.
 
+<br>
 ### Source Language Model as Teacher
 
 Instead of using data from multiple languages, it is possible to use the predictions from a pre-trained source model as targets in an auxiliary task. In this way, knowledge located in the source dataset is transferred indirectly via a source model, as opposed to *directly* from the dataset itself.
 
 In a very recent approach, he2018improved trained a classifier on a well-resourced language to identify acoustic landmarks, and then used that well-resourced model to identify acoustic landmarks in a low-resourced language. Those newly discovered acoustic landmarks were then used as targets in an auxiliary task. This approach can be thought of as a kind of Multi-Task Student-Teacher (c.f. wong2016sequence) approach, where we "distill" (c.f. hinton2015distilling) knowledge from one (larger) model to another via an auxiliary task. 
 
-
+<br>
 ### Discussion of Multilingual Multi-Task Learning
 
 Surveying the literature of Multi-Task Learning in multilingual speech recognition, we can identify some common findings among studies. Firstly, we observe positive effects of pooling of as many languages as possible, even when the languages are completely unrelated. This pooling of unrelated languages may seem strange at first - why should languages as different as English and Mandarin have anything in common? However, abstracting away from the linguistic peculiarities of each language, all languages share some common traits.
@@ -259,11 +253,12 @@ Nevertheless, these studies do show a tendency that closely related languages he
 
 In conclusion, Multi-Task Learning for multilingual acoustic modeling yields largest improvements when: (1) the dataset for the target language is small, (2) the auxiliary language is closely related, and (3) the auxiliary language dataset is large.
 
+<br>
 ## Multi-Task Learning in Other Speech Technologies
 
 In addition to Automatic Speech Recognition, Multi-Task Learning has found its way into other speech technologies. The use of Multi-Task Learning is less established in the following speech technology fields, and as such we find a very interesting mix of different applications and approaches.
 
-
+<br>
 ### Speech Synthesis
 
 Working on speech synthesis, the research team in hu2015fusion used Multi-Task Learning to train neural speech synthesis systems for a single language. These models predicted both the acoustic features (spectral envelope) as well as log amplitude of the output speech. Additionally, these researchers recombined the outputs of both tasks to improve the quality of the final synthesized speech. In a similar vein, authors in wu2015deep employed Multi-Task Learning of vocoder parameters and a perceptual representation of speech (along with bottleneck features) to train a deep neural network for speech synthesis. Working with input features which are not speech or text, but rather ultrasonic images of tongue contours, the authors in tothmulti trained a model to perform both phoneme classification as well as regression on the spectral parameters of a vocoder, leading to better performance on both tasks. Recently, in their work on modeling the raw audio waveform, the authors in gu2018multi trained their original WaveNet model to predict frame-level vocoder features as a secondary task.
@@ -294,8 +289,7 @@ The researchers in xu2018shifted trained a model to both separate speech (from a
 
 The researchers in he2018joint trained a model to both localize speech sources as well as classify incoming audio as speech vs. non-speech.
 
-
-
+<br>
 ## Conclusion
 
 Multi-Task Learning is a technique for adding inductive bias during parameter estimation via the learning of auxiliary tasks. In order for Multi-Task Learning to work well, related tasks must be available for some given dataset.
