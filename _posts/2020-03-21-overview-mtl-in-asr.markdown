@@ -134,7 +134,7 @@ In a similar vein, Multi-Task Learning has been used in an End-to-End framework,
 
 
 <br><br>
-<center><img src="/misc/figs/sanabria-2018.png" align="center" style="width: 500px;"/><center>
+<center><img src="/misc/figs/sanabria-2018.png" align="center" style="width: 500px;"/></center>
 <center><strong>Figure 5</strong>: Multi-Task Hierarchical Architecture from Sanabria and Metze (2018) </center>
 <br><br>
 
