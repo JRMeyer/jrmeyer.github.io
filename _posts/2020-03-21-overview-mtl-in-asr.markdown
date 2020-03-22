@@ -10,9 +10,7 @@ comments: True
 
 ## Introduction
 
-The following blog post is a chapter in my [dissertation](http://jrmeyer.github.io/misc/MEYER_dissertation_2019.pdf), which I finished in the summer of 2019.
-
-The field of Automatic Speech Recognition moves fast, but I think you will find the general trends and logic discussed here to hold true today. Speech technology is built on human speech, and the way we talk as humans isn't changing any time soon.
+The following blog post is a chapter in my [dissertation](http://jrmeyer.github.io/misc/MEYER_dissertation_2019.pdf), which I finished in the summer of 2019. The field of Automatic Speech Recognition moves fast, but I think you will find the general trends and logic discussed here to hold true today.
 
 Enjoy!
 
@@ -37,15 +35,15 @@ The term "Multi-Task Learning" encompasses more than a single model performing m
 
 Before we define *Multi-Task Learning*, let's first define what we mean by *task*. Some researchers may define a task as a set of data and corresponding target labels (i.e. a task is merely $$(X,Y)$$). Other definitions may focus on the statistical function that performs the mapping of data to targets (i.e. a task is the function $$f: X \rightarrow Y$$). In order to be precise, let's define a task as the combination of data, targets, and mapping function.
 
-<br>
+<br><br>
 A *task* is the combination of:
 
 1. Data: $$X$$, a sample of data from a certain domain
 2. Targets: $$Y$$, a sample of targets from a certain domain
 3. Mapping Function: $$f: X \rightarrow Y$$, a function which maps data to targets 
-<br>
+<br><br>
 
- The *targets* might be distinct label categories represented by one-hot vectors (e.g. classification labels), or they can be $$N$$-dimensional continuous vectors (e.g. a target for regression)[^3].
+The *targets* might be distinct label categories represented by one-hot vectors (e.g. classification labels), or they can be $$N$$-dimensional continuous vectors (e.g. a target for regression)[^3].
 
 [^3]: These two kinds of targets are the same with regards to training neural networks via backpropagation. The targets for classification are just a special case of regression targets, where the values in the vector are $$1.0$$ or $$0.0$$.
   
