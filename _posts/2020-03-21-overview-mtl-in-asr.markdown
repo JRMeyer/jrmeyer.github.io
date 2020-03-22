@@ -279,7 +279,7 @@ Combing both speech recognition and speaker verification, chen2015multi trained 
 <br>
 ###Miscellaneous Speech Applications
 
-Extending the work from Multi-Task speech recognition to Key-Word Spotting, the researchers in panchapagesan2016multi combined parameter-copying and MTL. They first took an Acoustic Model from large-vocabulary English recognition task, re-initialized the weights immediately proceeding the output layer, and retrained with two output layers, one layer predicting only the phonemes in the Key-Word of interest, and another layer predicting senomes from the large vocabulary task.
+Extending the work from Multi-Task speech recognition to Key-Word Spotting, the researchers in panchapagesan2016multi combined parameter-copying and MTL. They first took an Acoustic Model from large-vocabulary English recognition task, re-initialized the weights immediately proceeding the output layer, and retrained with two output layers. One layer predicted only the phonemes in the Key-Word of interest, and another layer predicted senomes from the large vocabulary task.
 
 To predict turn-taking behavior in conversation, the authors in hara2018prediction trained a model to jointly predict backchannelling and use of filler words.
 
@@ -292,6 +292,13 @@ The researchers in he2018joint trained a model to both localize speech sources a
 <br>
 ## Conclusion
 
-Multi-Task Learning is a technique for adding inductive bias during parameter estimation via the learning of auxiliary tasks. In order for Multi-Task Learning to work well, related tasks must be available for some given dataset.
+In this survey we've discussed the main veins of Multi-Task work in speech recognition as well as applications to other speech technologies. With regards to speech recognition, we identified multilingual or monolingual trends. Multilingual approaches exploit bias from a source language by using a source dataset or a pre-trained source model. Monolingual Multi-Task approaches use targets at the acoustic frame level or general characteristics of the recording itself. All approaches involve the updating of task-dependent and task-independent parameters. We find it is often the case that Multi-Task Learning is applied to low-resource scenarios, where bias from related tasks can be crucial for successful model training. 
 
-In this survey we've discussed the main veins of work in speech recognition, and also applications in other speech technologies. With regards to speech recognition, we categorized Multi-Task approaches as being either multilingual or monolingual. Multilingual approaches exploit bias from one or more source language by either using a source dataset during training or by using predictions of a pre-trained source model. Monolingual approaches, on the other hand, use either abstract linguistic features at the acoustic frame level or general characteristics of the recording itself during training. All approaches involve the updating of task-dependent and task-independent parameters. We find it is often the case that Multi-Task Learning is applied to low-resource scenarios, where bias from related tasks can be crucial for successful model training. 
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+## References & Footnotes
