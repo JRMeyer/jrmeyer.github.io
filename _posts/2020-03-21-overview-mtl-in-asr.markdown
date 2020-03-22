@@ -264,20 +264,20 @@ In addition to Automatic Speech Recognition, Multi-Task Learning has found its w
 Working on speech synthesis, the research team in hu2015fusion used Multi-Task Learning to train neural speech synthesis systems for a single language. These models predicted both the acoustic features (spectral envelope) as well as log amplitude of the output speech. Additionally, these researchers recombined the outputs of both tasks to improve the quality of the final synthesized speech. In a similar vein, authors in wu2015deep employed Multi-Task Learning of vocoder parameters and a perceptual representation of speech (along with bottleneck features) to train a deep neural network for speech synthesis. Working with input features which are not speech or text, but rather ultrasonic images of tongue contours, the authors in tothmulti trained a model to perform both phoneme classification as well as regression on the spectral parameters of a vocoder, leading to better performance on both tasks. Recently, in their work on modeling the raw audio waveform, the authors in gu2018multi trained their original WaveNet model to predict frame-level vocoder features as a secondary task.
 
 
-
-
-\subsubsection{Speech Emotion Recognition
+<br>
+###Speech Emotion Recognition
 
 Working on emotion recognition from speech, parthasarathy2017jointly demonstrate that a model can be used to identify multiple (believed to be orthogonal) emotions as separate tasks. The authors in le2017discretized take an emotion recognition task which is typically a regression, and discover new, discrete targets (via k-means clustering) to use as targets in later auxiliary tasks. Using classification of "gender" and "naturalness" as auxiliary tasks, kim2017towards also found improvements in spoken emotion recognition via Multi-Task training. Recently, the authors in lotfian2018predicting trained a model to predict the first and second most salient emotions felt by the evaluator.
 
-\subsubsection{Speaker Verification
+<br>
+###Speaker Verification
 
 With regards to speaker verification, the authors in liu2018speaker used phoneme classification as an auxiliary task, and the authors in ding2018mtgan trained speaker embeddings by jointly optimizing (1) a GAN to distinguish speech from non-speech and (2) a speaker classifier.
 
 Combing both speech recognition and speaker verification, chen2015multi trained an Acoustic Model to perform both tasks and found improvement. In an adversarial framework, wang2018unsupervised taught their model to forget the differences between domains in parallel to identifying speakers.
 
-
-\subsubsection{Miscellaneous Speech Applications
+<br>
+###Miscellaneous Speech Applications
 
 Extending the work from Multi-Task speech recognition to Key-Word Spotting, the researchers in panchapagesan2016multi combined parameter-copying and MTL. They first took an Acoustic Model from large-vocabulary English recognition task, re-initialized the weights immediately proceeding the output layer, and retrained with two output layers, one layer predicting only the phonemes in the Key-Word of interest, and another layer predicting senomes from the large vocabulary task.
 
