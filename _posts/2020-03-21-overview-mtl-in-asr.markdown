@@ -287,7 +287,9 @@ Predicting the severity of speech impairment (i.e. dysarthia) in the speech of p
 
 The researchers in Xu (2018) trained a model to both separate speech (from a multi-speaker monaural signal) in addition to an auxiliary task of classifying every audio frame as single-speaker vs. multi-speaker vs. no-speaker.
 
-The researchers in He (2018) trained a model to both localize speech sources as well as classify incoming audio as speech vs. non-speech.
+The researchers in He (2018)[^he] trained a model to both localize speech sources as well as classify incoming audio as speech vs. non-speech.
+
+[^he]: He et al. (2018): Joint Localization and Classification of Multiple Sound Sources Using a Multi-task Neural Network
 
 <br>
 ## Conclusion
