@@ -233,14 +233,23 @@ In a vein of research which belongs somewhere between monolingual and multilingu
 
 ### Multilingual Model as Feature Extractor
 
-So-called *bottleneck* features have also been developed to aid in low-resource acoustic modeling, which often incorporate Multi-Task Learning. These bottleneck features are activations from a condensed hidden layer in a multilingual acoustic model. First a multilingual Acoustic Model is trained, and then data from a new language is passed through this DNN, and the bottleneck activations are appended as additional features to the original audio dupont2005feature, cui2015multilingual, grezl2014adaptation, knill2013investigation, vu2014multilingual, xu2015comparative. In this way, a kind of universal feature extractor is trained on a large multilingual dataset. The bottleneck features themselves are the product of Multi-Task Learning.
+So-called *bottleneck* features have also been developed to aid in low-resource acoustic modeling, which often incorporate Multi-Task Learning. These bottleneck features are activations from a condensed hidden layer in a multilingual acoustic model. First a multilingual Acoustic Model is trained, and then data from a new language is passed through this DNN, and the bottleneck activations are appended as additional features to the original audio[^dupont2005feature][^cui2015multilingual][^grezl2014adaptation][^knill2013investigation][^vu2014multilingual][^xu2015comparative]. In this way, a kind of universal feature extractor is trained on a large multilingual dataset. The bottleneck features themselves are the product of Multi-Task Learning.
+
+[^dupont2005feature]: Dupont (2015): Feature extraction and acoustic modeling: an approach for improved generalization across languages and accents
+[^cui2015multilingual]: Cui (2015): Multilingual representations for low resource speech recognition and keyword search
+[^grezl2014adaptation]: Grezl (2014): Adaptation of multilingual stacked bottle-neck neural network structure for new language
+[^knill2013investigation]: Knill (2013): Investigation of multilingual deep neural networks for spoken term detection
+[^vu2014multilingual]: Vu (2014): Multilingual deep neural network based acoustic modeling for rapid language adaptation
+[^xu2015comparative]: Xu (2015): A comparative study of BNF and DNN multilingual training on cross-lingual low-resource speech recognition
 
 <br>
 ### Source Language Model as Teacher
 
 Instead of using data from multiple languages, it is possible to use the predictions from a pre-trained source model as targets in an auxiliary task. In this way, knowledge located in the source dataset is transferred indirectly via a source model, as opposed to *directly* from the dataset itself.
 
-In a very recent approach, He (2018) trained a classifier on a well-resourced language to identify acoustic landmarks, and then used that well-resourced model to identify acoustic landmarks in a low-resourced language. Those newly discovered acoustic landmarks were then used as targets in an auxiliary task. This approach can be thought of as a kind of Multi-Task Student-Teacher (c.f. wong2016sequence) approach, where we "distill" (c.f. Hinton (2015)) knowledge from one (larger) model to another via an auxiliary task. 
+In a very recent approach, He (2018) trained a classifier on a well-resourced language to identify acoustic landmarks, and then used that well-resourced model to identify acoustic landmarks in a low-resourced language. Those newly discovered acoustic landmarks were then used as targets in an auxiliary task. This approach can be thought of as a kind of Multi-Task Student-Teacher (c.f. wong2016sequence) approach, where we "distill" (c.f. Hinton (2015)[^hinton2015]) knowledge from one (larger) model to another via an auxiliary task. 
+
+[^hinton2015]: Hinton (2015): Distilling the knowledge in a neural network
 
 <br>
 ### Discussion of Multilingual Multi-Task Learning
@@ -249,7 +258,11 @@ Surveying the literature of Multi-Task Learning in multilingual speech recogniti
 
 All spoken languages are produced with human lungs, human mouths, and human vocal tracts. This means that all languages are produced in an acoustic space constrained by the anatomy of the human body. If we can bias a model to search for relevant patterns only within this constrained space, then we should expect the model to learn useful representations faster. Likewise, the model should be less likely to learn irrelevant correlated information about environmental noise which occurs outside this humanly-producible acoustic space. This is one intuition as to why the combination of unrelated languages is helpful: any extra language will add inductive bias for the relevant search space of human speech sounds.
 
-Nevertheless, these studies do show a tendency that closely related languages help each other more than unrelated languages. Both Huang (2013) and Dalmia (2018) concluded that improvement was greater when the languages were more similar. However, they still found that phonetically distinct languages were able to transfer useful bias to each other when a large enough dataset was used for the source language. With regards to how much Multi-Task Learning helps relative to size of the target language dataset, the authors in heigold2013, huang2013 saw larger relative improvements when the dataset for the target language was smaller (but they still observed improvements on large datasets).
+Nevertheless, these studies do show a tendency that closely related languages help each other more than unrelated languages. Both Huang (2013)[^huang2013] and Dalmia (2018)[^dalmia2018] concluded that improvement was greater when the languages were more similar. However, they still found that phonetically distinct languages were able to transfer useful bias to each other when a large enough dataset was used for the source language. With regards to how much Multi-Task Learning helps relative to size of the target language dataset, the authors in Heigold (2013)[^heigold2013] and Huang (2013)[^huang2013] saw larger relative improvements when the dataset for the target language was smaller (but they still observed improvements on large datasets).
+
+[^dalmia2018]: Dalmia (2018): Sequence-based Multi-lingual Low Resource Speech Recognition
+[^heigold2013]: Heigold (2013): Multilingual acoustic models using distributed deep neural networks
+[^huang2013]: Huang (2013): Cross-language knowledge transfer using multilingual deep neural network with shared hidden layers
 
 In conclusion, Multi-Task Learning for multilingual acoustic modeling yields largest improvements when: (1) the dataset for the target language is small, (2) the auxiliary language is closely related, and (3) the auxiliary language dataset is large.
 
@@ -293,9 +306,13 @@ Extending the work from Multi-Task speech recognition to Key-Word Spotting, the 
 
 [^pan]: Panchapagesan (2016): Multi-Task Learning and Weighted Cross-Entropy for DNN-Based Keyword Spotting
 
-To predict turn-taking behavior in conversation, the authors in Hara (2018) trained a model to jointly predict backchannelling and use of filler words.
+To predict turn-taking behavior in conversation, the authors in Hara (2018)[^hara2018] trained a model to jointly predict backchannelling and use of filler words.
 
-Predicting the severity of speech impairment (i.e. dysarthia) in the speech of patients with Parkinson's disorder, the researchers in Vasquez (XXX) trained a model to predict the level of impairment in various articulators (e.g. lips, tongue, larynx, etc.) as multiple tasks.
+[^hara2018]: Hara (2018): Prediction of Turn-taking Using Multitask Learning with Prediction of Backchannels and Fillers
+
+Predicting the severity of speech impairment (i.e. dysarthia) in the speech of patients with Parkinson's disorder, the researchers in Vasquez (2018)[^vasq] trained a model to predict the level of impairment in various articulators (e.g. lips, tongue, larynx, etc.) as multiple tasks.
+
+[^vasq]: Vasquez (2018): A Multitask Learning Approach to Assess the Dysarthria Severity in Patients with Parkinson’s Disease
 
 The researchers in Xu (2018)[^xu] trained a model to both separate speech (from a multi-speaker monaural signal) in addition to an auxiliary task of classifying every audio frame as single-speaker vs. multi-speaker vs. no-speaker.
 
