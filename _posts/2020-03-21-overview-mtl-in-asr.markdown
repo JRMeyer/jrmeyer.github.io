@@ -267,29 +267,42 @@ Working on speech synthesis, the research team in hu2015fusion used Multi-Task L
 <br>
 ### Speech Emotion Recognition
 
-Working on emotion recognition from speech, Parthasarathy (2017) demonstrate that a model can be used to identify multiple (believed to be orthogonal) emotions as separate tasks. The authors in Le (2017) take an emotion recognition task which is typically a regression, and discover new, discrete targets (via k-means clustering) to use as targets in later auxiliary tasks. Using classification of "gender" and "naturalness" as auxiliary tasks, kim2017towards also found improvements in spoken emotion recognition via Multi-Task training. Recently, the authors in lotfian2018predicting trained a model to predict the first and second most salient emotions felt by the evaluator.
+Working on emotion recognition from speech, Parthasarathy (2017)[^parthasarathy2017] demonstrate that a model can be used to identify multiple (believed to be orthogonal) emotions as separate tasks. The authors in Le (2017)[^le2017] take an emotion recognition task which is typically a regression, and discover new, discrete targets (via k-means clustering) to use as targets in later auxiliary tasks. Using classification of "gender" and "naturalness" as auxiliary tasks, Kim (2017)[^kim2017] also found improvements in spoken emotion recognition via Multi-Task training. Recently, the authors in Lotfian (2018)[^lotfian2018] trained a model to predict the first and second most salient emotions felt by the evaluator.
+
+[^parthasarathy2017]: Parthasarathy (2017): Jointly predicting arousal, valence and dominance with multi-task learning
+[^le2017]: Le (2017): Discretized continuous speech emotion recognition with multi-task deep recurrent neural network
+[^kim2017]: Kim (2017): Towards Speech Emotion Recognition in the wild using Aggregated Corpora and Deep Multi-Task Learning
+[^lotfian2018]: Lotfian (2018): Predicting Categorical Emotions by Jointly Learning Primary and Secondary Emotions through Multitask Learning
 
 <br>
 ### Speaker Verification
 
-With regards to speaker verification, the authors in Liu (2018) used phoneme classification as an auxiliary task, and the authors in ding2018mtgan trained speaker embeddings by jointly optimizing (1) a GAN to distinguish speech from non-speech and (2) a speaker classifier.
+With regards to speaker verification, the authors in Liu (2018)[^liu2018] used phoneme classification as an auxiliary task, and the authors in ding2018mtgan trained speaker embeddings by jointly optimizing (1) a GAN to distinguish speech from non-speech and (2) a speaker classifier.
 
-Combing both speech recognition and speaker verification, Chen (2015) trained an Acoustic Model to perform both tasks and found improvement. In an adversarial framework, Wang (2018) taught their model to forget the differences between domains in parallel to identifying speakers.
+[^liu2018]: Liu (2018): Speaker Embedding Extraction with Phonetic Information
+
+Combing both speech recognition and speaker verification, Chen (2015)[^chen2015a] trained an Acoustic Model to perform both tasks and found improvement. In an adversarial framework, Wang (2018)[^wang2018] taught their model to forget the differences between domains in parallel to identifying speakers.
+
+[^chen2015a]: Chen (2015): Multi-task learning for text-dependent speaker verification
+[^wang2018]: Wang (2018): Unsupervised domain adaptation via domain adversarial training for speaker recognition
 
 <br>
 ### Miscellaneous Speech Applications
 
-Extending the work from Multi-Task speech recognition to Key-Word Spotting, the researchers in Panchapagesan (2016) combined parameter-copying and MTL. They first took an Acoustic Model from large-vocabulary English recognition task, re-initialized the weights immediately proceeding the output layer, and retrained with two output layers. One layer predicted only the phonemes in the Key-Word of interest, and another layer predicted senomes from the large vocabulary task.
+Extending the work from Multi-Task speech recognition to Key-Word Spotting, the researchers in Panchapagesan (2016)[^pan] combined parameter-copying and MTL. They first took an Acoustic Model from large-vocabulary English recognition task, re-initialized the weights immediately proceeding the output layer, and retrained with two output layers. One layer predicted only the phonemes in the Key-Word of interest, and another layer predicted senomes from the large vocabulary task.
+
+[^pan]: Panchapagesan (2016): Multi-Task Learning and Weighted Cross-Entropy for DNN-Based Keyword Spotting
 
 To predict turn-taking behavior in conversation, the authors in Hara (2018) trained a model to jointly predict backchannelling and use of filler words.
 
 Predicting the severity of speech impairment (i.e. dysarthia) in the speech of patients with Parkinson's disorder, the researchers in Vasquez (XXX) trained a model to predict the level of impairment in various articulators (e.g. lips, tongue, larynx, etc.) as multiple tasks.
 
-The researchers in Xu (2018) trained a model to both separate speech (from a multi-speaker monaural signal) in addition to an auxiliary task of classifying every audio frame as single-speaker vs. multi-speaker vs. no-speaker.
+The researchers in Xu (2018)[^xu] trained a model to both separate speech (from a multi-speaker monaural signal) in addition to an auxiliary task of classifying every audio frame as single-speaker vs. multi-speaker vs. no-speaker.
 
 The researchers in He (2018)[^he] trained a model to both localize speech sources as well as classify incoming audio as speech vs. non-speech.
 
-[^he]: He et al. (2018): Joint Localization and Classification of Multiple Sound Sources Using a Multi-task Neural Network
+[^xu]: Xu (2018): A Shifted Delta Coefficient Objective for Monaural Speech Separation Using Multi-task Learning
+[^he]: He (2018): Joint Localization and Classification of Multiple Sound Sources Using a Multi-task Neural Network
 
 <br>
 ## Conclusion
