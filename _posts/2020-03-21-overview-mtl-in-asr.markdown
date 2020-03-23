@@ -180,20 +180,32 @@ If we consider the different characteristics of each recording as domain members
 
 In low-resource domains, it is often tempting to add data from a large, out-of-domain dataset into the training set. However, if the domains are different enough a mixed training set may hurt performance more than it helps. Multi-Task Learning lends itself well to these multi-domain scenarios, allowing us to regulate how much influence the out-of-domain data has over parameter estimation during training. Usually we will want to down-weight the gradient from a source domain task if the source dataset is large or if the task is only somewhat related.
 
-The researchers in qin2018automatic investigated the low-resource domain of Cantonese aphasic speech. Using a small corpus of aphasic Cantonese speech in addition to two corpora of read Cantonese speech, the researchers simply trained a Multi-Task model with each corpus as its own task (i.e. data from each corpus as classified in its own output layer). Similarly, in an effort to better model child-speech in a low-resource setting, the authors in tong2017multi created separate tasks for classification of child vs. adult speech, in addition to standard phoneme classification.
+The researchers in Qin (2018)[^qin2018automatic] investigated the low-resource domain of Cantonese aphasic speech. Using a small corpus of aphasic Cantonese speech in addition to two corpora of read Cantonese speech, the researchers simply trained a Multi-Task model with each corpus as its own task (i.e. data from each corpus as classified in its own output layer). Similarly, in an effort to better model child-speech in a low-resource setting, the authors in Tong (2017)[^tong2017multi] created separate tasks for classification of child vs. adult speech, in addition to standard phoneme classification.
+
+[^qin2018automatic]: Qin (2018): Automatic Speech Assessment for People with Aphasia Using TDNN-BLSTM with Multi-Task Learning
+[^tong2017multi]: Tong (2017): Multi-Task Learning for Mispronunciation Detection on Singapore Children’s Mandarin Speech
 
 <br>
 ### Discussion of Monolingual Multi-Task Learning
 
 In this section we've covered various examples of how researchers have incorporated Multi-Task Learning into speech recognition using data from a single language. Two major threads of work can be identified: (1) the use of abstract linguistic features as additional tasks, or (2) the use of speaker and other recording information as an extra task.
 
-With regards to the first track of work, researchers have created abstract linguistic target labels by defining linguistic categories by hand, by referring to the traditional phonetic decision tree, or by automatically finding relevant sub-word parts. Performance improvements with this approach have been found to be larger when working with small datasets bell2015complementary, chen2015diss. The intuition behind this line of work is the following: Forcing a model to classify input speech into broad linguistic classes should encourage the model to learn a set of underlying phonetic features which are useful for the main classification task.
+With regards to the first track of work, researchers have created abstract linguistic target labels by defining linguistic categories by hand, by referring to the traditional phonetic decision tree, or by automatically finding relevant sub-word parts. Performance improvements with this approach have been found to be larger when working with small datasets[^bell2015complementary][^chen2015diss]. The intuition behind this line of work is the following: Forcing a model to classify input speech into broad linguistic classes should encourage the model to learn a set of underlying phonetic features which are useful for the main classification task.
+
+[^bell2015complementary]: Bell (2015): Complementary tasks for context-dependent deep neural network acoustic models
+[^chen2015diss]: Chen (2015): Multi-task Learning Deep Neural Networks for Automatic Speech Recognition
 
 A discriminative Acoustic Model trained on standard output targets (e.g. triphones, characters) is trained to learn that each target is maximally different from every other target. The label-space at the output layer is N-dimensional, and every class (i.e. phonetic category) occupies a corner of that N-dimensional space. this means that classes are learned to be *maximally* distinctive. In reality, we know that some of these targets are more similar than others, but the model does not know that. Taking the example of context-dependent triphones, the Acoustic Model does not have access to the knowledge that an **[a]** surrounded by **[t]**'s is the same vowel as an **[a]** surrounded by **[d]**'s. In fact, these two **[a]**'s are treated as if they belong to completely different classes. It is obvious to humans that two flavors of **[a]** are more similar to each other than an **[a]** is similar to an **[f]**. However, the output layer of the neural net does not encode these nuances. Discriminative training on triphone targets will loose the information that some triphones are more similar than others. One way to get that information back is to explicitly teach the model that two **[a]** triphones belong to the same abstract class. This is the general intuition behind this first track of monolingual Multi-Task work in speech recognition.
 
-The second track of monolingual Multi-Task acoustic modeling involves explicit modeling of speaker, noise, and other recording characteristics via an auxiliary task. While all of these variables are extra-linguistic, studies have shown that either paying extra attention to them (via an auxiliary classification task) or completely ignoring them (via adversarial learning) can improve overall model performance in terms of Word Error Rate. This is a somewhat puzzling finding. Learning speaker information lu2004multitask, chen2015multi can be useful, but also forgetting speaker information saon2017english, meng2018speaker can be useful.
+The second track of monolingual Multi-Task acoustic modeling involves explicit modeling of speaker, noise, and other recording characteristics via an auxiliary task. While all of these variables are extra-linguistic, studies have shown that either paying extra attention to them (via an auxiliary classification task) or completely ignoring them (via adversarial learning) can improve overall model performance in terms of Word Error Rate. This is a somewhat puzzling finding. Learning speaker information[^lu2004multitask][^chen2015multi] can be useful, but also forgetting speaker information [^saon2017english][^meng2018speaker] can be useful.
 
-If we think of why this may be the case, we can get a little help from latent variable theory. If we think of any recording speech as an observation that has been generated by multiple underlying variables, we can define some variables which generated the audio, such as (1) the words that were said, (2) the speaker, (3) the environmental noise conditions, (4) the acoustics of the recording location, and many, many others. These first four factors are undoubtedly influencers in the acoustic properties of the observed recording. If we know that speaker characteristics and environmental noise had an influence on the audio, then we should either explicitly model them or try to remove them altogether. Both approaches show improvement over a baseline which chooses to not model this extra information at all, but as discovered in adi2018reverse, if the dataset is large enough, the relative improvements are minor.
+[^lu2004multitask]: Lu (2004): Multitask learning in connectionist speech recognition
+[^saon2017english]: Saon (2017): English conversational telephone speech recognition by humans and machines
+[^meng2018speaker]: Meng (2018): Speaker-invariant training via adversarial learning
+
+If we think of why this may be the case, we can get a little help from latent variable theory. If we think of any recording speech as an observation that has been generated by multiple underlying variables, we can define some variables which generated the audio, such as (1) the words that were said, (2) the speaker, (3) the environmental noise conditions, (4) the acoustics of the recording location, and many, many others. These first four factors are undoubtedly influencers in the acoustic properties of the observed recording. If we know that speaker characteristics and environmental noise had an influence on the audio, then we should either explicitly model them or try to remove them altogether. Both approaches show improvement over a baseline which chooses to not model this extra information at all, but as discovered in Adi (2018)[^adi2018reverse], if the dataset is large enough, the relative improvements are minor.
+
+[^adi2018reverse]: Adi (2018): To Reverse the Gradient or Not: An Empirical Comparison of Adversarial and Multi-task Learning in Speech Recognition
 
 <br>
 ## Multilingual Multi-Task ASR
@@ -203,7 +215,7 @@ Multilingual Multi-Task ASR can be split into two main veins, depending on wheth
 <br>
 ### Multiple Languages as Multiple Tasks
 
-The earliest examples of Multi-Task Learning with multiple languages can be found in huang2013 and heigold2013 (c.f. Figure (7)). These studies focused on improving performance on all languages found in the training set, not just one target language. Every language was sampled to the same audio features, and as such the neural networks only required one input layer. However, the network was trained to classify each language using language-specific phoneme targets.  Taking this line of research into the world of End-to-End speech recognition, dalmia2018sequence showed that a CTC model trained on multiple languages, and then tuned to one specific language can improve performance over a model trained on that one language in a low-resource setting.
+The earliest examples of Multi-Task Learning with multiple languages can be found in huang2013 and Heigold (2013)[^heigold2013] (c.f. Figure (7)). These studies focused on improving performance on all languages found in the training set, not just one target language. Every language was sampled to the same audio features, and as such the neural networks only required one input layer. However, the network was trained to classify each language using language-specific phoneme targets.  Taking this line of research into the world of End-to-End speech recognition, dalmia2018sequence showed that a CTC model trained on multiple languages, and then tuned to one specific language can improve performance over a model trained on that one language in a low-resource setting.
 
 
 <br><br>
@@ -212,18 +224,30 @@ The earliest examples of Multi-Task Learning with multiple languages can be foun
 <br><br>
 
 
-In a similar vein of work, instead of optimizing performance on all languages present in the training set, researchers have aimed to perform best on one particular target language. See wang2015transfer for a survey of advances in this area.
+In a similar vein of work, instead of optimizing performance on all languages present in the training set, researchers have aimed to perform best on one particular target language. See Wang (2015)[^wang2015transfer] for a survey of advances in this area.
 
-Addressing the use-case where audio is available for a target language, but native-speaker transcribers are not easy to find, do2017multi employed non-native speakers to transcribe a target language into non-sense words, according to how they perceived the language. Using these non-native transcriptions in addition to a small set of native-speaker transcripts, the authors trained a Multi-Task model to predict phonemes from both native or non-native transcripts. The intuition as to why this approach works is that non-native speakers will perceive sounds from a foreign language using their native phonemic system, and enough overlap should exist between the two languages to help train the acoustic model.
+[^wang2015transfer]: Wang (2015): Transfer learning for speech and language processing
 
-In the relatively new field of spoken language translation, where speech from one language is mapped directly to a text translation in a second language, the researchers in weiss2017sequence, anastasopoulos2018tied created multiple auxiliary tasks by either recognizing the speech of the source language (i.e. standard ASR), or by translating the source language into one or more different languages.
+Addressing the use-case where audio is available for a target language, but native-speaker transcribers are not easy to find, Do (2017)[^do2017multi] employed non-native speakers to transcribe a target language into non-sense words, according to how they perceived the language. Using these non-native transcriptions in addition to a small set of native-speaker transcripts, the authors trained a Multi-Task model to predict phonemes from both native or non-native transcripts. The intuition as to why this approach works is that non-native speakers will perceive sounds from a foreign language using their native phonemic system, and enough overlap should exist between the two languages to help train the acoustic model.
+
+[^do2017multi]: Do (2017): Multi-task learning using mismatched transcription for under-resourced speech recognition
+
+In the relatively new field of spoken language translation, where speech from one language is mapped directly to a text translation in a second language, the researchers in [^weiss2017sequence][^anastasopoulos2018tied] created multiple auxiliary tasks by either recognizing the speech of the source language (i.e. standard ASR), or by translating the source language into one or more different languages.
+
+[^weiss2017sequence]: Weiss (2017): Sequence-to-Sequence Models Can Directly Transcribe Foreign Speech 
+[^anastasopoulos2018tied]: Anastasopoulos (2018): Tied Multitask Learning for Neural Speech Translation
 
 <br>
 ### Multiple Accents as Multiple Tasks
 
-In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in yang2018joint, rao2017multi, jain2018improved, sun2018domain used Multi-Task Learning to perform multi-accent speech recognition. The researchers in yang2018joint trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in rao2017multi recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
+In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in [^yang2018joint][^rao2017multi][^jain2018improved][^sun2018domain] used Multi-Task Learning to perform multi-accent speech recognition. The researchers in yang2018joint trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in Rao (2017)[^rao2017multi] recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
 
+[^yang2018joint]: Yang (2018): Joint Modeling of Accents and Acoustics for Multi-Accent Speech Recognition
+[^rao2017multi]: Rao (2017): Multi-accent speech recognition with hierarchical grapheme based models
+[^jain2018improved]: Jain (2018): Improved Accented Speech Recognition Using Accent Embeddings and Multi-task Learning
+[^sun2018domain]: Sun (2018): Domain Adversarial Training for Accented Speech Recognition
 
+ 
 <br><br>
 <center><img src="/misc/figs/yang-2018.png" align="center" style="width: 500px;"/></center>
 <center><strong>Figure 8</strong>: Multi-Accent Deep Neural Network Architecture from Yang et al. (2018)</center>
@@ -247,8 +271,10 @@ So-called *bottleneck* features have also been developed to aid in low-resource 
 
 Instead of using data from multiple languages, it is possible to use the predictions from a pre-trained source model as targets in an auxiliary task. In this way, knowledge located in the source dataset is transferred indirectly via a source model, as opposed to *directly* from the dataset itself.
 
-In a very recent approach, He (2018) trained a classifier on a well-resourced language to identify acoustic landmarks, and then used that well-resourced model to identify acoustic landmarks in a low-resourced language. Those newly discovered acoustic landmarks were then used as targets in an auxiliary task. This approach can be thought of as a kind of Multi-Task Student-Teacher (c.f. wong2016sequence) approach, where we "distill" (c.f. Hinton (2015)[^hinton2015]) knowledge from one (larger) model to another via an auxiliary task. 
+In a very recent approach, He (2018)[^he2018a] trained a classifier on a well-resourced language to identify acoustic landmarks, and then used that well-resourced model to identify acoustic landmarks in a low-resourced language. Those newly discovered acoustic landmarks were then used as targets in an auxiliary task. This approach can be thought of as a kind of Multi-Task Student-Teacher (c.f. Wong (2016)[^wong2016sequence]) approach, where we "distill" (c.f. Hinton (2015)[^hinton2015]) knowledge from one (larger) model to another via an auxiliary task. 
 
+[^wong2016sequence]: Wong (2016): Sequence student-teacher training of deep neural networks
+[^he2018a]: He (2018): Improved ASR for Under-Resourced Languages Through Multi-Task Learning with Acoustic Landmarks
 [^hinton2015]: Hinton (2015): Distilling the knowledge in a neural network
 
 <br>
@@ -294,9 +320,9 @@ With regards to speaker verification, the authors in Liu (2018)[^liu2018] used p
 
 [^liu2018]: Liu (2018): Speaker Embedding Extraction with Phonetic Information
 
-Combing both speech recognition and speaker verification, Chen (2015)[^chen2015a] trained an Acoustic Model to perform both tasks and found improvement. In an adversarial framework, Wang (2018)[^wang2018] taught their model to forget the differences between domains in parallel to identifying speakers.
+Combing both speech recognition and speaker verification, Chen (2015)[^chen2015multi] trained an Acoustic Model to perform both tasks and found improvement. In an adversarial framework, Wang (2018)[^wang2018] taught their model to forget the differences between domains in parallel to identifying speakers.
 
-[^chen2015a]: Chen (2015): Multi-task learning for text-dependent speaker verification
+[^chen2015multi]: Chen (2015): Multi-task learning for text-dependent speaker verification
 [^wang2018]: Wang (2018): Unsupervised domain adaptation via domain adversarial training for speaker recognition
 
 <br>
@@ -316,10 +342,10 @@ Predicting the severity of speech impairment (i.e. dysarthia) in the speech of p
 
 The researchers in Xu (2018)[^xu] trained a model to both separate speech (from a multi-speaker monaural signal) in addition to an auxiliary task of classifying every audio frame as single-speaker vs. multi-speaker vs. no-speaker.
 
-The researchers in He (2018)[^he] trained a model to both localize speech sources as well as classify incoming audio as speech vs. non-speech.
+The researchers in He (2018)[^he2018b] trained a model to both localize speech sources as well as classify incoming audio as speech vs. non-speech.
 
 [^xu]: Xu (2018): A Shifted Delta Coefficient Objective for Monaural Speech Separation Using Multi-task Learning
-[^he]: He (2018): Joint Localization and Classification of Multiple Sound Sources Using a Multi-task Neural Network
+[^he2018b]: He (2018): Joint Localization and Classification of Multiple Sound Sources Using a Multi-task Neural Network
 
 <br>
 ## Conclusion
