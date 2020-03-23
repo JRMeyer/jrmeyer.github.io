@@ -147,7 +147,7 @@ In a similar vein, Multi-Task Learning has been used in an End-to-End framework,
 
 
 <br><br>
-<center><img src="/misc/figs/sanabria-2018.png" align="center" style="width: 500px;"/></center>
+<center><img src="/misc/figs/sanabria-2018.png" align="center" style="width: 400px;"/></center>
 <center><strong>Figure 5</strong>: Multi-Task Hierarchical Architecture from Sanabria and Metze (2018) </center>
 <br><br>
 
@@ -159,7 +159,7 @@ All of these studies have in common the following: they encourage the model to l
 Class labels are the most common output targets for an auxiliary task, but parveen2003multitask, giri2015improving, chen2015speech, zhang2017attention took an approach where they predicted de-noised versions of the input audio from noisy observations (c.f. Figure (6). The effect of this regression was that the Acoustic Model cleaned and classified each input audio frame in real time.
 
 <br><br>
-<center><img src="/misc/figs/giri-2015.png" align="center" style="width: 500px;"/></center>
+<center><img src="/misc/figs/giri-2015.png" align="center" style="width: 350px;"/></center>
 <center><strong>Figure 6</strong>: Regression and Classification Neural Network Architecture from Giri et al. (2015)</center>
 <br><br>
 
