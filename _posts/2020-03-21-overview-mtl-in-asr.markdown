@@ -56,15 +56,15 @@ It is important to note that a Multi-Task model will have both *task-dependent* 
 Given this definition of *task* and this definition of *Multi-Task Learning*, we can start to think about the different ways in which a Multi-Task model can be trained. Probably the most common Multi-Task use-case is the classification of a single dataset $$(X)$$ as multiple sets of target labels $$(Y_{1}, Y_{2} \dots Y_{N})$$. This model will perform mappings from $$(X)$$ into each of the label spaces separately. Another approach is the classification of multiple datasets sampled from various domains $$(X_{1}, X_{2} \dots X_{N})$$ as their own, dataset-specific targets $$(Y_{1}, Y_{2} \dots Y_{N})$$. Less commonly, it is possible to classify multiple datasets using one super-set of labels. These different approaches are represented with regards to vanilla feed-forward neural networks in Figure (1).
 
 <br><br>
-<center>
-<img src="/misc/figs/color-si-mo.png" style="width: 300px;"/>
-</center>
-<center>
-<img src="/misc/figs/color-mi-so.png" style="width: 300px;"/>
-</center>
-<center>
-<img src="/misc/figs/color-mi-mo.png" style="width: 300px;"/>
-</center>
+<center><img src="/misc/figs/color-si-mo.png" style="width: 300px;"/></center>
+<center>Single Input, Multiple Output</center>
+
+<center><img src="/misc/figs/color-mi-so.png" style="width: 300px;"/></center>
+<center>Multiple Input, Single Output</center>
+
+<center><img src="/misc/figs/color-mi-mo.png" style="width: 300px;"></center>
+<center>Multiple Input, Multiple Output</center>
+
 <center><strong>Figure 1</strong>: Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from Heigold et al. (2013).</center>
 <br><br>
 
@@ -93,19 +93,15 @@ We start with a single dataset of photos of dogs ($$X_1$$ (&#x2B1B;)) and a sing
 [^6]: This is an example of using domain or expert knowledge to create a new task, where the expert knowledge is contained in the encyclopedia. One could also hire a dog expert to label the images manually. Either way, we are exploiting some source of domain-specific knowledge (i.e. knowledge of the physiology of different dog breeds).
 
 <br><br>
-<center>
-<img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
-rottweiler (&#x2B1B;), large (&#x1F7E5;)
-</center>
-<center>
-<img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
-collie (&#x2B1B;), large (&#x1F7E5;)
-</center>
-<center>
-<img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
-terrier (&#x2B1B;), small (&#x1F7E5;)
-</center>
-<center>
+<center><img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/></center>
+<center>rottweiler (&#x2B1B;), large (&#x1F7E5;)</center>
+
+<center><img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/></center>
+<center>collie (&#x2B1B;), large (&#x1F7E5;)</center>
+
+<center><img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/></center>
+<center>terrier (&#x2B1B;), small (&#x1F7E5;)</center>
+
 <center><strong>Figure 2</strong>: Three pictures of dogs from our dataset (<strong>X_1</strong> (&#x2B1B;)), where each picture has been labeled with separate targets: <strong>dog_breed</strong> (&#x2B1B;), <strong>dog_size</strong> (&#x1F7E5;)</center>
 <br><br>
 
