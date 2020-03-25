@@ -57,9 +57,13 @@ Given this definition of *task* and this definition of *Multi-Task Learning*, we
 
 <br><br>
 <center>
-<img src="/misc/figs/color-si-mo.png" align="left" style="width: 225px;"/>
-<img src="/misc/figs/color-mi-so.png" align="center" style="width: 225px;"/>
-<img src="/misc/figs/color-mi-mo.png" align="right" style="width: 200px;"/>
+<img src="/misc/figs/color-si-mo.png" style="width: 300px;"/>
+</center>
+<center>
+<img src="/misc/figs/color-mi-so.png" style="width: 300px;"/>
+</center>
+<center>
+<img src="/misc/figs/color-mi-mo.png" style="width: 300px;"/>
 </center>
 <center><strong>Figure 1</strong>: Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from Heigold et al. (2013).</center>
 <br><br>
@@ -91,10 +95,17 @@ We start with a single dataset of photos of dogs ($$X_1$$ (&#x2B1B;)) and a sing
 <br><br>
 <center>
 <img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/>
-<img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
-<img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
+rottweiler (&#x2B1B;), large (&#x1F7E5;)
 </center>
-<center>rottweiler, large       collie, large       terrier, small</center>
+<center>
+<img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/>
+collie (&#x2B1B;), large (&#x1F7E5;)
+</center>
+<center>
+<img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/>
+terrier (&#x2B1B;), small (&#x1F7E5;)
+</center>
+<center>
 <center><strong>Figure 2</strong>: Three pictures of dogs from our dataset (<strong>X_1</strong> (&#x2B1B;)), where each picture has been labeled with separate targets: <strong>dog_breed</strong> (&#x2B1B;), <strong>dog_size</strong> (&#x1F7E5;)</center>
 <br><br>
 
