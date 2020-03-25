@@ -57,20 +57,20 @@ Given this definition of *task* and this definition of *Multi-Task Learning*, we
 
 <br><br>
 <center><img src="/misc/figs/color-si-mo.png" style="width: 300px;"/></center>
-<center>Single Input, Multiple Output</center>
+<center><strong>Figure 1a</strong>:  Single Input (&#x2B1B;), Multiple Output (&#x1F7E5;)</center>
 
 <center><img src="/misc/figs/color-mi-so.png" style="width: 300px;"/></center>
-<center>Multiple Input, Single Output</center>
+<center><strong>Figure 1b</strong>: Multiple Input (&#x1F7E6;), Single Output (&#x2B1B;)</center>
 
 <center><img src="/misc/figs/color-mi-mo.png" style="width: 300px;"></center>
-<center>Multiple Input, Multiple Output</center>
-
+<center><strong>Figure 1c</strong>: Multiple Input (&#x1F7E6;), Multiple Output (&#x1F7E5;)</center>
+<br>
 <center><strong>Figure 1</strong>: Possible Neural Multi-Task Architectures. Black layers are task-independent layers, blue layers are task-dependent input layers, and red layers are task-dependent output layers. These figures are modified versions of a figure from Heigold et al. (2013).</center>
 <br><br>
 
 
 
- With regards to neural approaches (c.f. Figure (1), Multi-Task models are comprised of three component parts: (1) **shared hidden layers** (&#x2B1B;) which serve as a task-independent feature extractor; (2) **task-specific output layers** (&#x1F7E5;) which serve as task-dependent classifiers or regressors; (3) **task-specific input layers** (&#x1F7E6;) which serve as feature transformations from domain-specific to domain-general representations. Neural Multi-Task models will always have some hidden layers shared among tasks. This view of a Multi-Task neural network highlights the intuition behind the shared hidden layers - to encode robust representations of the input data.
+ With regards to neural approaches (c.f. Figure (1), Multi-Task models are usually comprised of three component parts: (1) **shared layers** (&#x2B1B;) which serve as a task-independent feature extractor; (2) **task-specific output layers** (&#x1F7E5;) which serve as task-dependent classifiers or regressors; (3) **task-specific input layers** (&#x1F7E6;) which serve as feature transformations from domain-specific to domain-general representations. Neural Multi-Task models will always have some hidden layers shared among tasks. This view of a Multi-Task neural network highlights the intuition behind the shared hidden layers - to encode robust representations of the input data.
 
 With regards to domains in which we have very limited data (i.e. low-resource environments), Multi-Task parameter estimation promises gains in performance which do not require us to collect more in-domain data, as long as we can create new tasks. In the common scenario where an engineer has access to only a small dataset, the best way she could improve performance would be by collecting more data. However, data collection takes time and money. This is the promise of Multi-Task Learning in low-resource domains: if the engineer can create new tasks, then she does not need to collect more data.
 
@@ -93,15 +93,15 @@ We start with a single dataset of photos of dogs ($$X_1$$ (&#x2B1B;)) and a sing
 [^6]: This is an example of using domain or expert knowledge to create a new task, where the expert knowledge is contained in the encyclopedia. One could also hire a dog expert to label the images manually. Either way, we are exploiting some source of domain-specific knowledge (i.e. knowledge of the physiology of different dog breeds).
 
 <br><br>
-<center><img src="/misc/figs/rotweiler.jpg" align="left" style="width: 225px;"/></center>
-<center>rottweiler (&#x2B1B;), large (&#x1F7E5;)</center>
+<center><img src="/misc/figs/rotweiler.jpg" style="width: 300;"/></center>
+<center>Rottweiler (&#x2B1B;), Large (&#x1F7E5;)</center>
 
-<center><img src="/misc/figs/collie.jpg" align="center" style="width: 225px;"/></center>
-<center>collie (&#x2B1B;), large (&#x1F7E5;)</center>
+<center><img src="/misc/figs/collie.jpg"  style="width: 300px;"/></center>
+<center>Collie (&#x2B1B;), Large (&#x1F7E5;)</center>
 
-<center><img src="/misc/figs/terrier.jpg" align="right" style="width: 225px;"/></center>
-<center>terrier (&#x2B1B;), small (&#x1F7E5;)</center>
-
+<center><img src="/misc/figs/terrier.jpg" style="width: 300px;"/></center>
+<center>Terrier (&#x2B1B;), Small (&#x1F7E5;)</center>
+<br>
 <center><strong>Figure 2</strong>: Three pictures of dogs from our dataset (<strong>X_1</strong> (&#x2B1B;)), where each picture has been labeled with separate targets: <strong>dog_breed</strong> (&#x2B1B;), <strong>dog_size</strong> (&#x1F7E5;)</center>
 <br><br>
 
