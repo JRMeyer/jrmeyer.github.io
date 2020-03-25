@@ -111,10 +111,10 @@ We start with a single dataset of photos of dogs ($$X_1$$ (&#x2B1B;)) and a sing
 
   Given this data and our two sets of labels, we can train a Multi-Task neural network to perform classification of both label sets with the vanilla feed-forward architecture shown in Figure (3). This model now has two task-specific output layers and two task-specific penultimate layers. The input layer and following three hidden layers are shared between both tasks. The shared parameters will be updated via the combined error signal of both tasks.
 
-<br><br>
+<br>
 <center><img src="/misc/figs/dog-model.png" align="center" style="width: 400px;"/></center>
 <center><strong>Figure 3</strong>: Multi-Task DNN for classifying pictures of dogs according to both <strong>dog_breed</strong> (&#x2B1B;) and <strong>dog_size</strong> (&#x1F7E5;). Any additional task by definition brings along with it additional parameters, because a subset of model parameters must be task-specific. Task-specific parameters for the new task of <strong>dog_size</strong> (&#x1F7E5;) classification are shown in red.</center>
-<br><br>
+<br>
 
 
 This example came from image recognition, but now we will move onto to our overview of Multi-Task Learning in Automatic Speech Recognition. As we will see in what follows, researchers have trained Multi-Task Acoustic Models where the auxiliary tasks involve a new data domain, a new label set, or even a new mapping function.
