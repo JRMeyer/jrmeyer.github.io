@@ -158,7 +158,6 @@ Within *multilingual* Multi-Task acoustic modeling we can also identify two main
 [^mohan2015multi]: Mohan (2015): Multi-lingual speech recognition with low-rank multi-task deep neural networks
 [^grezl2016]: Grezl (2016): Boosting performance on low-resource languages by standard corpora: An analysis
 [^matassoni2018non]: Matassoni (2018): Non-Native Children Speech Recognition Through Transfer Learning
-[^yang2018joint]: Yang (2018): Joint Modeling of Accents and Acoustics for Multi-Accent Speech Recognition
 [^rao2017multi]: Rao (2017): Multi-accent speech recognition with hierarchical grapheme based models
 
 <br>
@@ -288,7 +287,7 @@ In the relatively new field of spoken language translation, where speech from on
 <br>
 ### Multiple Accents as Multiple Tasks
 
-In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in [^yang2018joint][^rao2017multi][^jain2018improved][^sun2018domain] used Multi-Task Learning to perform multi-accent speech recognition. The researchers in yang2018joint trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in Rao (2017)[^rao2017multi] recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
+In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in [^yang2018joint][^rao2017multi][^jain2018improved][^sun2018domain] used Multi-Task Learning to perform multi-accent speech recognition. The researchers in Yang (208)[^yang2018joint] trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in Rao (2017)[^rao2017multi] recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
 
 [^yang2018joint]: Yang (2018): Joint Modeling of Accents and Acoustics for Multi-Accent Speech Recognition
 [^rao2017multi]: Rao (2017): Multi-accent speech recognition with hierarchical grapheme based models
