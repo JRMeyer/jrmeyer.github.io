@@ -12,7 +12,7 @@ comments: True
 
 The following blog post is a chapter in my [dissertation](http://jrmeyer.github.io/misc/MEYER_dissertation_2019.pdf), which I finished in the summer of 2019. The field of Automatic Speech Recognition moves fast, but I think you will find the general trends and logic discussed here to hold true today.
 
-All citations are footnotes, because Markdown ¯\_(ツ)_/¯
+All citations are footnotes, because Markdown ¯\\_(ツ)_/¯
 
 Feel free to leave comments below (especially if you have newer research on Multi-Task Learning for speech!)
 
