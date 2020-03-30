@@ -135,13 +135,29 @@ Past work in Multi-Task acoustic modeling for speech recognition can be split in
 
 Within *monolingual* Multi-Task acoustic modeling we can identify two trends in the literature. We find that researchers will either (1) predict some additional linguistic representation of the input speech, or (2) explicitly model utterance-level characteristics of the utterance. When using additional linguistic tasks for a single language, each task is a phonetically relevant classification: predicting triphones vs. predicting monophones vs. predicting graphemes[^bell2015][^seltzer2013][^huang2015][^chen2014][^chen2015][^toshniwal2017multitask]. When explicitly modeling utterance-specific characteristics, researchers either use adversarial learning to force the model to "forget" channel, noise, and speaker characteristics, or the extra task is a standard regression in order to pay extra attention to these features[^shinohara2016adversarial][^serdyuk2016invariant][^tripathi2018adversarial][^saon2017english][^meng2018speaker][^sun2018domain][^parveen2003multitask][^giri2015improving][^chen2015speech][^zhang2017attention].
 
+[^bell2015]: Bell (2015): Regularization of context-dependent deep neural networks with context-independent multi-task training
+[^seltzer2013]: Seltzer (2013): Multi-task learning in deep neural networks for improved phoneme recognition
+[^huang2015]: Huang (2015): Rapid adaptation for deep neural networks through multi-task learning
+[^chen2014]: Chen (2014): Joint acoustic modeling of triphones and trigraphemes by multi-task learning deep neural networks for low-resource speech recognition
+[^chen2015]: Chen (2015): Multitask Learning of Deep Neural Networks for Low-resource Speech Recognition
+[^toshniwal2017multitask]: Toshniwal (2017): Multitask Learning with Low-Level Auxiliary Tasks for Encoder-Decoder Based Speech Recognition
+[^shinohara2016adversarial]: Shinohara (2016): Adversarial Multi-Task Learning of Deep Neural Networks for Robust Speech Recognition
+[^serdyuk2016invariant]: Serdyuk (2016): Invariant representations for noisy speech recognition 
+[^tripathi2018adversarial]: Tripathi (2018): Adversarial Learning of Raw Speech Features for Domain Invariant Speech Recognition
+[^saon2017english]: Saon (2017): English conversational telephone speech recognition by humans and machines
+[^meng2018speaker]: Meng (2018): Speaker-invariant training via adversarial learning
+[^sun2018domain]: Sun (2018): Domain Adversarial Training for Accented Speech Recognition
+[^parveen2003multitask]: Parveen (2003): Multitask learning in connectionist robust ASR using recurrent neural networks 
+[^giri2015improving]: Giri (2015): Improving speech recognition in reverberation using a room-aware deep neural network and multi-task learning
+[^chen2015speech]: Chen (2015): Speech enhancement and recognition using multi-task learning of long short-term memory recurrent neural networks
+[^zhang2017attention]: Zhang (2017): Attention-based LSTM with Multi-task Learning for Distant Speech Recognition
 
 Within *multilingual* Multi-Task acoustic modeling we can also identify two main veins of research: (1) using data from some source language(s) or (2) using a pre-trained model from some source language(s). When using data from source languages, most commonly we find researchers training a single neural network with multiple output layers, where each output layer represents phonetic targets from a different language[^huang2013][^heigold2013][^tuske2014multilingual][^mohan2015multi][^grezl2016][^matassoni2018non][^yang2018joint][^rao2017multi][^jain2018improved][^sun2018domain]. As such, these Acoustic Models look like the prototype shown in Figure (1). When using a pre-trained model from some source language(s) we find researchers using the source model as either a teacher or as a feature extractor for the target language[^dupont2005feature][^cui2015multilingual][grezl2014adaptation][knill2013investigation][vu2014multilingual][xu2015comparative][^he2018improved]. The source model extracts embeddings of the target speech, and then the embedding is either used as the target for an auxiliary task or the embedding is concatenated to the standard input as a kind of feature enhancement.
 
 <br>
 ### Monolingual Multi-Task ASR
 
-With regards to monolingual Multi-Task Learning in ASR, we find two major tracks of research. The first approach is to find tasks (from the same language) which are linguistically relevant to the main task[^](stadermann2005multi, seltzer2013, huang2015, bell2015, arora2017phonological, chen2014, chen2015, chen2015diss, bell2015complementary, swietojanski2015structured, badino2016phonetic, pironkov2016multi). These studies define abstract phonetic categories (e.g. fricatives, liquids, voiced consonants), and use those category labels as auxiliary tasks for frame-level classification.
+With regards to monolingual Multi-Task Learning in ASR, we find two major tracks of research. The first approach is to find tasks (from the same language) which are linguistically relevant to the main task[^stadermann2005multi][^seltzer2013][^huang2015][^bell2015][^arora2017phonological][^chen2014][^chen2015][^chen2015diss][^bell2015complementary][^swietojanski2015structured][^badino2016phonetic][^pironkov2016multi]. These studies define abstract phonetic categories (e.g. fricatives, liquids, voiced consonants), and use those category labels as auxiliary tasks for frame-level classification.
 
 The second major track of research in monolingual Multi-Task acoustic modeling involves explicit modeling of speaker, channel, or noise characteristics[^shinohara2016adversarial][^serdyuk2016invariant][^tripathi2018adversarial][^saon2017english][^meng2018speaker][^sun2018domain][^parveen2003multitask][^giri2015improving][^chen2015speech][^zhang2017attention]. These studies train the Acoustic Model to identify these characteristics via an additional classification task, or they encourage the model to ignore this information via adversarial learning, or they force the model to map data from the input domain to another domain (e.g. from noisy audio $$\rightarrow$$ clean audio). 
 
