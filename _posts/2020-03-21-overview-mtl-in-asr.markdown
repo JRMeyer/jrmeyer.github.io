@@ -12,18 +12,21 @@ comments: True
 
 The following blog post is a chapter in my [dissertation](http://jrmeyer.github.io/misc/MEYER_dissertation_2019.pdf), which I finished in the summer of 2019. The field of Automatic Speech Recognition moves fast, but I think you will find the general trends and logic discussed here to hold true today.
 
+All citations are footnotes, because Markdown ¯\_(ツ)_/¯
+
+Feel free to leave comments below (especially if you have newer research on Multi-Task Learning for speech!)
+
 Enjoy!
 
 <br>
 ## Roadmap
 
-In this overview of Multi-Task Learning in Automatic Speech Recognition (ASR), we're going to cover a lot of ground quickly. First, we're going to define Multi-Task Learning and walk through a very simple example from image recognition[^1]. Next, once we have an understanding of Multi-Task Learning and we have a definition of "task", we will move into a survey of the speech recognition literature[^2].
+In this overview of Multi-Task Learning in Automatic Speech Recognition (ASR), we're going to cover a lot of ground quickly. First, we're going to define Multi-Task Learning and walk through a very simple example from image recognition. Next, once we have an understanding of Multi-Task Learning and we have a definition of "task", we will move into a survey of the speech recognition literature[^2].
 
 The literature survey focuses on acoustic modeling in particular. Speech Recognition has a long history, but this blog post is limited in scope to the Hybrid (i.e. DNN-HMM) and End-to-End approaches. Both approaches involve training Deep Neural Networks, and we will focus on how Multi-Task Learning has been used to train them. We will divvy up the literature along monolingual and multilingual models, and then finally we will touch on Multi-Task Learning in other speech technologies such as Speech Synthesis and Speaker Verification.
 
 The term "Multi-Task Learning" encompasses more than a single model performing multiple tasks at inference. Multi-Task Learning can be useful even when there is just *one* target task of interest. Especially with regards to small datasets, a Multi-Task model can out-perform a model which was trained on just one task.
 
-[^1]: Yes, there will be pictures of dogs!
 [^2]: For a more complete overview of Multi-Task Learning itself: [Ruder (2017)](https://ruder.io/multi-task/)
 
 <br>
@@ -287,7 +290,7 @@ In the relatively new field of spoken language translation, where speech from on
 <br>
 ### Multiple Accents as Multiple Tasks
 
-In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in [^yang2018joint][^rao2017multi][^jain2018improved][^sun2018domain] used Multi-Task Learning to perform multi-accent speech recognition. The researchers in Yang (208)[^yang2018joint] trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in Rao (2017)[^rao2017multi] recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
+In a vein of research which belongs somewhere between monolingual and multilingual speech recognition, the authors in [^yang2018joint][^rao2017multi][^jain2018improved][^sun2018domain] used Multi-Task Learning to perform multi-accent speech recognition. The researchers in Yang (2018)[^yang2018joint] trained a model to recognize English, with separate output layers for British English vs. American English. These two tasks were trained in parallel with a third task, accent identification. Combining all three tasks led to optimal output (c.f. Figure (8)). The authors in Rao (2017)[^rao2017multi] recognized phonemes of different English accents at an intermediate hidden layer, and then accent-agnostic graphemes at the output layer.
 
 [^yang2018joint]: Yang (2018): Joint Modeling of Accents and Acoustics for Multi-Accent Speech Recognition
 [^rao2017multi]: Rao (2017): Multi-accent speech recognition with hierarchical grapheme based models
