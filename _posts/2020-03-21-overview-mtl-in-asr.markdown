@@ -182,7 +182,12 @@ A less linguistic approach, but based on the exact same principle of using more 
 
 However, the benefits of using linguistic targets vary from study to study, and in their survey paper, Pironkov (2016)[^pironkov2016multi] concluded that "Using even broader phonetic classes (such as plosive, fricative, nasal, $$\ldots$$) is not efficient for MTL speech recognition". In particular, they were referring to the null findings from Stadermann (2015)[^stadermann2005multi]. 
 
-In a similar vein, Multi-Task Learning has been used in an End-to-End framework, in an effort to encourage explicit learning of hierarchical structure of words and phonemes. Oftentimes these hierarchical phonemic levels (e.g. phonemes vs. words) are trained at different levels of the model itself [fernandez2007sequence][^sanabria2018hierarchical][^krishna2018hierarchical][^toshniwal2017multitask][^moriya2018multi]. Figure (5) displays the approach taken in Sanabria (2018)[^sanabria2018hierarchical].
+In a similar vein, Multi-Task Learning has been used in an End-to-End framework, in an effort to encourage explicit learning of hierarchical structure of words and phonemes. Oftentimes these hierarchical phonemic levels (e.g. phonemes vs. words) are trained at different levels of the model itself[^fernandez2007sequence][^sanabria2018hierarchical][^krishna2018hierarchical][^toshniwal2017multitask][^moriya2018multi]. Figure (5) displays the approach taken in Sanabria (2018)[^sanabria2018hierarchical].
+
+[^fernandez2007sequence]: Fernandez (2007): Sequence labelling in structured domains with hierarchical recurrent neural networks
+[^sanabria2018hierarchical]: Sanabria (2018): Hierarchical Multi-Task Learning With CTC
+[^krishna2018hierarchical]: Krishna (2018): Hierarchical Multitask Learning for CTC-based Speech Recognition
+[^moriya2018multi]: Moriya (2018): Multi-task Learning with Augmentation Strategy for Acoustic-to-word Attention-based Encoder-decoder Speech Recognition
 
 <br><br>
 <center><img src="/misc/figs/sanabria-2018.png" align="center" style="width: 400px;"/></center>
@@ -203,10 +208,16 @@ Class labels are the most common output targets for an auxiliary task, but the a
 
 In a similar vein, Das (2017)[^das2017deep] trained an Acoustic Model to classify standard senomes targets as well as regress an input audio frame to bottleneck features of that same frame. Bottleneck features are a compressed representation of the data which have been trained on some other dataset or task --- as such bottleneck features should contain linguistic information. In a very early study, the authors in Lu (2004)[^lu2004multitask] predicted enhanced audio frame features as an auxiliary task (along with the speaker's gender).
 
+[^das2017deep]: Das (2017): Deep Auto-encoder Based Multi-task Learning Using Probabilistic Transcriptions
+
 <br>
 ### Extra Mapping Function as New Task
 
 In End-to-End ASR, Kim (2017)[^kim2017joint] created a Multi-Task model by adding a mapping function (CTC) to an attention-based encoder-decoder model. This is an interesting approach because the two mapping functions (CTC vs. attention) carry with them pros and cons, and the authors demonstrate that the alignment power of the CTC approach can be leveraged to help the attention-based model find good alignments faster. Along similar lines, Lu (2017)[^lu2017multitask] trained an Acoustic Model to make use of both CTC and Sequential Conditional Random Fields. These works did not create new labels or find new data, but rather, they combined different alignment and classification techniques into one model.
+
+[^kim2017joint]: Kim (2017): Joint CTC-attention based end-to-end speech recognition using Multi-Task Learning
+[^lu2017multitask]: Lu (2017): Multitask Learning with CTC and Segmental CRF for Speech Recognition
+[^povey2016purely]: Povey (2016): Purely Sequence-Trained Neural Networks for ASR Based on Lattice-Free MMI
 
 A famous example of monolingual MTL using multiple mapping functions is the most common Kaldi implementation of the so-called "chain" model[^povey2016purely]. This implementation uses different output layers on a standard feed-forward model, one output layer calculating standard Cross Entropy Loss, and the other calculating a version of the Maximum Mutual Information Criterion.
 
