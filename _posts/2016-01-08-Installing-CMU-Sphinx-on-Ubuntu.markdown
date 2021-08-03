@@ -7,9 +7,19 @@ comments: True
 redirect_from: "/installation/2016/01/09/Installing-CMU-Sphinx-on-Ubuntu.html"
 ---
 
-<img src="/misc/sphinx.jpg" align="right" alt="logo" style="width: 300px;"/>
+<br/>
+<br/>
+
+> 👋 Hi, it's Josh here. I'm writing you this note in 2021: the world of speech technology has changed dramatically since CMU-Sphinx. Before devoting significant time to deploying CMU-Sphinx, take a look at 🐸 [Coqui Speech-to-Text][coqui-github]. It takes minutes to deploy an off-the-shelf 🐸 STT model, and it's [open source on Github][coqui-github]. I'm on the Coqui founding team so I'm admittedly biased. However, you can tell from this blog that I've spent years working with speech technologies like CMU-Sphinx, so I understand the headaches.
+>
+> With 🐸 STT, we've removed the headaches and streamlined for production settings. You can train and deploy state-of-the-art 🐸 Speech-to-Text models in just minutes, not weeks. Check out the [🐸 Model Zoo][coqui-model-zoo] for open, pre-trained models in different languages. Try it out for yourself, and come join our [friendly chatroom][coqui-gitter] 💚
 
 <br/>
+<br/>
+<br/>
+<br/>
+
+<img src="/misc/sphinx.jpg" align="right" alt="logo" style="width: 300px;"/>
 
 ## Some Background
 
@@ -1011,3 +1021,6 @@ Total time: 7.001 secs
 [stackoverflow]: http://stackoverflow.com/questions/10630747/converting-the-lm-to-dmp-file-for-building-the-language-model-for-speech-rec
 [pocketsphinx]: https://github.com/cmusphinx/pocketsphinx
 [linux-manual]: http://man7.org/linux/man-pages/man8/ldconfig.8.html
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-github]: https://github.com/coqui-ai/stt
