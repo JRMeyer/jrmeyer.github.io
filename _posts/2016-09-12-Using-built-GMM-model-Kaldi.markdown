@@ -223,3 +223,6 @@ If you have any feedback or questions, don't hesitate to leave a comment!
 
 [kaldi-install]: http://jrmeyer.github.io/kaldi/2016/01/26/Installing-Kaldi.html
 [kaldi-notes]: http://jrmeyer.github.io/kaldi/2016/02/01/Kaldi-notes.html
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-github]: https://github.com/coqui-ai/stt

@@ -274,3 +274,6 @@ Happy Kaldi-ing!
 [ebs]: https://www.youtube.com/watch?v=DKftR47Ljvw
 [ec2]: https://www.youtube.com/watch?v=Px7ZPLq4AOU
 [install-cuda]: https://askubuntu.com/questions/799184/how-can-i-install-cuda-on-ubuntu-16-04
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-github]: https://github.com/coqui-ai/stt

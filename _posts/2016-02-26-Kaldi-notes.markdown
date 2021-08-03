@@ -429,3 +429,6 @@ Another [tutorial][tutorial2].
 [tutorial1]: http://m.mr-pc.org/work/jsalt2015lab.pdf
 [tutorial2]: http://pages.jh.edu/~echodro1/tutorial/kaldi/kaldi-intro.html
 [kaldi-for-dummies]: http://www.dsp.agh.edu.pl/_media/pl:dydaktyka:kaldi_for_dummies.pdf
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-github]: https://github.com/coqui-ai/stt

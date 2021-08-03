@@ -923,3 +923,6 @@ Co-authors include Dan Jurafsky and Andrew Ng, among others. This is a longer pa
 [rath-2013]: http://www.danielpovey.com/files/2013_interspeech_nnet_lda.pdf
 [povey-2015]: https://arxiv.org/pdf/1410.7455v4.pdf
 [nnet2-docs]: http://kaldi-asr.org/doc/dnn2.html
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-github]: https://github.com/coqui-ai/stt

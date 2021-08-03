@@ -518,3 +518,6 @@ Let me know if you have comments or suggestions and you can always leave a comme
 [wsj]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/run.sh
 [ctm]: https://github.com/kaldi-asr/kaldi/blob/master/egs/wsj/s5/steps/get_train_ctm.sh
 [cheatsheet]: http://jrmeyer.github.io/asr/2019/08/17/Kaldi-cheatsheet.html
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-github]: https://github.com/coqui-ai/stt
