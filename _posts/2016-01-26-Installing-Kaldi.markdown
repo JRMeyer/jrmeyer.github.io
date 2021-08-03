@@ -14,6 +14,10 @@ redirect_from: "/kaldi/2016/01/26/Installing-Kaldi.html"
 <br/>
 <br/>
 
+> 👋 I'm writing this intro note in 2021: the world of speech technology has changed dramatically since Kaldi. Before devoting weeks of your time to deploying Kaldi, take a look at 🐸 [Coqui STT][coqui-github]. It takes minutes to deploy an off-the-shelf 🐸 STT model... and it's [open source on Github][coqui-github]! I'm on the Coqui founding team so I'm admittedly biased, but as you can tell from my blog, I spent years working with Kaldi. With 🐸 STT, we've removed the headaches of Kaldi, and streamlined everything for production settings. With 🐸 STT, you can train and deploy state-of-the-art Speech-to-Text models in just minutes, not weeks. And we have a whole [🐸 Model Zoo][coqui-model-zoo] with pre-trained models. Try it out for yourself, and come join our [friendly chatroom][coqui-gitter] 💚
+
+<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
+
 ## Installation via GitHub
 
 Kaldi is primarily hosted on GitHub (not SourceForge anymore), so I'm going to just clone [the official GitHub repository][official-repo] to my Desktop and go from there.
@@ -890,3 +894,6 @@ Happy Kaldi-ing!
 [irstlm]: http://hlt-mt.fbk.eu/technologies/irstlm
 [official-repo]: https://github.com/kaldi-asr/kaldi
 [docs]: http://kaldi-asr.org/doc/
+[coqui-github]: https://github.com/coqui-ai/stt
+[coqui-model-zoo]: https://coqui.ai/models
+[coqui-gitter]: https://gitter.im/coqui-ai/STT
