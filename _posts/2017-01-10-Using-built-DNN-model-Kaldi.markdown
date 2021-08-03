@@ -7,22 +7,23 @@ comments: True
 redirect_from: "/kaldi/2017/01/10/Using-built-DNN-model-Kaldi.html"
 ---
 
-<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
+<br/>
+<br/>
+
+> 👋 Hi, it's Josh here. I'm writing you this note in 2021: the world of speech technology has changed dramatically since Kaldi. Before devoting weeks of your time to deploying Kaldi, take a look at 🐸 [Coqui Speech-to-Text][coqui-github]. It takes minutes to deploy an off-the-shelf 🐸 STT model, and it's [open source on Github][coqui-github]. I'm on the Coqui founding team so I'm admittedly biased. However, you can tell from this blog that I've spent years working with Kaldi, so I understand the headaches.
+>
+> With 🐸 STT, we've removed the headaches of Kaldi and streamlined everything for production settings. You can train and deploy state-of-the-art 🐸 Speech-to-Text models in just minutes, not weeks. Check out the [🐸 Model Zoo][coqui-model-zoo] for open, pre-trained models in different languages. Try it out for yourself, and come join our [friendly chatroom][coqui-gitter] 💚
 
 <br/>
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
 
-This post is essentially a walk through of [this shell script]({{ site.url }}/misc/dnn-decode.sh).
-
-
-
-<br/>
+<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 300px;"/>
 
 ## Introduction
+
+This post is essentially a walk through of [this shell script]({{ site.url }}/misc/dnn-decode.sh).
 
 If you're reading this, I'm assuming that you've already [downloaded and installed Kaldi][kaldi-install] and successfully trained a DNN-HMM acoustic model along with a decoding graph. 
 

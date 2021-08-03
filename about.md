@@ -18,7 +18,7 @@ You can find my CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">her
 <br/>
 <br/>
 
-My name's Josh and I'm a co-founder of <a href="https://coqui.ai/">Coqui</a>, an speech technology startup. My expertise is in Automatic Speech Recognition and Synthesis, Natural Language Processing, and general Machine Learning. This blog is some of what I'm doing and learning along the way.
+My name's Josh and I'm a co-founder of <a href="https://coqui.ai/">Coqui</a>, a speech technology startup. My expertise is in Automatic Speech Recognition and Synthesis, Natural Language Processing, and general Machine Learning. This blog is some of what I'm doing and learning along the way.
 
 <br/>
 <br/>

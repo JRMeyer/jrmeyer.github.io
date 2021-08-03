@@ -19,7 +19,7 @@ redirect_from: "/kaldi/2016/01/26/Installing-Kaldi.html"
 <br/>
 <br/>
 
-<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 400px;"/>
+<img src="/misc/kaldi_text_and_logo.png" align="right" alt="logo" style="width: 300px;"/>
 
 ## Installation via GitHub
 
