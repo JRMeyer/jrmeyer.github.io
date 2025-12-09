@@ -7,18 +7,6 @@ comments: True
 redirect_from: "/kaldi/2016/12/15/DNN-AM-Kaldi.html"
 ---
 
-<br/>
-<br/>
-
-> 👋 Hi, it's Josh here. I'm writing you this note in 2021: the world of speech technology has changed dramatically since Kaldi. Before devoting weeks of your time to deploying Kaldi, take a look at 🐸 [Coqui Speech-to-Text][coqui-github]. It takes minutes to deploy an off-the-shelf 🐸 STT model, and it's [open source on Github][coqui-github]. I'm on the Coqui founding team so I'm admittedly biased. However, you can tell from this blog that I've spent years working with Kaldi, so I understand the headaches.
->
-> With 🐸 STT, we've removed the headaches of Kaldi and streamlined everything for production settings. You can train and deploy state-of-the-art 🐸 Speech-to-Text models in just minutes, not weeks. Check out the [🐸 Model Zoo][coqui-model-zoo] for open, pre-trained models in different languages. Try it out for yourself, and come join our [friendly chatroom][coqui-gitter] 💚
-
-<br/>
-<br/>
-<br/>
-<br/>
-
 If you want to take a step back and learn about Kaldi in general, I have posts on [how to install Kaldi][kaldi-install] or some [miscellaneous Kaldi notes][kaldi-notes] which contain some documentation.
 
 All the scripts presented in this post or required for training can be downloaded [here]({{ site.url }}/misc/nnet2_simple.tar.gz) or cloned from here:
@@ -923,6 +911,3 @@ Co-authors include Dan Jurafsky and Andrew Ng, among others. This is a longer pa
 [rath-2013]: http://www.danielpovey.com/files/2013_interspeech_nnet_lda.pdf
 [povey-2015]: https://arxiv.org/pdf/1410.7455v4.pdf
 [nnet2-docs]: http://kaldi-asr.org/doc/dnn2.html
-[coqui-gitter]: https://gitter.im/coqui-ai/STT
-[coqui-model-zoo]: https://coqui.ai/models
-[coqui-github]: https://github.com/coqui-ai/stt
