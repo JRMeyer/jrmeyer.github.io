@@ -24,3 +24,7 @@ google_analytics: UA-90329904-1
 
 plugins:
   - jekyll-redirect-from
+
+# Exclude files from build
+exclude:
+  - CLAUDE.md
