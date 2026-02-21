@@ -10,15 +10,21 @@ comments: True
 
 ## Introduction
 
-I've been using [Ghostty][ghostty] as my terminal for a while now, and one of my favorite features is the `custom-shader` support. You can write GLSL fragment shaders that Ghostty renders behind your terminal content. So naturally I started wondering what it would look like to have watercolor washes as a background.
+I spend most of my time in the terminal. When I tried out [Ghostty][ghostty] for the first time this week, I didn't expect to switch from macOS Terminal. There wasn't a lot of complaints I had before. However, when I zoomed in and out on the text in ghostty without the window changing size, I decided to try it as a daily driver. 
 
-I ended up making a whole collection of them, each named after a real watercolor painting technique. The repo is at [github.com/JRMeyer/ghostty-watercolors][repo].
+THEN, I found you can display images right in the terminal. This was actually HUGE for me. I ssh into servers a lot and work on code there with claude. Claude is great at generating diagrams, so I have it generate SVG / HTML charts and visuals, but over ssh with macOS terminal I can't see them. So I just scp them to my laptop and open in browser. But with ghostty I can generate an SVG on the server, convert to png and show inline in the terminal. This alone is a major win. (in the past I also did a bunch of hoop jumping to play audio over ssh, haven't tried with ghostty yet)
+
+So, I found ghostty and liked the functionality, but then I found all the fun, not so functional things you can do with it.
+
+I've been watercoloring lately, so I wondered if I could make watercolor washes as a terminal background.
+
+I ended up making a whole collection of them, each named after a real watercolor painting technique. The repo is at [github.com/JRMeyer/ghostty-watercolors][repo]. PRs are welcome:)
 
 <br/>
 
 ## The Shaders
 
-There are nine shaders in the collection. Each one simulates a different wash technique:
+There are nine shaders in the collection so far. Each one tries to simulate a different wash technique:
 
 - **Flat Wash** -- Uniform color with organic edges.
 - **Graded Wash** -- Fades from full color to transparent, top to bottom.
