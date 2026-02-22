@@ -4,17 +4,6 @@ title: Media
 permalink: /media/
 ---
 
-<h1 class="page-heading" style="font-size:40px;" >Downloads</h1>
-
-You can download an <A HREF="http://www.nvaccess.org/">NVDA</A> installer with Kyrgyz language support <A HREF="http://jrmeyer.github.io/misc/NVDA_with_kyrgyz_11-11-2016.exe">here.</A> You should be able to install the program by double clicking on the file and following the directions. To turn Kyrgyz language support on or off, navigate to "Voices" under "Settings" after you've installed the program. This project was conducted with <A HREF="https://www.facebook.com/EmpowerBlindPeople/">Empower Blind People</A>, a non-profit organization for blind people in Kyrgyzstan. Any feedback on the Kyrgyz support (accent, translation, errors, etc) is gladly welcomed!
-
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
 <h1 class="page-heading" style="font-size:40px;" >Lectures & Talks</h1>
 
 <br/>
