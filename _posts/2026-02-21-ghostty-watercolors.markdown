@@ -55,6 +55,11 @@ Here are a few of them in action:
 
 <br/>
 
+<center><img src="/misc/figs/salt.png" style="width: 600px;"/></center>
+<center><em>Salt</em></center>
+
+<br/>
+
 ## Getting Started
 
 Add a shader to your Ghostty config (`~/.config/ghostty/config`):
