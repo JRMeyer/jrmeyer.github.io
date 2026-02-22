@@ -18,6 +18,9 @@ I spend most of my time in the terminal. When I tried out [Ghostty][ghostty] thi
 
 Then I found you can display images right in the terminal. This was huge for me. I ssh into servers a lot and work on code there with Claude, which is great at generating diagrams and charts. Over ssh with macOS Terminal I can't see them -- I'd just scp them to my laptop and open in browser. With Ghostty I can generate an SVG on the server, convert to png, and show it inline. This alone is a major win.
 
+<center><img src="/misc/figs/ghostty-inline-image.png" style="width: 600px;"/></center>
+<center><em>Displaying an image inline in Ghostty</em></center>
+
 So I liked the functionality, but then I found all the fun, not-so-functional things you can do with it. Ghostty has a `custom-shader` feature that lets you write GLSL fragment shaders that render behind your terminal content.
 
 I've been watercoloring lately, so I wondered if I could make watercolor washes as a terminal background. I ended up making a whole collection of them, each named after a real painting technique. The repo is at [github.com/JRMeyer/ghostty-watercolors][repo]. PRs are welcome :)
