@@ -18,7 +18,7 @@ You can find my CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">her
 <br/>
 <br/>
 
-My name's Josh. I've spent the last decade building speech and AI systems. I got my PhD in automatic speech recognition from the University of Arizona, then worked at Mozilla on Common Voice and DeepSpeech. From there I co-founded Coqui, where we released open-source speech models that now have 6M+ monthly downloads. I've led applied AI teams shipping LLM and multimodal products, and I've published at NeurIPS, INTERSPEECH, and LREC (<a href="https://scholar.google.com/citations?user=50JkRskAAAAJ">Google Scholar</a>). Currently I'm a Founding Member of Technical Staff at <a href="https://veris.ai/">Veris AI</a>, building simulation environments for LLM agents. This blog is some of what I've learned along the way.
+My name's Josh. I've spent the last decade building speech and AI systems. I got my PhD in automatic speech recognition from the University of Arizona, then worked at Mozilla on Common Voice and DeepSpeech. From there I co-founded Coqui, where we released open-source speech models that now have 6M+ monthly downloads. I've led applied AI teams shipping LLM and multimodal products, and I've published at NeurIPS, INTERSPEECH, and LREC (<a href="https://scholar.google.com/citations?user=XiAmdnYAAAAJ">Google Scholar</a>). Currently I'm a Founding Member of Technical Staff at <a href="https://veris.ai/">Veris AI</a>, building simulation environments for LLM agents. This blog is some of what I've learned along the way.
 
 <br/>
 <br/>
