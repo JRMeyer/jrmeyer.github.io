@@ -8,17 +8,19 @@ comments: True
 
 <br/><br/>
 
+<center><img src="/misc/figs/wet-on-wet.png" style="width: 600px;"/></center>
+
+<br/>
+
 ## Introduction
 
-I spend most of my time in the terminal. When I tried out [Ghostty][ghostty] for the first time this week, I didn't expect to switch from macOS Terminal. There wasn't a lot of complaints I had before. However, when I zoomed in and out on the text in ghostty without the window changing size, I decided to try it as a daily driver. 
+I spend most of my time in the terminal. When I tried out [Ghostty][ghostty] this week, I didn't expect to switch from macOS Terminal -- I didn't have a lot of complaints before. But then I zoomed in and out on the text without the window resizing, and I decided to try it as a daily driver.
 
-THEN, I found you can display images right in the terminal. This was actually HUGE for me. I ssh into servers a lot and work on code there with claude. Claude is great at generating diagrams, so I have it generate SVG / HTML charts and visuals, but over ssh with macOS terminal I can't see them. So I just scp them to my laptop and open in browser. But with ghostty I can generate an SVG on the server, convert to png and show inline in the terminal. This alone is a major win. (in the past I also did a bunch of hoop jumping to play audio over ssh, haven't tried with ghostty yet)
+Then I found you can display images right in the terminal. This was huge for me. I ssh into servers a lot and work on code there with Claude, which is great at generating diagrams and charts. Over ssh with macOS Terminal I can't see them -- I'd just scp them to my laptop and open in browser. With Ghostty I can generate an SVG on the server, convert to png, and show it inline. This alone is a major win.
 
-So, I found ghostty and liked the functionality, but then I found all the fun, not so functional things you can do with it.
+So I liked the functionality, but then I found all the fun, not-so-functional things you can do with it. Ghostty has a `custom-shader` feature that lets you write GLSL fragment shaders that render behind your terminal content.
 
-I've been watercoloring lately, so I wondered if I could make watercolor washes as a terminal background.
-
-I ended up making a whole collection of them, each named after a real watercolor painting technique. The repo is at [github.com/JRMeyer/ghostty-watercolors][repo]. PRs are welcome:)
+I've been watercoloring lately, so I wondered if I could make watercolor washes as a terminal background. I ended up making a whole collection of them, each named after a real painting technique. The repo is at [github.com/JRMeyer/ghostty-watercolors][repo]. PRs are welcome :)
 
 <br/>
 
@@ -37,11 +39,6 @@ There are nine shaders in the collection so far. Each one tries to simulate a di
 - **Splatter** -- Random droplets scattered across a light wash, like flicking a loaded brush.
 
 Here are a few of them in action:
-
-<br/>
-
-<center><img src="/misc/figs/wet-on-wet.png" style="width: 600px;"/></center>
-<center><em>Wet-on-Wet</em></center>
 
 <br/>
 
