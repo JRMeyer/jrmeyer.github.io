@@ -18,7 +18,7 @@ You can find my CV <a href="http://jrmeyer.github.io/misc/josh-meyer-cv.pdf">her
 <br/>
 <br/>
 
-My name's Josh and I'm a Founding Member of Technical Staff at <a href="https://veris.ai/">Veris AI</a>, where I'm working on Generative Simulation Environments for LLM Agents. Previously, I was a co-founder of <a href="https://coqui.ai/">Coqui</a>, a speech technology startup. My expertise is in Automatic Speech Recognition and Synthesis, Natural Language Processing, and general Machine Learning. This blog is some of what I'm doing and learning along the way.
+My name's Josh. I've spent the last decade working on speech, language, and AI. I've co-founded a startup, released open-source AI models with millions of monthly downloads, and led fast-moving engineering teams. Currently I'm a Founding Member of Technical Staff at <a href="https://veris.ai/">Veris AI</a>, working on Generative Simulation Environments for LLM Agents. This blog is some of what I'm doing and learning along the way.
 
 <br/>
 <br/>
