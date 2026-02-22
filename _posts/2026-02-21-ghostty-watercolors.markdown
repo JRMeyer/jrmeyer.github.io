@@ -92,11 +92,6 @@ custom-shader = /path/to/ghostty-watercolors/active-shader.glsl
 
 Now every new terminal window gets a different wash type and color. Pretty cool, right?
 
-<br/>
-
-## Conclusion
-
-I hope this was helpful! If you end up using these shaders, let me know how it goes. If you have any feedback or questions, don't hesitate to leave a comment below :)
 
 [ghostty]: https://ghostty.org
 [repo]: https://github.com/JRMeyer/ghostty-watercolors
