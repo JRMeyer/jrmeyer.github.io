@@ -142,6 +142,16 @@ blockquote {
 
 
 /**
+ * MathJax equations - allow horizontal scroll on mobile
+ */
+.MathJax_Display {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+/**
  * Code formatting
  */
 pre,
