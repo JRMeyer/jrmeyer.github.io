@@ -56,7 +56,9 @@ I also like travelling and Radiohead.
 
 
 <center>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/V6G0tjT6A3I" frameborder="0" allowfullscreen></iframe>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 560px; width: 100%; margin: 0 auto;">
+<iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/V6G0tjT6A3I" frameborder="0" allowfullscreen></iframe>
+</div>
 </center>
 
 
