@@ -19,7 +19,7 @@ Last, I took a last pass over the sessions and put stars next to the sessions I 
 
 # Sunday
 
-<object data="/misc/1.pdf" type="application/pdf" width="700px" height="700px">
+<object data="/misc/1.pdf" type="application/pdf" width="100%" height="700px" style="max-width: 700px;">
     <embed src="/misc/1.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/1.pdf">Download PDF</a>.</p>
     </embed>
@@ -31,7 +31,7 @@ Last, I took a last pass over the sessions and put stars next to the sessions I 
 
 # Monday
 
-<object data="/misc/2.pdf" type="application/pdf" width="700px" height="700px">
+<object data="/misc/2.pdf" type="application/pdf" width="100%" height="700px" style="max-width: 700px;">
     <embed src="/misc/2.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/2.pdf">Download PDF</a>.</p>
     </embed>
@@ -44,7 +44,7 @@ Last, I took a last pass over the sessions and put stars next to the sessions I 
 
 # Tuesday
 
-<object data="/misc/3.pdf" type="application/pdf" width="700px" height="700px">
+<object data="/misc/3.pdf" type="application/pdf" width="100%" height="700px" style="max-width: 700px;">
     <embed src="/misc/3.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/3.pdf">Download PDF</a>.</p>
     </embed>
@@ -57,7 +57,7 @@ Last, I took a last pass over the sessions and put stars next to the sessions I 
 
 # Wednesday
 
-<object data="/misc/4.pdf" type="application/pdf" width="700px" height="700px">
+<object data="/misc/4.pdf" type="application/pdf" width="100%" height="700px" style="max-width: 700px;">
     <embed src="/misc/4.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/4.pdf">Download PDF</a>.</p>
     </embed>
@@ -70,7 +70,7 @@ Last, I took a last pass over the sessions and put stars next to the sessions I 
 
 # Thursday
 
-<object data="/misc/5.pdf" type="application/pdf" width="700px" height="700px">
+<object data="/misc/5.pdf" type="application/pdf" width="100%" height="700px" style="max-width: 700px;">
     <embed src="/misc/5.pdf">
         <p>This browser does not support PDFs. Please download the PDF to view it: <a href="/misc/5.pdf">Download PDF</a>.</p>
     </embed>

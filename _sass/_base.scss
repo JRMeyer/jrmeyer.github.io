@@ -40,11 +40,28 @@ ul, ol, dl, figure,
 
 
 /**
- * Images
+ * Images and embedded media
  */
 img {
     max-width: 100%;
     vertical-align: middle;
+}
+
+img, iframe, object, embed {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+@include media-query($on-palm) {
+    img[align] {
+        float: none !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+}
+
+div[style*="display: flex"] {
+    flex-wrap: wrap;
 }
 
 
