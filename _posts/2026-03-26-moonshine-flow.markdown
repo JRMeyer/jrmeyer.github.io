@@ -14,6 +14,17 @@ I made a drop-in replacement for Apple's voice dictation. it's 100% open source,
 
 Source Code: https://github.com/JRMeyer/MoonshineFlow
 
+Here it is in action:
+
+<center>
+  <video controls preload="metadata" playsinline style="max-width: 100%; height: auto;">
+    <source src="/misc/moonshine-flow.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</center>
+
+<br/>
+
 ## Background
 
 I use Apple's built-in voice dictation a lot. In particular, when I picked up Claude Code in the summer of 2025, I started talking into the terminal more than typing. But it's not just Claude Code. I use dictation for WhatsApp messages, Google searches, emails, basically anywhere I need to input text. Apple Dictation is great because it just works in every text field on MacOS, and it's easy to set up. It's "set it and forget it".
@@ -29,17 +40,6 @@ But Note Taker is designed for transcribing into its own window. I wanted a drop
 So I wondered: if Moonshine runs this smoothly on Apple Silicon, maybe with a little help from my friend Claude Code I can hack something together.
 
 That's exactly what [Moonshine Flow][repo] is :)
-
-<br/>
-
-Here it is in action:
-
-<center>
-  <video controls preload="metadata" playsinline style="max-width: 100%; height: auto;">
-    <source src="/misc/moonshine-flow.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</center>
 
 <br/>
 
