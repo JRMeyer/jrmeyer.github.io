@@ -8,7 +8,7 @@ comments: True
 
 <br/><br/>
 
-<em>I wrote this in January 2024, a few weeks after we shut down Coqui, prompted by some questions from TechCrunch. I decided not to publish it. Posting it now unedited.</em>
+<em>I wrote this in January 2024, a few weeks after we shut down Coqui, prompted by some questions from TechCrunch. Posting it now unedited.</em>
 
 ---
 

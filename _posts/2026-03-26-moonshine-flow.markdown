@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Replacing Apple Dictation with Moonshine Flow (FOSS + local)"
+title: "Replacing Apple Dictation with Moonshine Flow (local)"
 date: 2026-03-26
 categories: ASR
 comments: True
@@ -10,9 +10,7 @@ comments: True
 
 ## TLDR;
 
-I made a drop-in replacement for Apple's voice dictation. it's 100% open source, runs locally, and afaict it's higher quality. It probably consumes more memory / power though.
-
-Source Code: https://github.com/JRMeyer/MoonshineFlow
+I made a drop-in replacement for Apple's voice dictation. It runs locally, and afaict it's higher quality. It probably consumes more memory / power though.
 
 Here it is in action:
 
@@ -39,7 +37,7 @@ But Note Taker is designed for transcribing into its own window. I wanted a drop
 
 So I wondered: if Moonshine runs this smoothly on Apple Silicon, maybe with a little help from my friend Claude Code I can hack something together.
 
-That's exactly what [Moonshine Flow][repo] is :)
+That's exactly what Moonshine Flow is :)
 
 <br/>
 
@@ -47,46 +45,13 @@ That's exactly what [Moonshine Flow][repo] is :)
 
 Moonshine Flow is a menu-bar app. Double-tap the right Option key to start dictation, speak, and tap once to stop. Text streams into whatever app has focus.
 
-The streaming is a little different for terminals (phrase-by-phrase, not word-by-word) because they don't support the accessiblty API as well (I haven't spent a ton of time on this... PRs welcome!).
+The streaming is a little different for terminals (phrase-by-phrase, not word-by-word) because they don't support the accessiblty API as well (I haven't spent a ton of time on this).
 
 Everything runs locally. No audio leaves your machine.
-
-<br/>
-
-## Getting It Running
-
-The app uses Moonshine's [open-source engine][moonshine-github] via their [Swift package][moonshine-swift]. The only manual step is downloading the model files (~290MB). Full setup is in the [repo's SETUP.md][setup], but the gist is:
-
-{% highlight bash %}
-git clone git@github.com:JRMeyer/MoonshineFlow.git
-cd MoonshineFlow
-
-# Download model files (~290MB)
-MODEL_DIR=MoonshineFlow/models/medium-streaming-en
-for f in adapter.ort cross_kv.ort decoder_kv.ort encoder.ort \
-         frontend.ort streaming_config.json tokenizer.bin; do
-  curl -L "https://download.moonshine.ai/model/medium-streaming-en/quantized/$f" \
-    -o "$MODEL_DIR/$f"
-done
-
-swift build && swift run
-{% endhighlight %}
-
-You'll need Xcode installed (not just Command Line Tools) on an Apple Silicon Mac running macOS 15+. On first run, grant Microphone, Accessibility, and Input Monitoring permissions.
-
-<br/>
-
-## Enjoy!
-
-PRs welcome :)
 
 
 [claude-code]: https://docs.anthropic.com/en/docs/claude-code
 [whisperflow]: https://wisprflow.ai/data-controls#:~:text=Transcription%20always%20occurs%20on%20the%20cloud.%20This%20is%20the%20best%20way%20for%20us%20to%20provide%20accurate%2C%20low%20latency%20transcription.
 [moonshine]: https://www.moonshine.ai/
-[moonshine-github]: https://github.com/moonshine-ai/moonshine
-[moonshine-swift]: https://github.com/moonshine-ai/moonshine-swift
 [pete]: https://petewarden.com
 [note-taker]: https://note-taker.moonshine.ai/
-[repo]: https://github.com/JRMeyer/MoonshineFlow
-[setup]: https://github.com/JRMeyer/MoonshineFlow/blob/main/SETUP.md
